@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/demo2.css" />
+	</head>
+	<body>
+		<div id="main" v-cloak @click="hideTooltip">
+			<div class="tooltip" v-if="show_tooltip" @click.stop>
+				<input type="text" v-model="text_content"/>
+			</div>
+			<p @click.stop="toggleTooltip">{{text_content}}</p>
+		</div>
+	</body>
+	<script src="js/vue.min.js"></script>
+	<script>
+		var demo=new Vue({
+			el:'#main',
+			data:{
+				show_tooltip:false,
+				text_content:'Edit me.'
+			},
+			methods:{
+				hideTooltip:function(){
+					this.show_tooltip=false;
+				},
+				toggleTooltip:function(){
+					this.show_tooltip=!this.show_tooltip;
+				}
+			}
+		});
+	</script>
+</html>
