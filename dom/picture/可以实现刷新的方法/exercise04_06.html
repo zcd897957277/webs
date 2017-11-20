@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>总结可以实现页面刷新的方法</title>
+	</head>
+	<body>
+		<h2>总结可以实现页面刷新的方法</h2>
+		<h3>所有浏览器都兼容的方法</h3>
+		<button onclick="history.go(0)">history.go(0)</button>
+		<button onclick="location.reload()">location.reload()</button>
+		<button onclick="location=location">location=location</button>
+		<button onclick="location.assign(location)">location.assign(location)</button>
+		
+		<h3>仅IE中可以使用的方法</h3>
+		<button onclick="document.URL=location.href">
+			document.URL=location.href
+		</button>
+		<button onclick="document.execCommand('Refresh')">
+			document.execCommand('Refresh')
+		</button>
+		<button onclick="window.navigate(location)">
+			window.navigate(location)
+		</button>
+	</body>
+</html>

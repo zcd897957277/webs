@@ -1,0 +1,19 @@
+img{
+	width:200px;
+}
+div{
+	height: 50px;
+	width: 200px;
+	font-size: 12pt;
+}
+div span{
+	padding: 8px 10px;
+	background-color: #dddddd;
+	margin-right: 15px;
+	width: 200px;
+	line-height: 50px;
+	cursor: pointer;
+}
+span.current{
+	background-color: #f00;
+}

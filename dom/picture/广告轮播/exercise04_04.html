@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>广告轮播</title>
+		<link rel="stylesheet" href="exercise04_04.css" />
+		<script src="exercise04_04.js"></script>
+	</head>
+	<body onload="startRotate();">
+		<h2>广告轮播</h2>
+		<img src="img/1.jpg" alt="" id="img1" onmouseover="stopRotate()"
+			onmouseout="startRotate();"/>
+		<div id="indexDiv">
+			<span class="current" onmouseover="stopRotate(0)"
+				onmouseout="startRotate();">1</span>
+			<span onmouseover="stopRotate(1)"
+				onmouseout="startRotate();">2</span>
+			<span onmouseover="stopRotate(2)"
+				onmouseout="startRotate();">3</span>
+			<span onmouseover="stopRotate(3)"
+				onmouseout="startRotate();">4</span>
+		</div>
+	</body>
+</html>

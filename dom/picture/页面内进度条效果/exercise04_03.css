@@ -1,0 +1,17 @@
+#bar{
+	/*进度条*/
+	background-color: #ffffff;
+	border: 1px solid #aaaaaa;
+	width: 500px;
+	height: 26px;
+}
+#bar div{
+	/*进度条的部分*/
+	background-color: #D5F1FC;
+	height: 26px;
+	width: 0;
+}
+#bar span{
+	/*进度条内的提示文字*/
+	line-height: 26px;
+}
