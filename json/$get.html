@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>重写json方法get</h1>
+  <script>
+  	function Ajax(){
+		var xhr=new XMLHttpRequest();
+		this.get=function(url,data,fn){
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState===4){
+					if(xhr.status===200){
+						fn(xhr.responseText);
+					}else{
+						fn(xhr.status);	
+					}
+				}
+			}
+			//data不取值时
+			if(typeof(data)=='function'){
+				fn=data;	
+			}
+			//{uname:’tom’,age:20}
+			if(data){
+				var msg=[];
+				for(var key in data){
+					msg.push(key+'='+data[key]);
+				}
+				msg=msg.join("&");
+			}
+			xhr.open('get',url+'?'+msg,true);
+			xhr.send(null);
+		}
+	}
+	var $=new Ajax();
+	$.get('1.php',function(){});
+  </script>
+ </body>
+</html>
