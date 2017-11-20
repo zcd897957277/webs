@@ -1,0 +1,51 @@
+1.at android.view.View.performClick(View.java:2408)
+ 就是指 View 定义的变量的名字 有相同的!
+       所以!
+  
+  上次我做项目的时候!发现,我click中嵌套click 就出现这样类似的错误!
+     至于具体的我记得不太请错了!
+   反正就是两个命名的问题!改下变量名就OK了
+
+2.05-30 22:00:15.913: E/AndroidRuntime(27175): java.lang.RuntimeException: Unable to start activity ComponentInfo{com.example.jumphourse/com.example.jumphourse.HourseGameActivity}: android.util.AndroidRuntimeException: requestFeature() must be called before adding content
+
+
+public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.tab_choice);
+      requestWindowFeature(Window.FEATURE_NO_TITLE);
+}
+ 
+其中: setContentView(R.layout.tab_choice);
+     requestWindowFeature(Window.FEATURE_NO_TITLE);
+两行顺序换一下就可以了。
+改后：
+public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+     requestWindowFeature(Window.FEATURE_NO_TITLE);
+            setContentView(R.layout.tab_choice);
+}
+
+
+3.Installation error: INSTALL_FAILED_INSUFFICIENT_STORAGE
+安装失败_ _存储不足
+
+
+
+4.启动android模拟器时.有时会报The connection to adb is down, and a severe error has occured.的错误.在网友说在任务管理器上把所有adb.exe关闭掉.重启eclipse.但试过不管用.所以在外国网站上找到一种可行的方法:
+
+	1.先把eclipse关闭.
+
+	2.在管理器转到你的android SDK 的platform-tools下, 如图:
+
+
+	3.键入adb kill-server ,如果adb关闭了会提示 server not running *
+
+	4.再输入 adb start-server  如果不成功会提示 daemon not running. starting it now on port  ***的
+   而如果成功的话不提示任何语句的.这时再重新打开eclipse就可以正常运行模拟器的了.
+
+5.onTouchevent 方法中事件之间的触动范围不能叠加，会导致程序崩溃
+
+6.线程Thread在事件完成之后必须结束，不结束，程序崩溃
+
+7.onTouchevent 方法中点击事件之中加for循环，达到判断标准结束，不点击程序崩溃，故
+尽量不要放在onTouchevent 事件中

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button id="bt">点击</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Accusamus asperiores aspernatur assumenda ex in,
+        neque officia optio veniam. Ab accusamus aperiam
+        asperiores commodi deserunt dolor dolore labore
+        molestiae perspiciatis quaerat.</p>
+    <script>
+        function hide(){
+            var bt=document.querySelector("button");
+            bt.addEventListener("click",function(){
+                console.log("it is lot");
+                if(document.querySelector("p").innerHTML===""){
+                    document.querySelector("p").innerHTML="Lorem ipsum dolor sit amet, consectetur adipisicing elit.Accusamus asperiores aspernatur assumenda ex in,neque officia optio veniam. Ab accusamus aperiamasperiores commodi deserunt dolor dolore laboremolestiae perspiciatis quaerat";
+                }else{
+                    document.querySelector("p").innerHTML='';
+                }
+            });
+        }
+        hide();
+    </script>
+</body>
+</html>
