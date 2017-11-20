@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    header {
+      width: 500px;
+      height: 600px;
+      margin: 20px auto;
+    }
+
+    header h1 {
+      text-align: center;
+    }
+
+    header section {
+      width: 100%;
+      height: 100%;
+      background: #666;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    header section h2 {
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      background: #333;
+    }
+
+    .audio {
+      width: 100%;
+      height: 36px;
+      border-radius: 5px;
+      background: #000;
+      margin: 20px 0;
+      overflow: hidden; /*共用边界*/
+    }
+
+    .audio .audio_set {
+      width: 40px;
+      height: 36px;
+      border-right: 1px solid #fff;
+      overflow: hidden; /*共用边界*/
+      float: left;
+    }
+
+    .audio .audio_set #play {
+      width: 8px;
+      height: 10px;
+      margin: 13px auto;
+      cursor: pointer;
+    }
+    .audio .audio_set #play.play{
+      background: url(img/1.gif) -11px -10px no-repeat;
+    }
+    .audio .audio_set #play.pause{
+      background: url(img/1.gif) -11px -100px no-repeat;
+    }
+    .audio .progress {
+      float: left;
+      width: 285px;
+      height: 18px;
+      background: #333;
+      margin: 9px;
+      margin-left: 20px;
+      position: relative;
+    }
+
+    .audio .progress .bar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      left: -5px;
+    }
+
+    .audio .progress .rect {
+      width: 0;
+      height: 18px;
+      background: #ccc;
+    }
+    .audio .progress .cover{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .audio .time {
+      float: left;
+      color: white;
+      font-size: 12px;
+      border-left: 1px solid #fff;
+      padding: 10px;
+      border-right: 1px solid #fff;
+    }
+
+    .audio .voice {
+      width: 40px;
+      height: 36px;
+      float: left;
+    }
+    .audio .voice #voice{
+      width: 14px;
+      height: 14px;
+      margin: 11px auto;
+      cursor: pointer;
+    }
+    .audio .voice #voice.muted{
+      background: url(img/2.png) 0 -14px no-repeat;
+    }
+    .audio .voice #voice.jingyin{
+      background: url(img/2.png) 0 0 no-repeat;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>HTML5 audio自制播放器</h1>
+  <section>
+    <h2>音乐播放器</h2>
+
+    <div class="audio">
+      <audio id="audio">
+        您的浏览器不支持audio
+      </audio>
+      <!--控件-->
+      <div class="audio_set">
+        <div id="play" class="play"></div>
+      </div>
+      <!--进度条-->
+      <div class="progress">
+        <div class="rect"></div>
+        <!--遮罩层  一定要在bar前面-->
+        <div class="cover"></div>
+        <!--按钮-->
+        <div class="bar"></div>
+      </div>
+      <div class="time">
+        <b>00:00</b>
+        /
+        <b>05:20</b>
+      </div>
+      <div class="voice">
+        <div id="voice" class="muted"></div>
+      </div>
+    </div>
+
+
+  </section>
+</header>
+
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+  $(function () {
+    var Player={
+      url:'music/',//路径
+      data:['周杰伦、cug组合 - 夜店咖.mp3','周杰伦、陈奕迅 - 简单爱.mp3','周杰伦、周杰伦 - 我的飞行日记.mp3'],
+      //audio对象
+      audio:$('#audio')[0],
+      //歌曲索引
+      index:-1,
+      //滚动条的宽度
+      pro_width:$('.progress').width(),
+
+      //初始方法
+      init: function () {
+        this.audio.src=this.url+this.data[0];
+        $('#play').bind("click",this.play);
+        $('#voice').bind("click",this.muted);
+        //当视频加载完成后执行 onloadedmetadata
+        this.audio.addEventListener('loadedmetadata', function () {
+          //当音频时间被改变的时候
+          this.audio.addEventListener('timeupdate',this.showCurrentTime);
+          //进度条改变的事件
+          this.audio.addEventListener('timeupdate',this.progressUpdate);
+          //显示总时长
+          this.showFinalTime();
+          //点击改变进度条
+          $('.cover').on('click',this.clickUpdata);
+        }.bind(this));
+      },
+      //获取音频时长，duration(以秒记)
+      showFinalTime:function(){
+        var finalTime=this.audio.duration;
+        var min =parseInt(finalTime/60);
+        var secnond = parseInt(finalTime%60);
+        min=min>=10?min:'0'+min;
+        secnond=secnond>=10?secnond:'0'+secnond;
+        $('.time b').eq(1).text(min+":"+secnond);
+          },
+      //获取音频的当前时间，currentTime(以秒记)
+      showCurrentTime: function () {
+        //this->this.audio
+        var currentTime = parseInt(this.currentTime);
+        var min =parseInt(currentTime/60);
+        var secnond = parseInt(currentTime%60);
+        min=min>=10?min:'0'+min;
+        secnond=secnond>=10?secnond:'0'+secnond;
+        $('.time b').eq(0).text(min+":"+secnond);
+      },
+      //播放事件
+      play:function(){
+        //判断是否停止，停止就播放，播放就停止
+       if(Player.audio.paused){
+          Player.audio.play();
+         $(this).addClass('pause');
+        }else{
+         Player.audio.pause();
+         $(this).removeClass('pause');
+       }
+      },
+      //进度条事件
+      progressUpdate: function () {
+        var finalTime=parseInt(this.duration);
+        var currentTime = parseInt(this.currentTime);
+        //进度条怎么换算
+        //currentTime/finalTime=当前进度条/总进度条
+        var scale = currentTime/finalTime;
+        $('.rect').css({"width":Player.pro_width*scale});
+        $('.bar').css({"left":Player.pro_width*scale-5+'px'});
+      },
+      //点击进度条改变进度
+      clickUpdata: function (e) {
+        Player.audio.play();
+        $('#play').addClass('pause');
+        var finalTime=parseInt(Player.audio.duration);
+        //获取当前位置点击距离总进度条的长度
+        var e=e||window.event;
+        var distance = e.offsetX;
+        Player.audio.currentTime = distance/Player.pro_width*finalTime;
+      },
+      muted:function(){
+        //判断是否静音
+        if(Player.audio.muted){
+          Player.audio.muted=false;
+          $(this).removeClass("jingyin");
+        }else{
+          Player.audio.muted=true;
+          $(this).addClass("jingyin");
+        }
+      }
+    }
+    Player.init();
+  });
+</script>

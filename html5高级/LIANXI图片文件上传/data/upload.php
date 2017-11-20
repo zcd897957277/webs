@@ -1,0 +1,8 @@
+<?php
+	header("content-type:text/html;charset=GBK");
+    if (!file_exists('../files/'.$_FILES['userfile']['name'])) {
+      move_uploaded_file($_FILES['userfile']['tmp_name'],'../files/'.$_FILES['userfile']['name']);
+    }
+    //echo $_SERVER['HTTP_REFERER'].'files/'.$_FILES['userfile']['name'];
+  
+?>

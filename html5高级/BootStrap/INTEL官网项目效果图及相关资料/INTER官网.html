@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-三个meta必须放在最前面->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/inter.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!--导航条的头部 :商标+汉堡包-->
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">
+                <span class="logo"></span>
+            </a>
+            <a data-toggle="collapse" href="#my-menu" class="navbar-toggle">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+        </div>
+        <!--导航条的折叠部分：菜单+表单+文字+...-->
+        <div  id="my-menu" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active dropdown">
+                    <a href="#" data-toggle="dropdown">
+                        菜单
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">英特尔产品</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">热点话题</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">用户</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">购买</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">产品支持</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">关于英特尔</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a class="navbar-link navbar-text navbar-right" data-toggle="modal" href="#modal-login">登录</a>
+            <span class="navbar-text navbar-right">
+                <span class="earth"></span>
+            </span>
+            <a class="navbar-text navbar-right" data-toggle="modal" href="#modal-lang">China(简体中文)</a>
+
+            <form class="navbar-form navbar-right has-feedback">
+                <div class="form-group has-feedback">
+                    <label for="search" class="sr-only">搜索框</label>
+                    <input id="search" class="form-control" placeholder="Search">
+                    <span class="form-control-feedback">
+                        <span class="searchh"></span>
+                    </span>
+                </div>
+            </form>
+            <span class="navbar-text navbar-right">|</span>
+            <a href="#" class="navbar-text navbar-right">查找内容</a>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="container">
+        <h2>欢迎来到英特尔®</h2><!--® 中文字“商标”出现-->
+        <!--第一行-->
+        <div class="row">
+            <div class="col-md-8 col-xs-12 ">
+                <div class="big-img-container">
+                    <img class="img-responsive" src="img/intel.web.864.486.1.jpg">
+                    <div>
+                        <h4>五代酷瑞星，强劲创体验</h4>
+                        <p>第五代英特尔®酷睿™处理器锋芒登场，革命性突破的领先技术，彻底颠覆传统PC使用体验，带您进入全新数字世界</p>
+                        <a href="#" class="btn bnt-info btn-xs">立即探索第五代智能英特尔"酷睿"处理器</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6">
+                        <img class="img-responsive" src="img/intel.web.368.207.1.jpg">
+                    </div>
+                    <div class="col-md-12 col-sm-6">
+                        <div class="small-img-container">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img src="img/intel.web.81.108.png">
+                                </div>
+                                <div class="media-body">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">英特尔"酷睿"M处理器，</a></li>
+                                        <li><a href="#">"才貌"双全的家用一体机，</a></li>
+                                        <li><a href="#">英特尔"凌动"处理器，</a></li>
+                                        <li><a href="#">2015年台北国际电脑展，</a></li>
+                                        <li><a href="#">《风暴英雄》游戏道具兑换，</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--第二行-->
+        <div class="row">
+            <div class="col-md-8 col-xs-12 col-md-push-4">
+                <div class="big-img-container">
+                    <img class="img-responsive" src="img/intel.web.864.486.1.jpg">
+                    <div>
+                        <h4>五代酷瑞星，强劲创体验</h4>
+                        <p>第五代英特尔®酷睿™处理器锋芒登场，革命性突破的领先技术，彻底颠覆传统PC使用体验，带您进入全新数字世界</p>
+                        <a href="#" class="btn bnt-info btn-xs">立即探索第五代智能英特尔"酷睿"处理器</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-md-pull-8">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <img class="img-responsive" src="img/intel.web.368.207.1.jpg">
+                    </div>
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <div class="small-img-container">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="img/intel.web.81.108.png">
+                                </div>
+                                <div class="media-body">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">英特尔"酷睿"M处理器，</a></li>
+                                        <li><a href="#">"才貌"双全的家用一体机，</a></li>
+                                        <li><a href="#">英特尔"凌动"处理器，</a></li>
+                                        <li><a href="#">2015年台北国际电脑展，</a></li>
+                                        <li><a href="#">《风暴英雄》游戏道具兑换，</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--第三行-->
+        <div class="row">
+            <div class="col-md-8 col-xs-12 ">
+                <div class="big-img-container">
+                    <img class="img-responsive" src="img/intel.web.864.486.1.jpg">
+                    <div>
+                        <h4>五代酷瑞星，强劲创体验</h4>
+                        <p>第五代英特尔®酷睿™处理器锋芒登场，革命性突破的领先技术，彻底颠覆传统PC使用体验，带您进入全新数字世界</p>
+                        <a href="#" class="btn bnt-info btn-xs">立即探索第五代智能英特尔"酷睿"处理器</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <img class="img-responsive" src="img/intel.web.368.207.1.jpg">
+                    </div>
+                    <div class="col-md-12 col-sm-6 col-xs-12">
+                        <div class="small-img-container">
+                            <div class="media">
+                                <div class="media-left">
+                                    <img class="media-object" src="img/intel.web.81.108.png">
+                                </div>
+                                <div class="media-body">
+                                    <ul class="list-unstyled">
+                                        <li><a href="#">英特尔"酷睿"M处理器，</a></li>
+                                        <li><a href="#">"才貌"双全的家用一体机，</a></li>
+                                        <li><a href="#">英特尔"凌动"处理器，</a></li>
+                                        <li><a href="#">2015年台北国际电脑展，</a></li>
+                                        <li><a href="#">《风暴英雄》游戏道具兑换，</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>关于英特尔</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">公司信息</a></li>
+                            <li><a href="#">投资者关系</a></li>
+                            <li><a href="#">联系我们</a></li>
+                            <li><a href="#">新闻发布室</a></li>
+                            <li><a href="#">网站地图</a></li>
+                            <li><a href="#">工作</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>支持</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">支持主页</a></li>
+                            <li><a href="#">下载中心</a></li>
+                            <li><a href="#">产品规范（ARK）</a></li>
+                            <li><a href="#">保持支持</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>法律声明</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">使用条款</a></li>
+                            <li><a href="#">*商标</a></li>
+                            <li><a href="#">隐私条款</a></li>
+                            <li><a href="#">Cookie</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6">
+                        <h4>社交</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="#">英特尔社区</a></li>
+                            <li><a href="#">英特尔中国微博</a></li>
+                            <li><a href="#">英特尔芯品汇微博</a></li>
+                            <li><a href="#">英特尔商品频道微博</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="img/logo.png">
+                <span>。英特尔公司 京ICP备 14036123号-2</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-login">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">登录</div>
+            <div class="modal-body">主体</div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal-lang">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">登录</div>
+            <div class="modal-body">主体</div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.3.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script>
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js";
+        document.body.appendChild(s)
+    })();
+</script>
+</body>
+</html>

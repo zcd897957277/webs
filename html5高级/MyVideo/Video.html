@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的第一个简单的H5视频</title>
+</head>
+<body>
+    <div style="text-align: center">
+        <button onclick="playPause()">播放/暂停</button>
+        <button onclick="makeBig()">放大</button>
+        <button onclick="makeSmall()">缩小</button>
+        <button onclick="makeNormal()">恢复</button>
+        <br>
+        <video id="MyVideo" width="420" height="100">
+            <source src="material/movie/houtian.mp4" type="video/mp4">
+            <source src="material/movie/houtian.ogg" type="video/ogg">
+        </video>
+    </div>
+
+    <script>
+        var AVideo=document.getElementById('MyVideo');
+        function playPause(){
+            if(AVideo.paused){
+                AVideo.play();
+            }else{
+                AVideo.pause();
+            }
+        }
+
+        function makeBig(){
+            AVideo.width="560";
+        }
+        function makeSmall(){
+            AVideo.width="320";
+        }
+        function makeNormal(){
+            AVideo.width="420";
+        }
+    </script>
+</body>
+</html>

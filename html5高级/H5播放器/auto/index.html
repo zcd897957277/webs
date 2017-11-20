@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style:none;	
+}
+header{
+	width:500px;
+	height:600px;
+	margin:20px auto;	
+}
+header h1{
+	text-align:center;	
+}
+header section{
+	width:100%;
+	height:100%;
+	background:#666;
+	border-radius:5px;
+	overflow:hidden;	
+}
+header section h2{
+	color:#fff;
+	text-align:center;
+	line-height:50px;
+	background:#333;	
+}
+.audio{
+	width:100%;
+	height:36px;
+	border-radius:5px;
+	background:#000;
+	margin:20px 0;
+	overflow:hidden;	
+}
+.audio .audio_set{
+	width:40px;
+	height:36px;
+	border-right:1px solid #fff;
+	overflow:hidden;
+	float:left;	
+}
+.audio .audio_set #play{
+	width:8px;
+	height:10px;
+	margin:13px auto;
+	cursor:pointer;	
+}
+.audio .audio_set #play.play{
+	background:url(img/1.gif) -11px -10px no-repeat;
+}
+.audio .audio_set #play.pause{
+	background:url(img/1.gif) -11px -100px no-repeat;
+}
+.audio .progress{
+	width:290px;
+	height:18px;
+	background:#aaa;
+	float:left;	
+	margin:9px;
+	margin-left:20px;
+	position:relative;
+}
+.audio .progress .bar{
+	width:10px;
+	height:20px;
+	border-radius:5px;
+	background:#fff;
+	position:absolute;
+	top:50%;
+	margin-top:-10px;
+	left:-5px;	
+}
+.audio .progress .rect{
+	width:0;
+	height:18px;
+	background:#666;	
+}
+.audio .progress .cover{
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0);
+	position:absolute;
+	left:0;
+	top:0;
+}
+.audio .time{
+	float:left;
+	color:#fff;
+	line-height:36px;
+	font-size:12px;
+	border-left:1px solid #fff;
+	padding:0 5px;	
+	border-right:1px solid #fff;
+}
+.audio .voice{
+	width:40px;
+	height:36px;
+	float:left;
+}
+.audio .voice #voice{
+	width:14px;
+	height:14px;
+	margin:11px auto;
+	cursor:pointer;
+}
+.audio .voice #voice.muted{
+	background:url(img/2.png) 0 -14px no-repeat;	
+}
+.audio .voice #voice.jinyin{
+	background:url(img/2.png) 0 0px no-repeat;	
+}
+.btn ul li{
+	float:left;
+	padding:5px 10px;
+	background:#fff;
+	color:#000;
+	margin:0 8px;
+	border-radius:5px;
+	cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+<header>
+	<h1>HTML5  audio自制播放器</h1>
+    <section>
+    	<h2>音乐播放器</h2>
+        <div class="audio">
+        	<audio id="audio">
+            	您的浏览器不支持audio
+            </audio>
+            <!--控件-->
+            <div class="audio_set">
+            	<div id="play" class="play">
+                </div>
+            </div>
+            <div class="progress">
+                <div class="rect">
+                </div>
+                <!--遮罩层-->
+                <div class="cover">
+                </div>
+                <!--按钮-->
+                <div class="bar">
+                </div>
+            </div>
+            <div class="time">
+            	<b>00:00</b>
+                /
+                <b>05:20</b>
+            </div>
+            <div class="voice">
+            	<div id="voice" class="muted">
+                </div>
+            </div>
+       </div>
+        <div class="btn">
+                <ul>
+                    <li>上一首</li>
+                    <li>下一首</li>
+                    <li>单曲播放</li>
+                    <li>循环播放</li>
+                    <li>随机播放</li>
+                </ul>
+            </div>
+            <div class="list">
+                <ul>
+                    
+                </ul>
+            </div>
+    </section>
+</header>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+	var Player={
+		//歌曲路径
+		url:'music/', 
+		//歌曲数组
+		data:['周杰伦、cug组合 - 夜店咖.mp3','周杰伦、陈奕迅 - 简单爱.mp3','周杰伦、周杰伦 - 我的飞行日记.mp3'],
+		//audio对象
+		audio:$("#audio")[0],
+		//歌曲索引
+		index:-1,
+		//滚动条的宽度
+		pro_width:$(".progress").width(),
+		
+		//总时长
+		duration:null,
+		
+		//初始方法
+		init:function(){
+			this.audio.src=this.url+this.data[0];
+			$("#play").bind("click",this.play);//不加bind this.play中的this指$("#play")而我们要的是Play
+			$("#voice").bind("click",this.muted);
+			//当视频加载完成后执行 
+			//onloadedmetadata
+			this.audio.addEventListener("loadedmetadata",function(){
+				//赋值总时长
+				this.duration=this.audio.duration;
+				//显示总时长;
+				this.showFinalTime();
+				//点击改变进度条
+				$(".cover").on("click",this.clickUpdate);
+			}.bind(this));
+			//当音频时间被改变的时候
+			this.audio.addEventListener('timeupdate',function(){
+				this.showCurrentTime();	
+				this.progressUpdate();
+			}.bind(this));
+		},	
+		//播放事件
+		play:function(){
+			//判断是否是停止，如果停止，就播放，播放，就停止 
+			//paused:判断是否停止
+			if(Player.audio.paused){
+				Player.audio.play();
+				$(this).addClass("pause");	
+			}else{
+				Player.audio.pause();
+				$(this).removeClass("pause");	
+			}		
+		},
+		//获取音频时长，duration(以秒记)
+		showFinalTime:function(){
+			var min=parseInt(this.duration/60);
+			var second=parseInt(this.duration%60);
+			min=min>=10?min:"0"+min;
+			second=second>=10?second:"0"+second;
+			$(".time b").eq(1).text(min+":"+second);
+		},
+		//获取音频的当前时间，currentTime(以秒记)	
+		showCurrentTime:function(){
+			var currentTime=parseInt(this.audio.currentTime);
+			//分
+			var min=parseInt(currentTime/60);
+			//秒
+			var second=parseInt(currentTime%60);
+			min=min>=10?min:"0"+min;
+			second=second>=10?second:"0"+second;
+			$(".time b").eq(0).text(min+":"+second);
+		},
+		//进度条事件
+		progressUpdate:function(){
+			var currentTime=parseInt(this.audio.currentTime);
+			//进度条怎么换算：
+			//currentTime/duration=当前进度条/总进度条
+			//比例
+			var scale=currentTime/this.duration;
+			$(".rect").css({"width":this.pro_width*scale});
+			$(".bar").css({"left":this.pro_width*scale});
+		},
+		//点击进度条改变事件
+		clickUpdate:function(e){
+			Player.audio.play();
+			$("#play").addClass("pause");
+			//获取当前点击距离总进度条的长度
+			var e=e||window.event;
+			var distance=e.offsetX;
+			Player.audio.currentTime=distance/Player.pro_width*Player.duration;
+		},
+		//静音事件
+		muted : function(){
+			//判断是否静音,静音是true
+			//muted：判断是否静音
+			if(Player.audio.muted){
+				Player.audio.muted=false;
+				$(this).removeClass("jinyin");
+			}else{
+				Player.audio.muted=true;
+				$(this).addClass("jinyin");	
+			}		
+		}
+	}	
+	Player.init();
+	//进度条拖动
+	var isMove=false;//是否在移动
+	$(".bar").mousedown(function(e){
+		Player.audio.pause();
+		$("#play").removeClass("pause");
+		e.preventDefault();
+		isMove=true;
+	})
+	$(".cover").mousemove(function(e){
+		e.preventDefault();
+		if(isMove){
+			var distance=e.offsetX;
+			//currentTime/duration=当前进度条/总进度条
+			Player.audio.currentTime=distance/Player.pro_width*Player.duration;
+		}
+	})
+	$(".progress").mouseup(function(e){
+		e.preventDefault();
+		Player.audio.play();
+		$("#play").addClass("pause");
+		isMove=false;
+	})
+})
+</script>

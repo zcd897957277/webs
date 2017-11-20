@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>将视频作为背景案例</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .content {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+        .header {
+            color: white;
+        }
+        .form {
+            border: 1px solid #777777;
+            border-radius: 4px;
+            padding-top: 20px;
+            padding-right: 30px;
+            margin-right: 20%;
+            margin-left: 20%;
+            background-color: rgba(255,255,255,0.7);
+        }
+        .control-error {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #d9534f;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .control-success {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #5cb85c;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .control-default {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            margin-bottom: 0;
+            text-align: left;
+            background-color: #777;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .show {
+            display: block;
+        }
+        .hide {
+            display: none;
+        }
+        .video-frame {
+            position: relative;
+            width: 100%;
+            height: auto;
+            margin: 0;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+<div class="video-frame" poster="videos/home-hero-video-desktop-still.jpg">
+    <video autoplay loop>
+        <source src="videos/homepage-hero-video.mp4">
+        <source src="videos/homepage-hero-video.webm">
+    </video>
+</div>
+<div class="content container">
+    <div class="text-center header">
+        <h1>用户注册页面</h1>
+    </div>
+    <form class="form form-horizontal" action="#">
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="username">用户名:</label>
+            <div class="col-md-5">
+                <input id="username" type="text" class="form-control" autofocus placeholder="请输入用户名" required pattern="^[a-zA-Z0-9]{8,16}$">
+            </div>
+            <label id="usernameTip" class="col-md-5 label-success">请输入8至16位的英文或数字.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="password">密码:</label>
+            <div class="col-md-5">
+                <input id="password" type="password" class="form-control" placeholder="请输入密码" required pattern="^[0-9]{6,12}$">
+            </div>
+            <label id="passwordTip" class="col-md-5 hide control-default">请输入6至12位的数字.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="email">电子邮件:</label>
+            <div class="col-md-5">
+                <input id="email" type="email" class="form-control" placeholder="请输入电子邮件" required>
+            </div>
+            <label id="emailTip" class="col-md-5 hide control-default">请输入你的电子邮件地址.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="home">个人主页:</label>
+            <div class="col-md-5">
+                <input id="home" type="url" class="form-control" placeholder="请输入个人主页">
+            </div>
+            <label id="homeTip" class="col-md-5 hide control-default">请输入你的个人主页(该项可忽略).</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="age">年龄:</label>
+            <div class="col-md-5">
+                <input id="age" type="number" class="form-control" placeholder="请输入年龄" required min="18" max="50" step="1">
+            </div>
+            <label id="ageTip" class="col-md-5 hide control-default">请输入你的年龄.</label>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="birth">出生日期:</label>
+            <div class="col-md-5">
+                <input id="birth" type="date" class="form-control" placeholder="请输入出生日期">
+            </div>
+            <label id="birthTip" class="col-md-5 hide control-default">请选择你的出生日期.</label>
+        </div>
+        <div class="form-group">
+            <div class="col-md-5 col-md-push-2">
+                <input type="submit" value="注册" class="btn btn-success btn-block">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var username = document.getElementById("username");
+    var usernameTip = document.getElementById("usernameTip");
+    username.onfocus = function(){
+        usernameTip.className = "col-md-5 show control-default";
+        usernameTip.firstChild.nodeValue = "请输入8至16位的英文或数字."
+    }
+    username.onblur = function(){
+        if(username.validity.valid){
+            usernameTip.className = "col-md-5 show control-success";
+            usernameTip.firstChild.nodeValue = "用户名正确."
+        }else if(username.validity.valueMissing){
+            usernameTip.className = "col-md-5 show control-error";
+            usernameTip.firstChild.nodeValue = "用户名不能为空."
+        }else if(username.validity.patternMismatch){
+            usernameTip.className = "col-md-5 show control-error";
+            usernameTip.firstChild.nodeValue = "用户名输入有误."
+        }
+    }
+    var password = document.getElementById("password");
+    var passwordTip = document.getElementById("passwordTip");
+    password.onfocus = function(){
+        passwordTip.className = "col-md-5 show control-default";
+        passwordTip.firstChild.nodeValue = "请输入6至12位的数字."
+    }
+    password.onblur = function(){
+        if(password.validity.valid){
+            passwordTip.className = "col-md-5 show control-success";
+            passwordTip.firstChild.nodeValue = "密码正确."
+        }else if(password.validity.valueMissing){
+            passwordTip.className = "col-md-5 show control-error";
+            passwordTip.firstChild.nodeValue = "密码不能为空."
+        }else if(password.validity.patternMismatch){
+            passwordTip.className = "col-md-5 show control-error";
+            passwordTip.firstChild.nodeValue = "密码输入有误."
+        }
+    }
+    var email = document.getElementById("email");
+    var emailTip = document.getElementById("emailTip");
+    email.onfocus = function(){
+        emailTip.className = "col-md-5 show control-default";
+        emailTip.firstChild.nodeValue = "请输入你的电子邮件地址."
+    }
+    email.onblur = function(){
+        if(email.validity.valid){
+            emailTip.className = "col-md-5 show control-success";
+            emailTip.firstChild.nodeValue = "电子邮件正确."
+        }else if(email.validity.valueMissing){
+            emailTip.className = "col-md-5 show control-error";
+            emailTip.firstChild.nodeValue = "电子邮件不能为空."
+        }else if(email.validity.typeMismatch){
+            emailTip.className = "col-md-5 show control-error";
+            emailTip.firstChild.nodeValue = "电子邮件输入有误."
+        }
+    }
+    var home = document.getElementById("home");
+    var homeTip = document.getElementById("homeTip");
+    home.onfocus = function(){
+        homeTip.className = "col-md-5 show control-default";
+        homeTip.firstChild.nodeValue = "请输入你的个人主页(该项可忽略)."
+    }
+    home.onblur = function(){
+        if(home.validity.valid){
+            homeTip.className = "col-md-5 show control-success";
+            homeTip.firstChild.nodeValue = "个人主页正确."
+        }else if(home.validity.typeMismatch){
+            homeTip.className = "col-md-5 show control-error";
+            homeTip.firstChild.nodeValue = "个人主页输入有误."
+        }
+    }
+    var age = document.getElementById("age");
+    var ageTip = document.getElementById("ageTip");
+    age.onfocus = function(){
+        ageTip.className = "col-md-5 show control-default";
+        ageTip.firstChild.nodeValue = "请输入你的年龄."
+    }
+    age.onblur = function(){
+        if(age.validity.valid){
+            ageTip.className = "col-md-5 show control-success";
+            ageTip.firstChild.nodeValue = "年龄正确."
+        }else if(age.validity.valueMissing){
+            ageTip.className = "col-md-5 show control-error";
+            ageTip.firstChild.nodeValue = "年龄不能为空."
+        }else if(age.validity.rangeUnderflow){
+            ageTip.className = "col-md-5 show control-error";
+            ageTip.firstChild.nodeValue = "年龄太小啦."
+        }else if(age.validity.rangeOverflow){
+            ageTip.className = "col-md-5 show control-error";
+            ageTip.firstChild.nodeValue = "年龄太大啦."
+        }
+    }
+    var birth = document.getElementById("birth");
+    var birthTip = document.getElementById("birthTip");
+    birth.onfocus = function(){
+        birthTip.className = "col-md-5 show control-default";
+        birthTip.firstChild.nodeValue = "请选择你的出生日期."
+    }
+    birth.onblur = function(){
+        birthTip.className = "col-md-5 hide";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖放实现文件上传</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        body {
+            padding-top: 70px;
+        }
+        .tuku-dnd-area {
+            margin-top: 0;
+            padding: 1px;
+        }
+        .pics {
+            width: 500px;
+            padding: 0;
+            margin: 40px auto 120px;
+        }
+        #help_message {
+            font-size: 32px;
+            color: #bbb;
+            display: block;
+            margin-top: 100px;
+            cursor: pointer;
+        }
+        #help_message:hover {
+            color: #999;
+        }
+        .pic {
+            display: none;
+            width: 100%;
+            padding: 0;
+            margin-top: 50px;
+        }
+        .pic img {
+            width: 100%;
+            margin-bottom: 16px;
+            border: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand">文件上传</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="tuku-dnd-area" class="tuku-dnd-area">
+            <div class="pics text-center">
+                <h2 id="help_message">拖动图片到此处上传</h2>
+                <div class="pic">
+                    <img src="#">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        var file;
+        // 阻止浏览器自动显示图片
+        document.ondragover = function(event){
+            event.preventDefault();
+        }
+        document.ondrop = function(event){
+            event.preventDefault();
+        }
+        // 获取目标元素
+        var target = document.getElementById("tuku-dnd-area");
+        // 当上传图片离开目标元素时,恢复目标元素背景颜色
+        target.ondragleave = function(event){
+            target.style.backgroundColor = "#fff";
+            $("#help_message").text("拖动图片到此处上传");
+        }
+        // 当上传图片到达目标元素时,修改目标元素背景颜色
+        target.ondragover = function(event){
+            event.preventDefault();
+            target.style.backgroundColor = "#E8E8E8";
+            $("#help_message").text("松开鼠标即开始上传");
+        }
+        target.ondrop = function(event){
+            // 通过 dataTransfer 对象获取源元素数据
+            file = event.dataTransfer.files[0];
+            uploadFile();
+        }
+        function uploadFile(){
+            var fd = new FormData();
+            fd.append("userfile",file);
+            $.ajax({
+                url : "data/upload.php",
+                type : "post",
+                data : fd,
+                processData : false,
+                contentType : false,
+                success : function(returnData){
+                    target.style.backgroundColor = "#fff";
+                    $("#help_message").text("拖动图片到此处上传");
+
+                    $("img").attr("src",returnData);
+                    $(".pic").show();
+                    //console.log(returnData);
+                }
+            })
+        }
+    </script>
+</body>
+</html>

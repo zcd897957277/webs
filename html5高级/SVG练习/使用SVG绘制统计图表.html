@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用SVG绘制统计图表</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        svg {
+            background: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+<h1>作业：使用SVG绘制统计图表</h1>
+<svg id="s1" width="500" height="400" font-size="14">
+    <!-- 定义特效 -->
+    <defs id="tx">
+    </defs>
+    <!-- 定义图形元素 -->
+    <g id="lineGroup" fill="transparent" stroke="#333">
+        <polyline points="50,50 50,350 450,350"></polyline>
+        <polyline points="45,60 50,50 55,60"></polyline>
+        <polyline points="440,345 450,350 440,355"></polyline>
+    </g>
+    <g id="barGroup" stroke="#333">
+    </g>
+</svg>
+<script>
+    var str = '[{"label":"HTML", "value":3},{"label":"CSS", "value":5},{"label":"JS", "value":7},{"label":"DOM", "value":6.5},{"label":"jQuery", "value":6},{"label":"AJAX", "value":8},{"label":"HTML5", "value":6.5}]';
+    var arr = JSON.parse(str);
+    console.log(arr);
+
+    for(var i=1; i<10; i++){
+        //添加横向的水平标示线
+        var x1 = 50; //线的左端点X
+        var y1 = 350-i*30; //线的左端点Y
+        var l = document.createElementNS('http://www.w3.org/2000/svg','line');
+        l.setAttribute('x1', x1);
+        l.setAttribute('y1', y1);
+        l.setAttribute('x2', 450);
+        l.setAttribute('y2', y1);
+        l.setAttribute('opacity', 0.2);
+        lineGroup.appendChild(l);
+
+        //创建Y轴上坐标数字
+        var t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        t.setAttribute('x',x1-7-2);
+        t.setAttribute('y',y1+4);
+        t.innerHTML = i;
+        lineGroup.appendChild(t);
+    }
+    //添加柱状图
+    var barWidth = 400/(2*arr.length+1);
+    for(var i in arr){
+        var data = arr[i];
+        var w = barWidth; //柱宽
+        var h = 30*data.value; //高
+        var x = (2*i+1)*barWidth+50; //每个柱的左上角坐标X
+        var y = 350-h; //每个柱的左上角坐标Y
+
+        //添加渐变色
+        var gid = 'g'+i; //渐变元素的id
+        var g =  document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+        g.setAttribute('id',gid);
+        g.setAttribute('x1','0%');
+        g.setAttribute('y1','0%');
+        g.setAttribute('x2','0%');
+        g.setAttribute('y2','100%');
+        var stop1 = document.createElementNS('http://www.w3.org/2000/svg','stop');
+        stop1.setAttribute('offset','0%');
+        stop1.setAttribute('stop-color',rc());
+        var stop2 = document.createElementNS('http://www.w3.org/2000/svg','stop');
+        stop2.setAttribute('offset','100%');
+        stop2.setAttribute('stop-color','#fff');
+        g.appendChild(stop1);
+        g.appendChild(stop2);
+        tx.appendChild(g);
+
+        //矩形作为柱
+        var r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        r.setAttribute('x',x);
+        r.setAttribute('y',y);
+        r.setAttribute('width',w);
+        r.setAttribute('height',h);
+        //矩形应用填充渐变色
+        r.setAttribute('fill','url(#'+gid+')');
+        barGroup.appendChild(r);
+
+        //柱顶端添加标示性文字
+        var t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x',x);
+        t.setAttribute('y',y-3);
+        t.innerHTML = data.value;
+        barGroup.appendChild(t);
+
+        //把文本居中，需要使用window.getComputedStyle()
+    }
+
+    function rc(){
+        var r = Math.floor(Math.random()*256);
+        var g = Math.floor(Math.random()*256);
+        var b = Math.floor(Math.random()*256);
+        return `rgb(${r},${g},${b})`;
+    }
+</script>
+</body>
+</html>
