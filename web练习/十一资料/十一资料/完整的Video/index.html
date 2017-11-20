@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Audio</title>
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+ul{
+	list-style:none;
+}
+header{
+	width:500px;
+	margin:20px auto;
+	text-align:center;
+}
+header section{
+	width:500px;
+	background:#333;
+	height:600px;
+	border-radius:5px;
+	overflow:hidden;
+}
+header section .title{
+	color:#fff;
+	border-bottom:1px solid #555;
+	text-align:center;
+	line-height:50px;
+	background:#555;
+	box-shadow:0 1px 1px #fff;
+}
+.audio{
+	height:36px;
+	background:#404040;
+	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));
+	margin:20px 0;
+	overflow:hidden;
+	border-radius:5px;
+}
+.audio .audio_set{
+	width:40px;
+	height:36px;
+	cursor:pointer;
+	border-right:1px solid #000;
+	float:left;
+	overflow:hidden;
+}
+.audio #set{
+	width:10px;
+	height:10px;
+	margin:13px auto;
+}
+.audio #set.play{
+	background:url("img/player-graphics.gif") -13px -11px no-repeat;
+}
+.audio #set.pause{
+	background:url(img/player-graphics.gif) -11px -100px no-repeat
+}
+.audio .progress{
+	width:300px;
+	height:18px;
+	background:#333;
+	float:left;
+	margin:9px;
+	box-shadow:-1px 0 1px rgba(255,255,255,0.5) inset;
+	position:relative;
+}
+.audio .progress .run{
+	width:18px;
+	height:18px;
+	border-radius:50%;
+	background:#666;
+	position:absolute;
+	left:-9px;
+	top:0;
+	cursor:pointer;
+}
+.audio .progress .bar{
+	width:0;
+	background:#ccc;
+	height:18px;
+	
+}
+.cover{
+	width:100%;
+	height:100%;
+	background:red;
+	position:absolute;
+	left:0;
+	top:0;
+	opacity:0;
+}
+.audio .time{
+	float:left;
+	color:#fff;
+	font-size:12px;
+	line-height:36px;
+	padding:0 8px;
+	border-left:1px solid #000;
+}
+.audio .volume{
+	width:40px;
+	height:36px;
+	cursor:pointer;
+	border-left:1px solid #000;
+	float:left;
+}
+.audio .volume .volume1{
+	width:14px;
+	height:14px;
+	margin:11px auto;
+	cursor:pointer;
+}
+.audio .volume .volume1.muted{
+	background:url(img/volume.png) no-repeat 0 -14px;
+}
+.audio .volume .volume1.start{
+	background:url(img/volume.png) no-repeat 0 0px;
+}
+.song_list{
+	width:300px;
+	margin-top:20px;
+}
+.song_list h3{
+	color:#fff;
+}
+ul li{
+	color:#fff;
+	margin:10px 0;
+	cursor:pointer;
+	text-align:left;
+	padding-left:20px;
+}
+.geci{
+	height:300px;
+	overflow:hidden;
+	padding:40px;
+}
+.geci p{
+	text-align:center;
+	color:#fff;
+	margin:5px 0;
+}
+.geci p.green{
+	color:green;
+}
+</style>
+</head>
+<body>
+<header>
+	<h1>HTML5自制音频播放器</h1>
+	<section>
+		<div class="title">
+			音乐播放器
+		</div>
+		<div class="audio">
+			<audio id="audio" src="">
+
+			</audio>
+			<div class="audio_set">
+				<div id="set" class="play">
+
+				</div>
+			</div>
+			<div class="progress">
+				<div class="bar">
+				</div>
+				<div class="cover">
+				</div>
+				<div class="run">
+				</div>
+			</div>
+			<div class="time">             
+				<b class="current_time">00:00</b> /
+				<b class="finaly_time">00:00</b>           
+			</div>
+			<div class="volume">
+				<div class="volume1 muted">
+
+				</div>
+			</div>
+		</div>
+		<div class="fun">
+			<button id="prev">上一曲</button>
+			<button id="next">下一曲</button>
+			<button id="single">单曲循环</button>
+			<button id="random">随机播放</button>
+			<button id="turn">顺序播放</button>
+			<!--<button>播放方式</button>-->
+		</div>
+		<div class="song_list">
+			<h3>歌曲列表</h3>
+			<ul>
+				
+			</ul>
+		</div>
+		<div class="geci">
+			
+		</div>
+	</section>
+</header>
+</body>
+</html>
+<script src="jquery-1.11.3.js"></script>
+<script>
+$(function(){
+	var Player={
+		//歌曲目录
+		url:'music/',
+
+		//播放组件
+		audio : $('#audio')[0],
+
+		//歌曲数据
+		data:['周杰伦、cug组合 - 夜店咖.mp3', '算什么男人.mp3', '周杰伦 - 瓦解.mp3'],
+
+		//歌曲索引
+		currentIndex : -1,
+		
+		//记录当前时间
+		pauseTime:0,
+		
+		//当前步数
+		step :10,
+		
+		//初始事件
+		init :function(){
+			for(var i=0;i<this.data.length;i++){
+				var val=this.data[i].substring(0,this.data[i].lastIndexOf("."));
+				var html="<li data-id="+i+">"+val+"</li>";
+				$(".song_list ul").append(html);
+			}
+			$("#set").bind('click',Player.play);
+			$("#set").bind('click',function(){
+				if(Player.currentIndex==-1){
+					Player.songUpdate(0);
+				}
+			});
+			this.audio.addEventListener("timeupdate", Player.currentTime);
+			this.audio.addEventListener("timeupdate", Player.barUpdate);
+			this.audio.addEventListener("ended", Player.end);
+			this.audio.addEventListener("loadedmetadata", Player.timeShow);
+			this.audio.addEventListener("loadedmetadata",function(){
+				$(".cover").bind('click',Player.barClickUpdate);
+					$(document).on('keyup',function(e){
+					if(e.keyCode==37){
+						Player.leftKey();
+					}else if(e.keyCode==39){
+						Player.rightKey();
+					}
+				})
+			})			
+			$(".song_list ul li").each(function(){
+				$(this).click(function(){
+					$(".title").text($(this).text());
+					Player.currentIndex=$(this).data('id')
+					Player.audio.src=Player.url+Player.data[Player.currentIndex];
+					Player.songUpdate($(this).data('id'));
+					Player.play();
+					
+				})
+			})
+			$("#prev").bind('click',Player.prevClick);
+			$("#next").bind('click',Player.nextClick);
+			$("#single").bind('click',Player.singleClick);
+			$("#random").bind('click',Player.randomClick);
+			$("#turn").bind('click',Player.turnClick);
+			$(".volume1").bind('click',Player.volumeClick);
+
+			
+		},
+		
+		//是否播放
+
+		//播放事件
+		play : function(){
+			if(Player.audio.paused||Player.audio.ended){
+				if(Player.currentIndex==-1){
+					Player.audio.src=Player.url+Player.data[0];
+				}
+				Player.audio.play();
+				$("#set").addClass("pause");
+				if(Player.pauseTime){
+					Player.audio.currentTime=Player.pauseTime;
+				}
+			}else{
+				Player.audio.pause();
+				$("#set").removeClass("pause");
+				Player.pauseTime=Player.audio.currentTime;
+			}
+		},
+		timeShow : function(){
+			var fin_time=Player.audio.duration;
+			var min=parseInt(fin_time/60);
+			var second=parseInt(fin_time%60);
+			min=min>=10?min:'0'+min;
+			second=second>=10?second:'0'+second;
+			$(".finaly_time").text(min+':'+second);
+		},
+		currentTime : function(){
+			var left=parseInt(Player.audio.currentTime);
+			var min=parseInt(left/60);
+			var second=parseInt(left%60);
+			min=min>=10?min:'0'+min;
+			second=second>=10?second:'0'+second;
+			$(".current_time").text(min+':'+second);
+		},
+		barUpdate : function(){
+			var fin_time=Player.audio.duration; 
+			var left=parseInt(Player.audio.currentTime);
+			var scale=left/fin_time;
+			$('.bar').css("width",$(".progress").width()*scale);
+			$('.run').css("left",$(".progress").width()*scale-9)
+		},
+		end : function(){
+			Player.audio.pause();
+			$("#set").removeClass("pause");
+		},
+		barClickUpdate : function(e){
+			Player.audio.play();
+			$("#set").addClass("pause");
+			var fin_time=Player.audio.duration;
+			var left=e.offsetX;
+			var scale=left/$(".progress").width();
+			Player.audio.currentTime=fin_time*scale;
+		},
+		prevClick : function(){
+			Player.pauseTime=0;
+			if(Player.currentIndex==-1){
+				Player.currentIndex=0;
+			}else if(Player.currentIndex==0){
+				Player.currentIndex=Player.data.length-1;
+			}else{
+				Player.currentIndex--;
+			}
+			$(".title").text($(".song_list ul li").eq(Player.currentIndex).text());
+			Player.songUpdate(Player.currentIndex);
+			Player.audio.src=Player.url+Player.data[Player.currentIndex];	
+			Player.play();
+			
+		},
+		nextClick : function(){
+			Player.pauseTime=0;
+			if(Player.currentIndex==-1){
+				Player.currentIndex=0;
+			}else if(Player.currentIndex==Player.data.length-1){
+				Player.currentIndex=0;
+			}else{
+				Player.currentIndex++;
+			}
+			$(".title").text($(".song_list ul li").eq(Player.currentIndex).text());
+			Player.songUpdate(Player.currentIndex);
+			Player.audio.src=Player.url+Player.data[Player.currentIndex];	
+			Player.play();
+			
+		},
+		singleClick : function(){
+			Player.pauseTime=0;
+			Player.audio.onended=function(){
+				Player.audio.load();
+				Player.songUpdate(Player.currentIndex);
+				Player.audio.play();
+				$("#set").addClass("pause");
+				
+			}
+		},
+		turnClick : function(){
+			Player.pauseTime=0;
+			Player.audio.onended = function() {
+				Player.songUpdate(Player.currentIndex);
+				$("#next").click();
+			};
+		},
+		randomClick : function(){
+			Player.pauseTime=0;
+			Player.audio.onended = function() {
+				var i = parseInt((Player.data.length - 1) * Math.random());
+				if($(".title").text()!=$(".song_list ul li").eq(i).text()){
+					$(".title").text($(".song_list ul li").eq(i).text());
+					Player.audio.src=Player.url+Player.data[i];	
+					Player.songUpdate(i);
+					Player.play();
+				}
+			};
+		},
+		volumeClick: function(){
+			if(Player.audio.muted==true){
+				Player.audio.muted=false;
+				$(this).removeClass("start");
+			}else{
+				Player.audio.muted=true;
+				$(this).addClass("start");
+			}
+		},
+		songUpdate : function(index){
+			if(index==1){
+				index='1a';
+			}
+			$(".geci").html("");
+			$.get(index+'.lrc',function(data){
+				data=parseLyric(data);
+				for(var i=0;i<data.length;i++){
+					var html="<p>"+data[i][1]+"</p>";
+					$(".geci").append(html);
+				}
+				Player.audio.addEventListener("timeupdate",function(){
+					for(var j=0;j<data.length;j++){
+						if(this.currentTime>=data[j][0]){
+							$(".geci p").eq(0).css({"margin-top":-23*j});
+							$(".geci p").removeClass("green").eq(j).addClass("green");
+						}
+					}
+				});
+			})
+		},
+		leftKey : function(){
+			if($('.bar').width()!=0){
+				$('.bar').css("width",$('.bar').width()-Player.step);
+				$('.run').css("left",parseInt($('.run').css('left'))-Player.step)
+				var size=$('.bar').width()/$('.progress').width();
+				Player.audio.currentTime=Player.audio.duration*size;
+			}
+		},
+		rightKey : function(){
+			if($('.bar').width()<$('.progress').width()){
+				$('.bar').css("width",$('.bar').width()+Player.step);
+				$('.run').css("left",parseInt($('.run').css('left'))+Player.step)
+				var size=$('.bar').width()/$('.progress').width();
+				Player.audio.currentTime=Player.audio.duration*size;
+			}
+			
+		}
+	}
+	Player.init();
+	
+	var isDown=false;
+	$(".run").mousedown(function(e){
+		Player.audio.pause();
+		isDown=true;
+		x=e.offsetX;
+		return false;		
+	})
+	$(".cover").mousemove(function(e){
+		if(isDown){
+			var fin_time=Player.audio.duration; 
+			var left=e.offsetX-x;
+			var scale=left/$(".progress").width();
+			Player.audio.currentTime=fin_time*scale;
+		}
+		return false;
+	})
+	$('.progress').mouseup(function(){
+		if(isDown){
+			Player.audio.play();
+			$("#set").addClass("pause");
+			isDown=false;
+		}
+		return false;
+	})
+	function parseLyric(data){
+		var result=[];
+		var lines = data.split('\n');
+		var patter=/\[\d{2}:\d{2}.\d{2}\]/g;
+		while(!patter.test(lines[0])){
+			lines=lines.slice(1);
+		}
+		$.each(lines,function(i,v){
+			var time=v.match(patter);
+			var value = v.replace(patter,'');
+			var time=time[0].slice(1,-1).split(":");
+			if(time[0]<=0){
+				result.push([parseFloat(time[1]),value]);
+			}else if(time[0]>0){
+				result.push([parseInt(time[0])*60+parseFloat(time[1]),value]);
+			}
+					
+		})
+		return result;
+	}
+})
+
+</script>

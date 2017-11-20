@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.js"></script>
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #pic_margin:after{
+            content:"";
+        }
+        #pic_margin{
+            margin: 200px auto;
+            width:30%;
+            height:180px;
+            line-height:195px;
+            position: relative;
+        }
+        .pic_padding{
+            z-index: 10;
+            margin-left: 120px;
+        }
+        #moving1,#moving2{
+            z-index: 150;
+            position: absolute;
+        }
+        #moving1{
+            margin-left: 63px;
+            margin-top: 8px;
+        }
+        #moving2{
+            margin-left: 387px;
+            margin-top: 8px;
+        }
+        #moving1,#moving2:hover{
+            cursor: pointer;
+        }
+        #pic_margin>ul:after{
+            content:"";
+        }
+        #pic_margin>ul>li{
+            float:left;
+            list-style: none;
+            position: absolute;
+        }
+        #pic_margin>ul>li.pic_0,#pic_margin>ul>li.pic_6{
+            opacity:0.3;
+            transform: scale(0.7);
+        }
+        #pic_margin>ul>li.pic_1,#pic_margin>ul>li.pic_5{
+            opacity:0.5;
+            transform: scale(0.8);
+        }
+        #pic_margin>ul>li.pic_2,#pic_margin>ul>li.pic_4{
+            opacity:0.7;
+            transform: scale(0.9);
+        }
+        #pic_margin>ul>li.pic_0{
+            margin-left:0px;
+        }
+        #pic_margin>ul>li.pic_1{
+               margin-left:40px;
+               z-index: 3;
+        }
+        #pic_margin>ul>li.pic_2{
+            margin-left:80px;
+            z-index: 5;
+        }
+        #pic_margin>ul>li.pic_4{
+            margin-left:160px;
+            z-index: 5;
+        }
+        #pic_margin>ul>li.pic_5{
+            margin-left:200px;
+            z-index: 3;
+        }
+        #pic_margin>ul>li.pic_6{
+            margin-left:240px;
+        }
+    </style>
+</head>
+<body>
+    <!--边框-->
+    <div id="pic_margin">
+        <!--前移-->
+        <span id="moving1">
+            <img src="../images/templatemo_slider_left.png">
+        </span>
+        <ul id="pic_collection">
+            <li class="pic_0"><img src="../images/01.jpg"></li>
+            <li class="pic_1"><img src="../images/02.jpg"></li>
+            <li class="pic_2"><img src="../images/03.jpg"></li>
+            <li class="pic_padding"><img src="../images/04.jpg"></li>
+            <li class="pic_4"><img src="../images/05.jpg"></li>
+            <li class="pic_5"><img src="../images/06.jpg"></li>
+            <li class="pic_6"><img src="../images/07.jpg"></li>
+        </ul>
+        <!--后移-->
+        <span id="moving2">
+            <img src="../images/templatemo_slider_right.png">
+        </span>
+    </div>
+<script>
+    var picture={
+        //图片路径
+        url:'../images/',
+        //图片数组
+        arr:['01.jpg','02.jpg','03.jpg','04.jpg',
+           '05.jpg','06.jpg','07.jpg'],
+        //初始方法
+        init:function(){
+            this.onPlay();
+            this.leftPlay();
+            this.rightPlay();
+        },
+        //定时器时间
+        timer:null,
+        //前移方法
+        leftPlay:function(){
+            $("#moving1").on("click",function(){
+                for(var i=0;i<$("#pic_collection>li").length;i++){
+                    var j=parseInt($("#pic_collection>li>img").eq(i).attr("src").substr(11,1));
+                    if(j==7){
+                        $("#pic_collection>li").eq(i).html("<img src="+this.url+"01.jpg>");
+                    }else {
+                        $("#pic_collection>li").eq(i).html("<img src="+this.url+"0"+(j+1)+".jpg>");
+                    }
+                }
+            }.bind(this));
+        },
+        //后移方法
+        rightPlay:function(){
+            $("#moving2").on("click",function(){
+                for(var i=0;i<$("#pic_collection>li").length;i++){
+                    var j=parseInt($("#pic_collection>li>img").eq(i).attr("src").substr(11,1));
+                    if(j==1){
+                        $("#pic_collection>li").eq(i).html("<img src="+this.url+"07.jpg>");
+                    }else {
+                        $("#pic_collection>li").eq(i).html("<img src="+this.url+"0"+(j-1)+".jpg>");
+                    }
+                }
+            }.bind(this));
+        },
+        //自动轮播方法
+        onPlay:function() {
+            this.timer = setInterval(function () {
+                for (var i = 0; i < $("#pic_collection>li").length; i++) {
+                    console.log($("#pic_collection>li>img").eq(i).attr("src"));
+                    var j = parseInt($("#pic_collection>li>img").eq(i).attr("src").substr(11, 1));
+                    if (j == 7) {
+                        $("#pic_collection>li").eq(i).html("<img src=" + this.url + "01.jpg>");
+                    } else {
+                        $("#pic_collection>li").eq(i).html("<img src=" + this.url + "0" + (j + 1) + ".jpg>");
+                    }
+                }
+            }.bind(this), 1000);
+        },
+    }
+    picture.init();
+</script>
+</body>
+</html>

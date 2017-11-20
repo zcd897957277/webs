@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>文档无限流</title>
+<style>
+	*{
+		padding:0;
+		margin:0;	
+	}
+	#curtain{
+		width:600px;
+		height:190px;
+		border:1px solid #ddd;	
+		overflow:hidden;
+	}
+	#curtain>p{	
+		font-size:15px;	
+		padding:5px;
+		padding-top:0;
+		margin-top:5px;
+	}
+</style>
+</head>
+
+<body>
+<div id="curtain">
+	<p>【1】：最好不相见，如此便可不相恋。最好不相知，如此便可不相思。</p>
+    <p>【2】：用一朵莲花商量我们的来世，然后用一生的时间奔向对方。</p>
+    <p>【3】：一个人需要隐藏多少秘密才能巧妙地度过一生。</p>
+    <p>【4】：曾虑多情损梵行，入山又恐别倾城，世间安得双全法，不负如来不负卿。</p>
+    <p>【5】：世间事，除了生死，哪一件事不是闲事。</p>
+    <p>【6】：但曾相见便相知，相见何如不见时。安得与君相决绝，免教生死作相思。</p>
+    <p>【7】：住进布达拉宫，我是雪域最大的王。流浪在拉萨街头，我是世间最美的情郎。 </p>
+    <p>【8】：笑那浮华落尽 月色如洗 笑那悄然而逝 飞花万盏。</p>
+    <p>【9】：安得与君相决绝，免教生死作相思。</p>
+    <p>【10】：我生命中的千山万水，任你一一告别。世间事，除了生死，哪一件不是闲事。</p>
+<script>	
+	var adv={
+			timer:null,//保存定时器序号
+			div:null,//保存主角div
+			init:function(){//初始化
+				this.div=document.getElementById("curtain");
+				this.move();
+			},
+			move:function(){
+				this.timer=setInterval(this.moveStep.bind(this),50);
+			},
+			moveStep:function(){//task
+				var marginTop=parseInt(getComputedStyle(this.div.firstElementChild).marginTop);
+				this.div.firstElementChild.style.marginTop=marginTop+1+"px";
+				if(parseInt(this.div.firstElementChild.style.marginTop)>190){
+					this.div.firstElementChild.style.marginTop=-5+"px";
+				}
+			},	
+		}
+		adv.init();
+</script>
+</div>
+</body>
+</html>

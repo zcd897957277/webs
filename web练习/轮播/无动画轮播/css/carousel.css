@@ -1,0 +1,102 @@
+  *{
+            margin:0;
+            padding:0;
+        }
+        a{
+        	list-style: none;
+		    text-decoration: none;
+		    color: #111111;
+		    width: 1.2rem;
+		    height: 1.2rem;
+		    display: block;
+		    font-size: 1.4rem;
+		    background: #ffffff;
+		    border: 1px solid #ffffff;
+		    border-radius: 50%;
+		    text-align: center;
+		    line-height: 1.2rem;
+        }
+        ul>li{
+        	list-style: none;
+        	float:left;
+        }
+        #pic_margin:after{
+            content:"";
+        }
+        div>ul>li>img{
+        	width: 25rem;
+        	height: 18rem;
+        }
+        #pic_margin{
+            margin-top: 10%;
+   			margin-left: 32%;
+        }
+        .pic_padding{
+            z-index: 10;
+            margin-left: 12rem;
+        }
+        span>img{
+        	width: 2.5rem;
+        	height: 2.5rem;
+        }
+        #moving1,#moving2{
+            z-index: 150;
+            position: absolute;
+            margin-top: 7.5rem;
+        }
+        #moving1{
+            margin-left: 8rem;
+        }
+        #moving2{
+            margin-left:38.5rem;
+        }
+        #moving1,#moving2:hover{
+            cursor: pointer;
+        }
+        #pic_margin>ul:after{
+            content:"";
+        }
+        #pic_margin>ul>li{
+            position: absolute;
+        }
+       	.pic_1{
+               margin-left:4rem;
+               z-index: 3;
+           }
+       	.pic_2{
+            margin-left:8rem;
+            z-index: 5;
+        }
+        .pic_4{
+            margin-left:16rem;
+            z-index: 5;
+        }
+        .pic_5{
+            margin-left:20rem;
+            z-index: 3;
+        }
+        .pic_6{
+            margin-left:24rem;
+        }
+        .pic_first,.pic_6{
+        	transform: scale(.4);
+        	opacity: .3;
+        }
+        .pic_1,.pic_5{
+        	transform: scale(.6);
+        	opacity: .6;
+        }
+        .pic_2,.pic_4{
+        	transform: scale(.8);
+        	opacity: .9;
+        }
+        .number{
+        	position: absolute;
+		    z-index: 1000;
+		    margin-left: 52.5rem;
+        }
+        .number>li{
+        	z-index: 1000;
+        	margin-left: 1.5rem;
+        	margin-top: 15rem;
+        }

@@ -1,0 +1,754 @@
+复习：
+jQuery是一个JS函数库，100+函数，分为四组：
+(1)DOM操作简化函数
+(2)事件处理函数
+(3)动画函数
+(4)AJAX封装函数
+
+day01：概述、选择器
+day02：DOM操作
+day03：动画、jQueryUI
+day04：插件
+
+jQuery插件函数的类型：
+(1)jQuery全局插件函数
+	定义：jQuery.avg = function(arr){ }
+	调用：jQuery.avg( [1,3,5] )
+(2)jQuery对象插件函数
+	定义：jQuery.fn.avg = function(){ this }
+	调用：$('td').avg()
+
+今日目标：
+(1)补充jQuery插件——了解
+(2)服务器概述——了解
+(3)数据库服务器——重点&难点
+
+
+1.面试题：实现“左侧固定，右侧占剩余全部”布局
+  .container {  
+  }
+  .affix {
+    width: 200px;
+    float: left;
+  }
+  .main {
+    /*float: left;*/
+    margin-left: 200px;
+  }
+
+
+2.第三方jQuery插件函数
+  (1)日期选择插件
+	jQueryUI datepicker
+	laydate
+  (2)表单验证插件——有很多，百度即可
+	jQuery Validate
+	练习：参考使用手册，实现一个完整的表单验证：
+	1)用户名			必填
+	2)密码			必填、长度在6~9位之间
+	3)重复密码		必填、值需要等于“密码”
+	4)邮箱			必填、符合邮箱格式
+	5)个人微博URL	符合URL格式
+	6)年龄			18~60
+	7)入学日期		符合日期格式
+  (3)瀑布流插件
+	瀑布流：是一种页面内容块的布局方式——一个紧挨一个，特点是“见缝插针”
+	Masonry：砖墙，土石工程
+
+
+3.补充：如何让jQuery放弃使用$
+  jQuery底层：
+	var jQuery = function(selector){  }
+	var $ = jQuery;
+
+  前端行业中，很多框架都使用了 $ 符号；jQuery为了避免与其他框架产生冲突，可以选择放弃使用$符号：
+	jQuery.noConflict();
+
+
+第三阶段的主要课程：
+(1)jQuery —— 6
+(2)AJAX —— 8   很乱很难！
+(5)HTML5新特性 —— 7
+
+4.服务器概述
+  
+  访问服务器的三要素：
+	(1)协议
+	(2)地址
+	(3)端口号
+
+
+B  KB  MB   GB   TB   PB  
+5.数据库服务器概述
+
+
+
+6.使用MySQL数据库服务器
+
+第三阶段课程体系：
+(1)jQuery
+(2)AJAX
+	1)数据库服务器 - SQL语言
+	2)Web服务器 - PHP语言
+	3)HTTP协议 - 理论
+	4)原生AJAX 
+	5)jQuery中的AJAX
+(3)HTML5
+
+	
+1.数据库服务器概述
+  数据库的种类：
+  (1)网状数据库
+  (2)树型数据库
+  (3)关系型数据库 —— 当前主流
+  (4)对象型数据库 —— 最前沿
+  (5)NoSQL —— MongoDB —— 大数据
+
+  关系型数据库系统分为两部分：
+	(1)数据库服务器：处于机房中，负责保存、维护数据
+	(2)数据库客户端：需要远程连接到服务器，向服务器发送操作指令(查询、添加、修改、删除)
+  
+  关系型数据库服务器中的数据在逻辑上呈现如下结构：
+	服务器 => DATABASE => TABLE => ROW =>COLUMN
+  提示：稍后的SQL代码逻辑结构如上！
+
+
+
+Date & Data
+Exit & Exist
+Content & Context
+Model & Modal & Module
+
+  MySQL：   (1)Oracle MySQL   (2)MariaDB
+
+XAMPP套装软件：
+包含Apache、MySQL、PHP等多个开源软件的集合。
+https://www.apachefriends.org/zh_cn/index.html
+
+
+2.安装和使用MySQL服务器
+  (1)服务器端：安装MySQL服务器端程序
+	数据保存目录：C:\xampp\mysql\data
+	服务器启动程序：C:\xampp\mysql\bin\mysqld.exe
+  (2)服务器端：启动MySQL服务器端程序
+	服务器程序是否运行起来，只能通过PORT是否打开来验证。
+	启动服务器是否成功：确保3306端口被mysqld.exe占用！
+  ------------------------------------------------
+  (3)客户端：安装MySQL客户端程序
+	客户端启动程序：  C:\xampp\mysql\bin\mysql.exe
+  (4)客户端：远程连接到服务器
+	C:\xampp\mysql\bin\mysql.exe  -h127.0.0.1  -uroot  -p  -P3306	可以简写为：
+	C:\xampp\mysql\bin\mysql.exe  -uroot   可以简写为：
+	mysql  -uroot    提示：此简写必须修改PATH环境变量！！
+	-h: host指定MySQL服务器电脑的IP地址/主机名
+	-u: user指定登录MySQL服务器所用的用户名
+ 	-p: pwd指定登录MySQL服务器所用的密码
+	-P: port指定连接MySQL服务器所对应的端口号
+  (5)客户端：远程发送操作指令，告诉服务器执行数据的CRUD
+  	只有连接到了MySQL服务器，才能发送SQL指令
+	提示符变为：  mysql>   或者 MariaDB>
+
+Create Retrieve Update Delete
+
+3.向MySQL服务器发送操作指令
+  SQL：Structured Query Language，结构化查询语言，专用于向数据库服务器发送操作指令。
+  SQL语法规范：
+  (1)所有的SQL语句都必须以;结尾
+  (2)所有的SQL语句不区分大小写；习惯上，SQL关键字都大写，非关键字都小写
+  (3)常用的SQL语句：
+	SHOW DATABASES;		查看当前服务器上有哪些数据库
+	USE 数据库名;			进入指定的数据库
+	SHOW TABLES;		查看当前数据库中有哪些表
+	SELECT * FROM 表名;	查看指定表中有哪些记录
+   练习：登录MySQL服务器，进入名为mysql的库，查询名为user表中所有的记录。
+  (4)VARCHAR、DATE类型必须使用单引号；INT、FLOAT等数字可以引起来也可以不引；
+  (5)BOOLEAN类型本质是0(FALSE)和1(TRUE)
+
+SQL语句有两种执行方式：
+ (1)交互式执行
+	输入一行，回车，执行一行，查看执行结果；再输入下一行...
+	mysql  -uroot  登录后，开始输入...
+ (2)脚本式执行
+	把要执行的所有SQL语句编写在一个.sql文件中，一次性的全部提交给服务器执行
+	mysql  -uroot  <  e:/jd.sql    尖括号表示导入要执行的脚本
+
+4.常用SQL语句 —— 重点 & 记忆！
+  练习：创建一个tarena.sql文件，其中保存公司部门和员工信息
+	#设置SQL语句的编码
+	#试着删除数据库tarena				
+	#创建数据库tarena
+	#进入数据库tarena
+	#创建部门信息表dept(did, name,location)
+	#添加三个部门记录，如10-市场部-北京  20-研发部-上海 30-运营部-杭州
+	#创建员工信息表  emp(eid,name,sex,salary,birthday,phone,deptID)
+	#添加6个员工记录，每个部门有两三个员工
+	#删除10号部门，及下面的员工
+	#查询出所有的部门记录
+	#查询出所有的员工记录
+	#查询出20号部门中所有的员工记录
+	#查询出“研发部”所有的员工记录——SELECT ... WHERE deptID=(SELECT...)
+	
+
+<table>
+	<thead></thead>
+	<tbody></tbody>
+</table>
+
+5.常用SQL语句的分类——考试题
+  (1)DDL：Data Define Language，数据定义语句，定义表的列
+	CREATE  DROP  ALTER(修改表定义)   TRUNCATE(截断)
+  (2)DML：Data Manipulate Language，数据操作语句，操作表中的行
+	INSERT  DELETE  UPDATE
+  (3)DQL：Data Query Language，数据查询语句
+	SELECT
+  (4)DCL：Data Control Language，数据权限控制语句
+	GRANT(授权)  REVOKE(收权)
+
+6.Web服务器概述 —— 掌握
+  
+  Web服务器的作用类似于，面包店的“售货员”，用于向客户端浏览器提供各种各样的网页内容。Web服务器分为两类：
+  (1)静态Web服务器：任何人在任何时间访问内容都是一成不变的
+	静态Web内容：HTML、CSS、JS、图片、音频视频、Flash...
+	常见的静态Web服务器： Apache Httpd、MS IIS、NginX
+  (2)动态Web服务器：不同的人在不同的时间访问内容是会变化的
+	动态网页技术：
+		1)JSP = HTML + JAVA
+		2)ASP.NET = HTML + C#
+		3)PHP = HTML + PHP
+		4)NodeJS = HTML + NodeJS
+
+  练习：
+(1)编写网页保存在c:/xampp/htdocs目录下
+(2)启动自己的Apache服务器
+(3)使用ipconfig命令查看自己计算机的IP地址
+(4)让同桌远程访问自己的Web服务器
+	
+
+7.使用PHP Web服务器
+	
+  PHP：Personal Home Page
+在服务器端搭建PHP运行环境需要如下步骤：
+(1)安装某款静态Web服务器——如Apache Httpd
+(2)安装PHP解析器，整合入Web服务器
+提示：上述两步可以通过安装XAMPP套件进行简化。
+(3)启动Web服务器——需要保证80端口未被占用
+(4)客户端浏览器中访问测试——http://127.0.0.1
+
+
+
+晚间练习：
+一、PHP动态网页练习：
+(1)创建1.php，向客户端输出1个*
+  	(2)创建2.php，向客户端输出50个*
+  	(3)创建3.php，向客户端输出5行10列个*
+  	(4)创建4.php，向客户端输出“九九乘法表”
+	   echo('<table>')
+
+二、SQL语句练习：
+	创建一个bbs.sql文件，创建数据库，保存用户和评论数据 
+	#设置SQL语句的编码
+	#试着删除数据库bbs				
+	#创建数据库bbs
+	#进入数据库bbs
+	#创建用户信息表bbs_user(uid,uname,upwd,sex,email,headPic)
+	#添加三条用户记录
+	#创建用户评论表bbs_comment(cid,content,pubTime,userID)，分别记录评论ID、评论内容、发表时间、用户编号。
+	#为每个用户添加几条评论记录
+	#删除1号用户及其发表的所有评论
+	#查询出所有的用户记录
+	#查询出所有的评论记录
+	#查询出2号用户所有的评论记录
+
+复习：
+
+使用数据库服务器：
+(1)服务器端：安装MySQL服务器软件——mysqld.exe
+(2)服务器端：启动MySQL服务器软件——3306
+--------------------------------------------
+(3)客户端：安装MySQL客户端软件——mysql.exe
+(4)客户端：连接到MySQL服务器——mysql  -uroot
+(5)客户端：提交SQL命令给服务器执行
+
+#设置SQL语句的编码方式
+#删除数据库jd
+#重建数据库jd，数据编码使用UTF8			
+#进入数据库jd
+#创建商品分类表：category(cid,name,count)
+#插入几条商品分类记录，如10-手机-500、20-相机-350
+#创建商品信息表：
+	goods(gid,name,price,pic,birthday,categoryID)
+#插入几条商品记录：
+#查询所有的商品类别
+#查询所有的商品
+#查询“手机”类别下的所有商品
+
+
+今日目标：
+(1)PHP语法——重点&杂
+(2)使用PHP连接MySQL服务器——更重点
+
+
+面试题：
+JS和PHP语言的最本质上的区别？
+JS属于“静态网页技术”，在客户端浏览器中执行——客户端技术；
+PHP属于“动态网页技术”，在服务器端运行——服务器端技术。
+
+
+1.搭建PHPWeb服务器的过程
+  (1)服务器端：安装一款静态Web服务器——httpd.exe(售货员)
+  (2)服务器端：安装PHP解释器——php.exe(烤箱)
+  (3)服务器端：启动Web服务器——80/443
+  (4)服务器端：编写网页保存在htdocs目录下(面包柜)
+  ----------------------------------------------------------
+  (5)客户端：在浏览器地址栏中输入服务器的IP地址和端口号
+	http://127.0.0.1:80
+
+ 练习：使用PHP创建一个二维数组，保存4个学生的信息，每个学生需要保存编号、姓名、语文、数学，输出在一个TABLE中
+	$arr = [
+		[101, 'Tom', 55, 66],			
+		...
+];						
+  
+2.面试题：如何自学一门新语言？
+ (1)背景：历史、特点、应用领域、趋势
+ (2)搭建环境，写出HelloWorld
+ (3)数据类型
+ (4)创建变量和常量
+ (5)运算符
+ (6)逻辑结构
+ (7)通用小程序
+ (8)函数&对象
+ (9)常用库、框架
+(10)实用小项目
+注意：手册的使用！
+
+3.PHP中的数据类型——重点
+  四种标量类型： boolean  integer  float  string 
+两种复合类型： array  object 
+两种特殊类型： resource  NULL
+
+  string: 
+单引号字符串
+双引号字符串：可以直接拼接变量
+字符串拼接：使用.号而不是+
+  array:
+	数组不是对象，没有.length、.toString()，不能echo
+	索引数组：下标是数字，0/1/2...，可以使用for循环遍历
+	关联数组：下标是字符串，表明每个元素的含义，只能使用foreach遍历
+	向数组添加新元素： $arr[ ] = 值;
+$emp = ['age'=>20];
+echo $emp['age'];  //单引号不能省略
+echo "年龄为：$emp[age]";	//单引号必须省略
+
+
+
+练习：创建一个空数组，向其中添加4个新的书籍记录，每个书籍包含书名、价格、出版日期、是否特价；把上述数据输出在一个TABLE中。
+
+
+4.PHP中的变量和常量
+  声明变量：
+	$变量名 = 值;
+  声明常量：
+	const 常量名 = 值;
+
+5.PHP中的运算符
+  与JS基本一样。
+  注意：字符串拼接——不用+，而使用.
+
+
+6.PHP中的循环和选择结构
+  选择结构：
+	if
+	if..else..
+	switch..case..
+  循环结构：
+	while..
+	do..while..
+	for..
+	foreach..	 可用于遍历关联/索引数组
+foreach( 数组名 as  $v){ echo $v; }
+foreach( 数组名 as  $k=>$v){ echo $v; }
+
+7.PHP中定义函数
+  function add( $num1, $num2 ){
+	$sum = $num1 + $num2;
+	return $sum;
+}
+add(10, 20);
+PHP中的常用函数：边学边用
+
+
+8.使用PHP访问MySQL数据库
+  #设置SQL语句编码方式
+  #删除一个数据库tedu
+  #创建一个数据库tedu
+  #进入数据库tedu
+  #创建一个保存注册用户信息的表：
+user(uid,name,pic,registerDate,isAdmin)
+  #添加几行记录
+  #查询出所有用户信息
+
+
+  PHP操作数据库的步骤——与命令行中访问数据库的步骤一样
+  (1)服务器端：启动MySQL服务器
+  ----------------------------------------------------
+  (2)PHP端： 连接MySQL服务器
+	$conn = mysqli_connect('127.0.0.1','root',"",'tedu',3306);
+  (3)PHP端： 向MySQL服务器提交SQL命令
+	$sql = "INSERT/DELETE/UPDATE/SELECT....";
+$result = mysqli_query($conn, $sql);
+  (4)PHP端： 查看服务器返回的执行结果
+	if($result === false){	//执行失败，如SQL语法错误
+}else {	//执行成功
+}
+  (5)PHP端： 断开连接（可以省略）		
+	mysqli_close($conn);
+
+  mysql_connect()：早期函数
+  mysqli_connect()：improved，改进的提升的，后来提供的改进版本
+
+练习：创建一个PHP页面，连接MySQL服务器，提交一条INSERT语句，添加一个新的user记录行，输出执行成功还是失败！
+
+9.客户端浏览器如何给服务器中PHP页面传递数据
+  在请求URL后追加“查询字符串”：
+	http://127.0.0.1/add.php?uname=king&age=60&addr=bj
+  PHP页面中可以使用预定义数组变量来读取客户端提交的数据：
+	$n = $_REQUEST['uname']
+	$a = $_REQUEST['age']
+	$d = $_REQUEST['addr']
+									
+练习：创建一个delete_user.html（静态页面），其中包含一个表单，让使用者输入待删除的用户编号,可以点击“提交”按钮，  表单会给delete_user.php（动态页面），此PHP页面读取客户端提交的用户编号，连接数据库，执行一条DELETE语句，提示出“删除成功”或“删除失败”
+
+
+阶段小项目：留言板
+功能：
+(1)发表留言：  用户在一个表单中提交自己的姓名、电话、以及留言内容，点击提交按钮即可发表。
+(2)浏览所有留言：  可以查看到编号、姓名、电话、内容、发布时间。
+(3)删除某个留言： 点击某个留言右上角的X删除该留言。
+
+需要的文件：
+(1)编写一个tarena.sql，创建一个留言表 msg，包含留言编号、发布人姓名、联系电话、发布时间、留言内容
+(2)发表留言：   msg_add.html       msg_add.php
+(3)浏览所有留言：   msg_select.php   
+(4)删除留言：  msg_delete.php
+
+
+<a href="delete.php?mid=1">&times;</a>
+<a href="delete.php?mid=2">&times;</a>
+<a href="delete.php?mid=3">&times;</a>
+
+复习：
+AJAX阶段：
+  (1)数据库服务器——SQL
+  (2)Web服务器——PHP
+  (3)HTTP协议——抽象
+  (4)原生AJAX
+  (5)jQuery中的AJAX
+
+#设置SQL语句编码方式
+#删除数据库tedu
+#重建数据库tedu
+#进入数据库tedu
+#创建留言表 
+msg(mid,userName,phone,content,pubTime)
+#试着创建两条留言记录
+#查询出所有留言
+
+//启动Web服务器
+//在服务器的htdocs目录下编写网页
+//创建1_msg_add.html，包含一个表单，“用户姓名、联系电话、留言内容、提交留言”；表单提交给2_msg_add.php
+//创建2_msg_add.php，接收客户端提交的“userName、phone、content”，连接数据库，向数据库先提交SET NAMES UTF8，再提交INSERT...语句，输出执行结果
+	$sql1 = "";
+	mysqli_query($conn,$sql1);
+	$sql2 = "";
+	mysqli_query($conn,$sql2);
+//创建3_msg_select.php，连接数据库，提交SELECT语句，输出查询结果 
+//创建4_msg_delete.php，连接数据库，提交DELETE语句，输出执行结果 
+
+
+1.注意：mysqli_query($conn,$sql)函数的返回值
+  (1)只要执行失败(如SQL语法错误)，就返回false
+  (2)执行成功，若是DML(INSERT/DELETE/UPDATE)，返回true
+  (3)执行成功，若是DQL(SELECT/SHOW)，返回查询结果集的描述对象，即mysqli_result
+
+  Warning: mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, boolean given in...
+
+2.MySQL客户端的类型
+  (1)命令行版的客户端——mysql.exe
+  (2)使用PHP引擎作客户端——mysqli_connect
+  (3)网页版的客户端——phpMyAdmin
+	http://127.0.0.1/phpmyadmin
+
+3.学习HTTP协议的目标
+  (1)进行网站的访问优化——面试题
+  (2)解决AJAX应用中“看不见摸不着”的错误
+
+4.几个概念：
+  URL：Unified Resource Locator，统一的资源定位符
+  URI：Unified Resource Identifier，统一的资源识别符
+  URN：Unified Resource Naming，统一的资源命名符
+  	URI = URL + URN
+	
+	URL:
+<a href="http://tmooc.cn/index.php">
+	URN:
+	<a href="mailto: admin@sohu.com">
+	<a href="tel: 13501234567">
+
+5.HTTP协议详解
+  HTTP协议，有IETF委员会制定的浏览器和Web服务器之间通信的格式。  
+  Request For Comment，意见征求稿
+  RFC-1945:  HTTP/1.0   1996年
+  RFC-2615:  HTTP/1.1	  1999年
+面试题：HTTP/1.1比1.0有哪些改进？
+(1)持久连接  Connection: keep-alive    不是永久连接
+  让一次连接中可以发起多个请求-响应
+(2)虚拟主机  Host: www.tmooc.cn   
+一个Apache同时共存多个站点  
+(3)代理连接  Proxy: xxx
+  浏览器通过中间的代理间接访问Web服务器
+  Request Message：请求消息，浏览器发给服务器的消息
+	
+  Response Message：响应消息，服务器发给浏览器的消息
+	
+  先有请求，再有响应消息；没有请求，就没有响应消息。
+
+
+6.八种请求方法——重点
+  GET和POST请求方法的区别？——面试题
+  (1)浏览器中如何发起GET请求：
+	在地址栏中输入地址、SRC/HREF属性、超链接跳转、JS跳转、GET方式提交表单、AJAX-GET请求
+  (2)浏览器中如何发起POST请求：
+	POST方式提交表单、AJAX-POST请求
+
+  (3)GET请求把请求数据追加在请求URI后面，以?k=v&k=v格式
+    POST请求把请求数据放在请求消息主体中，以k=v&k=v格式
+HTTP协议规定k=v中的中文和特殊标点都必须进行编码。
+  (4)浏览器/服务器对请求URI总长度都有长度限制，如1024字节——GET请求数据长度有限制，中文的话不能超过几十个；请求消息主体没有长度限制——POST请求没有数据长度限制，可用于文件上传。
+  (5)二者语义上不同：GET表获取，POST表传递
+
+
+7.Content-Type头部
+  请求消息主体描述头部：
+	text/plain
+	application/x-www-form-urlencoded
+	multipart/form-data
+  响应消息主体描述头部（MIME）：
+	text/plain
+text/html
+text/css
+application/javascript
+image/png
+audio/mpeg3
+application/xml
+application/json
+....
+
+练习内容：
+1)创建huimaiche.sql文件，创建数据库huimaiche，创建表car(cid,name, pic, price, count购买数量)，插入多行测试记录。
+2)创建1_car_add.html，包含一个表单，用于录入新的汽车信息，提交给2_car_add.php
+3)创建2_car_add.php，接收客户端提交的新车记录信息，保存入数据库
+4)创建3_car_select.php，以HTML DIV或TABLE方式显示出数据库中所有的汽车记录。每个记录右上角有个删除按钮。
+5)创建4_car_delete.php，接收客户端提交的汽车编号，从数据库中删除该汽车记录。
+
+
+复习：
+第三阶段课程：
+(1)jQuery
+(2)AJAX
+	1)数据库服务器——SQL
+	2)WEB服务器——PHP
+	3)HTTP协议
+	4)原生AJAX——前端难点&最重点
+	5)jQuery中的AJAX函数
+(3)HTML5新特性
+
+HTTP协议：定义了浏览器和服务器通信规范
+请求消息：
+	请求起始行
+	请求头部
+	CRLF
+	请求主体
+响应消息：
+	响应起始行
+	响应头部
+	CRLF
+	响应主体
+
+面试题：
+1)请求方法：GET、POST、HEAD、PUT、DELETE、TRACE、OPTIONS、CONNECT
+2)响应状态码：1xx、2xx、3xx、4xx、5xx
+
+
+今日目标：
+(1)补充：HTTP协议
+(2)原生AJAX —— 重点&难点
+
+
+作业：		
+1)创建autohome.sql，数据库名autohome，表auto(aid, name, price, count, pic)，插入几条记录，简单查询一下
+2)创建1_auto_add.html，包含表单，可以用于添加新的汽车信息，<form action="2_auto_add.php">
+3)创建2_auto_add.php，接收客户端提交的请求数据，插入到数据库服务器
+4)创建3_auto_select.php，查询出所有汽车记录，显示在一个HTML TABLE中     	
+
+
+
+1.面试题：缓存控制相关HTTP头部
+  修改HTTP响应消息头部的方法：
+  方式1：修改Web服务器的配置文件
+  方式2：声明HTML META元标签，并非绝对有效
+  方式3：使用服务器端动态语言设置响应消息头部
+
+2.面试题：如何进行HTTP访问优化
+(1)域名解析
+    尽可能减少域名解析次数——减少跨站外部资源的引用
+    	<img src="http://www.qzone.com/1.jpg">
+	<script src="http://bootcss.com/1.js">
+(2)创建连接
+    努力减少连接创建次数——使用持久连接避免重复连接
+	Connection: keep-alive
+(3)发送请求
+    尽力减少请求次数——合理设置缓存时间、资源合并
+(4)等待响应
+    提高服务器端运行速度——提高数据运算及查询速度
+(5)接收响应
+    尽可能减小响应数据长度——删除无用的空白字符、启用gzip压缩
+
+3.HTTPS协议
+  HTTPS：HTTP over SSL，建立在安全套接字层之上的HTTP协议——会对HTTP请求和响应消息进行加密和解密——安全的HTTP协议。
+  HTTP：80
+  HTTPS：443
+
+
+4.AJAX概述
+  AJAX：Asynchronous Javascript And XML，异步的JS和XML。
+  2002年，Google在搜索引擎中提出了“Google Suggest”效果，把使用的技术命名为“AJAX”，为了避免浏览器中出现“一片惨白”影响浏览体验。
+  实现原理：在客户端浏览网页内容的同时，服务器在提供最新的内容，局部更新在页面中——无提交无刷新的页面内容局部更新技术。
+  AJAX应用涉及到的技术：HTML、CSS、JS、DOM、XML、HTTP协议等——纯前端技术，需要与Web服务器交互。
+  
+
+浏览器发起HTTP请求的两种方式：
+(1)同步请求：地址栏、表单提交、超链接跳转、JS跳转
+(2)异步请求：使用XHR对象
+
+
+AJAX应用的核心JS对象：
+XMLHttpRequest：向Web服务器发起HTTP请求，并接收响应消息。
+
+
+5.XHR对象的成员：
+  用途：向Web服务器发起异步的HTTP请求，接收响应消息——此过程中的错误都是“看不见摸不着”——必须从Network请求消息和响应消息。
+  var xhr = null;
+if(window.XMLHttpRequest){	//其它浏览器
+xhr = new XMLHttpRequest();
+}else {	//老IE
+	xhr = new ActiveXObject('Microsoft.XMLHttp');
+}
+XHR对象成员属性：
+1.readyState:0  就绪状态，随着请求-响应的进行自动改变
+2.response:""
+3.responseText:"" 响应消息主体，readyState变为3才有值
+4.responseType:""
+5.responseURL:""
+6.responseXML:null响应消息主体，readyState变为3才有值
+7.status:0  响应状态码，readyState变为2才有值
+8.statusText:""  原因短句，readyState变为2才有值
+9.timeout:0
+
+10.DONE:4  readyState可取值之一，响应消息接收完成
+11.HEADERS_RECEIVED:2  readyState可取值之一，开始接收响应消息头部
+12.LOADING:3  readyState可取值之一，开始加载响应消息主体
+13.OPENED:1  readyState可取值之一，XHR已经打开到服务器的连接
+14.UNSENT:0  readyState可取值之一，请求消息尚未发送
+
+
+XHR对象成员事件：
+1.onabort:null
+2.onerror:null
+3.onload:null
+4.onloadend:null
+5.onloadstart:null
+6.onprogress:null
+7.onreadystatechange:null  xhr.readyState属性值发生改变
+8.ontimeout:null
+XHR对象成员方法：
+1.getAllResponseHeaders:getAllResponseHeaders()
+2.getResponseHeader:getResponseHeader()  读取响应头部
+3.setRequestHeader:setRequestHeader()  设置请求头
+4.open:open()  打开到服务器的连接
+5.send:send()  发送请求消息
+
+
+6.使用XHR发起HTTP请求的步骤
+  //1 创建xhr对象
+	var xhr = new XMLHttpRequest();
+  //2 监听xhr的状态改变事件
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState===4){		//响应消息接收完成
+			if(xhr.status===200){	//响应完成且成功
+}else{	//响应完成但有问题
+}
+}
+}
+  //3 连接到服务器
+	xhr.open('GET', 'x.php', true);
+  //4 发送请求消息
+	xhr.send( null / 'k=v&k=v' );
+
+
+7.使用XHR发送GET请求
+  演示案例：验证用户名是否存在
+  (1)创建数据库脚本，提交给MySQL脚本
+  (2)创建check_uname.php，接收客户端提交的用户名，返回验证结果：'cunzai' 或 'bucunzai'
+  (3)创建register.html，实现用户名输入框失去焦点验证当前的输入值是否已经存在
+  	//1 创建xhr对象
+//2 监听xhr的状态改变事件
+  	//3 连接到服务器
+	xhr.open('GET', 'x.php?k1=v1&k2=v2', true);
+  	//4 发送请求消息
+	xhr.send( null );
+
+
+8.使用XHR发送POST请求		
+  演示案例：使用弹出框形式，注册新用户——无需页面跳转和刷新
+  (1)继续使用上一案例中的sohu库和user表
+  (2)创建user_add.php，接收客户端提交的name和pwd，保存入数据库，返回'succ'或'err'
+  (3)创建index.html，包含一个“注册”按钮，点击后弹出注册弹出框，输入用户名和密码后点击提交，实现异步的用户注册。
+	提示：异步注册，无需表单——表单提交都是同步提交！
+
+
+
+练习内容：
+(1)使用XHR对象发起异步请求——成绩录入系统
+	<h1>成绩录入系统</h1>
+	学生姓名：  <input id="stuName">
+	语文成绩：  <input id="chinese">
+	语文成绩：  <input id="math">
+	<input type="button" value="保存成绩">
+要求：点击“保存成绩”按钮，发起异步请求，把数据提交给服务器端的PHP页面，INSERT到MySQL数据库，返回'succ'或'err'提示文字。客户端弹出一个alert("保存成功/失败")。用户点击确定后，清空输入框内容，继续录入下一个学生成绩。
+实现步骤：
+(1)创建tarena.sql，创建score表，包含sid、stuName、chinese、math三列
+(2)创建score_add.php，接收客户端数据，执行INSERT
+(3)创建score_add.html，显示输入框及按钮
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

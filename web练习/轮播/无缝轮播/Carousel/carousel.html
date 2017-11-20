@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <script src="../js/jquery-1.11.3.js"></script>
+    <title>无缝轮播</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .main{
+        	position: relative;
+        	width: 600px;
+        	height: 400px;
+        	left: 30%;
+        }
+        @media screen and (max-width: 413px) {
+        	.main{
+        		left: 20%;
+        	}
+        }
+	    a{
+	    	list-style: none;
+		    text-decoration: none;
+		    color: #111111;
+		    width: 1.5rem;
+		    height: 1.5rem;
+		    display: block;
+		    font-size: 1.4rem;
+		    background: #ffffff;
+		    border: 1px solid #ffffff;
+		    border-radius: 50%;
+		    text-align: center;
+		    line-height: 1.5rem;
+        }
+        ul>li{
+        	list-style: none;
+        	float:left;
+        }
+        .picture{
+        	width:600px;
+        	height: 400px;
+        	overflow: hidden;
+        	margin: auto;
+    		margin-top: 10%;
+        }
+        .picture>li{
+        	position: absolute;
+        	z-index: 1;
+        }
+        .moving1,.moving2{
+        	position: absolute;
+		    transform: scale(1.5);
+		    opacity: .85;
+        }
+        .moving1{
+        	margin-left: 4%;
+    		margin-top: 30%;
+    		z-index: 10;		    
+        }
+        .moving2{
+		    margin-left: 91%;
+    		margin-top: -36.7%;
+        }
+        .number{
+        	position: absolute;
+		    z-index: 1000;
+		    margin-left: 22%;
+    		margin-top: -50%;
+        }
+        .number>li{
+        	z-index: 1000;
+        	margin-left: 2rem;
+        	margin-top: 15rem;
+        }
+        .nullBoxRight{
+        	width: 600px;
+        	height: 400px;
+        	position: absolute;
+		    left: 600px;
+		    top: 0;
+		    display: none;
+		    z-index: 20;
+        }
+        .nullBoxLeft{
+        	width: 600px;
+        	height: 400px;
+        	position: absolute;
+		    left: -600px;
+		    top: 0;
+		    display: none;
+		     z-index: 20;
+        }
+    </style>
+</head>
+<body>
+	<!--主体-->
+	<div class="main">
+		<!--图片区-->
+	    <div>
+	    	<!--前移-->
+	        <span class="moving1">
+	            <img src="../images/templatemo_slider_left.png">
+	        </span>
+	        <!--轮播出现的图片-->
+	    	<ul class="picture">
+	    		<!--<li>
+	    			<img src="../images/5.jpg"/>
+	    		</li>
+	    		<li>
+	    			<img src="../images/4.jpg"/>
+	    		</li>
+	    		<li>
+	    			<img src="../images/3.jpg"/>
+	    		</li>-->
+	    		<li>
+	    			<img src="../images/2.jpg"/>
+	    		</li>
+	    		<li>
+	    			<img src="../images/1.jpg"/>
+	    		</li>
+	    	</ul>
+	    	<!--后移-->
+	        <span class="moving2">
+	            <img src="../images/templatemo_slider_right.png">
+	        </span>
+	    </div>
+	    <!--数字下标-->
+	    <ul class="number">
+	    	<li><a name="0" href="#">
+	    		1
+	    	</a></li>
+	    	<li><a name="1" href="#">
+	    		2
+	    	</a></li>
+	    	<li><a name="2" href="#">
+	    		3
+	    	</a></li>
+	    	<li><a name="3" href="#">
+	    		4
+	    	</a></li>
+	    	<li><a name="4" href="#">
+	    		5
+	    	</a></li>
+	    </ul>
+	    <div class="nullBoxRight">
+	    
+	    </div>
+	    <div class="nullBoxLeft">
+	    
+	    </div>
+	</div>
+    <script>
+    	var carousel={
+    		//绑定对象carousel
+    		_this:this,
+    		//移动的长度
+    		moveLeft:600,//$(".main").width()
+    		//空计时器
+    		timer:null,
+    		//图片路径
+	        url:'../images/',
+	        //图片数组
+	        arr:['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg'],
+	        //初始方法
+	        init:function(){  
+	        	this.autoPlay();
+	        },
+	        //向左出图片
+	        pullLeft:function(){
+	        	
+	        },
+	        //向右出图片
+	        pulRight:function(){
+	        	
+	        },
+	        //图片自动轮播
+	        autoPlay:function(){
+	        	for(var i=0;i<this.arr.length;i++){	  
+	        		//$(".nullBoxLeft").html("<li><img"+this.url+this.arr[i+1]"></li>");
+	        		//console.log(this.moveLeft)
+	        		//$(".nullBoxLeft>li").children("img").animate({marginRight:this.moveLeft},1000);
+	        		$(".picture>li").animate({marginLeft:this.moveLeft},10000);
+	        		
+//	        		if($(".picture").children("li").attr("marginLeft")==600px){
+//	        			$(".picture").children("li").remove();
+//	        		}
+	        	}
+	        },
+    	};
+    	carousel.init();
+    </script>
+</body>
+</html>

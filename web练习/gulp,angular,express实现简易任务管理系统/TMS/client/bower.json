@@ -1,0 +1,25 @@
+{
+  "name": "tms_client",
+  "description": "n",
+  "main": "index.js",
+  "authors": [
+    "ZhouChangDi"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Task",
+    "Management"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
