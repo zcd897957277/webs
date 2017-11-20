@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <script>
+    var arr=[2,4,1,5,3];
+    //冒泡
+    //插入:
+    function insertSort(arr){
+      for(var i=1;i<arr.length;i++){
+        var temp=arr[i];
+        var p=i-1;
+        while(temp<arr[p]&&p>=0){
+          arr[p+1]=arr[p];
+          p--;
+        }
+        arr[p+1]=temp;
+      }
+    }
+    //insertSort(arr);
+    var arr=[6,1,5,4,7,3,2];
+    //快速排序
+    function quickSort(arr){
+      if(arr.length<=1){return arr}
+      else{
+        var c=Math.floor(arr.length/2);
+        var center=arr.splice(c,1)[0];
+        var left=[];
+        var right=[];
+        for(var i=0;i<arr.length;i++){
+          if(arr[i]>center){right.push(arr[i])}
+          else{left.push(arr[i])}
+        }
+        return quickSort(left)
+                .concat(center,quickSort(right));
+      }
+    }
+    arr=quickSort(arr);
+    console.log(String(arr));
+  </script>
+ </body>
+</html>

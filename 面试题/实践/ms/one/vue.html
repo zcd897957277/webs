@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/demo.css" />
+		<link href="css/hover.css" rel="stylesheet" media="all">
+	</head>
+	<body>
+		<div id="app">
+			<!--导航条-->
+			<div class="htnav">
+				<p class="left">动车临修作业控制系统</p>
+				<p class="right"><i>欢迎您</i><b>超级管理者</b> 2017-06-26 09:56:20</p>
+			</div>
+			<!--主要内容区-->
+			<div class="content">
+				<!--二级导航区-->
+				<div class="con_nav">
+					<ul>
+						<li class="left"><input type="button" value="系统管理" class="input_btn alive hvr-pulse-grow"> </li>
+						<li class="left"><input type="button" value="作业管理" class="input_btn hvr-pulse-grow"> </li>
+					</ul>
+					<input type="button" value="退出" class="input_btn tc right"> 
+				</div>
+				<!--级联区-->
+				<div class="con_content">
+					<!--左边二级菜单-->
+					<ul>
+						<li><input type="button" value="用户管理" class="input_btn hvr-buzz-out tc alive"></li>
+						<li><input type="button" value="角色管理" class="input_btn hvr-buzz-out tc"></li>
+						<li><input type="button" value="资源管理" class="input_btn hvr-buzz-out tc"></li>
+						<li><input type="button" value="材料统计" class="input_btn hvr-buzz-out tc"></li>
+					</ul>
+					<!--右边表格区-->
+					<div class="ttable left">
+						<p>系统管理&nbsp;/&nbsp;用户管理</p>
+						<div class="line_two">
+							角色：<select>
+								<option value="请选择">请选择</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+							<input type="button" value="搜索" class="input_search">
+						</div>
+						
+						<table cellpadding="0" cellspacing="0">
+							<thead>
+								<th>序号</th>
+								<th>账号（卡号）</th>
+								<th>姓名</th>
+								<th>角色</th>
+								<th>资源</th>
+								<th>操作</th>
+							</thead>
+							<tbody>
+								<tr v-for="item in items">
+									<td v-for="i in item">{{i}}</td>
+									<td><input type="button" value="管理系统" class="input_btn_blue hvr-grow-shadow"></td>
+									<td>
+										<input type="button" value="编辑" class="input_btn_deepblue hvr-hang">
+										<input type="button" value="删除" class="input_btn_red hvr-wobble-to-top-right">
+									</td>
+								</tr>								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/vue.min.js"></script>
+	<script>
+		new Vue({
+			el:'#app',
+			data:{
+				items:[
+    {
+        "id": "1",
+        "name": "扳手",
+        "in": "70",
+        "out": "39"               
+    },
+    {
+        "id": "2",
+        "name": "牛奶",
+        "in": "100",
+        "out": "89"
+    },
+    {
+        "id": "3",
+        "name": "电脑",
+        "in": "50",
+        "out": "29"
+    },
+    {
+        "id": "4",
+        "name": "显示器",
+        "in": "71",
+        "out": "19"
+    },
+    {
+        "id": "5",
+        "name": "牛肉",
+        "in": "69",
+        "out": "99"
+    },
+    {
+        "id": "6",
+        "name": "手机",
+        "in": "10",
+        "out": "89"
+    },
+    {
+        "id": "7",
+        "name": "牛奶",
+        "in": "100",
+        "out": "89"
+    },
+    {
+        "id": "8",
+        "name": "电风扇",
+        "in": "68",
+        "out": "52"
+    },
+    {
+        "id": "9",
+        "name": "鼠标",
+        "in": "59",
+        "out": "39"
+    },
+    {
+        "id": "10",
+        "name": "自行车",
+        "in": "189",
+        "out": "89"
+    },
+    {
+        "id": "11",
+        "name": "空调",
+        "in": "88",
+        "out": "88"
+    },
+]
+			}
+		});
+	</script>
+	<script src="js/jquery-1.11.3.js"></script>
+	<script src="js/demo.js"></script>
+</html>

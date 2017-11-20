@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    var str1="jad4545,ff2!3452+";
+    function getNum(str){
+        var reg=/\d/g;
+        var str=str.match(reg).join("");
+        return str;
+    }
+    console.log(getNum(str1));
+    var str2="AAFFFSSSSAAAAFFFFFF";
+    function getLength(str){
+        var newStr="";
+        var reg=/([A-Z]+)\1/g;
+        var arr=str.match(reg);
+        for(var i=0;i<arr.length;i++){
+            newStr=newStr+arr[i][0]+arr[i].length
+        }
+        return newStr;
+    }
+    console.log(getLength(str2));
+    var str3="B3A10C4D7";
+    function write(str){
+        var newStr="";
+        var reg=/([A-Z])(\d+)/g;
+        str.replace(reg,function($1,$2,$3){
+            for(var i=0;i<$3;i++){
+                newStr+=$2;
+            }
+        });
+        return newStr;
+    }
+    console.log(write(str3));
+</script>
+</body>
+</html>

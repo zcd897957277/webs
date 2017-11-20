@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    var isPrime2=(function(){
+        var hash={};
+        return function(num){
+            if(num<=3){
+                //如果hash中已经记录过，则直接获取结果
+                return true;
+            }else if(hash[num]!==undefined){
+                return hash[num];
+            }else{
+                for(var i=2;i<=Math.sqrt(num);i++){
+                    if(num%i==0){
+                        //将本次参数和结果记入hash
+                        return hash[num]=false;
+                    }
+                }
+                //将本次参数和结果记入hash
+                return hash[num]=true;
+            }
+        }
+    })
+    isPrime2(111)
+</script>
+</body>
+</html>

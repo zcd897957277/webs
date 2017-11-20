@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script>
+    var arr=[12,234,3456,4,12,234,12];
+    //1.遍历
+    function unique1(arr){
+        for(var i= 0,result=[];i<arr.length;i++){
+            for(var j=0;j<result.length;j++){
+                if(result[j]==arr[i]){
+                    break;
+                }
+            }
+            if(j==result.length){
+                result.push(arr[i])
+            }
+        }
+        return result;
+    }
+    //console.log(String(unique1(arr)))
+    //2.hash（效率最快）
+    function unique2(arr){
+        for(var i= 0,hash={};i<arr.length;i++){
+            //如果hash中不包含当前元素，就压入hash
+            if(hash[arr[i]]===undefined){
+                //console.log(hash[arr[i]])
+                hash[arr[i]]=1;
+            }
+        }
+        //仅获取hash中的keys
+        var i=0;
+        var keys=[];
+        for(keys[i++] in hash)
+            return keys;
+    }
+    //console.log(unique2(arr))
+    //3.正则(效率极低)
+    function unique3(arr){
+        var reg=/(^|,)([^,]+)(,\2)*/g;
+       return String(arr.sort()).replace(reg,"$1$2").split(",");
+    }
+    console.log(unique3(arr))
+
+    //拓展
+</script>
+</body>
+</html>

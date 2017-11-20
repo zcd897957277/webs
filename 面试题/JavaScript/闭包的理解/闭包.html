@@ -1,0 +1,120 @@
+<meta charset="utf-8">
+<script>
+function spaceify(str){
+	return str.split("").join(" ");	
+	   
+}
+//console.log(spaceify("hello world"))
+//原型链
+String.prototype.spaceify=function(){
+	return this.split("").join(" ");		
+}
+//console.log("hellow wordld".spaceify());
+
+function log(msg){
+	console.log(msg);	
+}
+
+function log(){
+	console.log.apply(console,arguments);	
+}
+//log("PPAP","apple pen");
+
+function log(){
+	//把类数组转成真正的数组
+	var arr=Array.prototype.slice.call(arguments);
+	arr.unshift("(好好学习)-");
+	/*[].unshift.call(arguments,"(好好学习)-")*/
+	console.log.apply(console,arguments);	
+}
+log("蓝受","香菇");
+
+var obj={
+	a:1,
+	fn:function(){alert(this.a)}	
+}
+
+
+//兼容IE的bind
+if(!Function.prototype.bind){
+	Function.prototype.bind=function(obj){
+		
+	}	
+}
+Function.prototype.bind=
+Function.prototype.bind||function(obj){
+	var self=this;
+	return function(){
+		return 	self.apply(obj);
+	}	
+}
+/*回去看一下*/
+var fn=obj.fn.bind(obj);
+//fn();
+
+
+var obj={
+	add:function(){
+		console.log(1);
+		return this;	
+	},
+	add1:function(){
+		console.log(2);
+		return this;	
+	},
+	add2:function(){
+		console.log(3);
+		return this;	
+	}	
+}
+obj.add().add1().add2();
+
+//
+Array.prototype.uniq=function(){
+	var newArr=[];
+	var flag=true;
+	for(var i=0;i<this.length;i++){
+		if(this[i]!==this[i+1]&&newArr.indexOf(this[i])==-1){
+			//用来判断NaN,因为NaN==NaN/NaN===NaN都是false； 逆向判断
+			if(this[i]!==this[i]){
+				//flag用来防止下一个NaN进入
+				if(flag){
+					newArr.push(this[i]);
+					flag=false;	
+				}	
+			}else{
+				newArr.push(this[i]);	
+			}
+		}	
+	}
+	return newArr;	
+}
+console.log([false, true, undefined, null, NaN, 0, 1, {},{}, 'a', 'a', NaN].uniq());
+
+
+
+function toRGB(color){
+	var reg1=/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i;
+	var reg2=/^#([0-9a-f])([0-9a-f])([0-9a-f])/i;
+	if(reg1.test(color)){
+		var arr=color.match(reg1);
+		return `rgb(${parseInt(arr[1],16)},${parseInt(arr[2],16)},${parseInt(arr[3],16)})`;	
+	}
+	if(reg2.test(color)){
+		/*var val=color.replace(reg2,"#$1$1$2$2$3$3");$1表示第一个分组,()表示分组*/
+		var val=color.replace(reg2,function($1,$2,$3,$4){
+			/*return $1; 在函数里$1表示匹配到的整个*/
+			return "#"+$2+$2+$3+$3+$4+$4;	
+		});
+		var arr=val.match(reg1);
+		return `rgb(${parseInt(arr[1],16)},${parseInt(arr[2],16)},${parseInt(arr[3],16)})`;
+	}else{
+		return color;	
+	}
+}
+
+console.log(toRGB("#0000FF"));          // 输出 rgb(0, 0, 255)
+console.log(toRGB("invalid"));          // 输出 invalid
+console.log(toRGB("#A00")); //#AA0000             // 输出 rgb(170, 0, 0)
+
+</script>

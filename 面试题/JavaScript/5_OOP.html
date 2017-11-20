@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <script>
+  /*
+    window.a=300;
+    function fn1(){
+      this.a=100;
+      this.b=200;
+      return function(){
+        alert(this.a);
+      }.call(arguments[0]);
+    }
+    function fn2(){
+      this.a=new fn1();
+    }
+    var a=new fn1().b;//300
+    //a: {a:100,b:200}.b
+    //a:200
+    var v=new fn1(fn2());//200
+                  //a: {a:100,b:200}
+                  //[object Object]
+  */
+  /*
+    var arr=[];
+    function fun(){
+      for(var i=0;i<4;i++){
+        var x={};
+        x.no=i;
+        x.text=arr[i];
+        x.fun=function(){alert(i)};
+        arr.push(x);
+      }
+    }//i=4
+    fun();
+    arr[0].fun();//4
+    arr[1].fun();//4
+    arr[2].fun();//4
+    arr[3].fun();//4
+  */
+    var setObj=function(o){
+      o.name="xiaoming";
+      o={};//小心
+      o.name="xiaohong";
+    }
+    var p={name:"xixi", age:24};
+    setObj(p);
+    console.dir(p);//{name:"xiaoming",age:24}
+  </script>
+ </body>
+</html>

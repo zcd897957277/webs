@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <script>
+    var str="ryan is not a good man";
+           //ryan5 is6 not7 a8 good9 man10
+    var reg=/\b[a-z]+\b/g;
+    var n=5;
+    str=str.replace(reg,function(kw){
+      return kw+n++;
+    });
+    console.log(str);
+
+    //计算一个只有乘法和加法的表达式的值
+    //比如: "1+23*2+3"
+    function calc(exp){
+      var arr=exp.split("+");
+      //[1,23*2,3];
+      //遍历数组,同时声明sum=0
+      for(var i=0,sum=0;i<arr.length;i++){
+        //如果当前元素中有*
+        if(arr[i].indexOf("*")!=-1){
+          //将当前元素按*切割，保存在nums中
+          var nums=arr[i].split("*")
+          //遍历nums,同时声明multi=1
+          for(var j=0,multi=1;j<nums.length;j++){
+            //将当前元素累乘到multi上
+            multi*=nums[j]
+          }//(遍历结束)
+          sum+=multi;//将multi累加到sum上
+        }else{//否则,就将当前元素累加到sum上
+          sum+=parseFloat(arr[i]);
+        }
+      }//(遍历结束)
+      return sum;
+    }
+    console.log(calc("1+23*2+3"));
+  </script>
+ </body>
+</html>

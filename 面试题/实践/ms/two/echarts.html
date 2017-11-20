@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>投资进度</title>
+	</head>
+	<body>
+		<div id="wrap1" style="width: 600px;height: 450px;margin-top: 5%;"></div>
+	</body>
+	<script src="js/echarts.min.js"></script>
+	<script>
+		setTimeout(histo,5000);
+		function histo(){
+		var myChart=echarts.init(document.getElementById("wrap1"));
+		var option = {
+    title : {
+        text: '国贸商场商品进出数量对比',
+        subtext: '(单位：元)'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['售货数','进货数']
+    },
+    color:['blue', 'green'],
+    toolbox: {
+        show : true,  
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['扳手','牛奶','电脑','显示器','牛肉','手机','牛奶','电风扇','鼠标','自行车','空调']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'售货数',
+            type:'bar',
+            data:[39,89,29,19,99,89,89,52,39,89,88],
+        },
+        {
+            name:'进货数',
+            type:'bar',
+            data:[70,100,50,71,69,10,100,68,59,189,88],
+        }
+    ]
+};
+		myChart.setOption(option);}
+	</script>
+</html>

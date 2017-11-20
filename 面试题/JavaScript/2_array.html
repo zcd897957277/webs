@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <script>
+    /*数组降维*/
+    var arr=[
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0],
+      [0,0,0,0]
+    ];
+    /*1. 遍历二维数组,同时声明result
+    for(var i=0,result=[];i<arr.length;i++){
+      for(var j=0;j<arr[i].length;j++){
+        result.push(arr[i][j]);
+      }
+    }
+    console.dir(result);*/
+    /*2. 用concat代替内层遍历
+    for(var i=0,result=[];i<arr.length;i++){
+      result=result.concat(arr[i]);
+    }
+    console.dir(result);*/
+    //3. 用apply代替外层遍历
+    var result=[].concat.apply([],arr);
+    console.dir(result);
+  </script>
+ </body>
+</html>

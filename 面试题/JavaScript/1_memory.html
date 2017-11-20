@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <script>
+    //函数记忆: 让函数记住处理过的参数和处理结果
+    //为什么: 避免重复计算
+    //何时: 只要一个函数，可能反复计算相同的数据时
+    //如何: 使用闭包保存住曾经计算过的参数和处理结果
+    function isPrime1(num){
+      if(num<=3){return true}
+      else{
+        for(var i=2;i<=Math.sqrt(num);i++){
+          if(num%i==0){return false}
+        }
+        return true;
+      }
+    }
+    var isPrime2=(function(){
+      var hash={};
+      return function(num){
+        if(num<=3){return true}
+        //如果hash中已经记录过，则直接获取结果
+        else if(hash[num]!==undefined){
+          return hash[num];
+        }else{
+          for(var i=2;i<=Math.sqrt(num);i++){
+            if(num%i==0){
+              //将本次参数和结果记入hash
+              return hash[num]=false;
+            }
+          }
+          //将本次参数和结果记入hash
+          return hash[num]=true;
+        }
+      }
+    })();
+
+    for(var i=0,arr=[];i<1000000;i++){
+      arr.push(Math.floor(Math.random()*1000));
+    }
+    console.time("isPrime1");
+    for(var i=0;i<1000000;i++){
+      isPrime1(arr[i]);
+    }
+    console.timeEnd("isPrime1");
+    console.time("isPrime2");
+    for(var i=0;i<1000000;i++){
+      isPrime2(arr[i]);
+    }
+    console.timeEnd("isPrime2");
+  </script>
+ </body>
+</html>
