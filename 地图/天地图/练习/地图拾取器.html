@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="天地图"/>
+    <title>天地图－地图API－范例－地图拾取器</title>
+    <script type="text/javascript" src="http://api.tianditu.com/api?v=4.0"></script>
+    <style type="text/css">body,html{width:100%;height:100%;margin:0;font-family:"Microsoft YaHei"}#mapDiv{width:100%;height:400px}input,b,p{margin-left:5px;font-size:14px}</style>
+    <script>
+        var map;
+        var zoom = 12;
+        function onLoad() {
+            map = new T.Map('mapDiv');
+            map.centerAndZoom(new T.LngLat(116.40769, 39.89945), zoom);
+            var cp = new T.CoordinatePickup(map, {callback: getLngLat})
+            cp.addEvent();
+        }
+
+        function getLngLat(lnglat) {
+            document.getElementById("lnglatStr").value = lnglat.lng.toFixed(6) + "," + lnglat.lat.toFixed(6);
+        }
+    </script>
+</head>
+<body onLoad="onLoad()">
+<div id="mapDiv" ></div>
+<p>本示例演示如何在地图上用鼠标获得坐标。</p>
+<div >
+	用鼠标在地图上点选获得地理坐标
+    <input type="text" id="lnglatStr" value=""/>
+</div>
+</body>
+</html>

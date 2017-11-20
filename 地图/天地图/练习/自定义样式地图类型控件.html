@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+<meta name="keywords" content="天地图"/> 
+<title>天地图－地图API－范例－添加自定义样式地图类型控件</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script> 
+		var map; 
+		function onLoad() 
+		{ 
+			map = new TMap("mapDiv"); 
+			map.centerAndZoom(new TLngLat(116.36976,39.92974),12); 
+			//允许鼠标滚轮缩放地图 
+			map.enableHandleMouseScroll(); 
+			 
+			//创建自定义控件，并添加到地图上 
+            var mapTypeStyle = document.getElementById("mapTypeStyle"); 
+            var mapTyleControl = new THtmlElementControl(mapTypeStyle); 
+            mapTyleControl.setRight(10); 
+            mapTyleControl.setTop(10); 
+            map.addControl(mapTyleControl); 
+		} 
+		 
+		function switchingMapType(obj) 
+		{ 
+			switch(obj.value) 
+			{ 
+				case "TMAP_NORMAL_MAP": 
+					setNormal(); 
+					break; 
+				case "TMAP_SATELLITE_MAP": 
+					setSatellite(); 
+					break; 
+				case "TMAP_HYBRID_MAP": 
+					setHybrid(); 
+					break; 
+				case "TMAP_TERRAIN_MAP": 
+					setTerrain(); 
+					break;	 
+				case "TMAP_TERRAIN_HYBRID_MAP": 
+					setTerrainHybrid(); 
+					break;	 
+			} 
+		} 
+		 
+		//地图 
+		function setNormal() 
+		{ 
+			map.setMapType(TMAP_NORMAL_MAP); 
+		} 
+		 
+		//卫星 
+		function setSatellite() 
+		{ 
+			map.setMapType(TMAP_SATELLITE_MAP); 
+		} 
+		 
+		//卫星混合 
+		function setHybrid() 
+		{ 
+			map.setMapType(TMAP_HYBRID_MAP); 
+		} 
+		 
+		//地形 
+		function setTerrain() 
+		{ 
+			map.setMapType(TMAP_TERRAIN_MAP); 
+		} 
+		 
+		//地形混合 
+		function setTerrainHybrid() 
+		{ 
+			map.setMapType(TMAP_TERRAIN_HYBRID_MAP); 
+		} 
+	</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="position:absolute;width:600px; height:500px;"></div> 
+	<div id="mapTypeStyle"> 
+		<select id="mapTypeSelect" onChange="switchingMapType(this);"> 
+			<option value="TMAP_NORMAL_MAP">地图</option> 
+			<option value="TMAP_SATELLITE_MAP">卫星</option> 
+			<option value="TMAP_HYBRID_MAP">卫星混合</option> 
+			<option value="TMAP_TERRAIN_MAP">地形</option> 
+			<option value="TMAP_TERRAIN_HYBRID_MAP">地形混合</option> 
+		</select> 
+	</div> 
+	<div style="position:absolute;left:620px;"> 
+		<ul> 
+			<li>本示例演示如何向地图上添加自定义样式地图类型控件。</li> 
+			<p><a href="http://lbs.tianditu.com/api-new/examples.html">返回所有范例列表</a></p> 
+		</ul> 
+	</div> 
+</body> 
+</html> 

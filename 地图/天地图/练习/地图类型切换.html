@@ -1,0 +1,60 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+<meta name="keywords" content="天地图"/> 
+<title>天地图－地图API－范例－切换地图类型</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script> 
+var map; 
+function onLoad() 
+{ 
+	map = new TMap("mapDiv"); 
+	map.centerAndZoom(new TLngLat(116.36976,39.92974),12); 
+	map.enableDoubleClickZoom() 
+	map.enableHandleMouseScroll(); 
+} 
+ 
+function satellite() 
+{ 
+	map.setMapType(TMAP_SATELLITE_MAP); 
+} 
+function vector() 
+{ 
+	map.setMapType(TMAP_NORMAL_MAP); 
+} 
+function hybrid() 
+{ 
+	map.setMapType(TMAP_HYBRID_MAP); 
+} 
+ 
+function switchingMaps() 
+{ 
+	var obj = document.getElementById("projectionMap"); 
+	var index = obj.selectedIndex; 
+	var text = obj.options[index].text; 
+	if(map.getCode() == text) return; 
+	map.switchingMaps(text); 
+} 
+ 
+</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="position:absolute;width:600px; height:500px"></div> 
+	<div style="position:absolute;left:620px;"> 
+	       切换地图类型<br> 
+        <select id="projectionMap"> 
+			<option>EPSG:4326</option> 
+			<option>EPSG:900913</option> 
+		</select> 
+		<input type="button" onclick="switchingMaps()" value="切换地图投影"/> 
+		<input type="button" onclick="vector()" value="矢　量"/> 
+		<input type="button" onclick="satellite()" value="影　像"/> 
+		<input type="button" onclick="hybrid()" value="混　合"/> 
+		<ul> 
+			<li>本示例演示如何在地图上切换地图类型。</li> 
+			<p><a href="http://lbs.tianditu.com/api-new/examples.html">返回所有范例列表</a></p> 
+		</ul> 
+	</div> 
+</body> 
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		.edit_box .title{
+			font-weight: 700;
+		    font-size: 14px;
+		    font-color: #ccc;
+		    border-bottom: 1px solid #ccc;
+		    padding: 5px 0;
+		}
+		.edit_box .title:after {
+		    clear: both;
+		    content: "";
+		    display: table;
+		}
+		.edit_box .title>span {
+		    display: inline-block;
+		    width: 240px;
+		    height: 20px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    float: left;
+		}
+		.edit_content {
+		    position: relative;
+		}
+		.clearfix:after, .clearfix:before {
+		    clear: both;
+		    display: table;
+		    content: "";
+		}
+		.edit_content .content_left {
+		    float: left;
+		}
+		.edit_content .edit_label {
+		    float: left;
+		    width: 40px;
+		    font-weight: 700;
+		    font-size: 12px;
+		    line-height: 24px;
+		}
+		.edit_content .edit_input, .edit_content .edit_textarea {
+		    padding: 2px 5px;
+		    font-size: 12px;
+		    line-height: 20px;
+		    border: 1px solid #ccc;
+		    display: block;
+		    width: 230px;
+		    border-radius: 3px;
+		    outline: none;
+		}
+		.edit_content .edit_input {
+		    height: 20px;
+		}
+		.edit_content .edit_input, .edit_content .edit_textarea {
+		    padding: 2px 5px;
+		    font-size: 12px;
+		    line-height: 20px;
+		    border: 1px solid #ccc;
+		    display: block;
+		    width: 230px;
+		    border-radius: 3px;
+		    outline: none;
+		}
+		textarea {
+		    font-family: monospace;
+		    border-color: rgb(169, 169, 169);
+		}
+		.edit_content .edit_sign_btn {
+		    margin-top: 20px;
+		    float: left;
+		    cursor: pointer;
+		    text-align: center;
+		    width: 40px;
+		    margin-left: 8px;
+		}
+		.edit_content .edit_preview_marker {
+		    margin-left: 12px;
+		}
+		.marker_icon_1 {
+		    background-position: -20px -15px;
+		}
+		.marker_icon {
+		    width: 18px;
+		    height: 28px;
+		    background-image: url(/static/img/marker.fa27fc8.png);
+		    background-repeat: no-repeat;
+		}
+		.edit_content .edit_preview_btn {
+		    font-size: 12px;
+		    color: #2f87eb;
+		    text-decoration: none;
+		}
+		.edit_btn_group {
+		    text-align: center;
+		    margin-top: 10px;
+		    line-height: 24px;
+		}
+		.edit_content .edit_btn_group a {
+		    font-size: 12px;
+		    line-height: 24px;
+		    padding: 0 10px;
+		    color: #fff;
+		    text-decoration: none;
+		    border: 1px solid #2f87eb;
+		    display: inline-block;
+		    border-radius: 1px;
+		    margin-left: 5px;
+		    background: #2f87eb;
+		}
+	</style>
+
+	<body>
+		<div class="edit_box">
+			<div class="title"><span title="点标注">点标注</span></div>
+			<div class="edit_content">
+				<div class="content_item clearfix">
+					<div class="content_left">
+						<div class="edit_content_item clearfix"><span class="edit_label">名称</span> <input type="text" placeholder="点标注" maxlength="15" class="edit_input"></div>
+						<div class="edit_content_item clearfix"><span class="edit_label">备注</span> <textarea placeholder="您最多可以输入200个字" maxlength="200" name="textarea" class="edit_textarea"></textarea></div>
+					</div>
+					<div class="edit_sign_btn">
+						<div class="edit_preview_marker marker_icon marker_icon_1"></div>
+						<a href="javascript:;" class="edit_preview_btn">编辑</a>
+					</div>
+				</div>
+				<div class="edit_btn_group clearfix">
+					<!---->
+					<!---->
+					<a href="javascript:;" class="delete">删除</a>
+					<a href="javascript:;" class="save">保存</a>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

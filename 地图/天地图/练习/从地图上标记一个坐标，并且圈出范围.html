@@ -1,0 +1,54 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+<meta name="keywords" content="天地图"/> 
+<title>天地图－地图API－范例－地图拾取器</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maptools.js"></script> 
+<script> 
+	var map; 
+	var zoom = 14; 
+	var pickup; 
+	function onLoad() 
+	{ 
+		//初始化地图对象 
+	   	map=new TMap("mapDiv"); 
+	   	//设置显示地图的中心点和级别 
+		map.centerAndZoom(new TLngLat(119.92,31.02),zoom); 
+		//允许鼠标滚轮缩放
+		map.enableHandleMouseScroll(); 
+		//启用连续缩放效果 
+		map.enableContinuousZoom(); 
+		//config配置
+		var configpu = { 
+			//回调函数传回的是一个经纬度的对象
+			callback:drawCircle 
+		}; 
+		pickup = new TCoordinatePickup(map,configpu); 
+		//开启鼠标点击地图时获取地理坐标的事件。
+		pickup.addEvent(); 
+		
+		//画圆
+		function drawCircle(lnglat){
+			var configcircle = { 
+				strokeColor:"blue",	//圆边线颜色 
+				fillColor:"#FFFFFF",	//填充颜色。 
+				strokeWeight:"1px",	//圆边线线的宽度，以像素为单位 
+				strokeOpacity:0.5,	//圆边线线的透明度，取值范围0 - 1 
+				fillOpacity:0.5,			//填充的透明度，取值范围0 - 1 
+				strokeStyle:"solid"	//圆边线线的样式，solid或dashed 
+			}; 
+			//lnglat.getLng(),lnglat.getLat()获取经度与纬度
+			// 定义该矩形的显示区域  100表示半径
+			var circle = new TCircle(new TLngLat(lnglat.getLng(),lnglat.getLat()),500,configcircle); 
+			//向地图上添加圆 
+			map.addOverLay(circle);
+		} 
+	} 
+</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="width:100%; height:600px"></div> 
+</body> 
+</html>

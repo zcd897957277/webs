@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+<meta name="keywords" content="天地图"/> 
+<title>天地图－地图API－范例－画面</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script> 
+	var map; 
+	var zoom = 12; 
+	var polygon; 
+	function onLoad() 
+	{ 
+		//初始化地图对象 
+	   	map=new TMap("mapDiv"); 
+	   	//设置显示地图的中心点和级别 
+		map.centerAndZoom(new TLngLat(116.40969,39.94940),zoom); 
+		//允许鼠标滚轮缩放地图 
+		map.enableHandleMouseScroll(); 
+		 
+		var points = []; 
+		points.push(new TLngLat(116.41136,39.97569)); 
+   		points.push(new TLngLat(116.411794,39.9068)); 
+    	points.push(new TLngLat(116.32969,39.92940)); 
+    	points.push(new TLngLat(116.385438,39.90610)); 
+    	//创建面对象 
+	    polygon = new TPolygon(points,{strokeColor:"red", strokeWeight:5, strokeOpacity:0.5, fillOpacity:0.5}); 
+	    //向地图上添加面 
+	    map.addOverLay(polygon); 
+	} 
+</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="position:absolute;width:500px; height:400px"></div> 
+	</div> 
+	<div style="position:absolute;left:520px;"> 
+		<input type="button" value="启动编辑" onclick="polygon.enableEdit();"> 
+		<input type="button" value="禁止编辑" onclick="polygon.disableEdit();"/> 
+		<ul> 
+			<li>本示例演示如何启动和禁止多边形编辑功能。</li> 
+			<p><a href="http://lbs.tianditu.com/api-new/examples.html">返回所有范例列表</a></p> 
+		</ul> 
+	</div> 
+</body> 
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/> 
+    <meta name="keywords" content="天地图"/> 
+    <title>天地图－地图API－范例－添加缩放平移控件</title> 
+    <script type="text/javascript" src="http://api.tianditu.com/api?v=4.0"></script> 
+ 
+    <script> 
+ 
+        var map, control; 
+        var zoom = 12; 
+        function onLoad() { 
+            //初始化地图对象 
+            map = new T.Map("mapDiv"); 
+            //设置显示地图的中心点和级别 
+            map.centerAndZoom(new T.LngLat(116.40969, 39.89945), zoom); 
+            //创建缩放平移控件对象 
+            var control = new T.Control.Zoom({
+		        position:"T_ANCHOR_TOP_RIGHT", 
+		        zoomInText:"+",	//放大层级按钮的文字显示。
+				zoomOutText:"-",	//缩小层级按钮的文字显示。
+				zoomInTitle:"放大",	//放大层级按钮的标题显示。
+				zoomOutTitle:"缩小"	//缩小层级按钮的标题显示。
+		    });
+		    //添加缩放平移控件 
+		    map.addControl(control); 
+        } 
+ 
+        function ControlsetPosition() { 
+            var selectNavPosition = document.getElementById("selectnavposition"); 
+            var index = selectNavPosition.selectedIndex; 
+            var controlPositionStr = selectNavPosition.options[index].value; 
+            this.leftTOP = T_ANCHOR_TOP_LEFT; 
+            this.rightTOP = T_ANCHOR_TOP_RIGHT; 
+            this.leftBOTTOM = T_ANCHOR_BOTTOM_LEFT; 
+            this.rightBOTTOM = T_ANCHOR_BOTTOM_RIGHT 
+            var controlPosition; 
+            if (controlPositionStr == "leftTOP") 
+                controlPosition = T_ANCHOR_TOP_LEFT; 
+            else if (controlPositionStr == "rightTOP") 
+                controlPosition = T_ANCHOR_TOP_RIGHT; 
+            else if (controlPositionStr == "leftBOTTOM") 
+                controlPosition = T_ANCHOR_BOTTOM_LEFT; 
+            else if (controlPositionStr == "rightBOTTOM") 
+                controlPosition = T_ANCHOR_BOTTOM_RIGHT; 
+            control.setPosition(controlPosition); 
+ 
+        } 
+    </script> 
+</head> 
+<body onLoad="onLoad()"> 
+<div id="mapDiv" style="position:absolute;width:600px; height:500px"></div> 
+<div style="position:absolute;left:620px;"> 
+    <select id="selectnavposition"> 
+        <option value="leftTOP">左上角</option> 
+        <option value="rightTOP">右上角</option> 
+        <option value="leftBOTTOM">左下角</option> 
+        <option value="rightBOTTOM">右下角</option> 
+    </select> 
+    <input type="button" id="button" onClick="ControlsetPosition()" value="添加控件"/> 
+    <ul> 
+        <li>本示例中，如何向地图上增加层级控制控件。/li> 
+        <p><a href="http://lbs.tianditu.com/api-new/html5/examples.html">返回所有范例列表</a></p> 
+ 
+    </ul> 
+</div> 
+</body> 
+</html>

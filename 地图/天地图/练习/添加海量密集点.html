@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="天地图"/>
+    <title>天地图－地图API－范例－海量密集点</title>
+    <script src=" http://api.tianditu.com/api?v=4.0" type="text/javascript"></script>
+    <script src="http://lbs.tianditu.com/api/js4.0/opensource/data/points-sample-data.js"></script>
+    <style type="text/css">body,html{width:100%;height:100%;margin:0;font-family:"Microsoft YaHei"}#mapDiv{width:100%;height:400px}input,b,p{margin-left:5px;font-size:14px}</style>
+    <script>
+        var map;
+        var zoom = 4;
+        var lnglats;
+        var _CloudCollection;
+        function onLoad() {
+            map = new T.Map('mapDiv');
+            map.centerAndZoom(new T.LngLat(108.95, 34.27), zoom)
+            lnglats = [];
+            for (var i = 0; i < data.data.length; i++) {
+                var ll = new T.LngLat(data.data[i][0], data.data[i][1])
+                lnglats.push(ll)
+            }
+            if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+                _CloudCollection = new T.CloudMarkerCollection(lnglats, {
+                    color: 'blue',
+                    SizeType: TDT_POINT_SIZE_SMALL
+                })
+                map.addOverLay(_CloudCollection);
+            } else {
+                alert('此示例目前只有在IE9及以上浏览器打开');
+            }
+        }
+    </script>
+</head>
+<body onLoad="onLoad()">
+<div id="mapDiv"></div>
+<p>本示例演示如何叠加海量密集点图层，可以实现同时在地图上展示万级、密集的点数据。兼容chrome、safari、IE9及以上浏览器。</p>
+</body>
+</html>

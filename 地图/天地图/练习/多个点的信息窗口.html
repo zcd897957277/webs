@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>天地图－地图API－范例－多个点的信息窗口</title>
+    <script type="text/javascript" src="http://api.tianditu.com/api?v=4.0"></script>
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #mapDiv{height:400px;width:100%;}
+        input,p { margin-top: 10px; margin-left: 5px; font-size: 14px;  }
+    </style>
+    <script>
+        var map
+        var zoom = 15;
+        function onLoad() {
+
+            var data_info = [[116.417854,39.921988,"地址：北京市东城区王府井大街88号乐天银泰百货八层"],
+                [116.406605,39.921585,"地址：北京市东城区东华门大街"],
+                [116.412222,39.912345,"地址：北京市东城区正义路甲5号"]
+            ];
+
+            //初始化地图对象
+            map = new T.Map("mapDiv");
+            //设置显示地图的中心点和级别
+            map.centerAndZoom(new T.LngLat(116.41593, 39.92313), zoom);
+
+            for(var i=0;i<data_info.length;i++){
+                var marker = new T.Marker(new T.LngLat(data_info[i][0],data_info[i][1]));  // 创建标注
+                var content = data_info[i][2];
+                map.addOverLay(marker);               // 将标注添加到地图中
+                addClickHandler(content,marker);
+            }
+            function addClickHandler(content,marker){
+                marker.addEventListener("click",function(e){
+                    openInfo(content,e)}
+                );
+            }
+            function openInfo(content,e){
+                var point = e.lnglat;
+                marker = new T.Marker(point);// 创建标注
+                var markerInfoWin = new T.InfoWindow(content,{offset:new T.Point(0,-30)}); // 创建信息窗口对象
+                map.openInfoWindow(markerInfoWin,point); //开启信息窗口
+            }
+        }
+    </script>
+</head>
+<body onLoad="onLoad()">
+<div id="mapDiv"></div>
+<p>为多个点添加多个点的信息窗口</p>
+</body>
+</html>

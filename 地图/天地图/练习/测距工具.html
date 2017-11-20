@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /> 
+<title>天地图－地图API－范例－测距工具</title> 
+<script type="text/javascript" src="http://api.tianditu.com/js/maps.js"></script> 
+<script> 
+	var map,zoom=12,lineTool;     
+	function onLoad() 
+	{ 
+		//初始化地图对象 
+		map=new TMap("mapDiv"); 
+		//设置显示地图的中心点和级别 
+		map.centerAndZoom(new TLngLat(116.40969,39.94940),zoom); 
+		//允许鼠标滚轮放大地图 
+		map.enableHandleMouseScroll(); 
+		 
+		var config = { 
+			strokeColor:"blue",	//折线颜色 
+			strokeWeight:"3px",	//折线的宽度，以像素为单位 
+			strokeOpacity:0.5,	//折线的透明度，取值范围0 - 1 
+			strokeStyle:"solid"	//折线的样式，solid或dashed 
+		}; 
+		//创建测距工具对象 
+		lineTool = new TPolylineTool(map,config); 
+		//注册测距工具绘制完成后的事件 
+		TEvent.addListener(lineTool,"draw",onDrawLine); 
+	} 
+	 
+	//关闭测距工具 
+	function onDrawLine(bounds,line,obj) 
+	{ 
+		lineTool.close(); 
+	} 
+</script> 
+</head> 
+<body onLoad="onLoad()"> 
+	<div id="mapDiv" style="position:absolute;width:600px; height:500px"></div> 
+	<div style="position:absolute;left:620px;"> 
+		<input type="button" value="开启" onClick="lineTool.open();"/> 
+		<input type="button" value="关闭" onClick="lineTool.close();"/> 
+		<ul> 
+			<li>本示例演示如何在地图上测距。</li> 
+			<p><a href="http://lbs.tianditu.com/api-new/examples.html">返回所有范例列表</a></p> 
+		</ul> 
+	</div> 
+</body> 
+</html>
