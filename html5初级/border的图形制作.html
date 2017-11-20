@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>图形</title>
+<style>
+/*
+三角形
+transparent透明
+css(shape)
+弹性布局：flex-box
+div{
+	width:0;
+	height:0;
+	border-left:100px solid red;
+	border-right:20px solid transparent;
+	border-top:20px solid transparent;
+	border-bottom:20px solid transparent;
+}*/
+/*
+梯形
+div{
+	width:0;
+	height:10px;
+	border-left:100px solid red;
+	border-right:20px solid transparent;
+	border-top:20px solid transparent;
+	border-bottom:20px solid transparent;
+}*/
+.sjx{
+	width:0;
+	height:10px;
+	border-left:50px solid red;
+	border-right:20px solid transparent;
+	border-top:20px solid transparent;
+	border-bottom:20px solid transparent;
+}
+.circle{
+	width:100px;
+	height:100px;
+	/*边框属性*/
+	/*超过正方形的50%为圆，不超过则为圆角*/
+	border-radius:100%;
+}
+.yhp{
+	/*两边变圆弧变平*/
+	width:100px;
+	height:100px;
+	border-right:20px solid red;
+	border-bottom:20px solid red;
+	border-bottom-right-radius:100%;
+}
+.yhj{
+	/*单边变圆弧会变尖*/
+	width:100px;
+	height:100px;
+    border-top:10px solid red;
+/*	border-radius:100%;*/
+	border-top-left-radius:100%;
+	/*clip-path;polygon(0,0,100%,0,100%,100%,30%,100%)*/
+}
+.sj{
+	width:0;
+	height:0;
+	border-left:500px solid red;;
+	border-top:100px solid transparent;
+	border-bottom:100px solid transparent;
+}
+.tuoyuan{
+	width:0;
+	height:0;
+	position:absolute;
+	border-left:200px solid transparent;
+	border-top:200px solid red;
+	border-right:200px solid transparent;
+	border-bottom:200px solid red;
+	border-radius:100%; 
+	transform:rotate(45deg);
+}
+</style>
+</head>
+
+<body>
+  <div class="sjx"></div>
+  <div class="circle"></div>
+   <div class="yhp"></div>
+   <div class="yhj"></div>
+   <div class="sj"></div>
+   <div class="tuoyuan"></div>
+</body>
+</html>

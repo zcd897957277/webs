@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<scrpt>
+			var aTmp=[15,12,1,55,66,3,2,5,8,9];
+		
+			aTmp.sort
+			(
+				function ()
+				{
+					//对每一个a元素，进行随机抽取，如果Math.random()取得的值小于0.5则
+					return Math.random()<0.5?1:-1;
+				}
+			);
+			
+			console.log(aTmp);
+		</scrpt>
+	
+	</body>
+</html>

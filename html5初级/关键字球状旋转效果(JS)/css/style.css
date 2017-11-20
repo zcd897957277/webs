@@ -1,0 +1,19 @@
+﻿body{
+	background:#09c;
+}
+#div1{
+	width:50%; 
+	position:relative; 
+	margin: 20rem auto;
+}
+#div1 a{
+	position:absolute;
+	color:#fff;
+	font-weight:bold;
+	padding:3px 6px;
+}
+#div1 a:hover{
+	border:1px solid #eee;
+	background:#000;
+	border-radius:5px;
+}
