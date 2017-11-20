@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+    <style>
+    .left,
+    .right {
+        width: 250px;
+        height: 130px;
+    }
+    
+    .left div,
+    .right div {
+        width: 100px;
+        padding: 5px;
+        margin: 5px;
+        float: left;
+        border: 1px solid #ccc;
+        background: #bbffaa;
+    }
+    
+    .right div {
+        background: yellow;
+    }
+    p {
+        border: 1px solid red;
+    }
+    
+    a {
+        border: 1px solid blue;
+    }
+    </style>
+</head>
+
+
+<body>
+    <h2>DOM包裹wrapInner()方法</h2>
+    <div class="left">
+        <div class="aaron1">点击,通过wrapInner方法给所有div元素增加内部父容器p</div>
+        <div class="aaron2">点击,通过wrapInner的回调方法给每个div元素增加内部父容器a</div>
+    </div>
+    <div class="right">
+        <div class="right1">p元素</div>
+        <div class="right1">p元素</div>
+    </div>
+    <div class="left">
+        <div class="left1">a元素</div>
+        <div class="left1">a元素</div>
+    </div>
+
+
+    <script type="text/javascript">
+    $(".aaron1").on('click', function() {
+        //给所有class=right1的div元素，增加内部包裹父容器p
+       $('.right1').wrapInner('<p></p>');
+    })
+    </script>
+    <script type="text/javascript">
+    $(".aaron2").on('click', function() {
+        //wrapInner接受一个回调函数
+        //每一次遍历this都指向了合集中每一个class=left1的div元素
+        $('.left1').wrapInner(function() {
+            return '<a></a>'
+        })
+    })
+    </script>
+</body>
+
+v</html>

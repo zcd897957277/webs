@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery-validation表单插件练习</title>
+<style>
+	.error{
+		color:#b00;	
+	}
+</style>
+</head>
+
+<body>
+
+<form id="registerForm">
+	用户名<input name="userName" type="text" required><br>
+    密码名<input name="userPwd" id="password" type="password" required><br>
+    重复密码<input name="confirm_password" type="password" required><br>
+	邮箱名<input id="email" name="email" type="email"><br>
+    微博名<input id="weibo" name="weibo" type="text"><br>
+    年龄大小<input id="age" name="age" type="text"><br>
+    开学日<input id="schDay" name="schDay" type="date"><br>
+    手机号<input id="phoneNum" name="phoneNum" type="text"><br>
+    <button type="submit">提交</button>
+</form>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="jQueryPlugins/jquery-validation-1.15.0/dist/jquery.validate.js"></script>
+<script>
+	/* 自定义验证规则 */
+	jQuery.validator.addMethod('cellphone',function(value){
+		var regexp=/^1[3578]\d{9}$/;
+		return regexp.test(value);
+	})
+	$('#registerForm').validate({
+		//制定验证规则
+		rules:{
+			userName:{
+				required:true,	
+			},
+			userPwd:{
+				required:true,	
+				minlength:6,
+				maxlength:9
+			},
+			confirm_password: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			email: {
+				email: true
+			},
+			weibo:{
+				url:true,
+			},
+			age:{
+				digits:true,
+				min:18,
+				max:60,
+			},
+			schDay:{
+				dateISO:true	
+			},
+			phoneNum:{
+				cellphone:true	
+			}
+		},
+		//指示验证错误提示消息
+		messages:{
+			userName:{
+				required:"请输入用户名",	
+			},
+			userPwd:{
+				required:"密码不能为空",	
+				minlength:'密码不能小于6位',
+				maxlength:'密码不能大于9位'
+			},
+			confirm_password: {
+				required: "请输入密码",
+				minlength: "密码长度不能小于 5 个字母",
+				equalTo: "两次密码输入不一致"
+			},
+			email: "请输入一个正确的邮箱",
+			weibo:{
+				url:"非法"	
+			},
+			age:{
+				digits:'必须是数字',
+				min:"年龄不能小于18",
+				max:"年龄不能大于60",
+			},
+			schDay:{
+				dateISO:'日期非法'	
+			},
+			phoneNum:{
+				cellphone:"手机格式不合法"	
+			}
+		}
+	})
+</script>
+</body>
+</html>

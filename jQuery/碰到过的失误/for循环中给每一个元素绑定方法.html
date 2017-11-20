@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				border: 1px solid saddlebrown;
+			}
+			#one{
+				background: indianred;
+			}
+			#two{
+				background: royalblue;
+			}
+			#three{
+				background: forestgreen;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="one">1</div>
+		<div id="two">2</div>
+		<div id="three">3</div>
+	</body>
+	<script>
+		for(var i=0;i<$("div").length;i++){
+			//解释一下：这里(function(i){}(i))是一个自调函数整体，在整个自调函数中
+			//后一个小括号中的i是传入的参数，会被function引入
+			(function(i){
+				$($("div")[i]).on('click',function(){
+					alert(i);
+				})
+			}(i))
+		}
+	</script>
+</html>

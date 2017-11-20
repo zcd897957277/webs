@@ -1,0 +1,70 @@
+@charset "utf-8";
+body{font-size:12px;font-family:"宋体",Arial,sans-serif; color:#343434; background:#000;}
+html,body,div,span,p,h1,h2,h3,h4,h5,h6,em,img,strong,sub,sup,tt,dd,dl,dt,form,label,table,caption,tbody, tfoot, thead,tr,th,td,ul,li,p,a{ margin:0;padding:0;}
+input,select,textarea,img{vertical-align:middle;}
+img{ border:0;}
+ul,li{list-style-type:none;}
+a:link,a:visited{text-decoration:none; color:#343434;}
+a:hover{text-decoration:underline; color:#0F6BD0;}
+.overhide{overflow:hidden;text-indent:-100em;}
+/*位置属性*/
+.clearfix:after {clear: both;content: '';display: block;font-size: 0;line-height: 0;visibility: hidden;width: 0;height: 0;}
+.clearfix {display: +inline-block;}
+.ctrl div{ clear:both;}
+
+
+#picts_hide{ width:788px;  margin:0 auto;}
+#pictsSlideWrap{ background:#F5F8FD; border:1px solid #A9BFD6; padding-bottom:30px;}
+.imgBig{  position:relative; margin:0 auto; width:788px;}
+#imgAll{ z-index:10; width:788px; position:relative; text-align:center;}
+#imgAll img{ height:333px; width:572px;display:none; border:4px solid #000;}
+#prevOne{ position:absolute; left:0px; top:0px; z-index:10; cursor:pointer;  width:394px; height:341px; background:url(../images/ico/blank.gif); }
+#prevOne a{  position:absolute; left:13px; top:146px;display:block; background:url(../images/ico/leftp.png) no-repeat; width:24px; height:48px;background-size: 24px 48px;}
+#nextOne{  position:absolute; right:0px; top:0px; z-index:10;cursor:pointer; width:394px; height:341px;  background:url(../images/ico/blank.gif);}
+#nextOne a{  position:absolute; right:13px; top:146px; display:block; background:url(../images/ico/rightp.png) no-repeat; width:24px; height:48px;background-size: 24px 48px;}
+
+#thumbnail{position:relative; height:122px; margin-top:12px; }
+#thumbnail ul{position:relative; width:10000px; height:122px;}
+#thumbnail ul li{ float:left; padding:8px 3px 3px 3px; width:116px; height:86px; cursor:pointer; text-align:center; margin-right:20px; position:relative;}
+#thumbnail ul li img{ width:116px; height:86px; display:block;}
+#thumbnail li.hov{ background:url(../images/ico/imgHoverBg.png) no-repeat;}
+#thumbnailAll{width:690px; height:116px;overflow:hidden; position:relative; top:10px; margin:0 auto;}
+.pictsSildeLeft{cursor:pointer; position:absolute; top:32px; left:10px; z-index:9;}
+.pictsSildeRight{cursor:pointer; position:absolute; top:32px; right:10px; z-index:9;}
+
+/*文字标志*/
+.text_icon{
+	margin-top: 15px;
+	margin-left: 14px;
+	margin-bottom: 8px;
+	font-weight: 600;
+}
+#text_icon>tt{
+	display: inline-block;
+	margin-right: 33px;
+}
+.page_current{
+	font-size: 14px;
+	color: #fe5e0b;
+}
+.build_name{
+	display: inline-block;
+	margin-right: 5px;
+}
+.apartment_layout{
+	display: inline-block;
+	margin-right: 5px;
+}
+.sell_status{
+	width: 40px;
+	height: 20px;
+	color: #fff;
+	background: #22c61d;
+	text-align: center;
+	line-height: 20px;
+	font-weight: 600;
+	display: inline-block;
+	position: absolute;
+	left: 10px;
+    top: 10px;
+}

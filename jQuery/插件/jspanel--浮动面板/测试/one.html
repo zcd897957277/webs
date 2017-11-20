@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>jsPanel - a jQuery Plugin</title>
+        <!-- loading jsPanel css -->
+        <link rel="stylesheet" href="js/jquery.jspanel.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel.min.css"/>
+    </head>
+    <body>
+
+        <!-- Your HTML goes here -->
+        <!-- loading jQuery -->
+        <script src="js/jquery.js"></script>
+        <!-- loading jsPanel javascript -->
+        <script src="js/jquery.jspanel-1.6.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.9.3/jquery.jspanel-compiled.min.js"></script>
+        <script>
+        	$.jsPanel({
+        		//定位
+			    position:    {my: "center-top", at: "center-top", offsetY: 15},
+			    //主题，背景
+			    theme:       "rebeccapurple",
+			    //设置面板的大小
+			    contentSize: {width: 600, height: 350},
+			    //面板的名称
+			    headerTitle: "Example jsPanel",
+			    //插入面板的内容
+			    content:     "<p>Some sample text ...</p>",
+			    //callback主要作用于当面板插入到document中之后会执行的针对的面板的操作
+			    callback:    function () {
+			        this.content.css("padding", "15px");
+			    }
+			});
+        </script>
+    </body>
+</html>
