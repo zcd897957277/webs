@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>浏览器禁止跨域的情形</h1>
+  
+  <button id="bt1">异步请求1</button><br>
+  
+  <button id="bt2">异步请求2</button><br>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('#bt1').click(function(){
+      $.get('3.php');
+    });
+
+    $('#bt2').click(function(){
+      $.get('http://localhost/AJAX_day08/3.php');
+    });
+  </script>
+ </body>
+</html>

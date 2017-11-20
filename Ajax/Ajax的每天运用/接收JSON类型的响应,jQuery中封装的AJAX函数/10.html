@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <button>发起异步请求</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('button').click(function(){
+    //$.get(url, data, fn);
+    /*$.get('9999.php',function(){
+      console.log('开始处理响应数据');
+      console.log(arguments);
+    });*/
+
+    $.ajax({
+      type: 'GET',
+      url: '9999.php',
+      data: {'uname':'tom', 'age':20},
+      beforeSend: function(){
+        console.log('before send...');
+        console.log(arguments);
+        console.log('\n');
+      },
+      success: function(){
+        console.log('success...');
+        console.log(arguments);
+        console.log('\n');
+      },
+      error: function(){
+        console.log('error...');
+        console.log(arguments);
+        console.log('\n');
+      },
+      complete: function(){
+        console.log('complete...');
+        console.log(arguments);
+        console.log('\n');
+      }
+    });
+  });
+  </script>
+ </body>
+</html>

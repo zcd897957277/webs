@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <button id="btGetMsg">获得服务器的欢迎消息</button>
+  <script>
+    btGetMsg.onclick = function(){
+      /**发起异步请求**/
+      //1 
+      var xhr = new XMLHttpRequest();
+      //2
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState==4){
+          if(xhr.status==200){
+            doResponse(xhr);
+          }else{
+            alert('响应完成但有问题');
+          }
+        }
+      }
+      //3
+      xhr.open('GET','5_welcome.php', true);
+      //4
+      xhr.send(null);
+
+      function doResponse(xhr){
+        console.log('开始处理响应数据');
+        console.log(xhr);
+        //执行服务器端返回的js字符串
+        eval( xhr.responseText );
+      }
+    }
+  </script>
+ </body>
+</html>

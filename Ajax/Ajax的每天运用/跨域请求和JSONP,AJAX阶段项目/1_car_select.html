@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  .nav {
+    list-style: none;
+    margin: 10px auto;
+  }
+  .nav li {
+    display: inline-block;
+    padding: 20px 10px 10px;
+    cursor: pointer;
+  }
+  .nav li.active {
+    border-bottom: 3px solid #e4393c;
+  }
+  .item {
+    display: inline-block;
+    width: 30%;
+    overflow: hidden;
+    border: 1px solid #aaa;
+  }
+  </style>
+ </head>
+ <body>
+  <ul class="nav">
+    <li class="active" data-car-type="lt8">8万以下</li>
+    <li data-car-type="lt15">8-15万</li>
+    <li data-car-type="lt30">15-30万以下</li>
+    <li data-car-type="suv">suv</li>
+  </ul>
+  <div class="container">
+  <!--
+    <div class="item">
+      <p><b>A6L</b>已购买人数：2341</p>
+      <img src="cars/30_1.jpg">
+    </div>
+    <div class="item">
+      <p><b>A6L</b>已购买人数：2341</p>
+      <img src="cars/30_2.jpg">
+    </div>
+    <div class="item">
+      <p><b>A6L</b>已购买人数：2341</p>
+      <img src="cars/30_3.jpg">
+    </div>
+  -->
+  </div>
+
+  <!-- <button id="bt" data-company-name="tarena">按钮</button>  -->
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //console.log($('#bt').data('company-name'));
+  //console.log($('#bt').data('companyName'));
+
+  //1页面加载完成时，异步请求lt8类型的汽车
+  $(function(){
+    //$.get  $.getJSON  $.ajax
+    $.getJSON('1_car_select.php',{type:'lt8'}, function(list){
+      console.log('开始处理响应数据');
+      //console.log(arguments);
+      var html = '';
+      $.each(list, function(i,car){
+        html += `
+          <div class="item">
+            <p>
+            <b>${car.cname}</b>
+            已购买人数：${car.count}</p>
+            <img src="${car.pic}">
+          </div>
+        `;
+      });
+      $('.container').html(html);
+    })
+  })
+
+  //2鼠标悬停在某个类别下，异步请求该类型的汽车
+  $('.nav li').mouseenter(function(){
+    $(this).addClass('active').siblings('.active').removeClass('active');
+
+
+    //读取li的data-扩展属性
+    var type = $(this).data('car-type');
+    //异步请求该类型的汽车
+    $.getJSON('1_car_select.php',{'type':type}, function(list){
+      console.log('开始处理响应数据');
+      //console.log(arguments);
+      var html = '';
+      $.each(list, function(i,car){
+        html += `
+          <div class="item">
+            <p>
+            <b>${car.cname}</b>
+            已购买人数：${car.count}</p>
+            <img src="${car.pic}">
+          </div>
+        `;
+      });
+      $('.container').html(html);
+    })
+
+
+  });
+  
+  </script>
+ </body>
+</html>

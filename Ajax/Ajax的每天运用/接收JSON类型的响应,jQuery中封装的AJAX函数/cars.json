@@ -1,0 +1,20 @@
+[
+	{
+	  "cid":1,
+	  "cname":"捷达",
+	  "price":60000,
+	  "pic":"cars/8_1.jpg"
+	},
+	{
+	  "cid":2,
+	  "cname":"吉利远景",
+	  "price":50000,
+	  "pic":"cars/8_2.jpg"
+	},
+	{
+	  "cid":3,
+	  "cname":"POLO",
+	  "price":80000,
+	  "pic":"cars/8_3.jpg"
+	}
+]

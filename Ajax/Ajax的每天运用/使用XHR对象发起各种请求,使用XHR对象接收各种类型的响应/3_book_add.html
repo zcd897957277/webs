@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>书籍输入系统</h1>
+  书名：<input id="bname"><br>
+  价格：<input id="price"><br>
+  <input type="button" value="保存书籍信息" id="btSave">
+
+  <script>
+  btSave.onclick = function(){
+    var n = bname.value;
+    var p = price.value;
+    //1
+    var xhr = new XMLHttpRequest();
+    //2
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else{
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3
+    xhr.open('POST','3_book_add.php',true);
+    //3.5
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //4
+    xhr.send(`bname=${n}&price=${p}`);
+
+    function doResponse(xhr){
+      console.log('开始处理响应数据');
+      console.log(xhr);
+      var num = parseInt(xhr.responseText);
+      if(num>0){
+        alert('添加成功！书籍编号为：'+num);
+        bname.value = '';
+        price.value = '';
+      }else {
+        alert('添加失败！');
+      }
+    }
+  }
+  </script>
+ </body>
+</html>

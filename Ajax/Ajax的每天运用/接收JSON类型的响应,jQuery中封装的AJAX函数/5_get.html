@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h3>员工搜索——二级级联下拉菜单</h3>
+
+  <select id="deptSelect">
+    <option value="-1">—请选择部门—</option>
+  </select>
+
+  <select id="empSelect">
+    <option value="-1">—请选择员工—</option>
+  </select>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>  
+  //1当页面加载完成时，异步请求部门列表——html片段
+  $(function(){
+    $.get('5_dept_select.php',function(txt){
+      $('#deptSelect').append(txt);
+    });
+  });
+
+  //2当deptSelect选项改变时，异步请求选中部门中的员工列表——html片段
+  $('#deptSelect').change(function(){
+    var did = this.value;
+    if(did==='-1'){ return; }
+
+    $.get('5_emp_select.php', {'did':did}, function(txt,msg,xhr){
+      txt = '<option value="-1">—请选择员工—</option>'+txt;
+      $('#empSelect').html(txt);
+    });
+  });
+
+  </script>
+ </body>
+</html>

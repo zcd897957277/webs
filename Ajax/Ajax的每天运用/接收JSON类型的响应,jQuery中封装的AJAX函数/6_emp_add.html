@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #msg {
+      border: 1px solid #0a0;
+      background: #efe;
+      color: #0a0;
+      padding: 10px;
+      display: none;
+    }
+  </style>
+ </head>
+ <body>
+  <h3>员工信息录入系统</h3>
+
+  <div>
+    员工姓名：<input id="ename"><br>
+    员工工资：<input id="salary"><br>
+    员工照片：<input id="pic"><br>
+    所在部门：<input id="deptID"><br>
+    <input id="btSave" type="button" value="保存员工信息">
+  </div>
+
+  <p id="msg">
+    <b>保存成功！<br></b>
+    新员工记录在系统中的编号为：<span id="eid">999</span>
+  </p>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('#btSave').click(function(){
+    var n = ename.value;
+    var s = salary.value;
+    var p = pic.value;
+    var d = deptID.value;
+    $.post('6_emp_add.php',{ename:n,salary:s,pic:p,deptID:d}, function(txt){
+      console.log('开始处理响应数据');
+      txt = parseInt(txt);
+      if(txt>0){
+        $('#eid').html(txt);
+        $('#msg').fadeIn(300);
+      }else{
+        alert('添加失败');
+      }
+    });
+  });
+  </script>
+ </body>
+</html>

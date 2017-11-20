@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>使用JSONP方法解决跨域请求限制</h1>
+  
+  
+
+  <button id="bt3">异步请求3</button><br>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('#bt2').click(function(){
+      $.get('http://localhost/AJAX_day08/4.php');
+    });
+
+
+    function f1(data){
+      console.log('开始处理响应数据');
+      console.log(data);
+    }
+    //JSONP手段
+    $('#bt3').click(function(){
+      var script = document.createElement('script');
+      script.src="http://localhost/AJAX_day08/5.php?callback=f1";
+      document.head.appendChild(script);
+    });
+  </script>
+
+ </body>
+</html>

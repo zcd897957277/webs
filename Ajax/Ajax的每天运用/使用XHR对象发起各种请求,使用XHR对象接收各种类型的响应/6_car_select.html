@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <button id="btLoad">加载汽车数据</button>
+  <br>
+  <br>
+  <table width="100%" border="1">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>图片</th>
+        <th>名称</th>
+        <th>价格</th>
+      </tr>
+    </thead>
+    <tbody id="autoTableBody">     
+    </tbody>
+  </table>
+  <script>
+  btLoad.onclick = function(){
+    //1
+    var xhr = new XMLHttpRequest();
+    //2
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else{
+          alert('响应完成但有错误');
+        }
+      }
+    }
+    //3 
+    xhr.open('GET','6_car_select.php',true);
+    //4
+    xhr.send(null);
+
+    function doResponse(xhr){
+      //console.log('开始处理响应数据');
+      //console.log(xhr.responseXML);
+      //XML DOM树的根对象
+      var xmlDocument = xhr.responseXML;
+      var autoList = xmlDocument.querySelectorAll('auto');
+      var html = '';
+      for(var i=0; i<autoList.length; i++){
+        var auto = autoList[i];//获取一个auto元素
+        
+        //获得当前auto元素的属性和子元素值
+        var aid = auto.getAttribute('aid');
+        var name = auto.querySelector('name').innerHTML;
+        var price = auto.querySelector('price').innerHTML;
+        var pic = auto.querySelector('pic').innerHTML;
+
+        html += `
+          <tr>
+            <td>${aid}</td>
+            <td><img src="${pic}"></td>
+            <td>${name}</td>
+            <td>${price}</td>
+          </tr>
+        `;
+      }
+      autoTableBody.innerHTML = html;
+    }
+  }
+  </script>
+ </body>
+</html>

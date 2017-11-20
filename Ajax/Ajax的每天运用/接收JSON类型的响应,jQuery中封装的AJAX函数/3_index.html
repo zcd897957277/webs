@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  .navbar li {
+    display: inline-block;
+  }
+  #footer p {
+    border-top: 1px solid #aaa;
+    padding: 5px;
+    text-align: center;
+  }
+  </style>
+ </head>
+ <body>
+  <div id="header">
+    <img src="img/loading.gif">
+  </div> 
+  
+  <div id="main">
+    <h1>网站首页</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione debitis accusantium quibusdam tenetur repudiandae voluptatum temporibus eligendi ut maxime fuga! Provident sed sunt dolorem rerum nostrum quia nam quae illo!</p>
+  </div>  
+  
+  <div id="footer">
+    <img src="img/loading.gif">
+  </div>  
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //当页面加载完成时，异步请求页头和页尾
+  //使用$(...).load('xx.php')异步请求HTML片段
+  //思考：页头和页尾的样式如何编写？
+  $('#header').load('3_header.php');
+  $('#footer').load('3_footer.php');
+
+  
+  </script>
+ </body>
+</html>

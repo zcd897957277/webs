@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  .modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0, 0.5);
+    display: none;
+  }
+  .modal-dialog {
+    width: 300px;
+    margin: 100px auto;
+  }
+  .modal-content {
+    background: #fff;
+    border-radius: 2px;
+    padding: 10px;
+  }
+  </style>
+ </head>
+ <body>
+  <h1>首页</h1>
+  <p id="welcome">欢迎回来：游客</p>
+  <button id="btRegister">注册</button>
+
+  <div class="modal" id="modalRegister">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <h3>注册新用户</h3>
+
+        用户名：<input id="userName"><br>
+        密码名：<input id="userPwd"><br>
+        <input type="button" id="btSubmit" value="提交注册信息">
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+  btRegister.onclick = function(){
+    modalRegister.style.display = 'block';
+  }
+  //提交按钮
+  btSubmit.onclick = function(){
+    var n = userName.value;
+    var p = userPwd.value;
+    
+    //1 创建xhr
+    var xhr = new XMLHttpRequest();
+    //2 监听状态改变
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else{
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3 打开连接 - 暂时先使用GET方法
+    xhr.open('POST',`2_user_add.php`, true);
+    //3.5 修改请求头
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //4 发送请求
+    xhr.send(`name=${n}&pwd=${p}`);
+
+
+    function doResponse(xhr){
+      if(xhr.responseText==='succ'){
+        welcome.innerHTML = '欢迎回来：'+n;
+        modalRegister.style.display = 'none';
+      }else {
+        alert('注册失败！');
+      }
+    }
+  }
+
+  </script>
+ </body>
+</html>

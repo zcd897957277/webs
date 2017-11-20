@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 京东商城－产品列表 </title>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/jd.css">
+        <link rel="stylesheet" href="css/product.css">
+    </head>
+
+    <body>
+        <div id="header"></div>
+        <div id="main">
+            <div class="affix">
+                <h4>商家精选</h4>
+            </div>
+            <div class="container productlist">
+                <!-- 排序部分 -->
+                <header>
+                    <ul>
+                        <li><a href="" class="curr">销量</a></li>
+                        <li><a href="">价格</a></li>
+                        <li><a href="">评论数</a></li>
+                        <li><a href="">上架时间</a></li>
+                    </ul>
+                    <ol>
+                        <li><a href="">&lt;</a></li>
+                        <li><a href="">&gt;</a></li>
+                    </ol>
+                </header>
+                <!-- 产品列表 -->
+                <section id="plist">
+                  <ul>
+                    <!--
+                    <li>
+                      <a href=""><img src="images/phone/phone_01.jpg" alt=""/></a>
+                      <p>￥1199.00</p>
+                      <h1><a href="">小米 Note 全网通 白色 移动联通电信4G手机 双卡双待</a></h1>
+                      <div>
+                          <a href="" class="contrast"><i></i>对比</a>
+                          <a href="" class="p-operate"><i></i>关注</a>
+                          <a href="" class="addcart"><i></i>加入购物车</a>
+                      </div>
+                    </li>-->
+                  </ul>
+                    <ol class="pager">
+                    <!--
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li class="active"><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                    -->
+                    </ol>
+                </section>
+            </div>
+        </div>
+        <div id="footer"></div>
+
+        <!--模态登录对话框-->
+        <div class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h4>用户登录</h4>
+                    <p class="alert">
+                        请在此处输入您的注册信息。
+                    </p>
+                    <form id="login-form">
+                        <input type="text" placeholder="请输入登录用户名" name="uname" value="qiangdong">
+                        <input type="password" placeholder="请输入登录密码" name="upwd" value="123456">
+                        <input type="button" value="提交登录信息" id="bt-login">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-1.11.3.js"></script>
+
+        <script src="js/jd.js"></script>
+
+    </body>
+</html>

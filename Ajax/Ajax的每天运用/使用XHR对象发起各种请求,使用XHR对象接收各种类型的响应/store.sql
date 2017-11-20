@@ -1,0 +1,38 @@
+SET NAMES UTF8;
+DROP DATABASE IF EXISTS store;
+CREATE DATABASE store CHARSET=UTF8;
+USE store;
+
+CREATE TABLE book(
+  bid INT PRIMARY KEY AUTO_INCREMENT,
+  bname VARCHAR(64),
+  price FLOAT(10,2)
+);
+INSERT INTO book VALUES(
+  NULL, '软件工程', '55.5'
+);
+INSERT INTO book VALUES(
+  NULL, '软件编程', '55.6'
+);
+INSERT INTO book VALUES(
+  NULL, '网络工程', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, 'TCP/IP网络编程', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, 'IP协议详解', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, 'PHP编程详解', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, 'PHP网络编程', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, 'PHP软件', '55.7'
+);
+INSERT INTO book VALUES(
+  NULL, '互联网络和PHP工程', '55.7'
+);
+SELECT * FROM book;

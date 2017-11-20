@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>注册新用户</h1>
+
+  <form action="">
+    
+    用户名：<input id="uname"><span id="unameMsg"></span><br>
+
+    密码名：<input id="upwd"><br>
+    重复密：<input id="repwd"><br>
+  </form>
+  <script>
+    //“用户名”失去焦点时，开始发起异步请求
+    uname.onblur = function(){
+      var n = this.value;
+      if(!n){ return; }
+      console.log('开始使用xhr发起异步请求');
+      /**发起异步请求**/  
+      //1 创建xhr对象
+      var xhr = new XMLHttpRequest();
+      //2 监听xhr的状态改变  响应完成且成功...
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState===4){
+          if(xhr.status===200){
+            doResponse(xhr); //响应完成且成功
+          }else{
+            alert('响应完成但有问题');
+          }
+        }
+      }
+      //3 打开到服务器的连接
+      xhr.open('GET','6_check_uname.php?uname='+n,true);
+      //4 发送请求
+      xhr.send(null);
+
+      function doResponse(xhr){
+        console.log('开始处理响应数据...');
+        console.log(xhr);
+        if(xhr.responseText==='cunzai'){
+          unameMsg.innerHTML = '用户名已经存在';
+          unameMsg.style.color = '#c00';
+        }else if(xhr.responseText==='bucunzai'){
+          unameMsg.innerHTML = '用户名可以使用';
+          unameMsg.style.color = '#0c0';
+        }else{
+          alert('服务器返回了运行错误：'+xhr.responseText);
+        }
+
+      }
+    }
+  </script>
+ </body>
+</html>

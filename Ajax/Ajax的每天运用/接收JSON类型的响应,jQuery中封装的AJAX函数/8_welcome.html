@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <button>异步获取服务器的欢迎消息</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('button').click(function(){
+    //异步GET请求
+    $.getScript('8_welcome.php');
+    
+    //$.get('8_welcome.php');
+
+  });
+  </script>
+ </body>
+</html>

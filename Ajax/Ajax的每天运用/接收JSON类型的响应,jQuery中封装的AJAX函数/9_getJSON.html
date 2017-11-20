@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  #btMore {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+  }
+  </style>
+ </head>
+ <body>
+  <h3>好友消息类别</h3>
+  <table width="100%" border="1">
+    <thead>
+      <tr>
+        <th>标题</th>
+        <th>内容</th>
+        <th>发布时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>标题8223</td>
+        <td>内容8223</td>
+        <td>8223</td>
+        <td>
+          <a href="8223">回复</a>
+        </td>
+      </tr>
+      <tr>
+        <td>标题7635</td>
+        <td>内容7635</td>
+        <td>7635</td>
+        <td>
+          <a href="7635">回复</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button id="btMore">加载更多</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('#btMore').click(function(){
+    $.getJSON('9_more_msg.php',function(arr){
+      console.log('开始处理响应数据');
+      //console.log(arguments);
+      //此处自动执行JSON.parse(xhr.resposneText)
+      var html = '';
+      for(var i=0; i<arr.length; i++){
+        var msg = arr[i];
+        html += `
+          <tr>
+            <td>${msg.title}</td>
+            <td>${msg.content}</td>
+            <td>${msg.pubTime}</td>
+            <td>
+              <a href="${msg.mid}">回复</a>
+            </td>
+          </tr>
+        `;
+      }
+      $('tbody').append(html);
+    })
+
+    /*$.get('9_more_msg.php',function(){
+    $.getJSON('9_more_msg.php',function(){
+      console.log('开始处理响应数据');
+      console.log(arguments);
+    })*/
+  });
+  </script>
+ </body>
+</html>

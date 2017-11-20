@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>各种发起GET请求的方式</h1>
+  <img src="img/1.jpg" alt="">
+  <a href="1_msg_add.html">超链接</a>
+  <button id="jump">跳转到1.html</button>
+  <script>
+    jump.onclick = function(){
+      location.href="1_msg_add.html";
+    }
+  </script>
+  <h3>GET方式提交表单</h3>
+  <form action="2_msg_add.php" method="get">
+    用户姓名：<input name="userName"><br>
+    电话号码：<input name="phone"><br>
+    留言内容：<input name="content"><br>
+    <input type="submit">
+  </form>
+  <hr>
+  <h3>POST方式提交表单</h3>
+  <form action="2_msg_add.php" method="post" enctype="text/plain">
+    用户姓名：<input name="userName"><br>
+    电话号码：<input name="phone"><br>
+    留言内容：<input name="content"><br>
+    <input type="submit">
+  </form>
+  <hr>
+
+
+
+ </body>
+</html>

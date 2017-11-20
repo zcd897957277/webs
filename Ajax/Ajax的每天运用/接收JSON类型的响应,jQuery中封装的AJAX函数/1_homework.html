@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #empTable img {
+      width: 60px;
+    }
+  </style>
+ </head>
+ <body>
+ <select id="dept">
+  <option value="-1">—请选择部门—</option>
+  <option value="10">研发部</option>  
+  <option value="20">市场部</option>  
+  <option value="30">运营部</option>  
+ </select>
+ <br><br>
+ <table id="empTable" width="100%" border="1">
+   <thead>
+     <tr>
+       <th>编号</th>
+       <th>图片</th>
+       <th>姓名</th>
+       <th>工资</th>
+       <th>操作</th>
+     </tr>
+   </thead>
+   <tbody>
+     <!-- <tr> -->
+       <!-- <td>1</td> -->
+       <!-- <td><img src="img/1.jpg"></td> -->
+       <!-- <td>Tom</td> -->
+       <!-- <td>6000</td> -->
+       <!-- <td><a href="#">&times;</a></td> -->
+     <!-- </tr> -->
+     <tr>
+       <td colspan="5">请选择部门</td>
+     </tr>
+   </tbody>  
+ </table>
+ <script>
+ //让父元素table 代理 删除按钮的事件
+ empTable.onclick = function(e){
+  if(e.target.className === 'remove'){
+    e.preventDefault();
+    //var eid = e.target.href;  //完整URL
+    var eid = e.target.getAttribute('href');
+    console.log('用户点击了X！'+eid);
+    //发起异步请求，1_emp_delete.php?eid=x
+    //1
+    var xhr = new XMLHttpRequest();
+    //2
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else{
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3
+    xhr.open('GET',`1_emp_delete.php?eid=${eid}`,true);
+    //4
+    xhr.send(null);
+    function doResponse(xhr){
+      if(xhr.responseText==='succ'){
+        alert('删除成功！');
+        //手动删除当前tr
+        var tr = e.target.parentNode.parentNode;
+        tr.parentNode.removeChild(tr);
+      }else{
+        alert('删除失败！原因：'+xhr.responseText);  //删除失败
+      }
+    }
+
+  }else {
+    console.log('用户没有点中X！');
+  }
+ }
+
+
+ //当用户改变了当前所选部门，发起异步请求
+ dept.onchange = function(){
+   var deptID = this.value;  //string
+   if(deptID==='-1'){
+    return;
+   }
+   //1
+   var xhr = new XMLHttpRequest();
+   //2
+   xhr.onreadystatechange = function(){
+    if(xhr.readyState===4){
+      if(xhr.status===200){
+        doResponse(xhr);
+      }else{
+        alert('响应完成但有问题');
+      }
+    }
+   }
+   //3 GET     
+   xhr.open('GET',`1_emp_select.php?deptID=${deptID}`, true);
+   //4
+   xhr.send(null);
+
+   function doResponse(xhr){
+    console.log('开始处理响应数据');
+    //console.log(xhr);
+    var xmlDoc = xhr.responseXML;
+    var empList = xmlDoc.querySelectorAll('emp');
+
+    var html = '';
+    for(var i=0; i<empList.length; i++){
+      var emp = empList[i];
+      var eid = emp.getAttribute('eid');
+      var ename = emp.querySelector('ename').innerHTML;
+      var salary = emp.querySelector('salary').innerHTML;
+      var pic = emp.querySelector('pic').innerHTML;
+      
+      html += `
+        <tr>
+          <td>${eid}</td>
+          <td><img src="${pic}"></td>
+          <td>${ename}</td>
+          <td>${salary}</td>
+          <td><a class="remove" href="${eid}">&times;</a></td>
+        </tr>
+      `;
+    }
+    document.querySelector('#empTable tbody').innerHTML = html;
+   }
+ }
+ </script>
+ </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> 京东商城－购物车 </title>
+        <meta charset="utf-8"/>
+        <link rel="icon" href="img/favicon.ico">
+        <link rel="stylesheet" href="css/jd.css">
+        <link rel="stylesheet" href="css/product.css">
+        <link rel="stylesheet" href="css/cart.css">
+    </head>
+
+    <body>
+        <div id="header"></div>
+        <div id="main">
+            <table id="cart">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="selAll"/>
+                        <label for="sel">全选</label>
+                    </th>
+                    <th>商品</th>
+                    <th>单价（元）</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                        <input type="hidden" value="1" />
+                        <div><img src="images/phone/phone_01.jpg" alt=""/></div>
+                    </td>
+                    <td><a href="">小米 Note</a></td>
+                    <td>1199.00</td>
+                    <td>
+                        <button>-</button><input type="text" value="1"/><button>+</button>
+                    </td>
+                    <td><span>1199.00</span></td>
+                    <td><a href="">删除</a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                        <input type="hidden" value="2" />
+                        <div><img src="images/phone/phone_02.jpg" alt=""/></div>
+                    </td>
+                    <td><a href="">PPO R9 4GB+64GB内存版</a></td>
+                    <td>2499.00</td>
+                    <td>
+                        <button>-</button><input type="text" value="1"/><button>+</button>
+                    </td>
+                    <td><span>2499.00</span></td>
+                    <td><a href="">删除</a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                        <input type="hidden" value="3" />
+                        <div><img src="images/phone/phone_03.jpg" alt=""/></div>
+                    </td>
+                    <td><a href="">PPO R9 4GB+64GB内存版 玫瑰金</a></td>
+                    <td>2499.00</td>
+                    <td>
+                        <button>-</button><input type="text" value="1"/><button>+</button>
+                    </td>
+                    <td><span>2499.00</span></td>
+                    <td><a href="">删除</a></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                        <input type="hidden" value="4" />
+                        <div><img src="images/phone/phone_04.jpg" alt=""/></div>
+                    </td>
+                    <td><a href="">小米 红米 3S 高配全网通 3GB内存</a></td>
+                    <td>899.00</td>
+                    <td>
+                        <button>-</button><input type="text" value="1"/><button>+</button>
+                    </td>
+                    <td><span>899.00</span></td>
+                    <td><a href="">删除</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <footer id="cart_footer">
+                <div>
+                    总价：<span>123.60</span>
+                    <button>去结算</button>
+                </div>
+            </footer>
+            <div id="shine"></div>
+        </div>
+
+        <div id="footer"></div>
+
+
+        <script src="js/jquery-1.11.3.js"></script>
+        <script src="js/fusioncharts.js"></script>
+        <script src="js/fusioncharts.charts.js"></script>
+
+        <script src="js/jd.js"></script>
+
+    </body>
+</html>

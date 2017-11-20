@@ -1,0 +1,20 @@
+SET NAMES UTF8;
+DROP DATABASE IF EXISTS sohu;
+CREATE DATABASE sohu CHARSET=UTF8;
+USE sohu;
+
+CREATE TABLE user(
+  uid INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(64),
+  pwd VARCHAR(64)
+);
+INSERT INTO user VALUES(
+  NULL, 'tom', '123'
+);
+INSERT INTO user VALUES(
+  NULL, 'mary', '456'
+);
+INSERT INTO user VALUES(
+  NULL, 'king', '999'
+);
+SELECT * FROM user WHERE name='tom';

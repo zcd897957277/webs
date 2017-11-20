@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+   <h1>使用XHR对象</h1>
+   <button id="bt">发起异步请求消息</button>
+   <script>
+     bt.onclick = function(){
+       //1 创建xhr对象
+       var xhr = new XMLHttpRequest();
+       //2 监听xhr的就绪状态改变事件
+       xhr.onreadystatechange = function(){
+         console.log('XHR就绪状态改变啦：');
+         console.log('xhr.readyState:'+xhr.readyState);
+         console.log('xhr.status:'+xhr.status);
+         console.log('xhr.responseText:'+xhr.responseText);
+         console.log();
+       }
+       //3 打开到服务器的连接
+       xhr.open('GET','999.php', true);
+       //4 发送请求消息
+       xhr.send(null); //POST和PUT请求才有主体
+     }
+   </script>
+ </body>
+</html>

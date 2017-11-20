@@ -1,0 +1,19 @@
+<?xml  version="1.0"  encoding="UTF-8" ?>
+
+<carList>
+	<car cid="1">
+		<cname>捷达</cname>
+		<price>60000</price>
+		<pic>cars/8_1.jpg</pic>
+	</car>
+	<car cid="2">
+		<cname>吉利远景</cname>
+		<price>50000</price>
+		<pic>cars/8_2.jpg</pic>
+	</car>
+	<car cid="3">
+		<cname>POLO</cname>
+		<price>80000</price>
+		<pic>cars/8_3.jpg</pic>
+	</car>
+</carList>

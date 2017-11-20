@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>HTML中读取查询字符串</h1>
+  <script>
+    var s = location.search;
+    var i = s.indexOf('=');
+    var n = s.substring(i+1);
+    console.log(n);
+  </script>
+ </body>
+</html>

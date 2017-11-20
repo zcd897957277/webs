@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  .modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0, 0.5);
+    display: none;
+  }
+  .modal-dialog {
+    width: 300px;
+    margin: 100px auto;
+  }
+  .modal-content {
+    background: #fff;
+    border-radius: 2px;
+    padding: 10px;
+  }
+  </style>
+ </head>
+ <body>
+  <h1>首页</h1>
+  <p id="welcome">欢迎回来：游客</p>
+  <button id="btRegister">注册</button>
+
+  <div class="modal" id="modalRegister">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <h3>注册新用户</h3>
+        用户名：<input id="name"><br>
+        密码名：<input id="pwd"><br>
+        <input type="button" id="btSubmit" value="提交注册信息">
+      </div>
+    </div>
+  </div>
+
+  <script>
+  btRegister.onclick = function(){
+    modalRegister.style.display = 'block';
+  }
+  //提交按钮
+  btSubmit.onclick = function(){
+    var n = name.value;
+    var p = pwd.value;
+    //1 创建xhr
+    //2 监听状态改变
+    //3 打开连接 - 暂时先使用GET方法
+    //4 发送请求
+  }
+
+  </script>
+ </body>
+</html>

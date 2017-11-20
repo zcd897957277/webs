@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #suggest {
+      position: absolute;
+      border: 1px solid #bbb;
+      width: 180px;
+      display: none;
+    }
+    #suggest ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    #suggest ul li{
+      padding: 4px 10px;
+    }
+    #suggest ul li:hover{
+      background: #eee;
+    }
+  </style>
+ </head>
+ <body>
+  
+  请输入您要搜索的书名关键字：<br>
+  <input id="kw"><button>开始搜索</button>
+  <div id="suggest">
+    <ul>
+      <!-- <li>网络工程</li> -->
+      <!-- <li>计算机工程</li> -->
+      <!-- <li>软件工程</li> -->
+      <!-- <li>工程核算</li> -->
+    </ul>
+  </div>
+  <script>
+  //当输入框中按键弹起时
+  kw.onkeyup = function(){
+    var k = this.value;  //获取输入框的当前值
+    if(!k){ return; }
+
+    //发起异步请求，查询包含当前关键字的书名列表
+    //1
+    var xhr = new XMLHttpRequest();
+    //2
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState===4){
+        if(xhr.status===200){
+          doResponse(xhr);
+        }else {
+          alert('响应完成但有问题');
+        }
+      }
+    }
+    //3
+    xhr.open('GET',`4_book_search.php?kw=${k}`,true);
+    //4
+    xhr.send(null);
+
+    function doResponse(xhr){
+      console.log('开始处理响应数据');
+      console.log(xhr);
+      var ul = document.querySelector('#suggest ul');
+      ul.innerHTML = xhr.responseText;
+      suggest.style.display = 'block';
+    }
+  }
+  </script>
+ </body>
+</html>
