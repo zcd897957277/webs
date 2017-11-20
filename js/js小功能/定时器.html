@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.11.3.js"></script>
+</head>
+
+<body>
+	<div id="div">
+		
+	</div>
+<script>
+//实现每隔一秒钟弹出一个对话框，且此弹出过程持续5秒钟。
+var id = setInterval(
+	function(){alert("Hello JavaScript");},1000
+);
+setTimeout(
+	function(){clearInterval(id);},5000
+);
+console.log($('#div')==document.getElementById('div'))
+</script>
+</body>
+</html>

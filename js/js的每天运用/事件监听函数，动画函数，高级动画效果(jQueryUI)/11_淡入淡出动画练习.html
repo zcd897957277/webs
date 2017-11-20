@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+  .tabs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  .tabs ul li {
+    display: inline-block;
+    padding: 8px 16px;
+    border-bottom: 1px solid #aaa;
+  }
+  .tabs ul li.active {
+    border: 1px solid #aaa;
+    border-bottom: none;
+  }
+  .tabs ul li a{
+    color: #000;
+    text-decoration: none;
+  }
+  .tabs .tab {
+    position: absolute;
+    display: none;
+  }
+  .tabs .tab.active {
+    display: block;
+  }
+  </style>
+ </head>
+ <body>
+  
+  <div class="tabs">
+    <ul>
+      <li><a href="#tc10">十元套餐</a></li><li class="active"><a href="#tc20">二十元套餐</a></li><li><a href="#tc30">三十元套餐</a></li>
+    </ul>
+    <div class="tab" id="tc10">
+      十元套餐详情：
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis facilis repellendus accusantium quibusdam quisquam commodi cumque consequatur quis numquam beatae minus fugit odio ab rem perspiciatis ex fugiat placeat dolores?</p>
+    </div> 
+    <div class="tab active" id="tc20">
+      二十元套餐详情：
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore enim vel optio provident autem illum porro quae adipisci iusto hic architecto quisquam. Veniam voluptatibus delectus illum ut facere. Ducimus porro?</p>
+    </div>  
+    <div class="tab" id="tc30">
+      三十元套餐详情：
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum praesentium aut perspiciatis molestiae? Ducimus quibusdam illum incidunt quam unde minus neque vero quos non asperiores impedit dolor ullam accusamus cum.</p>
+    </div>  
+  </div>
+
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  $('.tabs ul li a').click(function(e){
+    e.preventDefault();
+    //修改页头的active的位置
+    $(this).parent().addClass('active').siblings('.active').removeClass('active');
+
+    //修改标签页的active
+    var id = $(this).attr('href');
+    $('.tabs .tab.active').fadeOut(500);
+    $(id).fadeIn(500);
+  });
+  </script>
+ </body>
+</html>

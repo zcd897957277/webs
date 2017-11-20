@@ -1,0 +1,31 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>file demo</title>  
+    <script src="jquery-ui-1.12.0插件运用/js/jquery-1.11.3.js"></script>  
+</head>  
+<body>     
+    <input type="file" name="fileString" multiple class="file">      
+</body>  
+ <script>  
+      $("input[name=fileString]").change(function() {  
+         //var names = [];  
+  
+         for (var i = 0; i < $(this).get(0).files.length; ++i) {  
+            // names.push($(this).get(0).files[i].name);  
+    //console.log($(this).get(0).files[i].mozFullPath);  
+    //方式一：  
+    var filePath = $(this).val();  
+    console.log(filePath);  
+    //方式二：  
+    alert($('input[type=file]').val());  
+         }  
+         //console.log(names);  
+//方式三：  
+alert($("input[name=fileString]").val());  
+  
+     })  
+       
+ </script>
+</html>

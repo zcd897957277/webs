@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    .error {
+      color: #d00;
+    }
+  </style>
+ </head>
+ <body>
+  <form id="registerForm">
+    用户名: <input name="userName"><br>
+    密码名: <input name="userPwd"><br>
+    重复密: <input name="rePwd"><br>
+    邮箱名: <input name="userMail"><br>
+    微博URL: <input name="userWB"><br>
+    几岁啦: <input name="userAge"><br>
+    开学日: <input name="schoolDate"><br>
+    手机号: <input name="userPhone"><br>
+
+    <input type="submit">
+  </form>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/jquery.validate.js"></script>
+  <script>
+    /*$('#registerForm').validate({
+      rules:{},
+      messages:{}
+    });*/
+
+    /**自定义验证规则**/
+    jQuery.validator.addMethod('cellphone',function(value){
+      var regexp = /^1[3578]\d{9}$/;
+      return regexp.test(value);
+    });
+
+
+    $('#registerForm').validate({
+      /**指定验证规则**/
+      rules:{
+        userName:{
+          required: true
+        },
+        userPwd:{
+          required: true,
+          minlength: 6,
+          maxlength: 9
+        },
+        rePwd:{
+          required: true,
+          equalTo: '[name="userPwd"]'
+        },
+        userMail: {
+          required: true,
+          email: true
+        },
+        userWB: {
+          url: true
+        },
+        userAge: {
+          digits: true,
+          min: 18,
+          max: 60
+        },
+        schoolDate: {
+          dateISO: true
+        },
+        userPhone: {
+          cellphone: true
+        }
+
+      },
+      /**指定验证错误提示消息**/
+      messages:{
+        userName:{
+          required: '用户名不能为空'
+        },
+        userPwd:{
+          required: '密码不能为空',
+          minlength: '密码不能小于6位',
+          maxlength: '密码不能大于9位'
+        },
+        rePwd:{
+          required: '重复密码不能为空',
+          equalTo: '两次输入的密码不一致'
+        },
+        userMail: {
+          required: '邮箱不能为空',
+          email: '邮箱格式非法'
+        },
+        userWB: {
+          url: '微博地址非法'
+        },
+        userAge: {
+          digits: '年龄必须是数字',
+          min: '用户年龄不能小于18',
+          max: '用户年龄不能大于60'
+        },
+        schoolDate: {
+          dateISO: '入学日期格式非法'
+        },
+        userPhone: {
+          cellphone: '手机号格式非法'
+        }
+      }
+    });
+  </script>
+ </body>
+</html>

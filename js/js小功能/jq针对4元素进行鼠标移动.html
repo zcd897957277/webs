@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+			}
+			#myalk{
+				position: absolute;
+				top: 5%;
+				left: 5%;
+				background: red;
+			}
+			#mypanel{
+				position: absolute;
+				top: 10%;
+				left: 10%;
+				background: blue;
+			}
+			#myparameter{
+				position: absolute;
+				top: 15%;
+				left: 15%;
+				background: black;
+			}
+			#myscene{
+				position: absolute;
+				top: 20%;
+				left: 20%;
+				background: orange;
+			}
+			#mypaneltwo{
+				position: absolute;
+				top: 10%;
+				left: 14%;
+				background: pink;
+			}
+			#mypanelthree{
+				position: absolute;
+				top: 100px;
+				left: 100px;
+				background: green;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="myalk"></div>
+		<div id="mypanel"></div>
+		<div id="myparameter"></div>
+		<div id="myscene"></div>
+		<div id="mypaneltwo"></div>
+		<div id="mypanelthree"></div>
+	</body>
+	<script type="text/javascript" src="事件监听函数，动画函数，高级动画效果(jQueryUI)/js/jquery-1.11.3.js"></script>
+	<script>
+		function moveppbox() {
+			var arr = ['#myalk', '#mypanel', '#myparameter', '#myscene', '#mypaneltwo', '#mypanelthree'];
+			for(var i = 0; i < arr.length; i++) {
+				$(arr[i]).on('mousedown', function(ev) {
+					var e = window.event || ev;
+					var oX = e.clientX - ($(this)[0]).offsetLeft;
+					var oY = e.clientY - ($(this)[0]).offsetTop;
+
+					// 鼠标移动
+					$(document).on('mousemove', function(ev) {
+						var e = window.event || ev;
+						$(this).css({
+							'left': e.clientX-oX,
+							'top': e.clientY-oY
+						});
+					}.bind(this));
+
+					//移动结束
+					$(document).on('mouseup', function(ev) {
+						$(document).off('mousemove');
+						$(document).off('mouseup');
+					});
+				});
+			}
+		}
+		moveppbox();
+	</script>
+
+</html>

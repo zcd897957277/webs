@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>作业2</h1>
+  
+  <table id="my-order">
+    <thead>
+      <tr>
+        <th>订单信息</th>
+        <th>收货人</th>
+        <th>订单金额</th>
+        <th>最近三个月</th>
+        <th>全部状态</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/1.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/2.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/2.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/3.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/4.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="6">订单编号：2341324143</td>
+      </tr>
+      <tr>
+        <td>
+          <img src="img/2.jpg" alt="">
+        </td>
+        <td>
+          强东
+        </td>
+        <td>
+          ￥211.50
+        </td>
+        <td>
+          2016-06-11
+        </td>
+        <td>
+          等待发货
+        </td>
+        <td>
+          <a href="#">取消</a><br>
+          <a href="#">查看物流</a><br>
+          <a href="#">再来一单</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //一次性修改选定元素的多个行内样式  10:25
+  $('table#my-order').css({
+    width: '100%',
+    border: '1px solid #aaa',
+    'border-collapse': 'collapse'
+  });
+  $('#my-order th, #my-order td').css({
+    border: '1px solid #aaa',
+    padding: '8px 10px',
+    textAlign: 'center'
+  });
+  $('#my-order tbody td:first-child').css({
+    textAlign: 'left'
+  });
+  $('#my-order tbody tr:nth-child(2n+1)').css({
+    background: '#efefef'
+  });
+  </script>
+ </body>
+</html>

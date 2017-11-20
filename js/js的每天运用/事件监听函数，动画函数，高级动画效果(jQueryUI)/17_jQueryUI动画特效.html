@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    div {
+      border: 1px solid #aaa;
+      background:#efe;
+    }
+  </style>
+ </head>
+ <body>
+
+  <button>隐藏和显示DIV元素</button>
+  <br><br>
+  <div>
+    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis expedita consectetur accusantium quia dolorem necessitatibus ratione nobis unde sint doloremque assumenda nemo quisquam excepturi officia ex nisi quam amet saepe.</span><span>Praesentium dolores odio vel error deserunt vitae dignissimos velit repellendus omnis quos excepturi consectetur quasi necessitatibus modi id quae nemo. Accusantium voluptates totam ad ratione amet quo numquam deserunt voluptatibus.</span>
+  </div>
+
+
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script src= "js/jquery-ui.js"></script>
+  <script>
+   $('button').click(function(){
+     //$('div').toggle('blind',3000);  //变盲
+     //$('div').toggle('bounce',3000);  //弹跳
+     //$('div').toggle('clip',3000);    //裁剪
+     //$('div').toggle('drop',3000);    //丢弃
+     //$('div').toggle('explode',3000); //爆炸
+     //$('div').toggle('fade',3000);    //枯萎
+     //$('div').toggle('fold',3000);    //折叠
+     //$('div').toggle('highlight',3000);//高亮
+     //$('div').toggle('puff',3000);  //泡芙
+     //$('div').toggle('pulsate',3000); //脉搏
+     //$('div').toggle('scale',3000); //缩放
+     //$('div').toggle('shake',3000);   //摇动
+     //$('div').toggle('size',3000);  //改变大小
+     $('div').toggle('slide',3000);   //滑动
+   });
+  </script>
+ </body>
+</html>

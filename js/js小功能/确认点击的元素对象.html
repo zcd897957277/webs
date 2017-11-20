@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>获取当前点击的元素</title>
+	</head>
+
+	<body>
+		<div id="btn">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</div>
+		<script src="事件监听函数，动画函数，高级动画效果(jQueryUI)/js/jquery-1.11.3.js"></script>
+		<script type="text/javascript">
+			//第一种
+			var doms = document.querySelectorAll('ul li');
+			for(var i = 0; i < doms.length; i++) {
+				! function(dom, index) {
+					dom.addEventListener('click', function() {
+						console.log(this.innerHTML);
+					});
+				}(doms[i], i);
+			}
+			//第二种   事件委托可以减少dom操作
+			var doms = document.querySelector("ul");
+			doms.onclick = function(e) {
+				var ev = e || window.event;
+				var target = ev.target || ev.srcElement;
+				if(target.nodeName.toLowerCase() == 'li') {
+					console.log(target.innerHTML);
+				}
+			}
+			//第三种
+			$('ul').on('click', 'li', function() {
+				console.log(this.innerHTML);
+			});
+			//第四种
+			$("li").click(function(e) {
+				console.log(this.innerHTML);
+			});
+		</script>
+	</body>
+
+</html>

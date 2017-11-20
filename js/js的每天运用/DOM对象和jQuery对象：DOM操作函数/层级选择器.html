@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>层级选择器</h1>
+  <div>
+    <p>P1</p>
+    <p>P2</p>
+    <div class="box">BOX</div>
+    <p>P3</p>
+    <p>P4</p>
+  </div>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('.box + p').css('text-decoration','underline');
+    $('.box ~ p').css('color','#0a0');
+  </script>  
+ </body>
+</html>

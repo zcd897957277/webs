@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    img {
+      position: relative;
+    }
+  </style>
+ </head>
+ <body>
+  <img src="img/star.png" id="star1">
+  <img src="img/star.png" id="star2">
+  <img src="img/star.png" id="star3">
+  <img src="img/star.png" id="star4">
+
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  //创建一个小星星，点击后，从屏幕左边移动到右边
+  $('#star1').click(function(){
+    //$(this).animate({
+    //  left: '1000px'
+    //}, 3000);   //swing
+    $(this).animate({
+      left: '1000px'
+    }, 3000, 'linear')
+  });
+
+  //创建一个小星星，点击后，从屏幕上边移动到下边
+  $('#star2').click(function(){
+    $(this).animate({
+      top: '600px'
+    }, 3000);
+  });
+
+  //创建一个小星星，点击后，从屏幕左上角走斜线移动到右下角
+  $('#star3').click(function(){
+    $(this).animate({//并发动画——同时修改多个属性
+      left: '600px',
+      top: '600px'
+    }, 3000);
+  });
+
+  //创建一个小星星，点击后，从屏幕左边移动到右边，再移动到下边
+  $('#star4').click(function(){
+    $(this).animate({   //排队动画
+      left: '600px'
+    }, 3000);
+
+    $(this).animate({
+      top: '600px'
+    }, 3000);
+  });
+  </script>
+ </body>
+</html>

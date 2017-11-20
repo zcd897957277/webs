@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid #aaa;
+      border-collapse: collapse;
+    }
+    table th,
+    table td {
+      padding: 8px 16px;
+      border: 1px solid #aaa;
+    }
+    [type="number"] {
+      width: 30px;
+    }
+    .delete {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    table thead tr {
+      background: #0a0;
+      color: #fff;
+    }
+    table tbody tr:nth-child(even) {
+      background: #efe;
+    }
+  </style>
+ </head>
+ <body>
+  <button id="btnAdd">添加商品</button>
+  <br><br>
+  <table id="productList">
+    <thead>
+      <tr>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+     <!--
+      <tr>
+        <td>3.5</td>
+        <td><input type="number" value="1"></td>
+        <td>3.5</td>
+        <td>
+          <span  class="delete">&times;</span>
+        </td>
+      </tr>
+      <tr>
+        <td>4.0</td>
+        <td><input type="number" value="2"></td>
+        <td>8.0</td>
+        <td>
+          <span class="delete">&times;</span>
+        </td>
+      </tr>
+      <tr>
+        <td>3.5</td>
+        <td><input type="number" value="1"></td>
+        <td>3.5</td>
+        <td>
+          <span  class="delete">&times;</span>
+        </td>
+      </tr>
+      <tr>
+        <td>4.0</td>
+        <td><input type="number" value="2"></td>
+        <td>8.0</td>
+        <td>
+          <span class="delete">&times;</span>
+        </td>
+      </tr>
+      -->
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" style="text-align:right">
+          总计：￥<span id="allTotal">0.00</span>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  /**添加商品**/
+  $('#btnAdd').on('click', function(){
+    var price = Math.random()*100;
+    price = price.toFixed(2);
+    var count = 1;
+    var html = `
+      <tr>
+        <td>${price}</td>
+        <td><input type="number" value="${count}"></td>
+        <td>${price*count}</td>
+        <td>
+          <span class="delete">&times;</span>
+        </td>
+      </tr>
+    `;
+    $('#productList tbody').append(html);
+    getAllTotal();
+  });
+
+  /**删除商品——必须使用事件代理，委托给已经存的公共父元素**/
+  $('#productList tbody').on('click','.delete', function(){
+    //this=>span.delete
+    $(this).parent().parent().remove();
+
+    getAllTotal();
+  });
+
+  /**修改购买数量——委托给公共父元素**/
+  $('#productList tbody').on('change','[type="number"]', function(){
+    //this => input
+    var count = this.value;  //$(this).val()
+    var price = $(this).parent().prev().html();
+    var total = price*count;
+    total = total.toFixed(2);
+    $(this).parent().next().html(total);
+
+    getAllTotal();
+  })
+
+  /**计算总计**/
+  function getAllTotal(){
+    var jqObj = $('#productList tbody tr td:nth-child(3)');
+    var sum = 0;
+    for(var i=0; i<jqObj.length; i++){
+      var td = jqObj[i];
+      sum += parseFloat(td.innerHTML);
+    }
+    sum = sum.toFixed(2);
+    $('#allTotal').html(sum);
+  }
+  </script>
+ </body>
+</html>

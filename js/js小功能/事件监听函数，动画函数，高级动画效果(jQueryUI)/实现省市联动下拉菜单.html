@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实现省/市联动下拉菜单</title>
+<style>
+	div{
+		display:inline-block;	
+	}
+</style>
+</head>
+
+<body>
+<div>
+    <select name="option" id="prev">
+    	<option>—请选择—</option>
+		<option value="p1">北京市</option>
+		<option value="p2">天津市</option>
+		<option value="p3">河北省</option>
+    </select>
+    <select id="city"><option>—请选择—</option></select>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+
+<script>
+		/*实现“省”和“市”的级联下拉列表*/
+	var cities=[[],		/*0号下标没有元素*/
+		['东城区','西城区','海淀区','朝阳区'],
+		['河东区','河西区','南开区','石家庄市'],
+		['廊坊市','保定市','唐山市','秦皇岛市']
+	];
+
+	$('#prev').change(function(){
+		$('#city').html('<option>—请选择—</option>');
+		var num=parseInt(String($(this).val())[1]);
+		console.log($(this).val())
+		console.log(String($(this).val())[1])//String()转成字符串
+		console.log(num)
+		for(var i=0;i<=3;i++){
+			$('#city').append("<option>"+cities[num][i]+"</option>");
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <img src="img/star.png" alt="">
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  $('img').click(function(){
+    //$(this).fadeOut();
+    //$(this).fadeOut('slow');
+    //$(this).fadeOut(5000);
+    $(this).fadeOut(5000, function(){
+      console.log('淡出动画结束');
+    });
+
+    $(this).fadeIn(5000);
+  });
+  </script>
+ </body>
+</html>

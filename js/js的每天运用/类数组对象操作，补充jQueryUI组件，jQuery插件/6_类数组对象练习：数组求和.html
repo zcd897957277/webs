@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  </style>
+ </head>
+ <body>
+  <ul id="scoreList">
+    <li>10</li>
+    <li>20</li>
+    <li>30</li>
+    <li>40</li>
+    <li>50</li>
+  </ul>
+  <p>
+    总成绩为：<span id="sum"></span>
+    平均分为：<span id="avg"></span>  
+  </p>  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  var s = 0;  //总和
+  $('#scoreList li').each(function(i, li){
+    s += parseFloat( $(li).html() );
+  });
+
+  $('#sum').html(s);
+  $('#avg').html(s / $('#scoreList li').length);
+  </script>
+ </body>
+</html>

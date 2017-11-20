@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .accordion > h3 {
+      background: #ddd;
+      padding: 6px 15px;
+      cursor: pointer;
+    }
+    .accordion > div {
+      display: none;
+    }
+    .accordion > div.active {
+      display: block;
+    }
+  </style>
+ </head>
+ <body>
+
+  <div class="accordion">
+		<h3>西游记简介</h3>
+		<div class="active">详情: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis omnis odio cupiditate sunt necessitatibus nam a dicta ipsum fugiat sed aspernatur aliquam adipisci quas. Tempore optio quaerat libero deserunt fugiat.</div>
+		
+    <h3>三国志简介</h3>
+		<div>详情: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis eum reiciendis libero accusamus commodi asperiores eligendi quos optio ut ab facilis sapiente quibusdam ducimus. Recusandae ratione quasi aliquam nostrum facere?  </div>
+		
+    <h3>水浒传简介</h3>
+		<div>详情: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem deserunt similique laborum numquam mollitia nesciunt quidem repellat assumenda. Cum ab doloribus maiores consequuntur accusamus dolores veniam neque explicabo repellat blanditiis.</div>
+	</div>
+
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  $('.accordion > h3').click(function(){
+    $(this).next().slideDown(1000, function(){
+      $(this).addClass('active');
+    });
+
+    $(this).siblings('.active').slideUp(1000, function(){
+      $(this).removeClass('active');
+    });
+  })
+  </script>
+ </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<style>
+	div img{
+		background:#CCC;	
+	}
+	div img.banse{
+		background:red;
+	}
+</style>
+</head>
+
+<body>
+<div>
+	<img src="img/score.png">
+    <img src="img/score.png">
+    <img src="img/score.png">
+    <img src="img/score.png">
+    <img src="img/score.png">
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="jquery-ui-1.12.0/jquery-ui.js"></script>
+<script>
+	$('img').click(function(){
+		var num=$('div>img').index(this);	
+		console.log(num)
+		var jq=$('img');
+		jq.removeClass();
+		for(var i=0;i<=num;i++){
+			var img=jq[i];
+			$(img).addClass('banse');//$('div img:eq('+i+')')
+		}
+	})
+</script>
+</body>
+</html>

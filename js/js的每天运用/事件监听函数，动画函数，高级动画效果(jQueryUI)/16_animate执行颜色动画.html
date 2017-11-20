@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    p {
+      color: rgb(255,0,0);
+      background-color: rgb(0,255,255);
+      border: 3px solid #ff0;
+    }
+  </style>
+ </head>
+ <body>
+
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At quas sit deleniti amet itaque maiores dolorem rem suscipit provident adipisci optio soluta facere eligendi cum incidunt nam delectus rerum eum.</p>
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+    $('p').click(function(){
+      console.log('开始执行颜色动画');
+      $(this).animate({
+        backgroundColor: 'rgb(0,0,255)',
+        color: '#fff',
+        borderColor: 'purple'
+      }, 3000);
+    });
+  </script>
+ </body>
+</html>

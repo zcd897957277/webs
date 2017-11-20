@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>表单元素选择器</h1>
+  <form action="9.php">
+    <input type="text" placeholder="请输入用户名"><br>
+    <input type="password" placeholder="请输入密码"><br>
+
+    <input type="submit" value="提交">
+    <input type="reset" value="重置">
+    <input type="button" value="按钮">
+    <input type="image" src="btn.jpg">
+    <img src="btn.jpg">
+    
+  </form>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $(':text, :password').css('border-radius','3px');
+
+  $(':image, img').css('vertical-align','middle');
+  </script>  
+ </body>
+</html>

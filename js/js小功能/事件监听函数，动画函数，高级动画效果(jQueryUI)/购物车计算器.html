@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>购物车计算器</title>
+<style>
+	button{
+		list-style:none;	
+	}
+	table tr td{
+		padding:5px 30px;	
+		text-align:center;
+	}
+	table{
+		border-collapse:collapse;	
+	}
+	table tr td span{
+		color:red;	
+		cursor:pointer;
+		font-weight:bold;
+	}
+	table tr td input{
+		text-align:center;
+		width:30px;	
+	}
+	table thead tr{
+		background:#0a0;
+		color:#fff;	
+	}
+	table tbody tr:nth-child(even){
+		background:#9FF;	
+	}
+</style>
+</head>
+
+<body>
+<div>
+	<button>添加商品</button>
+    <br><br>
+    <table border="2">
+    	<thead>
+        	<tr>
+            	<td>单价</td>
+                <td>数量</td>
+                <td>小计</td>
+                <td>删除</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+            <td colspan="4">购物车的总金额:￥<b>0</b></td>
+        </tfoot>
+    </table>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="jquery-ui-1.12.0/jquery-ui.js"></script>
+<script>
+	$('button').click(function(){
+		var price=parseInt(Math.random()*10+1)+Math.random().toFixed(1);//toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。
+		var count=parseInt(Math.random()*10+1);
+		var smallTt=parseFloat(count*price).toFixed(1);
+		var tr1='<tr><td>'+price+'</td><td><input type="number" value="'+count+'"></td><td>$<b>'+smallTt+'</b></td><td><span>&times;<span></td></tr>';
+		//var td1='<td>'+prise+'</td>';
+		//$(tr1).append($('td1'));
+		//var td2='<td><input type="text">'+num+'</td>';
+		//$(tr1).append($('td2'));
+		//var td3='<td>$'+smallTt+'</td>';
+		//$($(tr1)).append($('td3'));
+		//var td4='<td><span>&times;<span></td>';
+		//$($(tr1)).append($('td4'));
+		$('table>tbody').append($(tr1));
+		$('table>tfoot td b').html((parseFloat($('table>tfoot td b').html())+parseFloat(smallTt)).toFixed(1));
+	})
+	$('table>tbody').delegate('tr>td>input','change',function(){
+		console.log(parseInt($(this).val()))
+		$('table>tfoot td b').html((parseFloat($('table>tfoot td b').html())-parseFloat($(this).parent().next().children().html())).toFixed(1));
+		$(this).parent().next().children().html((parseInt($(this).val())*parseFloat($(this).parent().prev().html())).toFixed(1));
+		$('table>tfoot td b').html((parseFloat($('table>tfoot td b').html())+parseFloat($(this).parent().next().children().html())).toFixed(1));
+	})
+	$('table>tbody').delegate('tr>td>span','click',function(){
+			$(this).parent().parent().remove();
+			$('table>tfoot td b').html((parseFloat($('table>tfoot td b').html())-parseFloat($(this).parent().prev().children().html())).toFixed(1));
+	});
+	//delegate() 方法为指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，并规定当这些事件发生时运行的函数。
+    //使用 delegate() 方法的事件处理程序适用于当前或未来的元素（比如由脚本创建的新元素）。
+</script>
+</body>
+</html>

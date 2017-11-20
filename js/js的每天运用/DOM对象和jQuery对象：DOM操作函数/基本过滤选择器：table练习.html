@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>基本过滤选择器</h1>
+  <ol>
+    <li>OL-LI-0</li>
+    <li>OL-LI-1</li>
+    <li>OL-LI-2</li>
+    <li>OL-LI-3</li>
+    <li>OL-LI-4</li>
+  </ol>
+  <hr>
+  <ul>
+    <li>UL-LI-0</li>
+    <li>UL-LI-1</li>
+    <li>UL-LI-2</li>
+    <li>UL-LI-3</li>
+    <li>UL-LI-4</li>
+    <li>UL-LI-5</li>
+  </ul>
+
+
+  <table border="1" width="100%">
+    <tbody>
+      <tr>
+        <td>00</td>
+        <td>01</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>11</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>21</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>31</td>
+      </tr>
+    </tbody>
+  </table> 
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //(1)选定第一个li，字体加粗
+  $('li:first').css('font-weight','bold');
+	//(2)选定最后一个li，字体变斜
+  $('li:last').css('font-style','italic');
+	
+  //(3)选定下标为1的li，背景红色
+  $('li:eq(1)').css('color', '#f00');
+
+  //(3)选定奇数个li，背景淡蓝色
+  $('li:odd').css('background', '#ddf');
+
+	//(4)选定偶数个li，背景淡黄色
+  $('li:even').css('background', '#ffd');
+	
+  //(5)选定第3个li，添加删除线
+  $('li:eq(3)').css('text-decoration', 'line-through');
+	//(4)选定大于3个li，添加border-left
+  $('li:gt(3)').css('border-left', '1px solid #000');
+
+
+
+
+  $('tr td:first').css('background', '#dfd');
+  </script>  
+ </body>
+</html>

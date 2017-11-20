@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h3>我的购物车</h3>
+  单价：<span id="price">3.5</span>
+  数量：
+    <button id="btLess">-</button><input name="count" value="1" style="width:30px"><button id="btMore">+</button>
+  小计：
+    <input name="total" value="3.5" disabled>
+
+  <hr>
+  用户姓名：
+  <input name="userName"><br>
+  用户性别：
+  <input type="radio" name="userSex" value="male">男
+  <input type="radio" name="userSex" value="female" checked>女
+  <br>
+  所在城市：
+  <select name="city">
+    <option value="bj">北京市</option>
+    <option value="sh">上海市</option>
+    <option value="zj">浙江省</option>
+  </select><br>
+  兴趣爱好：
+  <input type="checkbox" name="hobby" value="xy">洗衣
+  <input type="checkbox" name="hobby" value="zf">做饭
+  <input type="checkbox" name="hobby" value="sd">扫地<br>
+
+  <input type="button" value="提交订单" id="btSubmit">
+
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('#btLess').click(function(){
+    var count = $('[name="count"]').val();
+    count = parseInt(count);
+    count--;
+    $('[name="count"]').val(count);
+    //计算小计
+    var price = $('#price').html();
+    $('[name="total"]').val( price*count );
+  })
+  $('#btMore').click(function(){
+    var count = $('[name="count"]').val();
+    count = parseInt(count);
+    count++;
+    $('[name="count"]').val(count);
+    //计算小计
+    var price = $('#price').html();
+    $('[name="total"]').val( price*count );
+  })
+
+  $('#btSubmit').click(function(){
+    //收集用户的输入
+    var n = $('[name="userName"]').val();
+    var s = $('[name="userSex"]:checked').val();
+    //var c = $('option:selected').val();
+    var c = $('select[name="city"]').val();
+    console.log(n+s+c);
+
+    //注意复选框多个值的获取
+    //var h = $('[name="hobby"]:checked').val();
+    var jqObj = $('[name="hobby"]:checked');
+    for(var i=0; i<jqObj.length; i++){
+      var cb = jqObj[i];
+      var h = $(cb).val();
+      console.log(h);
+    }
+  });
+  </script>
+ </body>
+</html>

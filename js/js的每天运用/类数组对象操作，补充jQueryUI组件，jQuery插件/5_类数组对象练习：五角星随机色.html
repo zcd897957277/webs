@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    img {
+      background: #ddd;
+      cursor: pointer;
+    }
+  </style>
+ </head>
+ <body>
+  <img src="img/score.png" id="s1">
+  <img src="img/score.png" id="s2">
+  <img src="img/score.png" id="s3">
+  <img src="img/score.png" id="s4">
+  <img src="img/score.png" id="s5">
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //$('img').css('background', rc());
+  /*for(var i=0; i<$('img').length; i++){
+    var img = $('img')[i];
+    $(img).css('background',rc());
+  }*/
+  $('img').each(function(i,dom){
+    //console.log('遍历了一个DOM对象：');
+    //console.log(dom);
+    $(dom).css('background',rc());
+  })
+
+
+  function rc(){
+    console.log('rc函数被调用了...');
+    var r = Math.floor(Math.random()*256);
+    var g = Math.floor(Math.random()*256);
+    var b = Math.floor(Math.random()*256);
+    return `rgb(${r},${g},${b})`;
+  }
+  </script>
+ </body>
+</html>

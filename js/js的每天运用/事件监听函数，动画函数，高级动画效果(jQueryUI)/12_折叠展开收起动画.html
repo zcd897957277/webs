@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+
+  <button id="bt1">显示P元素</button>
+  <button id="bt2">隐藏P元素</button>
+  <button id="bt3">切换P元素的隐藏和显示</button>
+
+  <br><br>
+  <p style="border: 1px solid #aaa;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad quasi necessitatibus iste ipsa atque optio quia dicta quae non sed quas rerum facere sapiente. Sit saepe tenetur autem ducimus temporibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore incidunt esse eum magnam expedita suscipit praesentium fugit enim? Nesciunt possimus minima labore eligendi aspernatur temporibus ea dignissimos natus voluptate in.</p>
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+    $('#bt2').click(function(){
+      //$('p').slideUp();
+      //$('p').slideUp('slow');
+      $('p').slideUp(500);
+    });
+    $('#bt1').click(function(){
+      $('p').slideDown(500, function(){
+        console.log('展开完成')
+      });
+    });
+    $('#bt3').click(function(){
+      $('p').slideToggle(500);
+    });
+  </script>
+ </body>
+</html>

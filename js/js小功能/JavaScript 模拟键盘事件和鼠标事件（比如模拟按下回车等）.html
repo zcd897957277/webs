@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<script type='text/javascript'>
+function initKeyEventDM()
+{
+  var eo=document.getElementById("ikevt");
+  if( window.outerWidth == undefined )
+  {
+    eo.fireEvent("onkeydown");
+  }
+  else
+  {
+    var vo = document.createEvent("KeyEvents");
+    vo.initKeyEvent("keydown", true, true, null, false, true, false, false, 9, 0);
+    eo.dispatchEvent( vo );
+  }
+}
+</script>
+<a href='javascript:initKeyEventDM()'>点这里模拟onkeydown事件</a> / / / /
+<input id='ikevt' onkeydown='alert( event.altKey +" / "+ event.keyCode )' size=16>
+	</body>
+</html>

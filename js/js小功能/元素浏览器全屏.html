@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+				padding: 0;
+			}
+			#div{
+				background: red;
+				width: 100px;
+				height: 100px;
+				border: 1px solid #213540;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+		<script>
+			var docElm = document.documentElement;
+			//W3C  
+			if (docElm.requestFullscreen) {  
+			    docElm.requestFullscreen();  
+			}
+			//FireFox  
+			else if (docElm.mozRequestFullScreen) {  
+			    docElm.mozRequestFullScreen();  
+			}
+			//Chrome等  
+			else if (docElm.webkitRequestFullScreen) {  
+			    docElm.webkitRequestFullScreen();  
+			}
+			//IE11
+			else if (elem.msRequestFullscreen) {
+			  elem.msRequestFullscreen();
+			}
+//			退出全屏
+			 
+			if (document.exitFullscreen) {  
+			    document.exitFullscreen();  
+			}  
+			else if (document.mozCancelFullScreen) {  
+			    document.mozCancelFullScreen();  
+			}  
+			else if (document.webkitCancelFullScreen) {  
+			    document.webkitCancelFullScreen();  
+			}
+			else if (document.msExitFullscreen) {
+			      document.msExitFullscreen();
+			}
+			 
+			document.addEventListener("fullscreenchange", function () {  
+			    fullscreenState.innerHTML = (document.fullscreen)? "" : "not ";}, false);  
+			   
+			document.addEventListener("mozfullscreenchange", function () {  
+			    fullscreenState.innerHTML = (document.mozFullScreen)? "" : "not ";}, false);  
+			   
+			document.addEventListener("webkitfullscreenchange", function () {  
+			    fullscreenState.innerHTML = (document.webkitIsFullScreen)? "" : "not ";}, false);
+			document.addEventListener("msfullscreenchange", function () {
+			    fullscreenState.innerHTML = (document.msFullscreenElement)? "" : "not ";}, false);
+		</script>
+	</body>
+</html>

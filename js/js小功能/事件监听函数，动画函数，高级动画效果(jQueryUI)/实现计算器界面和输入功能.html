@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实现计算器界面和输入功能</title>
+<style>
+	*{
+		padding:0;
+		margin:0;	
+	}
+	#my-calc{
+		background:#ddd;	
+		border:1px solid #999;
+		border-collapse:collapse;
+	}
+	#my-calc thead tr td.xianshi{
+		height:20px;
+		width:100px;
+		background:#fff;
+		border:1px solid #999;
+		border-bottom:0;
+		text-align:right;
+	}
+	#my-calc thead tr td.disScr{
+		height:20px;
+		width:100px;
+		background:#fff;
+		border:1px solid #999;
+		border-top:0;
+		text-align:right;
+	}
+	td{
+		padding:5px;	
+	}
+	button{
+		list-style:none;
+		padding:5px 8px;
+		width:30px;
+		text-align:center;	
+	}
+	
+</style>
+</head>
+
+<body>
+<table id="my-calc">
+	<thead>
+    	<tr>
+        	<td colspan="4" class="xianshi"></td>
+        </tr>
+    	<tr>
+        	<td colspan="4" class="disScr">0</td>
+        </tr>
+    </thead>
+    <tbody>
+    	<tr>
+        	<td><button class="num" value="7">7</button></td>
+            <td><button class="num" value="8">8</button></td>
+            <td><button class="num" value="9">9</button></td>
+            <td><button class="sym" value="/">/</button></td>
+        </tr>
+        <tr>
+        	<td><button class="num" value="4">4</button></td>
+            <td><button class="num" value="5">5</button></td>
+            <td><button class="num" value="6">6</button></td>
+            <td><button class="sym" value="*">*</button></td>
+        </tr>
+        <tr>
+        	<td><button class="num" value="1">1</button></td>
+            <td><button class="num" value="2">2</button></td>
+            <td><button class="num" value="3">3</button></td>
+            <td><button class="sym" value="-">-</button></td>
+        </tr>
+        <tr>
+            <td><button class="num" value="0">0</button></td>
+            <td><button class="equ" value="=">=</button></td>
+            <td><button class="sym" value=".">.</button></td>
+            <td><button class="sym" value="+">+</button></td>
+        </tr>
+    </tbody>
+</table>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+	/*switch(String(symbol)){
+		case '+':parseFloat(num0)+parseFloat(num1);
+		case '-':parseFloat(num0)-parseFloat(num1);
+		case '*':parseFloat(num0)*parseFloat(num1);
+		case '/':parseFloat(num0)/parseFloat(num1);
+	}*/
+	var num1=0;
+	function a(){
+	$('.num').bind('click',function(){
+		var reg=/\/|\-|\*$/;
+		if(parseFloat($('.disScr').html())==0){
+			$('.disScr').html(parseFloat($(this).html()));
+		}else{
+			/*if(reg.test(String($('.xianshi').html()))&&String($('.disScr').html())!=0){
+				$('.disScr').html('0');
+				$('.xianshi').html();
+			}else{*/
+				$('.disScr').html($('.disScr').html()+$(this).html());
+			//}
+		}
+		num1=($('.disScr').html());
+		return num1;
+	});
+	}
+	a();
+	function b(num1){
+		console.log(num1)
+		debugger;
+	}
+	b();/*
+	$('.sym').bind('click',function(){
+		$('.xianshi').html($('.disScr').html()+$(this).html());
+	});
+	$('.equ').bind('click',function(){
+		var reg=/\d*\=$/;
+		if(reg.test(String($('.xianshi').html()))){
+			$('.disScr').empty();
+		}else{
+			return 
+		}
+	});*/
+	/*var num1=0;
+	var num2=0;
+	var symbol=null;
+	function panDuan(num1,num2,symbol){
+		var isResult=0;
+		switch(symbol){
+			case '+':isResult=parseFloat(num0)+parseFloat(num1);
+			case '-':isResult=parseFloat(num0)-parseFloat(num1);
+			case '*':isResult=parseFloat(num0)*parseFloat(num1);
+			case '/':isResult=parseFloat(num0)/parseFloat(num1);
+		}
+		return isResult;
+	}
+	function getNumber(){
+		var reg=/\/|\-|\*$/;
+		if(parseFloat($('.disScr').html())==0){
+			$('.disScr').html(parseFloat($(this).html()));
+		}else{
+			$('.disScr').html($('.disScr').html()+$(this).html());
+		}
+	}
+	function getSymbol(){
+		$('.xianshi').html();
+	}
+	$('.num').bind('click',function(){
+			getNumber();
+			$('.disScr').html();
+	})*/
+	/*$('.equ').one('click',panDuan(
+		$('.sym').bind('click',getSymbol())
+	));*/
+</script>
+</body>
+</html>

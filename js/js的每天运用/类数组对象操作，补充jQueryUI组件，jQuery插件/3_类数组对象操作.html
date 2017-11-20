@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid #aaa;
+      border-collapse: collapse;
+    }
+    table th,
+    table td {
+      padding: 8px 16px;
+      border: 1px solid #aaa;
+    }
+    [type="number"] {
+      width: 30px;
+    }
+    .delete {
+      font-weight: bold;
+      cursor: pointer;
+    }
+    table thead tr {
+      background: #0a0;
+      color: #fff;
+    }
+    table tbody tr:nth-child(even) {
+      background: #efe;
+    }
+  </style>
+ </head>
+ <body>
+  <ul>
+    <li>000</li>
+    <li>111</li>
+    <li id="li2">222</li>
+    <li>333</li>
+    <li>444</li>
+  </ul>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  var li = document.getElementById('li2');
+  var jq = $('ul > li');
+  console.log( jq.index(li) );
+  </script>
+ </body>
+</html>

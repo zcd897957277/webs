@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <style>
+  </style>
+ </head>
+ <body>
+  生日：<input type="text" name="birthday">
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script>
+  //$('[name="birthday"]').datepicker();
+  $('[name="birthday"]').datepicker({
+    dateFormat: 'yy-mm-dd',
+    maxDate: new Date()
+  });
+  </script>
+ </body>
+</html>

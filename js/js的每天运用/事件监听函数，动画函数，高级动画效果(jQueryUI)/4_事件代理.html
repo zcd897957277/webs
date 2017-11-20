@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .container {
+      border: 1px solid #aaa;
+      padding: 10px;
+      min-height: 200px;
+    }
+    .container .box {
+      width: 80px;
+      height: 60px;
+      display: inline-block;
+      border: 1px solid #aaa;
+    }
+    .container .box  span {
+      float: right;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+ </head>
+ <body>
+  
+  <button>添加一个随机色块</button>
+  <br><br>
+  <div class="container">
+    <!-- <div class="box"> -->
+      <!-- <span>&times;</span> -->
+    <!-- </div> -->
+  </div>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('.container span').click(function(){
+      $(this).parent().remove();
+  });
+
+  $('button').click(function(){
+    /*$('.container').append(`
+      <div class="box">
+        <span>&times;</span>
+      </div>
+    `);*/
+    //创建新的span
+    var span = $('<span>&times;</span>');
+    
+    //创建新的div
+    var div = $('<div class="box"></div>');
+    div.css('background', rc());
+    div.append(span);
+    //追加到DOM树上
+    $('.container').append(div);
+  });
+
+
+  /**创建一个随机颜色**/
+  function rc(){
+    var r = Math.floor(Math.random()*256);
+    var g = Math.floor(Math.random()*256);
+    var b = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  </script>
+ </body>
+</html>

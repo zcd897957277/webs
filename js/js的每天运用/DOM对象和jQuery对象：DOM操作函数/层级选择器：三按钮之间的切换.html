@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>层级选择器</h1>
+  <ul class="tabs">
+    <li><a href="#">十元套餐</a></li>
+    <li><a href="#">二十元套餐</a></li>
+    <li><a href="#">三十元套餐</a></li>
+  </ul>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('*').css('margin','0').css('padding','0');
+    $('ul.tabs').css('list-style','none');
+    $('ul.tabs > li').css('float','left').css('margin','16px 0');
+    $('ul.tabs > li > a').css('text-decoration','none').css('color','#000').css('padding', '8px 16px').css('border-bottom','1px solid #aaa');
+
+    //为标签页头中的a绑定监听函数
+    var jQObject = $('ul.tabs > li > a');
+    jQObject.click(function(e){
+      e.preventDefault();
+
+      //重置所有a的边框为下边框
+      jQObject.css('border','none').css('border-bottom', '1px solid #aaa');
+
+      //当前被点击的a，修改为上左右边框
+      $(this).css('border','1px solid #aaa').css('border-bottom', 'none');
+    });
+
+
+    var jq1 = $('h1');
+    console.log(jq1);
+    var jq2 = $('h1');
+    console.log(jq2);
+    console.log( jq1 === jq2 );   //false
+  </script>  
+ </body>
+</html>

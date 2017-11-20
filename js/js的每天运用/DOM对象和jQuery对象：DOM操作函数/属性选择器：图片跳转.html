@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>属性选择器</h1>
+  <a href="#" title="空链接">链接1</a>
+  <a href="http://tmooc.cn" title="绝对地址">链接2</a>
+  <a href="#chapter1" >链接3</a>
+  <a href="1.jpg">链接4</a>
+  <a href="2.png">链接5</a>
+  <a href="3.gif">链接6</a>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('a').css('color','#000');
+
+  //(1)选定所有具备title属性的链接元素，添加边框
+  $('a[title]').css('border','1px solid #aaa');
+	//(2)选定所有指向空锚点(#)的链接元素，颜色淡灰
+  $('a[href="#"]').css('color','#666');
+	//(3)选定所有指向绝对URL(http开头)的链接元素，背景颜色淡蓝
+  $('a[href^="http"]').css('background','#aaf');
+	//(4)选定所有指向的图片URL(以.jpg/png/gif结尾)的链接元素，字体加粗
+  $('a[href$=".jpg"],a[href$=".png"],a[href$=".gif"]').css('font-weight','bold');
+
+  </script>  
+ </body>
+</html>

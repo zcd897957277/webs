@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  select {
+    width: 120px;
+  }
+  </style>
+ </head>
+ <body>
+  <h3>今日菜谱</h3>
+  <select id="menu" size="5">
+    <option value="jj">京酱肉丝</option>
+    <option value="yx">鱼香肉丝</option>
+    <option value="qj">青椒肉丝</option>
+  </select>
+
+  <h3>我的订单</h3>
+  <select id="myorder"  size="5">
+  </select>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //Version1.0:  每道菜只能买一份
+  /*$('#menu option').dblclick(function(){
+    //$(this).appendTo('#myorder');
+    $('#myorder').append(this);
+  });*/
+
+  //Version2.0:  每道菜能买多份
+  $('#menu option').dblclick(function(){
+    var copy = $(this).clone(); //false
+    //var copy = $(this).clone(true); 
+    $('#myorder').append(copy);
+  });
+  </script>
+ </body>
+</html>

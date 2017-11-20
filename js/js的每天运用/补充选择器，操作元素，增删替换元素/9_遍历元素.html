@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+  .accordion > h3 {
+    background: #eee;
+    padding: 6px;
+    cursor: pointer;
+  }
+  .accordion > p {
+    display: none;
+  }
+  .show {
+    display: block !important;
+  }
+  
+  </style>
+ </head>
+ <body>
+  <div class="accordion">			
+		<h3>西游记简介</h3>
+		<p class="show">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolore debitis rerum illo ipsam omnis et non accusantium dolorem adipisci suscipit voluptatem autem inventore beatae optio. Numquam doloribus eius accusantium!</p>
+		<h3>水浒传简介</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quod cum dolor possimus consequuntur ratione perferendis atque ex quis consectetur id veniam dignissimos rerum veritatis voluptatum voluptatem doloribus dolores ullam.</p>
+		<h3>三国志简介</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quisquam est quos laudantium veritatis veniam quibusdam dolorum adipisci illo ipsum voluptatem voluptates voluptatum exercitationem nobis sequi inventore repellendus. Doloribus aliquam.</p>
+	</div>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('.accordion > h3').click(function(){
+    $(this).siblings('p.show').removeClass('show');
+    $(this).next().toggleClass('show');
+  });
+  </script>
+ </body>
+</html>

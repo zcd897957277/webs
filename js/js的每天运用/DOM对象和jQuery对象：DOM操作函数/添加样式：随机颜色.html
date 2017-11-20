@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>在HTML中使用jQuery</h1>
+  <button>为P添加样式</button>
+  <button>为P添加样式</button>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta necessitatibus libero iure eum quia debitis perferendis illum facilis corporis quaerat velit iste ea distinctio porro similique quam eaque doloribus tempore!</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet molestiae a et ab aperiam. Tempore a amet perferendis ea culpa ex blanditiis error sit. Eligendi aliquam error possimus tempora ullam.</p>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //点击按钮，再修改P的样式
+  //1 查找按钮  2 绑定监听函数  3 监听函数中修改样式
+  $('button').click(function(){
+    console.log('按钮被单击了');
+    $('p').css('color', rc());
+  });
+
+  /**生成一个随机的颜色值 random color**/
+  function rc(){
+    var r = Math.floor(Math.random()*256);
+    var g = Math.floor(Math.random()*256);
+    var b = Math.floor(Math.random()*256);
+    return `rgb(${r}, ${g}, ${b})`;  //ES6新特性
+  }
+  </script>
+ </body>
+</html>

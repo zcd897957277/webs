@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    window.onload = function(){
+      console.log('window.onload 1....');
+    }
+    window.onload = function(){
+      console.log('window.onload 2....');
+    }
+    $(document).ready(function(){
+      console.log('document.ready 1....');
+    });
+    $(document).ready(function(){
+      console.log('document.ready 2....');
+    });
+    $().ready(function(){
+      console.log('document.ready 3....');
+    });
+    $(function(){
+      console.log('document.ready 4....');
+    })
+  </script>
+ </head>
+ <body>
+
+  <script>
+    console.log('页面处理完成');
+  </script>
+ </body>
+</html>

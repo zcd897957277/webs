@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>基本选择器</h1>
+  <div class="dropdown">
+    <a href="#3">产品大全</a>
+    <ul class="menu">
+      <li>冰箱</li>
+      <li>洗衣机</li>
+      <li>奶粉</li>
+      <li>尿不湿</li>
+    </ul>
+  </div>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //var r1 = $('div');
+  //console.log(r1);
+  //var r2 = r1.css('margin','0');
+  //console.log(r2);
+  //console.log(r1===r2);  //true
+  //$('*').css('padding','0');
+
+  $('*').css('margin','0').css('padding','0');
+  $('a').css('color','#000').css('text-decoration', 'none');
+  $('.menu').css('border','1px solid #aaa').css('position','absolute').css('width','120px').hide();
+
+
+  var isShown = false;  //下拉菜单当前是否显示
+  //点击超链接，则隐藏/显示下方的菜单
+  $('.dropdown > a').click(function(e){
+    e.preventDefault(); //阻止超链接被点击的默认行为
+
+    if(isShown){          
+      $('.menu').hide();
+      isShown = false;
+    }else {
+      $('.menu').show();
+      isShown = true;
+    }
+  });
+
+
+
+
+
+
+
+  function Emp(){
+    this.name = 'Tom';
+    this.work = function(){
+      
+      return this;
+    }
+    this.rest = function(){
+      
+      return this;
+    }
+  }
+  var e1 = new Emp();
+  //e1.work();
+  //e1.rest();
+  e1.work().rest().work().rest();  //方法的链式调用
+  </script>  
+ </body>
+</html>

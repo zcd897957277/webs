@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    /* 有问题：
+    $('button').on('click',function(){
+      console.log(this);
+    });
+    */
+    
+    /*  可以实现
+    $(document).on('click','button',function(){
+      console.log(this);
+    });
+    */
+
+    
+    window.onload = function(){
+      console.log('window.onload....');
+      $('button').on('click',function(){
+        console.log(this);
+      });
+    }
+    
+    
+    /*
+    $(document).ready(function(){
+      console.log('document.ready....');
+      $('button').on('click',function(){
+        console.log(this);
+      });
+    })
+    */
+  </script>
+ </head>
+ <body>
+  
+  <div class="container">
+    <button>按钮1</button>
+  </div>
+
+
+  <script>
+    console.log('页面处理完成');
+  </script>
+ </body>
+</html>

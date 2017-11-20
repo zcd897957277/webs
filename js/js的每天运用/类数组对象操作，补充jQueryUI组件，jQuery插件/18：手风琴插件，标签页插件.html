@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <h1>调用我自己的手风琴插件</h1>
+  <div class="container">
+    <h3>西游记简介</h3>
+    <div>lorem</div>
+    <h3>三国志简介</h3>
+    <div>lorem</div>
+    <h3>水浒传简介</h3>
+    <div>lorem</div>
+  </div>
+
+  <h1>调用我自己的标签页插件</h1>
+  <div class="tab-container">
+    <ul>
+      <li><a href="#tc10">十元套餐</a></li>
+      <li><a href="#tc20">二十元套餐</a></li>
+      <li><a href="#tc30">三十元套餐</a></li>
+    </ul>
+    <div id="tc10">十元套餐详情：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium ea architecto placeat ex. Dolores sequi harum nostrum fugiat eius similique suscipit. Consectetur enim illo vitae explicabo saepe dignissimos ipsa blanditiis?</div>
+    <div id="tc20">二十元套餐详情：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo earum minus a tenetur sit neque aliquam animi nulla est repellendus sequi voluptatum officiis dolorum esse itaque consequatur labore asperiores magnam!</div>
+    <div id="tc30">三十元套餐详情：Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum inventore nulla quae recusandae reiciendis! Saepe sed consequatur alias odio dolores quaerat quam repudiandae necessitatibus et accusamus impedit velit inventore perspiciatis!</div>
+  </div>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/18_myjQObjPlugin.js"></script>
+  <script>
+  $('.container').accordion();
+  $('.tab-container').tabs();
+  </script>
+ </body>
+</html>

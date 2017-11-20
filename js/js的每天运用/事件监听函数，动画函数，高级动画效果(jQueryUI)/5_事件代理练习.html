@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .container {
+      border: 1px solid #aaa;
+      padding: 10px;
+      min-height: 200px;
+    }
+    .container span {
+      cursor: pointer;
+      background: #cfc;
+      margin: 10px;
+    }
+  </style>
+ </head>
+ <body>
+  
+  <button>添加一个SPAN</button>
+  <br><br>
+  <div class="container">
+  </div>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('button').click(function(){
+      $('.container').append('<span>SPAN</span>');
+    });
+
+    /*  无效的绑定
+    $('span').click(function(){
+      console.log(this);
+    });
+    */
+    $('.container').delegate('span', 'click', function(){
+      //this => span
+      $(this).remove();
+    })
+  </script>
+ </body>
+</html>

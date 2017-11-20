@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <style>
+  </style>
+ </head>
+ <body>
+  请输入待查找的菜品名称：
+  <input name="dishName">
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script>
+  var list = ['京酱肉丝','鱼香肉丝','青椒肉丝','青椒鸡蛋','豆角肉丝','鸡蛋汤','番茄炒蛋','蛋炒饭'];
+
+  $('[name="dishName"]').autocomplete({
+    source: list
+  });
+  </script>
+ </body>
+</html>

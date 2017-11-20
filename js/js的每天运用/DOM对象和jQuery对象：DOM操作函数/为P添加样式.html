@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>在HTML中使用jQuery</h1>
+  <button>为P添加样式</button>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta necessitatibus libero iure eum quia debitis perferendis illum facilis corporis quaerat velit iste ea distinctio porro similique quam eaque doloribus tempore!</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet molestiae a et ab aperiam. Tempore a amet perferendis ea culpa ex blanditiis error sit. Eligendi aliquam error possimus tempora ullam.</p>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //DOM实现：给所有的p元素添加边框和文字颜色
+  //var list = document.querySelectorAll('p');
+  ////list.style.color = '#f00';
+  ////for(var i in list){
+  //for(var i=0; i<list.length; i++){
+    //var p = list[i];
+    //p.style.border = "1px solid #080";
+    //p.style.color = "#080";
+    //p.style.backgroundColor = "#dfd";
+  //}
+
+  //jQuery实现：给所有的p元素添加边框和文字颜色
+  $('p').css('border', '1px solid #800');
+  $('p').css('color', '#800');
+  $('p').css('background-color', '#fdd');
+
+  </script>
+ </body>
+</html>

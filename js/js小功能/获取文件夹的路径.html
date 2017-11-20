@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<input type="text" name="path" size="80" value="" />
+		<input type="button" name="but" size="100" onclick="BrowseFolder()" value="选择文件夹" />
+	</body>
+		<script>
+			function BrowseFolder(){
+			 	try{
+			  		var Message = "请选择文件夹";  //选择框提示信息
+			  		var Shell = new ActiveXObject( "Shell.Application" );
+			  		//var Folder = Shell.BrowseForFolder(0,Message,0x0040,0x11);//起始目录为：我的电脑
+			  		var Folder = Shell.BrowseForFolder(0,Message,0); //起始目录为：桌面
+			  		if(Folder != null){
+			    		Folder = Folder.items();  // 返回 FolderItems 对象
+					    Folder = Folder.item();  // 返回 Folderitem 对象
+					    Folder = Folder.Path;   // 返回路径
+					    if(Folder.charAt(Folder.length-1) != "\\"){
+					      	Folder = Folder + "\\";
+					    }
+					    document.all.savePath.value=Folder;
+					    return Folder;
+			  		}
+			 	}catch(e){ 
+			  		alert(e.message);
+			 	}
+			}
+		</script>
+</html>
+<!--在获取文件路径的遇到些问题，由于安全原因，新版的浏览器都不支持直接获取本地URL，在网上找了些方法，如下：
+<script type="text/javascript">
+//FX获取文件路径方法
+function readFileFirefox(fileBrowser) {
+  try {
+    netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+  } 
+  catch (e) {
+    alert('无法访问本地文件，由于浏览器安全设置。为了克服这一点，请按照下列步骤操作：(1)在地址栏输入"about:config";(2) 右键点击并选择 New->Boolean; (3) 输入"signed.applets.codebase_principal_support" （不含引号）作为一个新的首选项的名称;(4) 点击OK并试着重新加载文件');
+    return;
+  }
+  var fileName=fileBrowser.value; //这一步就能得到客户端完整路径。下面的是否判断的太复杂，还有下面得到ie的也很复杂。
+  var file = Components.classes["@mozilla.org/file/local;1"]
+    .createInstance(Components.interfaces.nsILocalFile);
+  try {
+    // Back slashes for windows
+    file.initWithPath( fileName.replace(/\//g, "\\\\") );
+  }
+  catch(e) {
+    if (e.result!=Components.results.NS_ERROR_FILE_UNRECOGNIZED_PATH) throw e;
+    alert("File '" + fileName + "' cannot be loaded: relative paths are not allowed. Please provide an absolute path to this file.");
+    return;
+  }
+  if ( file.exists() == false ) {
+    alert("File '" + fileName + "' not found.");
+    return;
+  }
+ 
+ 
+ return file.path;
+}
+ 
+ 
+//根据不同浏览器获取路径
+function getvl(obj){
+//判断浏览器
+ var Sys = {}; 
+ var ua = navigator.userAgent.toLowerCase(); 
+ var s; 
+ (s = ua.match(/msie ([\d.]+)/)) ? Sys.ie = s[1] : 
+ (s = ua.match(/firefox\/([\d.]+)/)) ? Sys.firefox = s[1] : 
+ (s = ua.match(/chrome\/([\d.]+)/)) ? Sys.chrome = s[1] : 
+ (s = ua.match(/opera.([\d.]+)/)) ? Sys.opera = s[1] : 
+ (s = ua.match(/version\/([\d.]+).*safari/)) ? Sys.safari = s[1] : 0;
+ var file_url="";
+ if(Sys.ie<="6.0"){
+  //ie5.5,ie6.0
+  file_url = obj.value;
+ }else if(Sys.ie>="7.0"){
+  //ie7,ie8
+  obj.select();
+  file_url = document.selection.createRange().text;
+ }else if(Sys.firefox){
+  //fx
+  //file_url = document.getElementById("file").files[0].getAsDataURL();//获取的路径为FF识别的加密字符串
+  file_url = readFileFirefox(obj);
+ }else if(Sys.chrome){
+  file_url = obj.value;
+ }
+ //alert(file_url);
+ document.getElementById("text").innerHTML="获取文件域完整路径为："+file_url;
+}
+</script>
+<h1>JS获取文件域完整路径的方法，兼容不同浏览器</h1>
+<div id="text" style="color:#f00;"></div>
+<input type="file" id="file" onchange="getvl(this)" />
+ 
+以上代码在IE 6 7 8均正常使用，在IE9下，document.selection.createRange()拒绝访问，看来安全性有所提高。
+最后测试发现，在IE9下，如果file控件获得焦点，则document.selection.createRange()拒绝访问，
+因此，只需要在obj.select()后面加一句obj.blur()即可。
+EX：
+else if(Sys.ie>="7.0"){
+  //ie7,ie8
+  obj.select();
+  obj.blur();
+  file_url = document.selection.createRange().text;
+ }
+ 
+ 
+// obj = document.getElementById("file"); 
+ -->

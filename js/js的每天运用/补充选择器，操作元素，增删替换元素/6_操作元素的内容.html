@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <button>0</button>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    //$('button').onclick = function(){}
+    //$('button').onclick(function(){})
+   
+    $('button').on('click', function(){})
+    
+    $('button').click(function(){
+      var num = $(this).html();
+      num = parseInt(num);
+      num++;
+      $(this).html(num);
+    })
+  </script>
+ </body>
+</html>

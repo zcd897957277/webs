@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+  </ul>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/17_myFnLib.js"></script>
+  <script>
+  console.log('平均分：'+$('ul > li').avg() );
+  console.log('最高分：'+$('ul > li').max() );
+  console.log('最低分：'+$('ul > li').min() );
+  </script>
+ </body>
+</html>

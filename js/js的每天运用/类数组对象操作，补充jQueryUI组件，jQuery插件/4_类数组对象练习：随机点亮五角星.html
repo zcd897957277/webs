@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    img {
+      background: #ddd;
+      cursor: pointer;
+    }
+    img.chosen {
+      background: #f00;
+    }
+  </style>
+ </head>
+ <body>
+  <img src="img/score.png">
+  <img src="img/score.png">
+  <img src="img/score.png">
+  <img src="img/score.png">
+  <img src="img/score.png">
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('body').on('click','img', function(){
+    //this => img
+    var jq = $('img');
+    jq.removeClass('chosen');
+
+
+    var num = jq.index(this);
+    for(var i=0; i<=num; i++){
+      var img = jq[i];
+      $(img).addClass('chosen');
+    }
+  });
+  </script>
+ </body>
+</html>

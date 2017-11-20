@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>表单元素选择器</h1>
+  <form action="10.php">
+    <fieldset>
+      <legend>兴趣爱好</legend>
+      <label>
+        <input type="checkbox" name="hobby" value="xy">洗衣
+      </label>
+      <label>
+        <input type="checkbox" name="hobby" value="zf">做饭
+      </label>
+      <label>
+        <input type="checkbox" name="hobby" value="sd" checked>扫地
+      </label>
+    </fieldset>
+
+    <br>
+    <input type="button" value="提交">
+    <input type="button" value="取消选中">
+    <input type="button" value="选中所有">
+  </form>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //点击“提交”，则输出选中元素的个数
+  $('[value="提交"]').click(function(){
+    var count = $('[name="hobby"]:checked').length;
+    if(count===0){
+      alert('您必须至少选定一个爱好');
+    }else {
+      console.log(`用户选定了${count}个爱好`);
+    }
+  });
+
+  //点击“取消选择”，将所有选中元素取消选中；
+  $('[value="取消选中"]').click(function(){
+    $('[name="hobby"]:checked').attr('checked',false);
+  });
+
+  //点击“选中所有”，将选中所有的checkbox元素。	
+  $('[value="选中所有"]').click(function(){
+    $('[name="hobby"]').attr('checked',true);
+  });
+  </script>  
+ </body>
+</html>

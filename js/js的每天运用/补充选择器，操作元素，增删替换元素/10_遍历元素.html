@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .nav-pills {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-pills li {
+      display: inline-block;
+      padding: 6px 20px;
+    }
+    .nav-pills li.active {
+      background: #03a;
+      border-radius: 3px;
+    }
+    .nav-pills li.active a {
+      color: #fff;
+    }
+    a {
+      color: #333;
+      text-decoration: none;
+    }
+  </style>
+ </head>
+ <body>
+  <ul class="nav-pills">
+    <li><a href="#">主页</a></li>
+    <li class="active"><a href="#">新闻</a></li>
+    <li><a href="#">产品</a></li>
+  </ul>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('.nav-pills li a').click(function(e){
+    e.preventDefault();
+    $(this).parent().addClass('active').siblings('.active').removeClass('active');
+  });
+  </script>
+ </body>
+</html>

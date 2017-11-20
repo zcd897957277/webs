@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+  .container {
+    
+  }
+  .affix {
+    width: 200px;
+    border: 1px solid #aaa;
+    float: left;
+  }
+  .affix li.active a {
+    color: #e4393c;
+    font-weight: bold;
+  }
+  .main {
+    /*float: left;*/
+    border: 1px solid #aaa;
+    margin-left: 200px;
+  }
+  .main > div {
+    display: none;
+    min-height: 400px;
+  }
+  .main > div.active {
+    display: block;
+  }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+    <div class="affix">
+      <h3>附加导航</h3>
+      <ul>
+        <li class="active"><a href="#box1">日期选择插件</a></li>
+        <li><a href="#box2">表单验证插件</a></li>
+        <li><a href="#box3">瀑布流插件</a></li>
+      </ul>
+    </div>
+    <div class="main">
+      <div id="box1" class="active" style="background:#fee">
+        <h3>演示：laydate</h3>
+      </div>
+      <div id="box2" style="background:#efe">
+        <h3>演示：validation</h3>
+      </div>
+      <div id="box3" style="background:#eef">
+        <h3>演示：masonry</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script src="js/1_myPlugin.js"></script>
+  <script>
+    $('.container').affixLayout();
+  </script>
+ </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      text-align: center;
+    }
+    #chosen {
+      width: 150px;
+      height: 110px;
+      text-align: center;
+      line-height: 110px;
+      border: 1px solid #aaa;
+      margin: 0 auto;
+    }
+    body > img {
+      cursor: pointer;
+    }
+
+  </style>
+ </head>
+ <body>
+    
+  <div id="chosen">
+    <span>请选择英雄</span>
+  </div>
+  <hr>
+  <img src="img/p1.png" alt="">
+  <img src="img/p2.png" alt="">
+  <img src="img/p3.png" alt="">
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('body > img').click(function(){
+    //当前点击的img替换div中的已有内容
+    //$(this).replaceAll( $('#chosen :first-child') );
+
+    //使用当前被点击的图片的克隆替换div中的已有内容
+    $(this).clone().replaceAll( $('#chosen :first-child') );
+  });
+  </script>
+ </body>
+</html>

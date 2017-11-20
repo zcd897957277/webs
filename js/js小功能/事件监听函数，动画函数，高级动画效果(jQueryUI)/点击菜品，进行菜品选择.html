@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>点击菜品，进行菜品选择</title>
+<style>
+	div{
+		display:inline-block;	
+	}
+	select{
+		width:80px;	
+	}
+	#menu,#menu>option{
+		cursor:pointer;	
+	}
+</style>
+</head>
+
+<body>
+<div id="menu">
+    <h3 id="today">今日菜谱</h3>
+    <select size="3" multiple id="selMen">
+        <option>京酱肉丝</option>
+        <option>鱼香肉丝</option>
+        <option>青椒肉丝</option>
+    </select>
+</div>
+<div id="order">
+    <h3 id="my">我的订单</h3>
+    <select id="selOrd" size="3">
+    </select>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+	$('#selMen>option').bind('click',function(){
+		var option = $('<option></option>');
+		$(option).html($(this).html());
+		$('#selOrd').append($(option));
+	})
+	$('#today').bind('dblclick',function(){
+		$('#selOrd').html($(this).next().html());
+	})
+	$('#selMen>option').bind('dblclick',function(){
+		$('#selOrd').html($(this).parent().html());
+	})
+</script>
+</body>
+</html>

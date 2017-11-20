@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <img class="thumbnail" src="img/1.jpg" alt="img/1111.jpg">
+  <img class="thumbnail" src="img/2.jpg" alt="img/2222.jpg">
+  <img class="thumbnail" src="img/3.jpg" alt="img/3333.jpg">
+  <img class="thumbnail" src="img/4.jpg" alt="img/4444.jpg">
+
+  <hr>
+
+  <img class="full-img" src="img/1111.jpg">
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('.thumbnail').mouseenter(function(){
+    var url = $(this).attr('alt');  //GET
+    console.log(url);
+    $('.full-img').attr('src', url);  //SET
+  });
+  </script>
+ </body>
+</html>

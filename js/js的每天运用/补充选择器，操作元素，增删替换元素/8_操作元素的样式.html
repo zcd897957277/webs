@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    .btn-group > button {
+      float: left;
+      background: #fff;
+      color: #333;
+      padding: 8px 16px;
+      border: 1px solid #aaa;
+      outline: none;
+      cursor: pointer;
+    }
+    .btn-group > button.pressed {
+      background: #bbb;
+      color: #fff;
+    }
+  </style>
+ </head>
+ <body>
+  
+  <div class="btn-group">
+    <button>播放</button>
+    <button>暂停1</button>
+    <button>暂停2</button>
+    <button>停止</button>
+  </div>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  $('.btn-group button:first-child').css({
+    borderTopLeftRadius: '3px',
+    borderBottomLeftRadius: '3px'
+  });
+  $('.btn-group button:last-child').css({
+    borderTopRightRadius: '3px',
+    borderBottomRightRadius: '3px'
+  });
+  $('.btn-group button:not(:last-child)').css('border-right','none');
+
+  $('.btn-group button').click(function(){
+    /*if( $(this).hasClass('pressed') ){
+      $(this).removeClass('pressed');
+    }else {
+      $(this).addClass('pressed');
+    }*/
+    $(this).toggleClass('pressed');
+  });
+
+  /*
+  $('.btn-group button').click(function(){
+    $('.pressed').removeClass('pressed');
+    $(this).addClass('pressed');
+  });
+  */
+  </script>
+ </body>
+</html>

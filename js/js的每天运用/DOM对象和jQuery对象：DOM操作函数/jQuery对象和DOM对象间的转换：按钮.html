@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>jQuery对象和DOM对象间的转换</h1>
+  <button id="bt1">按钮1</button>
+  <button id="bt2">按钮2</button>
+  
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //原生DOM
+  var b1 = document.getElementById('bt1');
+  b1.onclick = function(){
+    document.body.style.backgroundColor = '#ffa';
+    this.innerHTML = '请稍候...';
+  }
+
+  //jQuery
+  $('#bt2').click(function(){
+    $(document.body).css('background-color','#ffa');
+    //console.log(this);  //DOM对象
+    $(this).html('请稍候......');
+  });
+  </script>  
+ </body>
+</html>

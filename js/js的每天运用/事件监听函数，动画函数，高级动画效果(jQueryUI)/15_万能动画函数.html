@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <style>
+    img {
+      position: absolute;
+    }
+  </style>
+ </head>
+ <body>
+
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  //创建满天随机小星星(大小和位置都随机)，点击一
+  //颗后，它变大变淡，最后从文档中消失
+  for(var i=0; i<15; i++){
+    $('<img src="img/star.png">').css('width',rn(30,300)+'px').css('left', rn(0, 600)+'px').css('top', rn(0, 600)+'px').appendTo(document.body);
+
+  }
+
+  //使用事件代理，为star添加单击监听函数
+  $('body').on('click','img', function(){
+    //this =>  img
+    $(this).animate({ //并发动画
+      width: '200%',
+      opacity: 0
+    }, 3000, function(){
+      $(this).remove();  //动画结束后删除看不见的星星
+    })
+  })
+
+
+
+  //返回指定范围内的随机数 random number
+  function rn(min, max){
+    return Math.floor(Math.random()*(max-min) + min);
+  }
+  </script>
+ </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="utf8"/> 
+<title>Javascript计算器</title> 
+</head> 
+<body> 
+<table> 
+<tr> 
+<td colspan="4"><input id="show" value="0"/></td> 
+</tr> 
+<tr> 
+<td><button onclick="number(this)" value="7">7</button></td> 
+<td><button onclick="number(this)" value="8">8</button></td> 
+<td><button onclick="number(this)" value="9">9</button></td> 
+<td><button onclick="calsym(this)" value="+">+</button></td> 
+</tr> 
+<tr> 
+<td><button onclick="number(this)" value="4">4</button></td> 
+<td><button onclick="number(this)" value="5">5</button></td> 
+<td><button onclick="number(this)" value="6">6</button></td> 
+<td><button onclick="calsym(this)" value="-">-</button></td> 
+</tr> 
+<tr> 
+<td><button onclick="number(this)" value="1">1</button></td> 
+<td><button onclick="number(this)" value="2">2</button></td> 
+<td><button onclick="number(this)" value="3">3</button></td> 
+<td><button onclick="calsym(this)" value="*">*</button></td> 
+</tr> 
+<tr> 
+<td><button onclick="number(this)" value="0">0</button></td> 
+<td><button onclick="calsym(this)" value="=">=</button></td> 
+<td><button onclick="clearCal()" value="c">c</button></td> 
+<td><button onclick="calsym(this)" value="/">/</button></td> 
+</tr> 
+</table> 
+</body> 
+<script type="text/javascript" src="jquery-1.9.1.js"></script> 
+<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
+<script type="text/javascript"> 
+var num0 = null; 
+var num1 = null; 
+var symble = null; 
+var lastclick = null; 
+var symarr = new Array(); //符号集合 
+symarr[0] = '+'; 
+symarr[1] = '/'; 
+symarr[2] = '*'; 
+symarr[3] = '-'; 
+symarr[4] = '='; 
+function number(n){ 
+	var numnow = $('#show'); 
+	var _exist=$.inArray(lastclick,symarr); //判断上次点击是否为符号 
+	if (numnow.val() == 0 || _exist != -1) {//若显示框为0 或者上次点击为符号，则重新记录显示框 
+		numnow.val($(n).val()); 
+	}else{ 
+		numnow.val(parseInt(numnow.val()) * 10 +parseInt($(n).val())); 
+	} 
+	lastclick = $(n).val(); // 更新上次点击 
+} 
+ 
+function calsym(cs){ //符号点击事件响应 
+	var numnow = $('#show'); 
+	var _exist=$.inArray(lastclick,symarr); 
+	if (num0 == null && symble == null) { //初始状态 
+		num0 = numnow.val(); 
+		symble = $(cs).val(); 
+	}else if(num0 != null && num1 == null && _exist !=-1){ // 连续点操作符的处理，及第一次点击操作符处理 
+		symble = $(cs).val(); 
+	}else{ //正常计算状态 
+		num1 = numnow.val(); 
+		var result = calculate(symble,num0,num1); 
+		symble = $(cs).val(); //上行及本行：先计算之前的运算符及结果，再更新运算符为本次点击 
+		num0 = result; 
+		numnow.val(result); 
+		num1 = null; 
+	} 
+		lastclick = $(cs).val(); // 更新上次点击 
+	} 
+ 
+function clearCal(){ //清空函数 
+	$('#show').val('0'); 
+	num0 = null; 
+	num1 = null; 
+	symble = null; 
+	lastclick = null; 
+} 
+ 
+function calculate(sym,m,n){ //计算并返回结果 
+	var res = null; 
+	m = parseInt(m); 
+	n = parseInt(n); 
+	switch(sym){ 
+		case '+':res = m+n;break; 
+		case '-':res = m-n;break; 
+		case '*':res = m*n;break; 
+		case '/': 
+		if (n == 0) { 
+			alert("false"); 
+			break; 
+		} 
+		res = m/n; break; 
+		default: break; 
+	} 
+	return res; 
+} 
+</script> 
+</html>
+44444444

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+ </head>
+ <body>
+  <img src="img/star.png" alt="">
+
+  <script src= "js/jquery-1.11.3.js"></script>
+  <script>
+  $('img').click(function(){
+    //动画效果的排队
+    
+    /*
+    $(this).hide(3000, function(){
+      $(this).show(3000, function(){
+        $(this).hide(3000, function(){
+          $(this).show(3000, function(){
+            $(this).hide(3000, function(){
+              $(this).show(3000);
+            })
+          })
+        })
+      });
+    });
+    */
+
+    /*
+    $(this).hide(3000);
+    console.log(111);
+    $(this).show(3000);
+    console.log(222);
+    $(this).hide(3000);
+    console.log(333);
+    $(this).show(3000);
+    console.log(444);
+    */
+
+    for(var i=0; i<3; i++){
+      $(this).hide(3000);
+      $(this).show(3000);
+      console.log(`第${i}个循环结束`)
+    }
+    console.log('脚步执行结束');
+  });
+  </script>
+ </body>
+</html>

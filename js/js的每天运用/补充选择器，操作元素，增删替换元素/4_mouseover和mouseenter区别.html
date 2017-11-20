@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    div {
+      border: 1px solid #aaa;
+      margin: 20px;
+    }
+  </style>
+ </head>
+ <body>
+  <div id="d1">
+    AA
+    <p>BB</p>
+    CC
+  </div>
+  <div id="d2">
+    AA
+    <p>BB</p>
+    CC
+  </div>
+
+  <script>
+    var counter1 = 0
+    d1.onmouseover = function(){
+      counter1++;
+      console.log('COUNTER1:'+counter1);
+    }
+    //mouseover在子元素间切换时也会触发
+
+    var counter2 = 0
+    d2.onmouseenter = function(){
+      counter2++;
+      console.log('COUNTER2:'+counter2);
+    }
+  </script>
+ </body>
+</html>

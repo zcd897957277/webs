@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>作业1</h1>
+
+  <ul id="list">
+    <li><a href="#">佳能(231)</a></li>
+    <li><a href="#">索尼(3241)</a></li>
+    <li><a href="#">尼康(342)</a></li>
+    <li><a href="#">莱卡(23)</a></li>
+    <li><a href="#">三星(545)</a></li>
+    <li><a href="#">卡西欧(24)</a></li>
+    <li><a href="#">松下(134)</a></li>
+    <li><a href="#">柯达(5623)</a></li>
+    <li><a href="#">富士(334)</a></li>
+    <li><a href="#">明基(454)</a></li>
+    <li><a href="#">宾得(56)</a></li>
+    <li><a href="#">爱国者(2342)</a></li>
+    <li><a href="#">理光(134)</a></li>
+    <li><a href="#">欧巴(2341)</a></li>
+    <li><a href="#">其它所有厂家(23422)</a></li>
+  </ul>
+
+  <button id="btShowAll">显示所有品牌</button>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('#list li').css('display','inline-block').css('width', '30%');
+    $('#list li a').css('text-decoration','none').css('color', '#333');
+
+    $(document.body).css('text-align','center');
+
+    //隐藏下标大于5的元素
+    //$('#list li:gt(5)').hide();
+    //$('#list li:last').show();
+    $('#list li:gt(5):not(:last)').hide();
+
+
+    var isShowAll = false;
+    //为按钮添加事件监听
+    $('#btShowAll').click(function(){
+      //$('#list li').show();
+      if(isShowAll){
+        $('#list li:gt(5):not(:last)').hide();
+        $(this).html('显示所有品牌');
+        isShowAll = false; 
+      }else {
+        $('#list li:hidden').show();
+        $(this).html('精简显示品牌');
+        isShowAll = true; 
+      }
+      
+    });
+  </script>
+ </body>
+</html>

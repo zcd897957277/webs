@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<p id="p1">回复<a>10</a></p>
+<script>
+var p = document.getElementById('p1'); 
+console.log(p.firstChild);//"回复"
+console.log(p.firstChild.innerHTML); //innerHTML输出开始与结束符号之间的内容HTML
+console.log(p.firstElementChild.innerHTML);
+
+var iterator=
+	document.createNodeIterator(
+	  p,NodeFilter.SHOW_ALL,//SHOW_ELEMENT
+          null,false
+        )
+//	用到的四个参数意义如下：
+//1、root:从树中的哪个节点开始搜索；
+//2、whatToShow:一个数值代码，代表哪些节点需要搜索；
+//3、filter:NodeFilter对象，用来决定需要忽略哪些节点；
+//4、entityReferenceExpansion:布尔值，表示是否需要扩展实体引用；
+//whatToShow参数可以有下列这些常量或其组合的取值：
+//1、NodeFilter.SHOW_ALL：搜索所有节点；
+//2、NodeFilter.SHOW_ELEMENT：搜索元素节点；
+//3、NodeFilter.SHOW_ATRRIBUTE：搜索特性节点；
+//4、NodeFilter.SHOW_TEXT：搜索文本节点；
+//5、NodeFilter.SHOW_ENTITY_REFERENCE：搜索实体引用节点；
+//6、NodeFilter.SHOW_ENTITY：搜索实体节点；
+//7、NodeFilter.SHOW_PROCESSING_INSTRUCTION：搜索PI节；
+//8、NodeFilter.SHOW_COMMENT：搜索注释节点；
+//9、NodeFilter.SHOW_DOCUMENT：搜索文档节点；
+//10、NodeFilter.SHOW_DOCUMENT_TYPE：搜索文档类型节点；
+//11、NodeFilter.SHOW_DOCUMENT_FRAGMENT：搜索文档碎片节节；
+//12、NodeFilter.SHOW_NOTATION：搜索记号节点；
+console.dir(p)
+
+var oFragment = document.createDocumentFragment();
+for(var i = 0;i < 5; i++) {
+  var oP = document.createElement("p");
+  var oText = document.createTextNode("Hello World");
+  oP.appendChild(oText);
+  oFragment.appendChild(oP);
+}
+document.body.appendChild(oFragment);
+</script>
+</body>
+</html>

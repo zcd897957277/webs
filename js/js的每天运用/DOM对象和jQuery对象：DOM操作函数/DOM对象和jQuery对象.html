@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ </head>
+ <body>
+  <h1>DOM对象和jQuery对象</h1>
+  <p id="p1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nulla ipsa adipisci quidem commodi culpa necessitatibus pariatur magnam maxime impedit. Neque ea praesentium vel ad itaque? Ex assumenda officia neque.</p>
+  <p id="p2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius nulla ipsa adipisci quidem commodi culpa necessitatibus pariatur magnam maxime impedit. Neque ea praesentium vel ad itaque? Ex assumenda officia neque.</p>
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  //DOM操作：查找第一个p元素，修改样式
+  var myNewsContent = document.getElementById('p1');//DOM对象
+  //console.log(p);
+  //console.dir(p);
+  //p.style.color = '#a00';
+  //p.onclick = function(){
+  //  this.style.display = 'none';
+  //}
+
+  //DOM对象不能使用jQuery函数
+  //p.css('color', '#00a');
+  //p.click(function(){alert(999);})
+
+  //DOM对象封装为jQuery对象
+  $(myNewsContent).css('color', '#0ea');
+
+  //jQuery实现
+  //var p = $('p');  //jQuery对象——类数组对象
+  //console.log(p); 
+  //console.log(p instanceof Array);  //false
+  //p.css('color','#0a0');
+  //p.click(function(){
+  //  alert(123);
+  //});
+  
+  //jQuery对象也不能使用DOM对象的成员
+  //p.style.color = '#ff0';
+  //p.onclick = function(){alert(888);}
+
+  //取出jQuery对象中封装的DOM对象
+  //p[0].style.color = '#ea0';
+  //p[1].style.color = '#a0e';
+  </script>
+ </body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  
+  </style>
+ </head>
+ <body>
+  <select id="province">
+    <option value="-1">—请选择省份—</option>
+  </select>
+
+  <select id="city">
+    <option value="-1">—请选择地级市—</option>
+  </select>
+
+
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+  var provinceList = [
+    '北京市',
+    '上海市',
+    '浙江省'
+  ];
+  var cityList = [
+    ['东城区','西城区','朝阳区'],
+    ['浦东区','闵行区','黄浦区'],
+    ['杭州市','绍兴市','金华市']
+  ]
+
+  //填充省份列表    for  for..in  forEach
+  var str = '';
+  $.each(provinceList, function(i,v){
+    //console.log('处理数组中的一个元素');
+    //console.log(i+'-'+v);
+    str += `<option value="${i}">${v}</option>`;
+  })
+  $('#province').append(str);  //防止文档抖动
+
+  //当用户选择某个省份时，填充对应的城市列表
+  $('#province').change(function(){
+    //console.log(this.value);
+    $('#city').html('<option value="-1">—请选择地级市—</option>');
+    if(this.value==='-1'){
+      return;
+    }
+  
+    var cities = cityList[this.value];
+    var str = '';
+    $.each(cities, function(i,c){
+      str += `<option value="${i}">${c}</option>`;
+    })
+    $('#city').append(str);
+
+  });
+  </script>
+ </body>
+</html>

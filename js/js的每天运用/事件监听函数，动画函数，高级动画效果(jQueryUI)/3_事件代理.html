@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  .calc {
+    width: 200px;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+  }
+  .calc input {
+    width: 100%;
+    text-align: right;
+  }
+  .calc button {
+    width: 30%;
+  }
+  </style>
+ </head>
+ <body>
+  <div class="calc">
+    <input >
+    <button>7</button>
+    <button>8</button>
+    <button>9</button>
+    <button>4</button>
+    <button>5</button>
+    <button>6</button>
+    <button>1</button>
+    <button>2</button>
+    <button>3</button>
+  </div>
+
+  <button id="btnAdd">添加新的按钮</button>
+  <script src="js/jquery-1.11.3.js"></script>
+  <script>
+    $('.calc').delegate('button','click',function(){
+      //console.log(this);  //button
+      $('.calc input').val( $('.calc input').val()+$(this).html() );
+    })    
+
+    $('#btnAdd').click(function(){
+      $('.calc').append('<button>0</button>');
+    });
+  </script>
+ </body>
+</html>
