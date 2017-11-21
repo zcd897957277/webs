@@ -1,0 +1,52 @@
+<html>  
+	<head> 
+		<title></title> 
+		<meta charset="utf-8"/>
+<script language="JavaScript"> 
+var tempRow=0; 
+var maxRows=0; 
+function insertRows(){ 
+	tempRow=table1.rows.length-1; 
+	maxRows=tempRow; 
+	tempRow=tempRow+1; 
+	var Rows=table1.rows;//Rows 
+	var newRow=table1.insertRow(table1.rows.length);//
+	var Cells=newRow.cells;//Cells 
+    for (i=0;i<2;i++)//
+	{ 
+	    var newCell=Rows(newRow.rowIndex).insertCell(Cells.length); 
+ 		newCell.align="center"; 
+ 		switch (i) 
+ 		{ 
+ 			case 0: newCell.innerHTML="<td valign='top'>corpName</TD>"; break; 
+ 			case 1 : newCell.innerHTML="<td valign='top'><a href='javascript:delTableRow(\""+tempRow+"\")'>ɾ��</a></TD>"; break; 
+ 		} 
+ 	} 
+ 	maxRows+=1; 
+} 
+function delTableRow(rowNum){ 
+	if (table1.rows.length >rowNum){ 
+		table1.deleteRow(rowNum); 
+ 	} 
+} 
+</script> 
+</head> 
+<body> 
+	<form action=""> 
+ 		<table border="0" cellspacing="0" cellpadding="0" width="98%" align="center"> 
+ 			<tr valign="top"> 
+ 				<th> 
+ 					<input value="你好" type="button" onclick="insertRows()"> 
+ 				</th> 
+ 			</tr> 
+ 		</table> 
+ 		<br /> 
+ 		<table border="1" width="98%" align="center" id="table1"> 
+ 			<tr> 
+ 				<th>小炮想去哪就去哪？</th> 
+ 				<th>蒙多<th> 
+ 			</tr> 
+ 		</table> 
+ 	</form> 
+</body> 
+</html>

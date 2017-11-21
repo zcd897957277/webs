@@ -1,0 +1,105 @@
+﻿ <!DOCTYPE html>
+<html>
+<head>
+	<title>Craps</title>
+	<script type="text/javascript">
+		var cwidth = "500";
+		var cheight = 300;//画布大小
+		var dicex = 200;
+		var dicey = 150;//图形的位置
+		var dicewidth = 100;
+		var diceheight = 100;//外框的位置长宽大小
+		var dotrad = 6;//骰子半径
+		var i = 0;
+		var ctx;
+		function init(){
+			if(i>10){drawface(4);return;}
+  			setTimeout("init();",100);
+			var ch = 1 + Math.floor(Math.random()*  6);//Math.random()  生成0和1之间的随机小数;Math.random() * 6 生成0和6之间的随机小数;Math.random() * 6 + 1生成1和7之间的随机小数;Math.floor(x)函数，返回小于等于x的最大整数;所以，Math.floor(Math.random() * 6 + 1)生成1和7之间的随机整数（不包括7）
+			drawface(ch);
+			i = i +1;
+		}
+		function drawface(n){
+			ctx = document.getElementById('canvas').getContext('2d');//代码的第一行通过使用 document.getElementById() 方法来为 <canvas> 元素得到DOM对象。一旦有了元素对象，你可以通过使用它的getContext() 方法来访问绘画上下文。
+			ctx.lineWidth = 5;//边框设置厚度
+			ctx.clearRect(dicex, dicey, dicewidth, diceheight);
+			ctx.strokeRect(dicex, dicey, dicewidth, diceheight);
+			ctx.fillStyle = "#009966";
+			switch(n){
+				case 1:
+					Draw1();
+					break;
+				case 2:
+					Draw2();
+					break;
+				case 3:
+					Draw2();
+					Draw1();
+					break;
+				case 4:
+					Draw4();
+					break;
+				case 5:
+					Draw4();
+					Draw1();
+					break;
+				case 6:
+					Draw4();
+					Draw2mid();
+					break;
+			}// switch(变量){case 对比值1： 如果变量值等于对比值1，则执行这里的语句;break;case 对比值2：如果变量值等于对比值2，则执行这里的语句break;default: 如果上面的条件都不符合，则执行这里的语句
+		}
+		function start(){
+			var dotx;//保存单个圆点的水平位置
+			var doty;
+			ctx.beginPath();
+		}
+		function mid(x, y){
+			dotx = dicex + x;
+			doty = dicey + y;
+			ctx.arc(dotx, doty, dotrad, 0, Math.PI*2, true);
+		}
+		function end(){
+			ctx.closePath(); 
+			ctx.fill();
+		}
+		//画出中心一点
+		function Draw1(){
+			start();
+			mid(.5*dicewidth, .5*diceheight);
+			end();
+		}
+		//画出对角线两点
+		function Draw2(){
+			start();
+			mid(3*dotrad, 3*dotrad);
+			mid(dicewidth - 3*dotrad, diceheight - 3*dotrad);
+			end();
+		}
+		//画出四个顶点
+		function Draw4(){
+			start();
+			mid(3*dotrad, 3*dotrad);
+			mid(dicewidth - 3*dotrad, diceheight - 3*dotrad);
+			end();
+			start();
+			mid(dicewidth - 3*dotrad, 3*dotrad);
+			mid(3*dotrad, diceheight - 3*dotrad);
+			end();
+		}
+		//画出水平位置中间的两点
+		function Draw2mid(){
+			start();
+			mid(3*dotrad, .5*diceheight);
+			mid(dicewidth - 3*dotrad, .5*diceheight);
+			end();
+		}
+		// var Interval = setInterval("init();i=i+1;",500);
+	</script>
+</head>
+<body onload = "init();">
+	<canvas id="canvas" height  = "300px" width = "500px">
+		Your browser doesn't support the HTML5 element canvas.
+	</canvas>
+</body>
+</html>
