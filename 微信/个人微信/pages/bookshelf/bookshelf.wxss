@@ -1,0 +1,141 @@
+/* bookshelf.wxss */
+.bookshelf-index{
+  height: 100%;
+}
+.bookshelf-nav{
+  height: 126rpx;
+  background-color:#6b4832;
+  text-align: center;
+  padding:0 54rpx;
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}
+.trans-button{
+  display: inline-block;
+}
+.button-default{
+  border:1px solid #ffffff;
+  background-color: #6b4832;
+  color: white;
+  width: 250rpx;
+  display: inline-block;
+  height: 86rpx; 
+  margin-top: 20rpx;
+  line-height:68rpx !important;
+  border-radius:7px;
+}
+/** 添加自定义button点击态样式类**/
+.button-hoverr {
+  background-color: white;
+  color:#6b4832;
+}
+.vb1{
+  border-right: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.vb2{
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+button::after{
+  display:none !important;
+}
+.bookshelf-management{
+  color: white;
+  float:right;
+  margin-top:6%;
+}
+/*内容展示区  */
+.bookshelf-content{
+  margin-top:126rpx;
+}
+.bookshelf-show-area{
+  height: 100%;
+  padding:0 0 0 50rpx;
+  padding-bottom: 10rpx;
+  background-color:#6b4832;
+}
+image{
+  display: inline-block;
+  width:180rpx;
+  height:240rpx;
+  padding-top: 20rpx;
+}
+.book-right{
+  padding-right: 50rpx;
+}
+/*添加区  */
+.bookshelf-add-area{
+  background-color:white;
+}
+.book-scroll{
+  padding:20rpx 54rpx;
+  border-bottom:1px solid #efefef;
+  height:86rpx;
+}
+.scroll-item{
+  display: inline-block;
+  width: 100%;
+  position:relative;
+  align-items:center;
+  justify-content:center;
+}
+.recommended-button{
+  width: 114rpx;
+  height: 72rpx;
+  text-align: center;
+  line-height: 72rpx;
+  border: 2px solid #7aaadb;
+  border-radius: 20%;
+  display:inline-block;
+  vertical-align:middle;
+}
+.recommended-content{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display:inline-block;
+  width:71%;
+  padding-left:10rpx;
+  line-height:72rpx;
+  vertical-align:middle;
+}
+.scroll-img{
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align:middle;
+  padding: 0;
+}
+/*小说添加区  */
+.book-add-area{
+  padding:0 0 0 50rpx;
+}
+.img-show-content{
+  background-color:#7aaadb;
+}
+.img-mask-demo{
+  padding: 20rpx;
+  width:150rpx;
+  position:absolute;
+  margin-left:-230rpx;
+  display:inline-block;
+  height:205rpx;
+  background-color:transparent;
+  color:transparent;
+  padding-top: 20rpx;
+}
+.img-mask{
+  background-color:#7aaadb;
+  color:white;
+}
+.img-mask-hide{
+  opacity:0;
+}
+.img-mask-block{
+  opacity:1;
+}

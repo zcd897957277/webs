@@ -1,0 +1,35 @@
+<!--search.wxml-->
+<view>
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input class='search-box-input' placeholder-class="placeholder-class" placeholder='搜索书名、作者、出版社' type='text' bindblur='displayMark' value='{{inputValue}}'></input>
+  </view>
+  <!-- 热门搜索 -->
+  <view class="hot-search">
+    <!-- 导航 -->
+    <view class='hot-search-nav'>
+      <text class='hot-search-text'>热门搜索</text>
+      <image class='hot-search-img' src='{{refreshSrc}}'></image>
+    </view>
+    <!-- 热门列表 -->
+    <view class='hot-search-list'>
+      <block wx:for-items="{{hotSearch_list}}" wx:key="{{item.hotSearch_id}}">
+        <view class='hot-search-list-content'>{{item.hotSearch_name}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 搜索历史 -->
+  <view class='search-history'>
+    <!-- 导航 -->
+    <view class='search-history-nav'>
+      <text class='search-history-text'>搜索历史</text>
+      <image class='search-history-img' wx:if='{{searchHistoryData.length}}' src='{{deleteSrc}}' bindtap='deleteHistory'></image>
+    </view>
+    <!-- 历史列表 -->
+    <view class='search-history-list'>
+      <block wx:for-items="{{searchHistoryData}}" wx:key="{{item.searchHistory_id}}">
+        <view class='hot-search-list-content'>{{item.searchHistory_name}}</view>
+      </block>
+    </view>
+  </view>
+</view>

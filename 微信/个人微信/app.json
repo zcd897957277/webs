@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/bookshelf/bookshelf",
+    "pages/search/search",
+    "pages/mime/mime",
+    "pages/bookcity/bookcityPage/bookcityClassification/bookcityClassification",
+    "pages/bookcity/bookcityPage/bookcityFree/bookcityFree",
+    "pages/bookcity/bookcityPage/bookcityMember/bookcityMember",
+    "pages/bookcity/bookcityPage/bookcityHomepage/bookcityHomepage",
+    "pages/bookshelf/sonpages/collection"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTitleText": "zz个人小说站",
+    "navigationBarTextStyle": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#12fc33",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/bookshelf/bookshelf",
+        "text": "书架",
+        "iconPath": "image/tab-bookshelf.png",
+        "selectedIconPath": "image/tab-bookshelf-selected.png"
+      },
+      {
+        "pagePath": "pages/bookcity/bookcityPage/bookcityHomepage/bookcityHomepage",
+        "text": "书城",
+        "iconPath": "image/tab-bookcity.png",
+        "selectedIconPath": "image/tab-bookcity-selected.png"
+      },
+      {
+        "pagePath": "pages/search/search",
+        "text": "搜索",
+        "iconPath": "image/tab-search.png",
+        "selectedIconPath": "image/tab-search-selected.png"
+      },
+      {
+        "pagePath": "pages/mime/mime",
+        "text": "我的",
+        "iconPath": "image/tab-mime.png",
+        "selectedIconPath": "image/tab-mime-selected.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "require": "20000",
+    "connectSocket": "20000",
+    "uploadFile": "20000",
+    "downloadFile": "20000"
+  },
+  "debug": true
+}

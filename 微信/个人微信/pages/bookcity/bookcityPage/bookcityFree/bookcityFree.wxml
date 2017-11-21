@@ -1,0 +1,104 @@
+<!--bookcityFree.wxml-->
+<!-- 导航条引入 -->
+<import src="../../bookcityCommon/bookcityCommon.wxml" />
+<view class="bookcity-nav">
+  <template is="bookcityNav" wx:for-items="{{navList}}" data="{{...item}}" wx:key="{{item.id}}"></template>
+</view>
+
+<!-- 限时免费 -->
+<!-- 头 -->
+<view class='time_free'>
+  <!-- 左 -->
+  <view class='time_free_head_left'>
+    <text class='time_free_head_left_text'>限时免费</text>
+    <!-- 倒计时 -->
+    <view class='countDown_time' bindtap='countdown'>
+      <view>{{mianfeitime_hour}}</view><text>:</text>
+      <view>{{mianfeitime_minute}}</view><text>:</text>
+      <view>{{mianfeitime_second}}</view>
+    </view>
+  </view>
+  <!-- 右 -->
+  <view class='time_free_head_right'>
+    <text class='time_free_head_right_text'>更多</text>
+    <image class='more' src='{{moreSrc}}'></image>
+  </view>
+  <!-- 去浮动 -->
+  <view class='clear'></view>
+</view>
+<!-- 内容 -->
+<view class='rxdetailNovel'>
+  <block wx:for="{{novel_free}}" wx:key="{{item.id}}">
+    <view class='rxdetailNovel_content {{index==1 || index==4 ? "rxdetailNovel_content_padding" :""}} {{index>2 ? "rxdetailNovel_content_bigcont" :""}}' hidden="{{index > 5}}">
+      <image class='rxdetailNovel_img' src='{{item.detNovel_src}}'></image>
+      <text>{{item.detNovel_name}}</text>
+    </view>
+  </block>
+  <view class='clear'></view>
+</view>
+
+<!-- 章节免费 -->
+<!-- 头 -->
+<view class='chapters_free'>
+  <!-- 左 -->
+  <view class='chapters_free_head_left'>
+    <text class='chapters_free_head_left_text'>章节免费</text>
+    <!-- 倒计时 -->
+    <view class='countDown_chapters'>
+      <view>{{mianfeichapters_hour}}</view><text>:</text>
+      <view>{{mianfeichapters_minute}}</view><text>:</text>
+      <view>{{mianfeichapters_second}}</view>
+    </view>
+  </view>
+  <!-- 右 -->
+  <view class='chapters_free_head_right'>
+    <text class='chapters_free_head_right_text'>更多</text>
+    <image class='more' src='{{moreSrc}}'></image>
+  </view>
+  <!-- 去浮动 -->
+  <view class='clear'></view>
+</view>
+<!-- 内容 -->
+<view>
+  <block wx:for-items="{{novel_free}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index < 1}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 免费新书 -->
+<!-- 头 -->
+<view class='newBook_free'>
+  <text>免费新书</text>
+</view>
+<!-- 内容 -->
+<view>
+  <block wx:for-items="{{novel_free}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index >= 4}}">
+     <image class='simpleNovel_Bimg' src='{{item.detNovel_src}}'></image>
+     <view class='simpleNovel_content_new'>
+      <view class='simpleNovel_oneline'>
+        <text class='simpleNovel_novName'>{{item.detNovel_name}}</text>
+        <text class='simpleNovel_count'>{{item.detNovel_lovePer}}</text>
+      </view>
+      <view>
+        <text class='simpleNovel_content_text'>{{item.detNovel_content}}</text>
+      </view>
+      <view class='simpleNovel_threeline'>
+        <view class='simpleNovel_threeline_left'>
+          <image class='simpleNovel_Simg' src='{{authorSrc}}'></image>
+          <text class='simpleNovel_autgor'>{{item.detNovel_author}}</text>
+        </view>
+        <view class='simpleNovel_threeline_right'>
+          <text class='simpleNovel_category'>{{item.detNovel_category}}</text>
+          <text class='simpleNovel_score'>{{item.detNovel_score}}</text>
+        </view>
+      </view>
+     </view>
+     <view class='clear'></view>
+    </view>
+  </block>
+  <view class='viewmore'>查看更多</view>
+</view>

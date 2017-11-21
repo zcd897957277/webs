@@ -1,0 +1,5 @@
+<!--bookcityCommon.wxml-->
+<!-- 导航条 -->
+<template name="bookcityNav">
+    <view id="{{id}}" class="bookshelf-nav-item {{isSelected ? 'bookshelf-nav-item-show' : ''}} {{isRight ? 'bookshelf-nav-item-right' : ''}}" bindtap="bookNavTrans">{{name}}</view>
+</template>

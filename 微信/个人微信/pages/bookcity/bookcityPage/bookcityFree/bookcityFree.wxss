@@ -1,0 +1,209 @@
+/* bookcityFree.wxss */
+/* 导航条 */
+@import "../../bookcityCommon/bookcityCommon.wxss";
+/* 去浮动 */
+.clear{
+  clear: both;
+}
+/* 限时免费 */
+/* 头 */
+.time_free,.chapters_free{
+  padding: 168rpx 32rpx 28rpx 32rpx;
+  border-bottom: 3rpx solid #f1f1f1;
+  vertical-align: middle;
+}
+/* 左 */
+.time_free_head_left,.chapters_free_head_left{
+  float: left;
+}
+.time_free_head_left_text,.chapters_free_head_left_text{
+  font-weight: 600;
+  padding-right: 20rpx;
+  float: left;
+  vertical-align: baseline;
+}
+/* 倒计时 */
+.countDown_time,.countDown_chapters{
+  float: left;
+  vertical-align: baseline;
+}
+.countDown_time>view,.countDown_chapters>view{
+  float: left;
+  padding: 8rpx 18rpx;
+  background: #6facfc;
+  color: #fff;
+  border-radius: 10rpx;
+}
+.countDown_time>text,.countDown_chapters>text{
+  float: left;
+  color: #6facfc;
+  padding: 0 6rpx;
+  font-weight: 600;
+}
+/* 右 */
+.time_free_head_right,.chapters_free_head_right{
+  float: right;
+}
+.time_free_head_right_text,.chapters_free_head_right_text{
+  color: #858d90;
+  padding-right: 15rpx;
+  vertical-align: baseline;
+}
+.more{
+  width: 24rpx;
+  height: 33rpx;
+  vertical-align: sub;
+  padding-bottom: 5rpx;
+}
+/* 内容 */
+.rxdetailNovel{
+  padding: 27rpx;
+  border-top: 3rpx solid #f7fbfa;
+}
+.rxdetailNovel_content{
+  float: left;
+}
+.rxdetailNovel_content_padding{
+  padding: 0 19rpx;
+}
+.rxdetailNovel_content_bigcont{
+  padding-top: 15rpx;
+}
+.rxdetailNovel_img{
+  width: 220rpx;
+  height: 322rpx;
+}
+.rxdetailNovel_content>text{
+  display: block;
+  color:#858b89;
+  width: 220rpx;
+  text-align: center;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 章节免费 */
+/* 头 */
+.chapters_free{
+  padding-top: 28rpx;
+  border-top: 12rpx solid #eff0f2;
+}
+/* 内容 */
+.simpleNovel{
+  border-top: 3rpx solid #f7fbfa;
+  padding:27rpx 0;
+}
+.simpleNovel_name{
+  color:#323232;
+  font-weight: 600;
+  padding:0 33rpx 30rpx 33rpx;
+  display: block;
+  font-size:31rpx;
+}
+.simpleNovel_content{
+  width: 93%;
+  padding:0 33rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  color:#858b89;
+  font-size:31rpx;
+}
+
+/* 免费新书 */
+/* 头 */
+.newBook_free{
+  padding: 28rpx 32rpx;
+  border-top: 12rpx solid #eff0f2;
+}
+.newBook_free>text{
+  font-weight: 600;
+}
+/* 内容 */
+.simpleNovel{
+  border-top: 3rpx solid #f7fbfa;
+  padding:27rpx 0;
+}
+.simpleNovel_singleimg,.simpleNovel_Bimg{
+  width: 228rpx;
+  height: 321rpx;
+  float: left;
+  padding-left: 27rpx;
+  padding-right: 30rpx;
+}
+.simpleNovel_content_new{
+  float: left;
+  width: 58%; 
+  padding-top: 35rpx;
+}
+.simpleNovel_oneline{
+  display: block;
+  line-height: 17rpx;
+  padding-bottom: 44rpx;
+}
+.simpleNovel_novName{
+  color:#323232;
+  font-weight: 600;
+  font-size:31rpx;
+}
+.simpleNovel_count{
+  float: right;
+  color:#858b89;
+  font-size:31rpx;
+}
+.simpleNovel_content_text{
+  color:#858b89;
+  font-size:31rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 42rpx;
+}
+.simpleNovel_threeline{
+  padding-top: 50rpx;
+  display: block;
+}
+.simpleNovel_threeline_left{
+  float: left;
+}
+.simpleNovel_Simg{
+  width: 37rpx;
+  height: 39rpx;
+  padding-right: 12rpx;
+  vertical-align: middle;
+}
+.simpleNovel_autgor{
+  color:#858b89;
+  font-size: 28rpx;
+  vertical-align: middle;
+}
+.simpleNovel_threeline_right{
+  float: right;
+}
+.simpleNovel_category{
+  color:#858b89;
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  border: 3rpx solid #9f9fa7;
+  padding: 6rpx 15rpx;
+  border-radius: 50rpx;
+}
+.simpleNovel_score{
+  color:#5ea654;
+  font-size: 28rpx;
+  border: 3rpx solid #5ea654;
+  padding: 6rpx 15rpx;
+  border-radius: 50rpx;
+}
+.viewmore{
+  border-top: 3rpx solid #f7fbfa;
+  padding: 42rpx 0 52rpx 0;
+  text-align: center;
+  font-size: 31rpx;
+  color: #69adf8;
+  font-weight: 600;
+}

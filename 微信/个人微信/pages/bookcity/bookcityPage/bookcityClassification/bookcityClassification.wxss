@@ -1,0 +1,81 @@
+/* bookcityClassification.wxss */
+/* 导航条 */
+@import "../../bookcityCommon/bookcityCommon.wxss";
+/* 正文 */
+.classification{
+  padding-top: 130rpx;
+}
+/* 男频 */
+/* 男频head */
+.nanpin_head{
+  padding: 30rpx 30rpx;
+  overflow: hidden;
+}
+/* 左 */
+.nanpin_head_left_text{
+  font-weight: 600;
+  font-size: 31rpx;
+  float: left;
+}
+/* 右 */
+.nanpin_head_right_text{
+  color:#9e9ea0;
+  font-size: 31rpx;
+  float: right;
+}
+/* 男频的具体内容 */
+.nanpin_detail,.nvpin_detail{
+  overflow: hidden;
+}
+/* 列 */
+.nanpin_detail_col,.nvpin_detail_col{
+  float: left;
+  padding: 27rpx;
+  width: 42%;
+  border-top: 3rpx solid #f6faf9;
+  border-bottom: 3rpx solid #f6faf9;
+}
+.nanpin_detail_col_bp,.nvpin_detail_col_bp{
+  border-right: 3rpx solid #f6faf9;
+}
+.nanpin_img,.nvpin_img{
+  width: 99rpx;
+  height: 129rpx;
+  float: left;
+  padding-right: 30rpx;
+}
+.nanpin_novel_info,.nvpin_novel_info{
+  float: right;
+}
+.nanpin_novel_type,.nvpin_novel_type{
+  display: block;
+  margin-top: 10rpx;
+  margin-bottom:30rpx;
+  font-size: 31rpx;
+  font-weight: 600;
+}
+.nanpin_novel_books,.nvpin_novel_books{
+  color: #a0a4a7;
+  font-size: 31rpx;
+}
+/* 女频 */
+/* 女频head */
+.nvpin_head{
+  padding: 30rpx 30rpx;
+  overflow: hidden;
+}
+/* 左 */
+.nvpin_head_left_text{
+  font-weight: 600;
+  font-size: 31rpx;
+  float: left;
+}
+/* 右 */
+.nvpin_head_right_text{
+  color:#9e9ea0;
+  font-size: 31rpx;
+  float: right;
+}
+/* 左 */
+/* 右 */
+/* 女频的具体内容 */

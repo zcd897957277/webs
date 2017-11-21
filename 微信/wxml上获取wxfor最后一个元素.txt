@@ -1,0 +1,2 @@
+比如让最后一个元素隐藏
+hidden='{{index == listBooks.length-1}}

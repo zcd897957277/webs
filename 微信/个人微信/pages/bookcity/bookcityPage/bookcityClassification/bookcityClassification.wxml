@@ -1,0 +1,55 @@
+<!--bookcityClassification.wxml-->
+<!-- 导航条引入 -->
+<import src="../../bookcityCommon/bookcityCommon.wxml" />
+<view class="bookcity-nav">
+  <template is="bookcityNav" wx:for-items="{{navList}}" data="{{...item}}" wx:key="{{item.id}}"></template>
+</view>
+<!-- 正文 -->
+<view class='classification'>
+  <!-- 男频 -->
+  <view>
+    <!-- 男频head -->
+    <view class='nanpin_head'>
+      <!-- 左 -->
+      <text class='nanpin_head_left_text'>男频</text>
+      <!-- 右 -->
+      <text class='nanpin_head_right_text'>新增：{{addBoyBooks_counts}}</text>
+    </view>
+    <!-- 男频的具体内容 -->
+    <view class='nanpin_detail'>
+     <block wx:for-items="{{novel_classifiedInfor_nan}}"> 
+        <!-- 列 -->
+        <view class='nanpin_detail_col nanpin_detail_col_bp' wx:key="{{item.id}}">
+          <image class='nanpin_img' src='{{item.classNovel_src}}'></image>
+          <view class='nanpin_novel_info'>
+            <text class='nanpin_novel_type'>{{item.classNovel_type}}</text>
+            <text class='nanpin_novel_books'>{{item.classNovel_count}}</text>
+          </view>
+        </view>
+     </block> 
+    </view>
+  </view>
+  <!-- 女频 -->
+  <view>
+    <!-- 女频head -->
+    <view class='nvpin_head'>
+       <!-- 左 -->
+      <text class='nvpin_head_left_text'>女频</text>
+      <!-- 右 -->
+      <text class='nvpin_head_right_text'>新增：{{addGirlBooks_counts}}</text>
+    </view>
+    <!-- 女频的具体内容 -->
+    <view class='nvpin_detail'>
+     <block wx:for-items="{{novel_classifiedInfor_nv}}"> 
+        <!-- 列 -->
+        <view class='nvpin_detail_col nvpin_detail_col_bp' wx:key="{{item.id}}">
+          <image class='nvpin_img' src='{{item.classNovel_src}}'></image>
+          <view class='nvpin_novel_info'>
+            <text class='nvpin_novel_type'>{{item.classNovel_type}}</text>
+            <text class='nvpin_novel_books'>{{item.classNovel_count}}</text>
+          </view>
+        </view>
+     </block> 
+    </view>
+  </view>
+</view>

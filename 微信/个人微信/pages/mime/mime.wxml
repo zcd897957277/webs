@@ -1,0 +1,90 @@
+<!--mime.wxml-->
+<view>
+  <!-- 头管理 -->
+  <view>
+    <!-- 头像管理 -->
+    <view class='mime_head'>
+      <!-- 个人信息 -->
+      <view class='mime_head_myinfo'>
+        <image class='mime_head_img' src='{{headSrc}}'></image>
+        <view class='mime_head_content'>
+          <text class='mime_head_content_nicheng'>{{nicheng}}</text>
+          <text class='mime_head_content_zhanghao'>账号：{{zhanghao}}</text>
+        </view>
+      </view>
+      <!-- 签到 -->
+      <view class='mime_head_qd'>{{qiandao}}</view>
+    </view>
+    <!-- 个人数据管理 -->
+    <view class="myInfo">
+      <!-- 阅币 -->
+      <view class="myInfo_item">
+        <text class="myInfo_item_text">阅币</text>
+        <text class="myInfo_item_count">{{yuebi_count}}</text>
+      </view>
+      <!-- 礼券 -->
+      <view class="myInfo_item myInfo_item_center">
+        <text class="myInfo_item_text">礼券</text>
+        <text class="myInfo_item_count">{{liquan_count}}</text>
+      </view>
+      <!-- 会员 -->
+      <view class="myInfo_item">
+        <text class="myInfo_item_text">会员</text>
+        <text class="myInfo_item_open">立即开通</text>
+      </view>
+    </view>
+  </view>
+  <!-- 内容管理 -->
+  <view class="mime-content">
+    <!-- 邀请好友 -->
+    <view class="mime-content-item">
+      <!-- 左 -->
+      <view class="mime-content-item_left">
+        <image class="img_yqhy" src='{{yqhySrc}}'></image>
+        <text class="img_text">邀请好友</text>
+      </view>
+      <!-- 右 -->
+      <view class="mime-content-item_right">
+        <text class="text_right">免费领会员特权</text>
+        <image class="img_dkxq" src='{{dkxqSrc}}'></image>
+      </view>
+    </view>
+    <!-- 绑定手机 -->
+    <view class="mime-content-item mime-content-item_bothpdd">
+      <!-- 左 -->
+      <view class="mime-content-item_left">
+        <image class="img_bdsj" src='{{bdsjSrc}}'></image>
+        <text class="img_text">绑定手机</text>
+      </view>
+      <!-- 右 -->
+      <view class="mime-content-item_right">
+        <text class="text_right">赠送10000礼券</text>
+        <image class="img_dkxq" src='{{dkxqSrc}}'></image>
+      </view>
+    </view>
+    <!-- 联系客服 -->
+    <view class="mime-content-item">
+      <!-- 左 -->
+      <view class="mime-content-item_left">
+        <image class="img_lxkf" src='{{lxkfSrc}}'></image>
+        <text class="img_text">联系客服</text>
+      </view>
+      <!-- 右 -->
+      <view class="mime-content-item_right">
+        <image class="img_dkxq" src='{{dkxqSrc}}'></image>
+      </view>
+    </view>
+    <!-- 帮助 -->
+    <view class="mime-content-item mime-content-item_bpd">
+      <!-- 左 -->
+      <view class="mime-content-item_left">
+        <image class="img_bz" src='{{bzSrc}}'></image>
+        <text class="img_text">帮助</text>
+      </view>
+      <!-- 右 -->
+      <view class="mime-content-item_right">
+        <image class="img_dkxq" src='{{dkxqSrc}}'></image>
+      </view>
+    </view>
+  </view>
+</view>

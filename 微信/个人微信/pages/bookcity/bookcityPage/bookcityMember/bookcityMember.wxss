@@ -1,0 +1,258 @@
+/* bookcityMember.wxss */
+/* 导航条 */
+@import "../../bookcityCommon/bookcityCommon.wxss";
+/* 去浮动 */
+.clear{
+  clear: both;
+}
+/* 个人资料 */
+.userData{
+  overflow: hidden;
+  padding: 152rpx 27rpx 12rpx 27rpx;
+}
+/* 左 */
+.userData_left{
+  float: left;
+  overflow: hidden
+}
+.userData_left_img{
+  width: 120rpx;
+  height: 120rpx;
+  padding-right: 35rpx;
+  float: left;
+}
+.userData_left_content{
+  float: left;
+}
+.userName{
+  font-size: 31rpx;
+  font-weight: bold;
+  padding: 10rpx 0 20rpx 0;
+  display: block;
+}
+.userPrivilege{
+  color: #8c9194;
+  font-size: 31rpx;
+}
+/* 右 */
+.userData_right{
+  float: right;
+  background: #6caefc;
+  color: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx 32rpx;
+  font-size: 31rpx;
+  margin-top: 10rpx;
+}
+/* 会员精选 */
+.huiyuanjingxuan_par{
+  border-top: 12rpx solid #eff0f2;
+}
+/* 会员精选中的detail novel */
+.rxdetailNovel{
+  padding: 27rpx;
+  border-top: 3rpx solid #f7fbfa;
+}
+.rxdetailNovel_content{
+  float: left;
+}
+.rxdetailNovel_content_padding{
+  padding: 0 19rpx;
+}
+.rxdetailNovel_img{
+  width: 220rpx;
+  height: 322rpx;
+}
+.rxdetailNovel_content>text{
+  display: block;
+  color:#858b89;
+  width: 220rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+/* 会员男频、女频热文 */
+.huiyuan_par,.huiyuanjingxuan_par{
+  padding: 24rpx 27rpx 27rpx 27rpx;
+}
+.huiyuan,.huiyuanjingxuan{
+  width: 57rpx;
+  height: 57rpx;
+  padding-right: 14rpx;
+  vertical-align: middle;
+}
+.huiyuan_text,.huiyuanjingxuan_text{
+  vertical-align: middle;
+  color:#323232;
+  font-weight: 500;
+}
+/* 会员男频、女频热文中的detail novel */
+.detailNovel{
+  border-top: 3rpx solid #f7fbfa;
+  padding:27rpx 0;
+}
+.detailNovel_img{
+  width: 228rpx;
+  height: 322rpx;
+  padding-right: 30rpx;
+  padding-left: 27rpx;
+  float: left;
+}
+.detailNovel_content{
+  float: left;
+  width: 58%;
+}
+.detailNovel_name{
+  color:#323232;
+  font-weight: 600;
+  display: block;
+  padding-top: 20rpx;
+  font-size:31rpx;
+}
+.detailNovel_author{
+  color:#858b89;
+  display: block;
+  padding-top: 40rpx;
+  font-size:31rpx;
+}
+.detailNovel_content_det{
+  color:#858b89;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  padding-top: 46rpx;
+  font-size:31rpx;
+}
+/* 会员男频、女频热文中小说简单版 */
+.simpleNovel{
+  border-top: 3rpx solid #f7fbfa;
+  padding:27rpx 0;
+}
+.simpleNovel_name{
+  color:#323232;
+  font-weight: 600;
+  padding:0 33rpx 30rpx 33rpx;
+  display: block;
+  font-size:31rpx;
+}
+.simpleNovel_content{
+  width: 93%;
+  padding:0 33rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  color:#858b89;
+  font-size:31rpx;
+}
+/* 男频热销榜 */
+.nanpinrexiaobang_par,.nanpinrenqi_par{
+  padding: 49rpx 30rpx 50rpx 30rpx;
+  overflow: hidden; 
+}
+.nanpinrexiaobang_left_text,.nanpinrenqi_left_text{
+  float: left;
+  font-weight: 600;
+}
+.nanpinrexiaobang_right_text,.nanpinrenqi_right_text{
+  float: right;
+  width: 158rpx;
+  height: 58rpx;
+  border-radius: 50rpx;
+  background: #fb8b97;
+  text-align: center;
+}
+.nanpinrexiaobang_right_text_img,.nanpinrenqi_right_text_img{
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  padding-right: 9rpx;
+}
+.nvpin_text{
+  vertical-align: middle;
+  color: #f0e5e1;
+  display:inline-block;
+  padding-bottom:10rpx;
+}
+/* 男频热销榜中的detail novel */
+/* 男频热销榜中小说简单版 */
+.simpleNovel_Bimg{
+  width: 228rpx;
+  height: 321rpx;
+  float: left;
+  padding-left: 27rpx;
+  padding-right: 30rpx;
+}
+.simpleNovel_content_new{
+  float: left;
+  width: 58%; 
+  padding-top: 35rpx;
+}
+.simpleNovel_oneline{
+  display: block;
+  line-height: 17rpx;
+  padding-bottom: 44rpx;
+}
+.simpleNovel_novName{
+  color:#323232;
+  font-weight: 600;
+  font-size:31rpx;
+}
+.simpleNovel_count{
+  float: right;
+  color:#858b89;
+  font-size:31rpx;
+}
+.simpleNovel_content_text{
+  color:#858b89;
+  font-size:31rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 42rpx;
+}
+.simpleNovel_threeline{
+  padding-top: 50rpx;
+  display: block;
+}
+.simpleNovel_threeline_left{
+  float: left;
+}
+.simpleNovel_Simg{
+  width: 37rpx;
+  height: 39rpx;
+  padding-right: 12rpx;
+  vertical-align: middle;
+}
+.simpleNovel_autgor{
+  color:#858b89;
+  font-size: 28rpx;
+  vertical-align: middle;
+}
+.simpleNovel_threeline_right{
+  float: right;
+}
+.simpleNovel_category{
+  color:#858b89;
+  font-size: 28rpx;
+  margin-right: 12rpx;
+  border: 3rpx solid #9f9fa7;
+  padding: 6rpx 15rpx;
+  border-radius: 50rpx;
+}
+.simpleNovel_score{
+  color:#ff5355;
+  font-size: 28rpx;
+  border: 3rpx solid #ff5553;
+  padding: 6rpx 15rpx;
+  border-radius: 50rpx;
+}
+.rexiaobangdan,.renqibangdan{
+  border-top: 3rpx solid #f7fbfa;
+  padding: 42rpx 0 52rpx 0;
+  text-align: center;
+  font-size: 31rpx;
+  color: #69adf8;
+  font-weight: 600;
+}

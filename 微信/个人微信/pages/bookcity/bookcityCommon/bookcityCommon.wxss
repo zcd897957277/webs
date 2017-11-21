@@ -1,0 +1,21 @@
+/* bookcityCommon.wxss */
+/* 导航条 */
+.bookcity-nav{
+  padding:40rpx 80rpx 25rpx 60rpx;
+  color:#59a2fe;
+  position: fixed;
+  z-index:100;
+  background:#fff;
+  width:100%;
+  border: 3rpx solid #f1f1f1;
+}
+.bookshelf-nav-item{
+  display: inline-block;
+  padding-bottom: 15rpx;
+}
+.bookshelf-nav-item-show{
+  border-bottom:2rpx solid #59a2fe;
+}
+.bookshelf-nav-item-right{
+  margin-right: 102rpx;
+}

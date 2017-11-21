@@ -1,0 +1,140 @@
+/* mime.wxss */
+/* 头 */
+page{
+  background:#eff0f2;
+}
+/* 头像管理 */
+.mime_head{
+  padding: 42rpx 0;
+  border-bottom: 3rpx solid #eeeeee;
+  background: #fff;
+  overflow: hidden;
+}
+/* 个人信息 */
+.mime_head_myinfo{
+  padding-left: 42rpx;
+}
+.mime_head_img{
+  width: 200rpx;
+  height: 200rpx;
+  float: left;
+  padding-right: 44rpx;
+}
+.mime_head_content{
+  float: left;
+}
+.mime_head_content_nicheng{
+  display: block;
+  margin-top: 46rpx;
+  margin-bottom: 28rpx;
+  font-weight: 600;
+  font-size: 34rpx;
+}
+.mime_head_content_zhanghao{
+  color: #868c8c;
+  font-size: 34rpx;
+}
+/* 签到 */
+.mime_head_qd{
+  float: right;
+  background:#6caefc;
+  color:#fff;
+  border-radius: 50rpx;
+  padding: 18rpx 40rpx;
+  text-align: center;
+  display: block;
+  margin-top: 60rpx;
+  font-size: 34rpx;
+  margin-right: 42rpx;
+}
+/* 个人数据管理 */
+.myInfo{
+  padding: 22rpx 92rpx 50rpx 142rpx;
+  border-top: 3rpx solid #eeeeee;
+  background: #fff;
+  overflow: hidden;
+}
+.myInfo_item{
+  float: left;
+  text-align: center;
+}
+.myInfo_item_center{
+  padding: 0 90rpx;
+}
+.myInfo_item_text{
+  display: block;
+  color:#798183;
+  font-size: 34rpx;
+  margin-bottom: 30rpx;
+}
+.myInfo_item_count{
+  color: #6eadfd;
+  font-size: 48rpx;
+  font-weight: bold;
+}
+.myInfo_item_open{
+  font-weight: bold;
+  font-size: 42rpx;
+}
+/* 内容管理 */
+.mime-content{
+  border-top: 33rpx solid #eff0f2;
+}
+/* 邀请好友 */
+.mime-content-item{
+  background: #fff;
+  overflow: hidden;
+  padding: 40rpx 42rpx 48rpx 42rpx;
+}
+.mime-content-item_left{
+  float: left;
+}
+.mime-content-item_right{
+  float: right;
+}
+.img_yqhy,.img_bdsj,.img_lxkf,.img_bz{
+  padding-right: 56rpx;
+  vertical-align: middle;
+}
+.img_yqhy{
+  width: 47rpx;
+  height: 55rpx;
+}
+.img_dkxq{
+  width:24rpx;
+  height: 42rpx;
+  padding-left: 36rpx;
+  vertical-align: middle;
+}
+.img_text{
+  font-size: 34rpx;
+  vertical-align: middle;
+  font-weight: 700;
+}
+.text_right{
+  font-size: 34rpx;
+  color:#a7a7a7;
+  vertical-align: middle;
+}
+/* 绑定手机 */
+.img_bdsj{
+  width: 47rpx;
+  height: 48rpx;
+}
+.mime-content-item_bothpdd{
+  border-top:3rpx solid #f1f1f1;
+  border-bottom:3rpx solid #f1f1f1;
+}
+/* 联系客服 */
+.img_lxkf{
+  width: 47rpx;
+  height: 55rpx;
+}
+/* 帮助 */
+.img_bz{
+  width: 46rpx;
+  height: 47rpx;
+}
+.mime-content-item_bpd{
+  border-top: 30rpx solid #eff0f2;
+}

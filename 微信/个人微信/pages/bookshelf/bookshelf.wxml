@@ -1,0 +1,42 @@
+<!--bookshelf.wxml-->
+<view class="bookshelf-index">
+  <!-- 头管理 -->
+  <view class="bookshelf-nav">
+      <view class="trans-button">
+        <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+          <button id="{{item.id}}" class="button-default {{item.isTap ? 'button-hoverr' : ''}} {{item.isTwo ? 'vb2' : 'vb1'}}" bindtap="transButStyle">{{item.name}}</button>
+        </block>
+       </view>
+      <view class="bookshelf-management" bindtap="">管理</view>
+  </view>
+  <!-- 内容管理 -->
+  <view class="bookshelf-content">
+    <!-- 展示区 -->
+    <view class="bookshelf-show-area">
+      <block wx:for-items="{{listBooks}}" wx:key="{{item.id}}">
+          <image class="book-right" src="{{item.iconPath}}" hidden="{{index >= 3 && !showAll}}"></image>
+      </block>
+    </view>
+    <!-- 添加区 -->
+    <view class="bookshelf-add-area">
+      <!-- 轮播消息 -->
+      <swiper indicator-dots="{{indicatorDots}}" indicator-color="{   {indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" class="book-scroll" current="{{current}}">
+        <block wx:for="{{scrollViewTip}}" wx:key="{{item.id}}">
+          <swiper-item>
+            <view class="recommended-button">推荐</view>
+            <view id="{{item.id}}" class="recommended-content">{{item.text}}</view>
+            <image id="{{item.id}}" bindtap='deleteCarouselItem' src="../../image/chacha.png" class="scroll-img"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- 小说添加区 -->
+      <view class="book-add-area">
+        <block wx:for-items="{{listBooks}}" wx:key="{{item.id}}">
+            <image id="{{item.id}}" class="book-right" src="{{item.iconPath}}"></image>
+            <view class="img-mask-demo" hover hover-class="img-mask">{{item.text}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>

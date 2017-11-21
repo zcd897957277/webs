@@ -1,0 +1,15 @@
+<!--pages/bookshelf/sonpages/collection.wxml-->
+<!-- 头管理 -->
+<view class="bookshelf-nav">
+    <view class="trans-button">
+      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+        <button id="{{item.id}}" class="button-default {{item.isTap ? 'button-hoverr' : ''}} {{item.isTwo ? 'vb2' : 'vb1'}}" bindtap="transButStyle">{{item.name}}</button>
+      </block>
+      </view>
+    <view class="bookshelf-management" bindtap="">管理</view>
+</view>
+<!-- 正文 -->
+<view class='main'>
+  <image class='main_img' src='{{tiaotiaoSrc}}'></image>
+  <text>您遇到好书千万要记得加入书架呦，下次可以直接从书架继续阅读。</text>
+</view>

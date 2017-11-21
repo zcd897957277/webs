@@ -1,0 +1,236 @@
+<!--bookcityHomepage.wxml-->
+<!-- 导航条引入 -->
+<import src="../../bookcityCommon/bookcityCommon.wxml" />
+<view class="bookcity-nav">
+  <template is="bookcityNav" wx:for-items="{{navList}}" data="{{...item}}" wx:key="{{item.id}}"></template>
+</view>
+<!-- 主体内容 -->
+<!-- 轮播 -->
+<swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+  <block wx:for="{{imgUrls}}" wx:key="{{item.id}}">
+    <swiper-item>
+      <image src="{{item}}" width="355" height="150"/>
+    </swiper-item>
+  </block>
+</swiper>
+
+<!-- 猜你喜欢 -->
+<view class='cainixihuan_par'>
+  <image class='cainixihuan' src="{{cnlikeitSrc}}"></image><text class="cainixihuan_text">猜你喜欢</text>
+</view>
+<!-- 猜你喜欢中detail novel -->
+<view class='detailNovel'>
+  <block wx:for="{{novel_cainixihuan}}" wx:key="{{item.id}}">
+    <image class='detailNovel_img' src='{{item.detNovel_src}}' hidden="{{index >= 1 && !showAll}}"></image>
+    <view class='detailNovel_content' hidden="{{index >= 1 && !showAll}}">
+        <text class='detailNovel_name'>{{item.detNovel_name}}</text>
+        <text class='detailNovel_author'>作者：{{item.detNovel_author}}</text>
+        <text class='detailNovel_content_det'>{{item.detNovel_content}}</text>
+    </view>
+    <!-- 去除浮动 -->
+    <view class='clear'></view>
+  </block>
+</view>
+<!-- 猜你喜欢中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_cainixihuan}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index < 1}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 热销爽文 -->
+<view class='rexiaoshuangwen_par'>
+  <image class='rexiaoshuangwen' src="{{rxswSrc}}"></image><text class="rexiaoshuangwen_text">热销爽文</text>
+</view>
+<!-- 热销爽文中的detail novel -->
+<view class='rxdetailNovel'>
+  <block wx:for="{{novel_rexiaoshuangwen}}" wx:key="{{item.id}}">
+    <view class='rxdetailNovel_content {{index==1 ? "rxdetailNovel_content_padding" :""}}' hidden="{{index > 2}}">
+      <image class='rxdetailNovel_img' src='{{item.detNovel_src}}'></image>
+      <text>{{item.detNovel_name}}</text>
+    </view>
+  </block>
+  <view class='clear'></view>
+</view>
+<!-- 热销爽文中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_rexiaoshuangwen}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index <= 2}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 热销佳作 -->
+<view class='rexiaojiazuo_par'>
+  <image class='rexiaojiazuo' src="{{rxjzSrc}}"></image><text class="rexiaojiazuo_text">热销佳作</text>
+</view>
+<!-- 热销佳作中的detail novel -->
+<view class='detailNovel'>
+  <block wx:for="{{novel_rexiaojiazuo}}" wx:key="{{item.id}}">
+    <image class='detailNovel_img' src='{{item.detNovel_src}}' hidden="{{index >= 1 && !showAll}}"></image>
+    <view class='detailNovel_content' hidden="{{index >= 1 && !showAll}}">
+        <text class='detailNovel_name'>{{item.detNovel_name}}</text>
+        <text class='detailNovel_author'>作者：{{item.detNovel_author}}</text>
+        <text class='detailNovel_content_det'>{{item.detNovel_content}}</text>
+    </view>
+    <!-- 去除浮动 -->
+    <view class='clear'></view>
+  </block>
+</view>
+<!-- 热销佳作中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_rexiaojiazuo}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index < 1}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 女生好文 -->
+<view class='nvshenghaowen_par'>
+  <image class='nvshenghaowen' src="{{nvhwSrc}}"></image><text class="nvshenghaowen_text">女生好文</text>
+</view>
+<!-- 女生好文中的detail novel -->
+<view class='rxdetailNovel'>
+  <block wx:for="{{novel_nvshenhaowen}}" wx:key="{{item.id}}">
+    <view class='rxdetailNovel_content {{index==1 ? "rxdetailNovel_content_padding" :""}}'  hidden="{{index > 2}}">
+      <image class='rxdetailNovel_img' src='{{item.detNovel_src}}'></image>
+      <text>{{item.detNovel_name}}</text>
+    </view>
+  </block>
+  <view class='clear'></view>
+</view>
+<!-- 女生好文中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_nvshenhaowen}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index <= 2}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 主编力荐 -->
+<view class='zhubianlijian_par'>
+  <image class='zhubianlijian' src="{{zbljSrc}}"></image><text class="zhubianlijian_text">主编力荐</text>
+</view>
+<!-- 主编力荐中的detail novel -->
+<view class='detailNovel'>
+  <block wx:for="{{novel_zhubianlijian}}" wx:key="{{item.id}}">
+    <image class='detailNovel_img' src='{{item.detNovel_src}}' hidden="{{index >= 1 && !showAll}}"></image>
+    <view class='detailNovel_content' hidden="{{index >= 1 && !showAll}}">
+        <text class='detailNovel_name'>{{item.detNovel_name}}</text>
+        <text class='detailNovel_author'>作者：{{item.detNovel_author}}</text>
+        <text class='detailNovel_content_det'>{{item.detNovel_content}}</text>
+    </view>
+    <!-- 去除浮动 -->
+    <view class='clear'></view>
+  </block>
+</view>
+<!-- 主编力荐中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_zhubianlijian}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index < 1}}">
+      <text class='simpleNovel_name'>{{item.detNovel_name}}</text>
+      <text class='simpleNovel_content'>{{item.detNovel_content}}</text>
+    </view>
+  </block>
+</view>
+
+<!-- 男频热销榜 -->
+<view class='nanpinrexiaobang_par'>
+  <text class="nanpinrexiaobang_left_text">男频热销榜</text>
+  <view class='nanpinrexiaobang_right_text'>
+    <image src='{{nvpinSrc}}' class='nanpinrexiaobang_right_text_img'></image>
+    <text class='nvpin_text'>女频</text>
+  </view>
+</view>
+<!-- 男频热销榜中的detail novel -->
+  <view class='rxdetailNovel'>
+    <block wx:for="{{novel_nanpinrexiaobang}}" wx:key="{{item.id}}">
+      <view class='rxdetailNovel_content {{index==1 ? "rxdetailNovel_content_padding" :""}}'  hidden="{{index > 2}}">
+        <image class='rxdetailNovel_img' src='{{item.detNovel_src}}'></image>
+        <text>{{item.detNovel_name}}</text>
+      </view>
+    </block>
+    <view class='clear'></view>
+  </view>
+  <!-- 男频热销榜中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_nanpinrexiaobang}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index <= 2}}">
+     <image class='simpleNovel_Bimg' src='{{item.detNovel_src}}'></image>
+     <view class='simpleNovel_content_new'>
+      <view class='simpleNovel_oneline'>
+        <text class='simpleNovel_novName'>{{item.detNovel_name}}</text>
+        <text class='simpleNovel_count'>{{item.detNovel_counts}}</text>
+      </view>
+      <view>
+        <text class='simpleNovel_content_text'>{{item.detNovel_content}}</text>
+      </view>
+      <view class='simpleNovel_threeline'>
+        <view class='simpleNovel_threeline_left'>
+          <image class='simpleNovel_Simg' src='{{authorSrc}}'></image>
+          <text class='simpleNovel_autgor'>{{item.detNovel_author}}</text>
+        </view>
+        <view class='simpleNovel_threeline_right'>
+          <text class='simpleNovel_category'>{{item.detNovel_category}}</text>
+          <text class='simpleNovel_score'>{{item.detNovel_score}}</text>
+        </view>
+      </view>
+     </view>
+     <view class='clear'></view>
+    </view>
+  </block>
+  <view class='rexiaobangdan'>查看热销榜单</view>
+</view>
+
+<!-- 男频人气榜 -->
+<view class='nanpinrenqi_par'>
+  <text class="nanpinrenqi_left_text">男频人气榜</text>
+  <view class='nanpinrenqi_right_text'>
+    <image src='{{nvpinSrc}}' class='nanpinrenqi_right_text_img'></image>
+    <text class='nvpin_text'>女频</text>
+  </view>
+</view>
+<!-- 男频人气榜中小说简单版 -->
+<view>
+  <block wx:for-items="{{novel_nanpinrenqibang}}" wx:key="{{item.id}}">
+    <view class='simpleNovel' hidden="{{index > 2}}">
+     <image class='simpleNovel_Bimg' src='{{item.detNovel_src}}'></image>
+     <view class='simpleNovel_content_new'>
+      <view class='simpleNovel_oneline'>
+        <text class='simpleNovel_novName'>{{item.detNovel_name}}</text>
+        <text class='simpleNovel_count'>{{item.detNovel_counts}}</text>
+      </view>
+      <view>
+        <text class='simpleNovel_content_text'>{{item.detNovel_content}}</text>
+      </view>
+      <view class='simpleNovel_threeline'>
+        <view class='simpleNovel_threeline_left'>
+          <image class='simpleNovel_Simg' src='{{authorSrc}}'></image>
+          <text class='simpleNovel_autgor'>{{item.detNovel_author}}</text>
+        </view>
+        <view class='simpleNovel_threeline_right'>
+          <text class='simpleNovel_category'>{{item.detNovel_category}}</text>
+          <text class='simpleNovel_score'>{{item.detNovel_score}}</text>
+        </view>
+      </view>
+     </view>
+     <view class='clear'></view>
+    </view>
+  </block>
+  <view class='renqibangdan'>查看热销榜单</view>
+</view>
+<!-- 公司+备注 -->
+<view class='remark'>
+  <text class='remark_id'>闽ICP备15728042326号-1</text>
+  <text class='remark_company'>浙江宙咒个人小站有限公司 版权所有</text>
+</view>
