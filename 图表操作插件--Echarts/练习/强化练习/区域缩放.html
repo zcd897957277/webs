@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>区域缩放</title>
+		<!--引入echarts.js-->
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!--为ECharts准备一个具备大小（宽高）的Dom-->
+		<div id="main" style="width: 900px;height: 600px;"></div>
+		<script type="text/javascript">
+			//基于准备好的Dom，初始化echarts实例
+			var myChart=echarts.init(document.getElementById('main'));
+			
+			var base=+new Date(1968,9,3);
+			var oneDay=24*3600*1000;
+			var date=[];
+			
+			var data=[Math.random()*300];
+			
+			for(var i=0;i<20000;i++){
+				var now=new Date(base += oneDay);
+				date.push([now.getFullYear(),now.getMonth()+1,now.getDate()].join('-'));
+				data.push(Math.round((Math.random()-0.5)*20+data[i-1]));
+			}
+
+			//指定图表的配置项和数据
+			var option={
+				//标题
+				title:{
+					left:'center',
+					text:'大数据量折线图'
+				},
+				//工具箱
+				toolbox:{
+					show:true,
+					feature:{
+						dataView:{show:true,readOnly:'false'},
+						magicType:{show:true,type:['line','bar','stack','tiled']},
+						restore:{show:true},
+						saveAsImage:{
+							show:true
+						} 
+					}
+				},
+				//提示
+				tooltip:{
+					trigger:'axis',
+					position:function(pt){
+						return [pt[0],'10%']
+					}
+				},
+				//图例
+				legend:{
+					top:'bottom',
+					data:['意向']
+				},
+				//x轴
+				xAxis:{
+					type:'category',
+					boundaryGap:false,
+					data:date
+				},
+				yAxis:{
+					type:'value',
+					boundaryGap:[0,'100%']
+				},
+				dataZoom:[
+					{
+						type:'slider',
+						start:0,
+						end:10
+					}
+				],
+				//数据
+				series:[{
+					name:'模拟数据',
+					type:'line',
+					//是否平滑视觉引导线，默认不平滑，可以设置成 true 平滑显示，也可以设置为 0 到 1 的值，表示平滑程度。
+					smooth:true,
+					symbol:'none',
+					//折线图在数据量远大于像素点时候的降采样策略，
+					//开启后可以有效的优化图表的绘制效率，默认关闭，也就是全部绘制不过滤数据点。
+					//可选：
+					//'average' 取过滤点的平均值
+					//'max' 取过滤点的最大值
+					//'min' 取过滤点的最小值
+					//'sum' 取过滤点的和
+					sampling:'average',
+					//折线拐点标志的样式。
+					itemStyle:{
+						normal:{
+							color:'rgb(255,70,131)'
+						}
+					},
+					//区域填充样式。
+					areaStyle:{
+						normal:{
+							color:new echarts.graphic.LinearGradient(0,0,0,1,[
+								{offset:0,color:'rgb(255,158,68)'},//0% 处的颜色
+								{offset:1,color:'rgb(255,70,131)'}//100%处的颜色
+							])
+						}
+					},
+					data:data
+				}]
+			}
+			
+			//使用刚指定的配置项和数据显示图表
+			myChart.setOption(option);
+		</script>
+	</body>
+</html>

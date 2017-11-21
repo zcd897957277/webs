@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ECharts实战</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<!--引入主题-->
+		<script type="text/javascript" src="js/dark.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/china.js"></script>
+		<style>
+			body{
+				padding-top: 80px;
+			}
+			#search-btn,#close{
+				margin-top:20px;
+			}
+			.dBorder{
+				border:1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<form class="form-horizontal">
+						<input id="place-input" type="text" class="form-control" value="故宫" placeholder="请输入地址"/>
+						<button type="button" id="search-btn" class="btn btn-success">查询</button>
+						<button type="button" id="close" class="btn btn-danger">关闭</button>
+					</form>
+				</div>	
+				<div class="col-md-6">
+					<div id="main" style="height: 500px;"></div>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			//画地图必须的经纬度数据
+			//百度地图的开发者密钥
+			//Geocoding APIWeb服务API
+			var token='moWUCXnxwOb2exaAyaYbKpxYHjaHko4R';
+			var url='http://api.map.baidu.com/geocoder/v2/?output=json&ak='+token+'&address=';
+			var ePlaceInput=$('#place-input');
+			var eSearchBtn=$('#search-btn');
+			var eCloseBtn=$('#close');
+			var chartData=[];
+			
+			eSearchBtn.click(function(){
+				//获取输入框值
+				var place=ePlaceInput.val();
+				if(place){
+					$.getJSON(url+place+'&callback=?',function(res){
+						var loc;
+						if(res.status==0){
+							//控制台输出具体信息
+//							console.log(place,res.result)
+							//在地图上输出单个坐标位置
+//							drawMap(place,res.result.location);
+							//显示多标记
+							loc=res.result.location;
+							chartData.push({
+								name:place,
+								value:[loc.lng,loc.lat]
+							});
+							
+							drawMap();
+							$('#main').addClass('dBorder');
+						}else{
+							alert('百度没有找到地址信息')
+						}
+					})
+				}
+			})
+			
+			//关闭地图
+			eCloseBtn.click(function(){
+				myChart.clear();
+				$('#main').removeClass('dBorder');
+			});
+			
+			//初始化实例,并且使用主题
+			var myChart=echarts.init(document.getElementById('main'));
+			//单出
+//			function drawMap(name,loc){
+			//多出
+			function drawMap(){
+				//数据与配置
+				var option = {
+					backgroundColor:'#404a59',
+					title:{
+						text:'2017要去的地方',
+						left:'center',
+						textStyle:{
+							color:'#fff'
+						}
+					},
+					tooltip:{
+						trigger:'item'
+					},
+					toolbox:{
+						show:true,
+						feature:{
+							saveAsImage:{
+								show:true
+							},
+							dataView:{
+								show:true
+							}
+						}
+					},
+					geo:{
+						map:'china',
+						label:{
+							normal:{
+								show:true,
+								textStyle:{
+									color:'#fff',
+									fontSize:10
+								}
+							},
+							emphasis:{
+								show:true,
+								textStyle:{
+									color:'#fff',
+									fontSize:10
+								}
+							}
+						},
+						//是否开启鼠标缩放和平移漫游。默认不开启。
+						//如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+						roam:true,
+						itemStyle:{
+							//省份颜色 randomColor()
+							normal:{
+								areaColor:'#323c48',
+								borderColor:'#111'
+							},
+							emphasis:{
+								areaColor:'#2a333d'
+							}
+						}
+					},
+					series:[{
+						name:'地址',
+						type: 'effectScatter',
+						coordinateSystem:'geo',
+						//输出单个地址
+//						data:[{
+//							name:name,
+//							value:[loc.lng,loc.lat]
+//						}],
+						//输出多个地址
+						data:chartData,
+						symbolSize:function(val){
+							var num=(Math.random()*15+5);
+							return num;
+						},
+						//涟漪特效相关配置。
+				        rippleEffect: {
+				        	//波纹的绘制方式，可选 'stroke' 和 'fill'。
+				            brushType: 'stroke'
+				        },
+					}]
+				}
+				myChart.setOption(option);
+			}
+		
+			</script>
+		</script>
+	</body>
+</html>

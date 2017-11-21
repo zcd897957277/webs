@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>3D折线图--向下铺满</title>
+		<!--引入echarts.js-->
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/echarts-gl.min.js"></script>
+	</head>
+
+	<body>
+		<!--为ECharts准备一个具备大小（宽高）的Dom-->
+		<div id="main" style="width: 900px;height: 600px;"></div>
+		<script type="text/javascript">
+			//基于准备好的Dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('main'));
+
+			var area = ['雉城街道', '太湖街道', '画溪街道'];
+			var dates = ['2011', '2012', '2013', '2014', '2015'];
+			var color = [
+				'#f7bc58', 'red', 'blue', 'green', 'black'
+			];
+			var option = {
+				title: {
+					text: '2017年人口数(万人)',
+					x: 'center',
+					y: 10,
+					borderColor: '#000000'
+				},
+				tooltip: {
+					formatter: '{a}年:{c}'
+				},
+				legend:{
+					orient: 'vertical',
+                        x: 'right',
+                        y:'center',
+                    data:dates
+                },
+				color: color,
+				xAxis3D: {
+					type: 'category',
+					data: dates,
+					name: '年份'
+				},
+				yAxis3D: {
+					type: 'category',
+					data: area,
+					name: '地区'
+				},
+				zAxis3D: {
+					type: 'value',
+					name: '人口数(万人)'
+				},
+				grid3D: {
+					boxWidth: 80,
+					boxHeight: 80,
+					boxDepth: 100,
+					axisLine: {
+						lineStyle: {
+							color: '#666',
+							width: 1
+						}
+					},
+					axisPointer: {
+						lineStyle: {
+							color: '#72cdf7'
+						}
+					}
+				},
+				series: [{
+					type: 'surface',
+					wireframe: { //网格
+                            show: false
+                        },
+					shading: 'color', //着色效果,,color  只显示颜色
+					data: [
+						[0,-0.5,0],[1,-0.5,0],[2,-0.5,0],[3,-0.5,0],[4,-0.5,0],
+                        [0,-0.5,48],[1,-0.5,65],[2,-0.5,31],[3,-0.5,38],[4,-0.5,55]
+					]
+				},
+				{
+					type: 'surface',
+					wireframe: { //网格
+                            show: false
+                        },
+					shading: 'color', //着色效果,,color  只显示颜色
+					data: [
+						[0,0.5,0],[1,0.5,0],[2,0.5,0],[3,0.5,0],[4,0.5,0],
+                        [0,0.5,36],[1,0.5,37],[2,0.5,41],[3,0.5,49],[4,0.5,50]
+					]
+				}, 
+				{
+					type: 'surface',
+					wireframe: { //网格
+                            show: false
+                        },
+					shading: 'color', //着色效果,,color  只显示颜色
+					data: [
+						[0,1.5,0],[1,1.5,0],[2,1.5,0],[3,1.5,0],[4,1.5,0],
+                        [0,1.5,45],[1,1.5,37],[2,1.5,61],[3,1.5,45],[4,1.5,37]
+					]
+				}, 
+				{
+					type: 'line3D',
+					name: '2011',
+					data: [
+						[0, 0, 48],
+						[0, 1, 36],
+						[0, 2, 45]
+					]
+				}, {
+					type: 'line3D',
+					name: '2012',
+					data: [
+						[1, 0, 65],
+						[1, 1, 37],
+						[1, 2, 37]
+					]
+				}, {
+					type: 'line3D',
+					name: '2013',
+					data: [
+						[2, 0, 31],
+						[2, 1, 41],
+						[2, 2, 61]
+					]
+				}]
+			};
+			myChart.setOption(option);
+		</script>
+	</body>
+
+</html>

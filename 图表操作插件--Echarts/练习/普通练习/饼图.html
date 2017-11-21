@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>饼图</title>
+		<!--引入echarts.js-->
+		<script type="text/javascript" src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<!--为ECharts准备一个具备大小（宽高）的Dom-->
+		<div id="main" style="width: 900px;height: 600px;"></div>
+		<script type="text/javascript">
+			//基于准备好的Dom，初始化echarts实例
+			var myChart=echarts.init(document.getElementById('main'));
+			
+			//指定图表的配置项和数据
+			var option={
+				//标题
+				title:{
+					text:'某站点用户访问来源',
+					subtext:'纯属虚构',
+					x:'center'
+				},
+				//工具箱
+				toolbox:{
+					show:true,
+					feature:{
+						saveAsImage:{
+							show:true
+						}
+					}
+				},
+				//提示
+				tooltip:{
+					trigger:'item',
+					//提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+					//饼图、仪表盘、漏斗图: {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+					formatter:"{a}<br/>{b} :{c}({d}%)"
+				},
+				//图例
+				legend:{
+					//图例列表的布局朝向。垂直
+					orient:'vertical',
+					left:'left',
+					data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+				},
+				//数据
+				series:[{
+					name:'访问来源',
+					type:'pie',
+					//相对大小做圆半径
+					radius:'55%',
+					center:['50%','60%'],
+					data:[
+						{value:335,name:'直接访问'},
+						{value:310,name:'邮件营销'},
+						{value:234,name:'联盟广告'},
+						{value:135,name:'视频广告'},
+						{value:1548,name:'搜索引擎'}
+					]
+				}]
+			}
+			
+			//使用刚指定的配置项和数据显示图表
+			myChart.setOption(option);
+		</script>
+	</body>
+</html>
