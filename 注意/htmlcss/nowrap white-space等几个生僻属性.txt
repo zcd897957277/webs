@@ -1,0 +1,15 @@
+nowrap 属性规定表格单元格中的内容不换行。
+<td nowrap="nowrap">Never increase, beyond what is necessary, the 
+	number of entities required to explain anything</td>
+
+white-space 属性：规定段落中的文本不进行换行：
+p{white-space: nowrap}
+
+word-wrap 属性：
+允许长单词换行到下一行：
+p.test {word-wrap:break-word;}
+
+ellipsis:显示省略符号来代表被修剪的文本。
+
+word-wrap:break-word;//强行换行
+white-space: normal;//规定段落换行

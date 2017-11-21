@@ -1,0 +1,9 @@
+1.substring() 方法用于提取字符串中介于两个指定下标之间的字符。
+stringObject.substring(start,stop);
+返回：一个新的字符串，该字符串值包含 stringObject 的一个子字符串，其内容是从 start 处到 stop-1 处的所有字符，其长度为 stop 减 start。
+2.substr() 方法可在字符串中抽取从 start 下标开始的指定数目的字符。
+stringObject.substr(start,length)；
+返回：一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 length 个字符。如果没有指定 length，那么返回的字符串包含从 start 到 stringObject 的结尾的字符。
+3.slice() 方法可提取字符串的某个部分，并以新的字符串返回被提取的部分。
+stringObject.slice(start,end)；
+返回：一个新的字符串。包括字符串 stringObject 从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符。

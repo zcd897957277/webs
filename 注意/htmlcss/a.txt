@@ -1,0 +1,10 @@
+在HTML中：
+
+
+<a href="javascript:void(0)" class="easyui-linkbutton" onclick="topLeft(this);">TopLeft</a>
+a标签的href=“javascript:void(0)” 来阻止a的默认跳转事件；
+
+在绑定的方法中：用 对象e.preventDefault();方法来阻止a的默认跳转事件
+function topLeft(e){
+	e.preventDefault();
+}

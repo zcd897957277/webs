@@ -1,0 +1,8 @@
+先放结论：callback()和callback(null)是一样的。
+
+首先callback(null)无疑是正确的用法，null表示没有错误。
+
+其次，在函数中传undefined或者干脆什么都不传，就像callback()一样。表示尊重这个参数的默认值。
+恰巧，callback函数的第一个参数的默认值就是null。
+
+所以callback()和callback(null)是一样的。

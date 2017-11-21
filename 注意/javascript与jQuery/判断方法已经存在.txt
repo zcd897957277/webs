@@ -1,0 +1,19 @@
+if( typeof mapshow === 'function' ){
+        mapshow();
+    }else if( typeof mapsblock === 'function' ){
+        mapsblock();
+    }else if( typeof mapdtinfo === 'function' ){
+        mapdtinfo();
+    }else if( typeof mapbigblockone === 'function' ){
+        mapbigblockone();
+    }else if( typeof mapbigblocktwo === 'function' ){
+        mapbigblocktwo();
+    }else if( typeof mapbigblockthree === 'function' ){
+        mapbigblockthree();
+    }else if( typeof mapbigblockfour === 'function' ){
+        mapbigblockfour();
+    }else if( typeof maphot === 'function' ){
+        maphot();
+    }else{
+        return;
+    }

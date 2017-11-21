@@ -1,0 +1,3 @@
+原因是ddd是一个集合
+var ddd=document.getElementsByTagName('thead');
+ddd[0].appendChild(divv);

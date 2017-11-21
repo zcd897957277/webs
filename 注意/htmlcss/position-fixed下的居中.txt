@@ -1,0 +1,37 @@
+position:fixed实现div居中代码如下：
+
+div{
+    position:fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    width:200px;
+    height:150px;
+}
+
+如果只需要左右居中，那么把 bottom:0; 或者 top:0; 删掉即可 
+如果只需要上下居中，那么把 left:0; 或者 right:0; 即可
+
+position:fixed实现div居中后，我在这个div里放置了一张图片，实现左右的居中，代码如下：
+
+.img1{
+  position: relative;
+  margin: auto;
+  padding-left: 50%;
+  right: 30px;
+  width:60px;
+  height:60px;
+}
+
+基于父元素位置，先实现整体位置向右偏移50%，这50%包含了整个元素，所以为实现居中需要把元素的一半往回偏移，就实现了居中对齐。
+
+案例：
+<div>
+   <div></div>
+   <div></div>
+</div>
+
+这时给最外面的div添加class,内容为position:fixed;
+margin:auto;left:0;right:0;top:0;bottom:0;这时再添加text-align:center;又可以正常实现了

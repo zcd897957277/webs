@@ -1,0 +1,14 @@
+Bootlint 是 Bootstrap 官方所提供的 HTML、CSS 检测工具。在使用了 Bootstrap 的页面上，它能自动检查某些常见的 HTML 、class使用方面的错误。
+
+代码：
+<script>
+    /*Bootlint用于检测文档中的HTML和Class错误*/
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js";
+        document.body.appendChild(s)
+    })();
+</script>

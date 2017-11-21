@@ -1,0 +1,47 @@
+1、首先下载一个一个zclip插件，网上有很多下载资源，随便百度一个，里面主要有两个文件：jquery.zclip.min、ZeroClipboard.swf。（注意两个都要导入进去）
+
+
+2、把这两个文件都放都项目中去，同时引用js例如：<script src="../plugins/js/jquery.zclip.min.js"></script>（我的js文件都放在根目录下的plugins文件下的js文件中）
+
+
+
+
+3、下面模拟具体代码：
+
+
+[html] view plain copy 
+<a href="www.baidu.com" id="url">www.baidu.com</a>  
+
+[html] view plain copy 
+<input type="button" value="复 制" id="copy" />   
+点击“复制”按钮：
+
+
+[html] view plain copy
+$("#copy").zclip({  
+
+[html] view plain copy
+<span style="white-space:pre">    </span>path: "../plugins/js/ZeroClipboard.swf",  
+
+[html] view plain copy
+<span style="white-space:pre">    </span>copy: function () {<span style="white-space:pre">    </span>//复制内容   
+
+[html] view plain copy
+<span style="white-space:pre">        </span>return $("#url").text();  
+
+[html] view plain copy
+<span style="white-space:pre">    </span>},  
+
+[html] view plain copy
+<span style="white-space:pre">    </span>afterCopy: function () {//复制成功   
+
+[html] view plain copy
+<span style="white-space:pre">        </span>alert("已复制到剪贴板");  
+
+[html] view plain copy
+<span style="white-space:pre">    </span>}  
+
+[html] view plain copy
+});  
+[html] view plain copy
+<span style="font-family: Verdana, Arial, Helvetica, sans-serif; background-color: rgb(254, 254, 242);">其中path是ZeroClipboard.swf在项目中的路径位置，afterCopy可选。</span>  

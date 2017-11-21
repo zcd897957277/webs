@@ -1,0 +1,1 @@
+decodeURIComponent() 函数可对 encodeURIComponent() 函数编码的 URI 进行解码。

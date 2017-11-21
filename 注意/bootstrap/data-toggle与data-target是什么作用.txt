@@ -1,0 +1,1 @@
+因为Bootstrap为这些元素都绑定上了事件，而终止了链接默认行为，你可以看看Bootstrap的文档，data-toggle指以什么事件触发，常用的如modal,popover,tooltips等，data-target指事件的目标

@@ -1,0 +1,38 @@
+为了给导航栏添加响应式特性，您要折叠的内容必须包裹在带有 class .collapse、.navbar-collapse 的 <div> 中。折叠起来的导航栏实际上是一个带有 class .navbar-toggle 及两个 data- 元素的按钮。第一个是 data-target，用于告诉 JavaScript 需要对按钮做什么，第二个是 data-toggle，指示要切换到哪一个元素。三个带有 class .icon-bar 的 <span> 创建所谓的汉堡按钮。这些会切换为 .nav-collapse <div> 中的元素。为了实现以上这些功能，您必须包含 Bootstrap 折叠（Collapse）插件。
+
+实例：
+<div class="navbar navbar-default">
+  <div class="container">
+    <!--导航条头部，包含商标+汉堡包-->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" style="margin-top:-8px;">
+      </a>
+      <a data-toggle="collapse" href="#my-menu" class="navbar-toggle" >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+    <!--导航条折叠部分，包含菜单、表单、文字...-->
+    <div id="my-menu" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#">News</a></li>
+        <li><a href="#">Product</a></li>
+      </ul>
+
+      <a class="navbar-link navbar-text navbar-right" href="#">注册</a>
+      <span class="navbar-text navbar-right">|</span>
+      <a class="navbar-btn navbar-right btn btn-success" href="#">登录</a>
+      <!--在导航条中添加一个搜索表单-->
+      <form action="#" class="navbar-form navbar-right">
+        <div class="form-group has-feedback">
+          <label class="sr-only" for="kw">请输入搜索关键字</label>
+          <input class="form-control" id="kw" placeholder="请输入搜索关键字">
+          <span class="glyphicon glyphicon-search form-control-feedback"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

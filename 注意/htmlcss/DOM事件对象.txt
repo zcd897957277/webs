@@ -1,0 +1,8 @@
+DOM中的事件对象：（符合W3C标准）
+   preventDefault()        取消事件默认行为
+   stopImmediatePropagation() 取消事件冒泡同时阻止当前节点上的事件处理程序被调用。
+   stopPropagation()      取消事件冒泡对当前节点无影响。
+IE中的事件对象：
+   cancelBubble()          取消事件冒泡
+   returnValue()             取消事件默认行为
+event.target:找到当前元素

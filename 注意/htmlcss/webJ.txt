@@ -1,0 +1,286 @@
+1)	清除浮动：
+	1.子浮动，父加overflow 下拉有时不用
+	2.子集后加<br/ style="clear:both">
+	3.父级加：after{content="";}
+	4.display:inline-block;不提倡
+
+2）	边框变化：
+	边框变化主体不能有padding
+
+3）	:first-child
+	获取其父元素中的第一个子元素
+	:last-child
+	获取其父元素中的最后一个子元素
+	例：td:first-child td中的第一个
+
+4）	行内元素（p ,b ,u ,span等）要想margin必须转换为块加display：block
+
+5）	背景与文字写成的东西，要放在一个标签中
+
+6）	inline-block允许在同行出现
+
+7）	text-align:行内块水平居中对块无效
+
+8）	块居中：margin：0 auto;
+
+9）	背景色渐变 有兼容性：
+	background:-webkit-gradient(linear,0% 0%,0% 30%,from(#fdfdfd),to(#dddddd));
+
+10）	Math.random()*10产生0 - 9，包括0不包括1 
+
+11）	表单元素（input） 获取内容用.value
+
+12）	lis=[].slice.call(lis);//将类数组对象复制为数组
+
+13）	正则测试是否符合
+	reg.test(txt.value)
+
+14）	.selected表示已选中
+
+15）	//eval将字符串外引号去掉
+
+16）	for(var key in emps[0]){//key是关联数组的下标，emps[i][key]表示其第i个元素中下标为key的值
+
+17）	arguments.callee 当前函数
+
+18）	递归是外层函数没结束，里面已经开始
+
+19）	form中textarea其值在函数中表示要用 .value
+
+20)	arr.unshift(值)开头进栈，返回数组，但是arr=arr.unshift(值)返回的是一个值（长度）
+
+21)	回调函数的所有this都是window 回调函数同一个函数都刺调用
+	回调函数去（）
+
+22)	.nodeName元素类型  例如是否是button 
+
+23)	函数的长度就 = 其参数的个数
+
+24)	target.nodeName=="A" nodeName找的元素大写
+
+25)	回调函数中this为window
+
+26)	//查找id为icon_list的ul,获得其计算后的样式中的left，保存在	OFFSET中
+	this.OFFSET=parseFloat(getComputedStyle($("#icon_list")).left);
+
+27)	获得外部样式表的width等属性，要用getComputedStyle(元素).width
+
+28)	var imgs=[
+	{"i":0,"img":"images/index/banner_01.jpg"},
+    {"i":1,"img":"images/index/banner_02.jpg"},
+    {"i":2,"img":"images/index/banner_03.jpg"},
+    {"i":3,"img":"images/index/banner_04.jpg"},
+    {"i":4,"img":"images/index/banner_05.jpg"},
+	];
+	//遍历imgs中每一个元素，同时声明空字符串htmlImgs,和htmlIdxs
+	var htmlImgs="",htmlIdxs="";
+	for(var i=0;i<imgs.length;i++){
+		//向htmlImgs中拼接一个<li><img src="当前元素的img属性"></li>
+		htmlImgs+='<li><img src="'+imgs[i].img+'"></li>';
+		//向htmlIdxs中拼接一个<li>i+1</li>
+		htmlIdxs+="<li>"+imgs[i].i+1+"</li>";
+	}
+
+29)	//求n:target的内容-id为indexs下class为hover的元素的内容
+	var n=parseFloat(target.innerHTML)-$("#indexs>.hover").innerHTML;
+
+
+30)	针对js中parseFloat以及“px”的添加规则，小计：
+	1. 添加parseFloat的情况，将值给数字类型时，例如从样式表中拿出一个width等{
+	//获得id为slider的div的宽，保存在LIWIDTH中
+	this.LIWIDTH=parseFloat(getComputedStyle($("#slider")).width);//*
+
+	2.对新定义的一个变量，赋值一个加减乘除的算法（仅有这些），不用加parseFloat，也不用加px
+	var n=target.innerHTML-$("#indexs>.hover").innerHTML;//*
+
+	3. 添加px的情况,所用到的元素要是数字,而所给的元素不是数字，或者说被赋值的值需要用数字类型出现，来改变样式时：
+	//设置id为imgs的元素的宽为LIWIDTH*imgs的元素个数
+	$("#imgs").style.width=this.LIWIDTH*imgs.length+"px";//*
+	//获得id为imgs的ul的left
+	var left=parseFloat(getComputedStyle($("#imgs")).left);
+	}
+
+31)	bind针对的是函数函数函数
+
+32)	//查找class为floor下的header下的class为hover的span，保存在light中
+	var light=$(".floor>header>span.hover");
+
+33)	截取字符串的方法：div.innerHTML=$("#input_body>input").value.substr(0,leng*2)
+
+34)	动画三要素：总距离DISTANCE，运行时间DURATION，总步数STEPS
+	interval:0,//保存步频
+	step:0,//保存步长
+	timer:null,//保存定时器序号
+
+35)	//新建img
+	var img=document.createElement("img");//var img=new Image();
+
+36)	迭代与递归的区别：
+	前者：更新旧值，后者：在函数内部调用自身
+
+37)	document.onkeydown=function(e){alert(e.keyCode)} 取键盘键值
+
+
+38)	document.getElementByTagName("标签名")与document.getElementByClassName("类") 都返回数组：并且是动态数组  遍历时下标会变化 如 1 2 3 都有点击变红色效果 遍历：1红 下标 0 1； 3红 0 
+
+39)	call apply都是（）里的替换掉前面的对象 例：tom.say.apply(jack) tom被jack替换
+
+一个script中已经引用了一个js它里面就不能再写js代码了
+
+40)	jQuery中方法都自带循环
+
+41)	jQuery("选择器")或$("选择器")
+	jQuery(原生DOM对象)或$(原生DOM对象)
+
+42)	jQuery函数返回值都是对象本身\
+
+43)	parent>child 仅指直接子元素 parent child之后的所有子元素
+
+44)	<hr>单行直线
+
+45)	jQuery中修改input中的value用.val
+
+46)	table使相邻的td无缝连接用border-collapse:collapse;
+
+47)	outline:none;除去button的蓝色线
+
+48)	在括号中加变量i前后要用'...'+i+'...'
+
+49)	jQuery中两个each:
+	1.$.each(arr,function(i,val)}全局函数 针对数组
+	2.对象.each(function(i,dom)) 对象函数，针对前面的对象，要有对象
+
+50)	text-align:justify;文字两端调整对其
+
+51)	typeof 对象 返回的类型是小写开头的
+	console.log(typeof fn);
+	function fn() {};
+	var fn;
+	//函数声明提前永远比变量声明提前优先级高
+	输出：_function___ 
+
+52)	两者传递的参数不同，cal，applyl函数第一个参数都是要传入给当前对象的对象
+
+53)	fixed：生成绝对定位的元素，不会相对于父元素进行定位，只会对可是区域动
+
+54)	var bb = 1;
+	function aa(bb) {  //有参时bb=2是局部 
+ 	   bb = 2;
+ 	   alert(bb);
+	};
+	aa(bb); 2
+	alert(bb); 1
+
+55)	console.log(1+ +"2"+"2");//32    + +”2=2 一元运算符
+	console.log("A"- "B"+"2"); //NAN加字符串为”NAN字符串”
+	console.log("A"- "B"+2);// NAN加数字为”NAN”
+
+56)	escape方法： 该方法返回对一个字符串编码后的结果字符串
+
+57)	下面哪些语句可以在JS里判断一个对象oStringObject是否为String。
+	?
+	A.oStringObject instanceof String
+	B.typeof oStringObject == 'string' 对象时不行，针对字符串
+	C.Object.prototype.toString.call(oStringObject)
+
+58)	if判断中，之中的变量声明会提前
+
+59)	变量隐式转换
+	4.	if(a in window) {// in判断是否在window上
+  	  	var a = 10;
+ 		}  
+	==
+	var a;
+	if(a in window) {// in判断是否在window上
+   	 	a = 10;
+ 		}  
+
+ 	alert(a);
+  	输出：_10___ 
+
+60)	var a = 10;
+	a.pro = 10;//变量可以随便添加属性，但是，输出时，是undefined
+
+61)	arguments是类数组对象
+
+62)	services.msc window服务控制台
+
+63)	ipconfig 查看电脑的ip
+
+64)	header("content-type:text/html;charset=utf-8"); php修改utf8
+
+65)	switch case中没有写break，它会从符合判断的那个case开始，输出下面所有
+	没有break结束的项 
+	var status = '党员'; switch( status ) 
+	{ case '党员': console.log('您好！党员！'); 
+	case '团员': console.log('您好！团员！'); 
+	default: console.log('您好！群众！'); }
+	输出：您好！党员！
+您好！团员！
+您好！群众！
+
+66)	form input 中id元素在script中可以直接拿id后的值使用
+	输入书名<input id="bname"><br>
+	输入价格<input id="price"><br>
+	<input type="button" value="输入" id="bt">
+	<script>
+		bt.onclick=function(){
+			var b=bname.value;
+			var p=price.value;	
+	</script>
+
+67)	xml文件中输出数组需要加“”
+	echo "<?xml version='1.0' encoding='UTF-8' ?>";
+			echo '<empl>';
+			while(($row=mysqli_fetch_assoc($result))!==null){	
+				echo "<person id='$row[eid]'>";
+				echo "<name>$row[ename]</name>";
+				echo "<pic>$row[pic]</pic>";
+				echo "<salary>$row[salary]</salary>";
+				echo '</person>';
+			}
+			echo '</empl>';
+
+68)	表单.serialize()将name属性中所有东西都做成了键值对方便取用：
+	例如这种形式：name=zhou&age=20&pic=img/1.jpg
+
+69)	serialize----表单序列化
+
+
+70)	事件处理函数中阻止默认行为
+	d2.addEventListener("drop",function(event){
+   	    方法1. event.preventDefault();//阻止浏览器默认行为
+  	     方法2. return false;
+   	     console.log("大爷，别走啦。。。。")
+  	  });
+
+
+71)	chrome浏览器中可以直接将id标签输出，查询到
+	jscript中html中id的标签可以直接用id名找到相关标签
+	<div id="show"></div>
+	<script>
+	   show  -> div
+	</script>
+
+72)	非true/false时，修改html属性要用attr（）方法
+	在所有html的属性中，只有三个属性要用prop()来修改：
+	selected / disabled / checked
+
+73)	html5中新特性 在搜索框中加放大镜
+	<input id="uname2" class="form-control" type="search" results="s" placeholder="用户名">
+
+74)	a标签中不能嵌入a，p标签中不能嵌入p
+
+75)	JS中trim()函数：删除首尾的空格，返回string
+
+76)	在angular.js中<tbody  ng-repeat="tmp in list track by $index">
+	加track by $index是为了解决ng-repeat指令中重复数据遍历的错误，因为ng-repeat
+	指令遍历一个js数组时，当数据有重复元素的时候，angular.js会报错
+
+77)     在angular.js中身为代码片段的html中的img地址要以主html为主
+	<a href="#/main"><img src="img/kid-foods.jpg" alt=""/></a> --正确
+	<a href="#/main"><img src="../img/kid-foods.jpg" alt=""/></a> --错误
+
+78)	 两个input中radio单选必须要有相同的name:
+	<input name="sex" type="radio" value="1"> 先生
+	<input name="sex" type="radio" value="2"> 女士

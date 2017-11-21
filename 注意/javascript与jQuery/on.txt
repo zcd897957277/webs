@@ -1,0 +1,75 @@
+
+
+$('#check_all').on('click' , function(){
+alert(1);
+});
+$("#yujinlist").append(html);
+count++; 
+}
+ 
+
+以上代码执行时，点击#check_all时，alert一直没反应，后在网上查资料时，才知道on前面的元素也必须在页面加载的时候就存在于dom里面, 那原话是这样的：
+
+
+支持给动态元素和属性绑定事件的是live和on，其中live在JQUERY 1.7之后就不推荐使用了。现在主要用on，使用on的时候也要注意，on前面的元素也必须在页面加载的时候就存在于dom里面。动态的元素或者样式等，可以放在on的第二个参数里面。
+
+
+因为我先输出相关html,再执行就没问题了。
+下面看下jquery on() 方法绑定动态元素
+
+jQuery on()方法是官方推荐的绑定事件的一个方法。使用 on() 方法可以给将来动态创建的动态元素绑定指定的事件，例如append等。
+
+
+
+
+
+?
+
+1
+2
+3
+ 
+<div id="test">
+<div class="evt">evt1</div>
+</div>
+ 
+
+错误的用法，下面方法只为第一个class 为 evt 的div 绑定了click事件，使用append动态创建的div则没有绑定
+
+
+
+
+
+?
+
+1
+2
+3
+4
+5
+ 
+<script>
+// 先绑定事件再添加div
+$('#test .evt').on('click', function() {alert($(this).text())});
+$('#test').append('<div class="evt">evt2</div>');
+</script>
+ 
+
+正确的用法如下：
+
+
+
+
+
+?
+
+1
+2
+3
+4
+ 
+<script>
+$('body').on('click', '#test .evt', function() {alert($(this).text())});
+$('#test').append('<div class="evt">evt2</div>');
+</script>
+ 

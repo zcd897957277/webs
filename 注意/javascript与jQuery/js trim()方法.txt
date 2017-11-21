@@ -1,0 +1,1 @@
+strObject.trim();作用去除字符串两端的空格

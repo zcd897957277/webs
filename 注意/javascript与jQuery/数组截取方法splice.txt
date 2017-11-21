@@ -1,0 +1,45 @@
+splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+
+例子 1
+在本例中，我们将创建一个新数组，并向其添加一个元素：
+<script type="text/javascript">
+
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+
+document.write(arr + "<br />")
+arr.splice(2,0,"William")
+document.write(arr + "<br />")
+
+</script>
+
+输出：
+George,John,Thomas,James,Adrew,Martin
+George,John,William,Thomas,James,Adrew,Martin
+
+
+例子 2
+在本例中我们将删除位于 index 2 的元素，并添加一个新元素来替代被删除的元素：
+<script type="text/javascript">
+
+var arr = new Array(6)
+arr[0] = "George"
+arr[1] = "John"
+arr[2] = "Thomas"
+arr[3] = "James"
+arr[4] = "Adrew"
+arr[5] = "Martin"
+
+document.write(arr + "<br />")
+arr.splice(2,1,"William")
+document.write(arr)
+
+</script>
+输出：
+George,John,Thomas,James,Adrew,Martin
+George,John,William,James,Adrew,Martin

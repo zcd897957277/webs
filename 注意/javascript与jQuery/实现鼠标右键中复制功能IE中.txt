@@ -1,0 +1,18 @@
+前段时间需要做一个点击一个按钮，把制定内容复制到剪切板的效果。
+
+对于IE浏览器而言，有一简单的方法，通过 window.clipboardData：
+
+（假如有一个id为copy的按钮，有一个id为name的输入框，“text”为固定格式）
+
+
+[javascript] view plain copy
+$("#copy").click(function () {  
+
+[javascript] view plain copy
+window.clipboardData.setData("text", $("#name").val());  
+
+[javascript] view plain copy
+alert("已复制到剪贴板");  
+
+[javascript] view plain copy
+});  
