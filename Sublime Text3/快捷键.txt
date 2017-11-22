@@ -2,3 +2,5 @@ ColorPicker：(无效)
 Linux: ctrl+shift+c
 Windows: ctrl+shift+c
 OS X: cmd+shift+c
+HTML-CSS-JS Prettify：(无效)
+Windows: ctrl+alt+h
