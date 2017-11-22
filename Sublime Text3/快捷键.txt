@@ -1,0 +1,4 @@
+ColorPicker£º(ÎÞÐ§)
+Linux: ctrl+shift+c
+Windows: ctrl+shift+c
+OS X: cmd+shift+c
