@@ -1,0 +1,12 @@
+regedit.exe是微软公司出品的一个进程文件。regedit或regedit.exe进程信息 进程文件：regedit或regedit.exe 进程名称：注册表编辑器 描述： regedit.exe是Windows注册表编辑器.
+
+VirtualBox VMs：这个是虚拟机程序VirtualBox存放配置和记录文件的文件夹
+
+twain是静态图像设备驱动的国际标准，静态图像设备就是象扫描仪、数码相机等图像输入硬件的支持文件，twain_32.dll是存放在windows系统下的一个重要dll文件，缺少它可能造成部分软件或游戏无法正常运行
+
+q3q是360杀毒发现的带毒文件的隔离区,一般情况下可以删除!
+
+U盘电脑读不出来，在确定电脑和U盘都没问题的前提下：
+删除设备管理器中的通用串行总线控制器中U盘的设备
+
+WampServer将地址改为localhost就可以正常访问了
