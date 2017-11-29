@@ -1,0 +1,23 @@
+var str2 = '<div id="main-navigation">';
+str2 += '		<div class="container">';
+str2 += '				<ul class="main-menu">';
+str2 += '					<li><a href="index.html" name="nav">首页</a>';
+str2 += '	</li>';
+str2 += '					<li><a href="about-us.html" name="nav">公司介绍</a>';
+str2 += '					</li>';
+str2 += '				<li><a href="services.html" name="nav">产品提供</a>';
+//str2 += '				</li>';
+//str2 += '					<li><a href="portfolio-3.html" name="nav">案例展示</a>';
+//str2 += '				</li>';
+str2 += '				<li><a href="blog-small.html" name="nav">企业公告</a>';
+str2 += '				</li>';
+str2 += '			<li><a href="faq.html" name="nav">招聘信息</a>';
+str2 += '				</li>';
+str2 += '				<li><a href="contact.html" name="nav">联系我们</a>';
+str2 += '				</li>';
+//str2 += '				<li><a href="shop-none.html" name="nav">商城</a></li>';
+str2 += '			</ul>';
+str2 += '		</div>';
+str2 += '	</div>';
+document.write(str2);
+

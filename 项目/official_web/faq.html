@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+	<script src="http//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Shifter - Responsive HTML5 Template</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="shortcut icon" href="images/favicon.gif"/>
+<link rel="stylesheet" href="css/style.css" media="screen"/><!-- MAIN STYLE CSS FILE -->
+<link rel="stylesheet" href="css/responsive.css" media="screen"/><!-- RESPONSIVE CSS FILE -->
+<link rel="stylesheet" id="style-color" href="css/colors/blue-color.css" media="screen"/><!-- DEFAULT BLUE COLOR CSS FILE -->
+<link href='http//fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'><!-- ROBOTO FONT FROM GOOGLE CSS FILE -->
+<link rel="stylesheet" href="css/prettyPhoto.css" media="screen"/><!--PRETTYPHOTO CSS FILE -->
+<link rel="stylesheet" href="css/font-awesome/font-awesome.min.css" media="screen"/><!-- FONT AWESOME ICONS CSS FILE -->
+<link rel="stylesheet" href="css/layer-slider.css" media="screen"/><!-- LAYER SLIDER CSS FILE -->
+<link rel="stylesheet" href="css/flexslider.css" media="screen"/><!-- FLEX SLIDER CSS FILE -->
+<link rel="stylesheet" href="css/revolution-slider.css" media="screen"/>
+<link rel="stylesheet" href="css/share.css" media="screen"/>
+<!-- REVOLUTION SLIDER CSS FILE -->
+<!-- All JavaScript Files (FOR FASTER LOADING OF YOUR SITE, REMOVE ALL JS PLUGINS YOU WILL NOT USE)-->
+<script type="text/javascript" src="js/jquery.min.js"></script><!-- JQUERY JS FILE -->
+<script type="text/javascript" src="http//code.jquery.com/ui/1.10.3/jquery-ui.js"></script><!-- JQUERY UI JS FILE -->
+<script type="text/javascript" src="js/flex-slider.min.js"></script><!-- FLEX SLIDER JS FILE -->
+<script type="text/javascript" src="js/navigation.min.js"></script><!-- MAIN NAVIGATION JS FILE -->
+<script type="text/javascript" src="js/jquery.layerslider.js"></script><!-- LAYER SLIDER JS FILE -->
+<script type="text/javascript" src="js/layerslider.transitions.js"></script><!-- LAYER SLIDER TRANSITIONS JS FILE -->
+<script type="text/javascript" src="js/map.min.js"></script><!-- GOOGLE MAP JS FILE -->
+<script type="text/javascript" src="js/carousel.js"></script><!-- CAROUSEL SLIDER JS -->
+<script type="text/javascript" src="js/jquery.theme.plugins.min.js"></script><!-- REVOLUTION SLIDER PLUGINS JS FILE -->
+<script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script><!-- REVOLUTION SLIDER JS FILE -->
+<script type="text/javascript" src="js/flickr.js"></script><!-- FLICKR WIDGET JS FILE -->
+<script type="text/javascript" src="js/instagram.js"></script><!-- INSTAGRAM WIDGET JS FILE -->
+<script type="text/javascript" src="js/jquery.twitter.js"></script><!--TWITTER WIDGET JS FILE -->
+<script type="text/javascript" src="js/prettyPhoto.min.js"></script><!-- PRETTYPHOTO JS FILE -->
+<script type="text/javascript" src="js/jquery.tooltips.min.js"></script><!-- TOOLTIPS JS FILE -->
+<script type="text/javascript" src="js/isotope.min.js"></script><!--ISOTOPE JS FILE -->
+<script type="text/javascript" src="js/scrolltopcontrol.js"></script><!-- SCROLL TO TOP JS PLUGIN -->
+<script type="text/javascript" src="js/jquery.easy-pie-chart.js"></script><!-- EASY PIE JS FILE -->
+<script type="text/javascript" src="js/jquery.transit.min.js"></script><!-- TRANSITION JS FILE -->
+<script type="text/javascript" src="js/custom.js"></script><!-- CUSTOM JAVASCRIPT JS FILE -->
+<script type="text/javascript" src="js/netPath.js"></script>
+</head>
+<style>
+	.three-fourth{
+		margin-bottom:50px;
+	}
+</style>
+<body>
+<div id="container">
+	<!-- main container starts-->
+	<div id="wrapp">
+		<!-- main wrapp starts-->
+		<header id="header">
+		<!--header starts -->
+			<script type="text/javascript" src="js/header.js"></script>
+		<div class="container">
+			<script type="text/javascript" src="js/search.js"></script>
+		</div>
+			<script type="text/javascript" src="js/nav.js"></script>
+		<!--main navigation wrapper ends -->
+		</header>
+		<!-- header ends-->
+ 		<div id="content">
+			<div id="breadcrumb">
+				<!-- breadcrumb starts-->
+				<div class="container">
+					<div class="one-half">
+						<h4>招聘信息</h4>
+					</div>
+					<div class="one-half">
+						<nav id="breadcrumbs">
+						<!--breadcrumb nav starts-->
+						<ul>
+							<li></li>
+							<li><a href="index.html">首页</a></li>
+							<li>招聘信息</li>
+						</ul>
+						</nav>
+						<!--breadcrumb nav ends -->
+					</div>
+				</div>
+			</div>
+	<!--breadcrumbs ends -->
+	<div class="container">
+		<div class="three-fourth">
+			<ul class="accordion">
+
+			</ul>
+		</div>
+
+		<!-- sidebar ends-->
+	</div>
+</div>
+<script type="text/javascript" src="js/contact-nav.js"></script>
+<script type="text/javascript" src="js/footer1.js"></script>
+<script type="text/javascript" src="js/footer2.js" ></script>
+</div>
+<!-- main wrapp starts-->
+</div>
+<!-- main container ends-->
+
+</body>
+</html>
+<script>
+	for(var i = 0; i < 8; i++) {
+		document.getElementsByName('nav').id="";
+		if(i == 4){
+			document.getElementsByName('nav')[i].id = "current";
+		}
+	}
+	window.onload=loadList(1);
+	
+	function loadList(page){
+		var url=path+"/loadApplication.do";
+		var dataPage={"page":page};
+		jQuery.post(url,dataPage,function(data,status,msg){
+				var resultBody=data.data.list;
+				var state=data.status;
+				if(state=="0"){
+					if(resultBody!=null){
+						var ul=document.getElementsByClassName("accordion");
+						for(var i=0;i<resultBody.length;i++){
+							var appName=resultBody[i].applicationName;
+							var appDetail=resultBody[i].applicationDetail;
+							var li=document.createElement("li");
+							jQuery(li).addClass('accordion-item')
+							li.innerHTML+='<div class="accordion-switch">'
+							+'<span class="togglegfx"></span>'+appName+'</div>'
+							+'<div class="accordion-content" style="display:none">'
+							+'<p>'+appDetail+'</p>'
+							+'</div>';
+							jQuery(ul).append(li);
+						}
+					}
+				}
+			}
+		);
+	}
+</script>
