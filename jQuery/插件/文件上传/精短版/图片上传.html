@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>file图片上传</title>
+	</head>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			font-size: 16px;
+		}
+		#file_input{
+			font-size: 16px;
+		}
+		/*a  upload */
+		.a-upload {
+		    padding: 4px 10px;
+		    height: 20px;
+		    line-height: 20px;
+		    position: relative;
+		    cursor: pointer;
+		    color: #888;
+		    background: #fafafa;
+		    border: 1px solid #ddd;
+		    border-radius: 4px;
+		    overflow: hidden;
+		    display: inline-block;
+		    text-decoration: none;
+		}
+		
+		.a-upload  input {
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    opacity: 0;
+		    filter: alpha(opacity=0);
+		    cursor: pointer;
+		}
+		
+		.a-upload:hover {
+		    color: #444;
+		    background: #eee;
+		    border-color: #ccc;
+		    text-decoration: none;
+		}
+		#area{
+			width: 300px;
+			height: 400px;
+		}
+	</style>
+	<body>
+		<a href="javascript:;" class="a-upload">
+		   <input type="file" id="file_input">点击这里上传文件<!--选择图片的input按钮-->
+		</a>  
+		<div id="area"></div><!--拿来放图片用的-->
+	</body>
+	<script>	
+		var divpict = document.getElementById("area"); //获取显示图片的div元素
+		var input = document.getElementById("file_input"); //获取选择图片的input元素
+		//这边是判断本浏览器是否支持这个API。
+		if(typeof FileReader==='undefined'){ 
+		    divpict.innerHTML = "抱歉，你的浏览器不支持 FileReader"; 
+		    input.setAttribute('disabled','disabled'); 
+		}else{ 
+		    input.addEventListener('change',readFile,false); //如果支持就监听改变事件，一旦改变了就运行readFile函数。
+		} 
+			      
+		function readFile(){ 
+		    var file = this.files[0]; //获取file对象
+		    //判断file的类型是不是图片类型。
+		    if(!/image\/\w+/.test(file.type)){ 
+		        alert("文件必须为图片！"); 
+		        return false; 
+		    } 
+		    
+		    var reader = new FileReader(); //声明一个FileReader实例
+		    reader.readAsDataURL(file); //调用readAsDataURL方法来读取选中的图像文件
+		    //最后在onload事件中，获取到成功读取的文件内容，并以插入一个img节点的方式显示选中的图片
+		    reader.onload = function(e){ 
+		        divpict.innerHTML = '<img src="'+this.result+'" style="width:100%;height:100%" alt=""/>' 
+		    } 
+		}
+	</script>
+</html>

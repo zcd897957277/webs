@@ -1,0 +1,89 @@
+.card-header{
+	background: url(../images/balance-header_01.png) no-repeat;
+	background-size: 100%; 
+	width: 100%;
+	position: relative;
+	border: 1px solid transparent;
+	padding: 30px 0;
+}
+.card-header p{
+	color: #fdf9f4;
+	text-align: center;
+	margin: 20px 0;
+	font-size: 25px;
+}
+.card-header .money{
+	font-size: 50px;
+}
+.icon-benjinbaozhang{
+	color: #ee5a4e;
+}
+.icon-tuiguangjiangli{
+	color: #ff5a01;
+}
+.icon-wodeyongjin{
+	color: #da0034;
+}
+.iconfont span{
+	color: #4d4d4d;
+}
+
+.icon-tixian{
+	color: #ff832e;
+}
+ .mui-navigate-right{
+	color: #666666 !important;
+}
+.icon-shourumingxi{
+	color: #ee5a4e;
+}
+.icon-zhichumingxi{
+	color: #89d2c2;
+}
+.mui-card span span{
+
+	color: #666;
+}
+.shouru{
+	text-align: center !important;
+	font-size: 35px;
+	color: #1a1a1a !important;
+}
+.shouru p{
+	margin: 10px 0;
+	font-size: 12px;
+	color: #adadad;
+}
+.chakan{
+	color:#33bdf1 ;
+	display: block;
+	text-align: center;
+	margin-top: 20px;
+}
+ @media (max-width: 320px) {
+    	
+    	.card-header{
+	padding: 20px 0;
+}
+.card-header p{
+	margin: 20px 0;
+}
+.card-header p{
+	font-size: 18px;
+}
+.card-header .money{
+	font-size: 30px;
+}
+.shouru{
+	font-size: 30px;
+}
+.shouru p{
+	margin: 5px 0;
+}
+.mui-card span span{
+font-size: 14px;
+}
+.chakan{
+	margin-top: 15px;
+}
+}

@@ -1,0 +1,41 @@
+ .mui-content>.mui-card:first-child{
+ 	margin: 0;
+ }
+  .mui-content>.mui-card{
+  	margin:10px 0 0 0;
+  padding: 0 15px;
+  		
+  }
+ 	.iconfont{
+ 		display: block;
+ 		color: #00d870;
+ 		font-size: 30px;
+ 		line-height: 50px;
+ 	}
+ 		.iconfont span{
+ 			font-size: 16px;
+ 			color: #4d4d4d;
+ 			vertical-align: bottom;
+ 			margin-left:10px ;
+ 			line-height: 45px;
+ 		}
+ 		.iconfont.icon-qq{
+ 			color: #00acee;
+ 		}
+ 		.iconfont.icon-weibo{
+ 			color: #fac800;
+ 		}
+ 		.mui-card img{
+  	display: block;
+  	text-align: center;
+  	width: 140px;
+  	margin: 10px auto;
+  }
+  .mui-btn-block{
+  	background: #00acee;
+  	color: #fff;
+  	position: fixed;
+  	bottom: 0;
+  	margin: 0;
+  	padding: 10px 0;
+  }

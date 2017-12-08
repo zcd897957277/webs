@@ -1,0 +1,56 @@
+.card-header{
+	background: url(../images/myteam_01.png) no-repeat;
+	background-size: 100% 150px; 
+	width: 100%;
+	height: 150px;
+	border:1px solid transparent;
+}
+.icon-fanhui{
+	display: block;
+	border-radius: 50%;
+	width: 22px;
+	height: 22px;
+	background: #45c0f0;
+	color: #fff;
+	margin: 10px;
+	text-align: center;
+	vertical-align: middle;
+}
+.icon-wodetuandui-copy{
+	color: #32b196;
+	font-size: 25px;
+}
+.icon-touxiang{
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+	line-height: 42px;
+    max-width: 42px;
+    height: 42px;
+    font-size: 42px;
+    color: #00acee;
+}
+.mui-media-body span{
+	font-size: 10px;
+	background: #32b196;
+	padding: 2px;
+	color: #fff;
+	margin-left: 10px;
+	border-radius: 2px;
+}
+.right{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	margin: 12px 0;
+	color: #919191;
+	font-size: 12px;
+	text-align: center;
+}
+.right p{
+	font-size: 18px;
+	color: #ee5a4e;
+}
+.ui-table-view-cell{
+	position: relative;
+}

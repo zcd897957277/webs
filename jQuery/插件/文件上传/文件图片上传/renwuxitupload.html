@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+	</head>
+ 	<style type="text/css">
+		.btn-upload {
+			width: 100%;
+			height: 260px;
+			margin-bottom: 10px;
+			position: absolute;
+			left: 0;
+			top: 0px;
+		}
+
+
+
+		.btn-upload input {
+			width: 100%;
+			height: 260px;
+			position: absolute;
+			left: 0;
+			z-index: 1;
+			filter: alpha(opacity=0);
+			-moz-opacity: 0;
+			opacity:0;
+			cursor: pointer;
+			background: red;
+		}
+
+.mui-bar .mui-icon{
+	font-size: 20px;
+}
+.js_uploadBox{
+	width: 100%;
+	overflow: hidden;
+}
+.js_showBox img{
+	width: 100% !important;
+	height: 260px;
+	border-radius: 5px;
+}
+
+.card-header{
+	width: 90%;
+	height: 260px;
+	background:#ccc;
+	margin: 10px auto;
+	border:1px solid transparent;
+}
+.mui-btn-block{
+	background: #00acee;
+	border: 0;
+	color: #fff;
+	padding: 8px 0;
+	margin: 100px 0 20px 0;
+}
+.disable{
+	background:#cccccc ;
+	color: #2c323b;
+}
+@media (max-width: 320px) {
+ .card-header{
+	height: 200px;
+}
+.js_showBox img{
+	height: 200px !important;
+}
+.btn-upload input {
+			height: 200px;
+		}
+		.btn-upload {
+			height: 200px;
+		}
+}
+	</style>
+	<body>
+		<header class="mui-bar mui-bar-nav mui-pull-left">
+			 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">任务系统</h1>
+		</header>
+		    <div class="mui-content">
+		    	<div class="card-header">
+				<form style="position: relative;" id="uploadimg" action="" method="post">
+				<div class="control-group js_uploadBox">
+					<div class="btn-upload">
+						<input class="js_upFile" type="file" name="cover">
+					</div>
+					<div class="js_showBox ">
+						<img src="images/upload_03.png" class="js_logoBox" >
+					</div>
+				</div>
+			<button type="submit" class="mui-btn mui-btn-block">上传</button>
+			<button disabled="disabled" style="margin-top: 30px;" type="reset" class="mui-btn mui-btn-block disable">重置</button>
+					</form>
+			</div>
+		</div>
+	</body>
+<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.uploadView.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+		$(".js_upFile").uploadView({
+			uploadBox: '.js_uploadBox', //设置上传框容器
+			showBox: '.js_showBox', //设置显示预览图片的容器
+			width: 371, //预览图片的宽度，单位px
+			height: 260, //预览图片的高度，单位px
+			allowType: ["gif", "jpeg", "jpg", "bmp", "png"], //允许上传图片的类型
+			maxSize: 6, //允许上传图片的最大尺寸，单位M
+			success: function(e) {
+				$("button[type=reset]").removeClass('disable').removeAttr('disabled');
+			}
+		});
+		$("button[type=reset]").click(function () {
+			$(".js_showBox img").attr({'src':'images/upload_03.png',
+			                             'style': ''});
+		})
+	</script>
+</html>

@@ -1,0 +1,94 @@
+.card-header{
+	background: url(../images/ps-header_02.png) no-repeat;
+	background-size: 100%; 
+	width: 100%;
+	position: relative;
+	border: 1px solid transparent;
+}
+.card-header p{
+	text-align: center;
+	color: #fff;
+	margin:0;
+}
+.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+	border-right: 0;
+	padding: 5px 15px;
+}
+.mui-grid-view.mui-grid-9.firstline .mui-table-view-cell{
+	border-bottom: 0;
+	border-right: 1px solid #eee;
+	padding: 0px 15px;
+}
+.mui-grid-view.mui-grid-9.firstline .mui-table-view-cell .mui-media-body{
+	margin-top: 3px;
+}
+.mui-grid-view.mui-grid-9.firstline .mui-table-view-cell>a{
+	padding: 2px 0;
+}
+.mui-grid-view.mui-grid-9.firstline{
+	padding: 10px 0;
+}
+.icon-benjinbaozhang{
+	color: #ee5a4e;
+}
+.icon-tuiguangjiangli{
+	color: #ff5a01;
+}
+.icon-wodeyongjin{
+	color: #da0034;
+}
+.icon-yue-copy{
+	color: #ee5a4e;
+}
+.icon-dingdan{
+	color: #32b196;
+}
+.icon-erweima{
+	color: #0f4fa7;
+}
+.icon-wodetuandui-copy{
+	color: #32b196;
+}
+.icon-tixianjilu{
+	color: #ff7c36;
+}
+.icon-gonggao{
+	color: #9cbfef;
+}
+.iconfont span{
+	color: #4d4d4d;
+}
+.mui-table-view{
+	margin-top: 10px;
+	color: #8c8c8c;
+}
+.icon-kefu{
+	color: #32b196;
+}
+.icon-bangzhuzhongxin{
+	color: #fd813e;
+}
+.icon-ordinaryset{
+	color: #0f4fa7;
+}
+.mui-table-view-cell {
+    padding: 10px 15px;
+    }
+    
+    
+    @media (max-width: 320px) {
+    	
+    	.mui-table-view-cell {
+    padding: 8px 15px;
+    font-size: 15px;
+    }
+    .mui-table-view.mui-grid-view .mui-table-view-cell .mui-media-body{
+    	font-size: 15px;
+    }
+    .iconfont {
+    font-size: 18px;
+    }
+    .iconfont span{
+    	font-size: 15px;
+    }
+}

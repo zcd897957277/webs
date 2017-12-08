@@ -1,0 +1,20 @@
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.mui-table-view-cell span,.mui-table-view-cell>a:not(.mui-btn){
+	color: #666666;
+}
+.mui-content>.mui-table-view:first-child {
+    margin-top: 0px;
+}
+.mui-btn-block{
+	background: #00acee;
+	color: #fff;
+	padding: 10px 0;
+	margin-top: 50px;
+	width: 90%;
+	margin-left: 5%;
+}
