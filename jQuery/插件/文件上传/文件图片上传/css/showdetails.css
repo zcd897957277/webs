@@ -1,0 +1,140 @@
+.icon-zhifubao-copy-copy-copy,.icon-weixin{
+	color:#1b82d1;
+	display: block;
+	text-align: center;
+	margin: 20px auto;
+	font-size:35px;
+	padding: 10px;
+}
+.icon-zhifubao-copy-copy-copy span,.icon-weixin span{
+	color:#656565;margin-left: 10px;
+	font-size: 25px;
+	vertical-align: middle;
+}
+.weixin{
+	position: absolute;
+	top: 45px;
+	left: 50%;
+	margin-left: -55px;
+	display: block;
+}
+.weixin p,.zhifubao p{
+	font-size: 20px;
+	color: #808080;
+	text-align: center;
+	margin: 30px 0;
+}
+.weixin .money,.zhifubao .money{
+	font-size: 40px;
+	color: #1a1a1a;
+	text-align: center;
+	margin: 30px 0;
+}
+.jindubox{
+	padding: 15px;
+	width: 100%;
+}
+.chulijindu:after{
+	display: block;
+	content: "";
+	clear: both;
+		height: 0;
+	visibility: hidden;
+}
+.chulijindu span{
+	display: inline-block;
+	float: left;
+	width: 33%;
+	color: #4d4d4d;
+	font-size: 20px;
+}
+
+.chulijindu .icon-dagougouxuanrzt{
+	color: #1b82d1;
+	font-size: 25px;
+	text-align: center;
+}
+.icon-dagougouxuanrzt b{
+	width: 50%;
+	vertical-align: middle;
+	font-size: 20px;
+}
+.chulijindu .date{
+	text-align: right;
+	color: #999999;
+}
+.border{
+	width: 2px;
+	height: 70px;
+	background:#1b82d1;
+	margin-left: 37%;
+}
+
+.tixianbox{
+	margin-top: 35px;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 15px 0;
+	color: #4d4d4d;
+	font-size: 20px;
+}
+.datebox{
+	margin-top: 35px;
+	color: #4d4d4d;
+	font-size: 20px;
+}
+.datebox .date,.tixianbox .name{
+	float: right;
+	color: #4d4d4d;
+}
+@media (max-width: 375px) {
+	.chulijindu span{
+	font-size: 18px;
+}
+.icon-dagougouxuanrzt b{
+	font-size:18px;
+}
+.border{
+	height: 45px;
+	margin-left: 36.7%;
+}
+.tixianbox{
+	margin-top: 20px;
+	padding: 10px 0;
+	font-size: 18px;
+}
+.datebox{
+	margin-top: 20px;
+	font-size: 18px;
+}
+}
+
+@media (max-width: 360px) {
+	.chulijindu span{
+	font-size: 17px;
+}
+.icon-dagougouxuanrzt b{
+	font-size:17px;
+}
+.border{
+	height: 45px;
+	margin-left: 36.8%;
+}
+}
+@media (max-width: 320px) {
+		.chulijindu span{
+	font-size: 14px;
+}
+.icon-dagougouxuanrzt b{
+	font-size:14px;
+}
+.border{
+	height: 35px;
+	margin-left: 37.3%;
+}
+}
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
+		<title>我的二维码</title>
+	</head>
+	<style type="text/css">
+		img{
+			display: block;
+			width: 100%;
+		}
+		@media (max-width: 414px) {
+			#qr_container canvas{
+				width: 135px;
+				height: 135px;
+			}
+			#qr_container{
+				position: absolute;
+				top: 222px;
+				left: 50%;
+				margin-left: -64px;
+			}
+		}
+		@media (max-width: 375px) {
+			#qr_container canvas{
+				width: 120px;
+				height: 120px;
+			}
+			#qr_container{
+				position: absolute;
+				top: 202px;
+				left: 50%;
+				margin-left: -58px;
+			}
+		}
+		@media (max-width: 360px) {
+			#qr_container canvas{
+				width: 115px;
+				height: 115px;
+			}
+			#qr_container{
+				position: absolute;
+				top: 193px;
+				left: 50%;
+				margin-left: -55px;
+			}
+		}
+		@media (max-width: 320px) {
+			#qr_container{
+				position: absolute;
+				top: 171px;
+				left: 50%;
+				margin-left: -50px;
+			}
+		}
+	</style>
+
+	<body style="background: #1a1a1a;">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">我的二维码</h1>
+		</header>
+		<img src="images/ewm_bg02.png">
+		<div id="qr_container"></div>
+	</body>
+	<script src="js/jquery-3.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.qrcode.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/qrcode.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+	$(document).ready(function() {
+		//数字和字母
+		var str1='qew1312321'
+		//当text为中文时
+		var str2=toUtf8("钓鱼岛是中国的！"); 
+		$('#qr_container').qrcode({
+			render: "canvas",
+			height:105,
+			width: 105,
+			correctLevel: 0,
+			colorDark: 'red',
+			colorLight: "#ddd",
+			text: str2
+		});
+	});
+	
+	function toUtf8(str) {    
+	    var out, i, len, c;    
+	    out = "";    
+	    len = str.length;    
+	    for(i = 0; i < len; i++) {    
+	        c = str.charCodeAt(i);    
+	        if ((c >= 0x0001) && (c <= 0x007F)) {    
+	            out += str.charAt(i);    
+	        } else if (c > 0x07FF) {    
+	            out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));    
+	            out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));    
+	            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+	        } else {    
+	            out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));    
+	            out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));    
+	        }    
+	    }    
+	    return out;    
+	} 
+</script>
+</html>

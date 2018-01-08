@@ -1,0 +1,540 @@
+清除浮动：
+1.子浮动，父加overflow 下拉有时不用
+2.子集后加<br/ style="clear:both">
+3.父级加：after{content="";}
+4.display:inline-block;不提倡
+
+边框变化：
+边框变化主体不能有padding
+
+:first-child
+获取其父元素中的第一个子元素
+:last-child
+获取其父元素中的最后一个子元素
+例：td:first-child td中的第一个
+
+行内元素（p ,b ,u ,span等）要想margin必须转换为块加display：block
+
+背景与文字写成的东西，要放在一个标签中
+
+inline-block允许在同行出现
+
+text-align:行内块水平居中对块无效
+
+块居中：margin：0 auto;
+
+背景色渐变 有兼容性：
+background:-webkit-gradient(linear,0% 0%,0% 30%,from(#fdfdfd),to(#dddddd));
+
+Math.random()*10产生0 - 9，包括0不包括1 
+
+表单元素（input） 获取内容用.value
+
+lis=[].slice.call(lis);//将类数组对象复制为数组
+
+正则测试是否符合
+reg.test(txt.value)
+
+.selected表示已选中
+
+//eval将字符串外引号去掉
+
+for(var key in emps[0]){//key是关联数组的下标，emps[i][key]表示其第i个元素中下标为key的值
+
+arguments.callee 当前函数
+
+递归是外层函数没结束，里面已经开始
+
+form中textarea其值在函数中表示要用 .value
+
+arr.unshift(值)开头进栈，返回数组，但是arr=arr.unshift(值)返回的是一个值（长度）
+
+回调函数的所有this都是window 回调函数同一个函数都自调用
+回调函数去（）
+
+.nodeName元素类型  例如是否是button 
+
+函数的长度就 = 其参数的个数
+
+target.nodeName=="A" nodeName找的元素大写
+
+回调函数中this为window
+
+//查找id为icon_list的ul,获得其计算后的样式中的left，保存在	OFFSET中
+this.OFFSET=parseFloat(getComputedStyle($("#icon_list")).left);
+
+获得外部样式表的width等属性，要用getComputedStyle(元素).width
+
+var imgs=[
+	{"i":0,"img":"images/index/banner_01.jpg"},
+    {"i":1,"img":"images/index/banner_02.jpg"},
+    {"i":2,"img":"images/index/banner_03.jpg"},
+    {"i":3,"img":"images/index/banner_04.jpg"},
+    {"i":4,"img":"images/index/banner_05.jpg"},
+];
+//遍历imgs中每一个元素，同时声明空字符串htmlImgs,和htmlIdxs
+	var htmlImgs="",htmlIdxs="";
+	for(var i=0;i<imgs.length;i++){
+		//向htmlImgs中拼接一个<li><img src="当前元素的img属性"></li>
+		htmlImgs+='<li><img src="'+imgs[i].img+'"></li>';
+		//向htmlIdxs中拼接一个<li>i+1</li>
+		htmlIdxs+="<li>"+imgs[i].i+1+"</li>";
+	}
+
+//求n:target的内容-id为indexs下class为hover的元素的内容
+var n=parseFloat(target.innerHTML)-$("#indexs>.hover").innerHTML;
+
+
+针对js中parseFloat以及“px”的添加规则，小计：
+1. 添加parseFloat的情况，将值给数字类型时，例如从样式表中拿出一个width等{
+//获得id为slider的div的宽，保存在LIWIDTH中
+this.LIWIDTH=parseFloat(getComputedStyle($("#slider")).width);//*
+
+2.对新定义的一个变量，赋值一个加减乘除的算法（仅有这些），不用加parseFloat，也不用加px
+var n=target.innerHTML-$("#indexs>.hover").innerHTML;//*
+
+3. 添加px的情况,所用到的元素要是数字,而所给的元素不是数字，或者说被赋值的值需要用数字类型出现，来改变样式时：
+//设置id为imgs的元素的宽为LIWIDTH*imgs的元素个数
+$("#imgs").style.width=this.LIWIDTH*imgs.length+"px";//*
+//获得id为imgs的ul的left
+var left=parseFloat(getComputedStyle($("#imgs")).left);
+}
+
+bind针对的是函数函数函数
+
+//查找class为floor下的header下的class为hover的span，保存在light中
+var light=$(".floor>header>span.hover");
+
+截取字符串的方法：div.innerHTML=$("#input_body>input").value.substr(0,leng*2)
+
+动画三要素：总距离DISTANCE，运行时间DURATION，总步数STEPS
+interval:0,//保存步频
+step:0,//保存步长
+timer:null,//保存定时器序号
+
+//新建img
+var img=document.createElement("img");//var img=new Image();
+
+迭代与递归的区别：
+前者：更新旧值，后者：在函数内部调用自身
+
+document.onkeydown=function(e){alert(e.keyCode)} 取键盘键值
+
+
+document.getElementByTagName("标签名")与document.getElementByClassName("类") 都返回数组：并且是动态数组  遍历时下标会变化 如 1 2 3 都有点击变红色效果 遍历：1红 下标 0 1； 3红 0 
+
+call apply都是（）里的替换掉前面的对象 例：tom.say.apply(jack) tom被jack替换
+
+一个script中已经引用了一个js它里面就不能再写js代码了
+
+jQuery中方法都自带循环
+
+jQuery("选择器")或$("选择器")
+jQuery(原生DOM对象)或$(原生DOM对象)
+
+jQuery函数返回值都是对象本身\
+
+parent>child 仅指直接子元素 parent child之后的所有子元素
+
+<hr>单行直线
+
+jQuery中修改input中的value用.val
+
+table使相邻的td无缝连接用border-collapse:collapse;
+
+outline:none;除去button的蓝色线
+
+在括号中加变量i前后要用'...'+i+'...'
+
+jQuery中两个each:
+1.$.each(arr,function(i,val)}全局函数 针对数组
+2.对象.each(function(i,dom)) 对象函数，针对前面的对象，要有对象
+
+text-align:justify;文字两端调整对齐
+
+typeof 对象 返回的类型是小写开头的
+console.log(typeof fn);
+function fn() {};
+var fn;
+//函数声明提前永远比变量声明提前优先级高
+输出：function
+
+两者传递的参数不同，call，apply函数第一个参数都是要传入给当前对象的对象
+
+fixed：生成绝对定位的元素，不会相对于父元素进行定位，只会对可是区域动
+
+var bb = 1;
+function aa(bb) {  //有参时bb=2是局部 
+    bb = 2;
+    alert(bb);
+};
+aa(bb); 2
+alert(bb); 1
+
+console.log(1+ +"2"+"2");//32    + +”2=2 一元运算符
+console.log("A"- "B"+"2"); //NAN加字符串为”NAN字符串”
+console.log("A"- "B"+2);// NAN加数字为”NAN”
+
+escape方法： 该方法返回对一个字符串编码后的结果字符串
+
+下面哪些语句可以在JS里判断一个对象oStringObject是否为String。
+?
+A.oStringObject instanceof String
+B.typeof oStringObject == 'string' 对象时不行，针对字符串
+C.Object.prototype.toString.call(oStringObject)
+
+if判断中，之中的变量声明会提前
+
+变量隐式转换
+4.	if(a in window) {// in判断是否在window上
+    	var a = 10;
+ 	}  
+==
+var a;
+if(a in window) {// in判断是否在window上
+    	a = 10;
+ 	}  
+
+ alert(a);
+    输出：_10___ 
+
+var a = 10;
+a.pro = 10;//变量可以随便添加属性，但是，输出时，是undefined
+
+arguments是类数组对象
+
+services.msc window服务控制台
+
+ipconfig 查看电脑的ip
+
+header("content-type:text/html;charset=utf-8"); php修改utf8
+
+switch case中没有写break，它会从符合判断的那个case开始，输出下面所有
+没有break结束的项 
+var status = '党员'; switch( status ) 
+{ case '党员': console.log('您好！党员！'); 
+case '团员': console.log('您好！团员！'); 
+default: console.log('您好！群众！'); }
+输出：您好！党员！
+您好！团员！
+您好！群众！
+
+form input 中id元素在script中可以直接拿id后的值使用
+输入书名<input id="bname"><br>
+输入价格<input id="price"><br>
+<input type="button" value="输入" id="bt">
+<script>
+	bt.onclick=function(){
+		var b=bname.value;
+		var p=price.value;	
+</script>
+
+xml文件中输出数组需要加“”
+echo "<?xml version='1.0' encoding='UTF-8' ?>";
+		echo '<empl>';
+		while(($row=mysqli_fetch_assoc($result))!==null){	
+			echo "<person id='$row[eid]'>";
+			echo "<name>$row[ename]</name>";
+			echo "<pic>$row[pic]</pic>";
+			echo "<salary>$row[salary]</salary>";
+			echo '</person>';
+		}
+		echo '</empl>';
+
+表单.serialize()将name属性中所有东西都做成了键值对方便取用：
+例如这种形式：name=zhou&age=20&pic=img/1.jpg
+
+serialize----表单序列化
+
+
+事件处理函数中阻止默认行为
+d2.addEventListener("drop",function(event){
+       方法1. event.preventDefault();//阻止浏览器默认行为
+       方法2. return false;
+        console.log("大爷，别走啦。。。。")
+    });
+
+
+chrome浏览器中可以直接将id标签输出，查询到
+jscript中html中id的标签可以直接用id名找到相关标签
+<div id="show"></div>
+<script>
+   show  -> div
+</script>
+
+非true/false时，修改html属性要用attr（）方法
+在所有html的属性中，只有三个属性要用prop()来修改：
+selected / disabled / checked
+
+JS中的call、apply、bind方法
+时间 2015-06-27 23:40:00  博客园-原创精华区
+原文  http://www.cnblogs.com/jingwhale/p/4604917.html
+主题 JavaScript
+JS中的call、apply、bind方法
+
+一、call()和apply()方法
+
+1.方法定义
+
+call方法:
+
+语法：call([thisObj[,arg1[, arg2[,   [,.argN]]]]])
+
+定义：调用一个对象的一个方法，以另一个对象替换当前对象。
+
+说明：
+
+call 方法可以用来代替另一个对象调用一个方法。call 方法可将一个函数的对象上下文从初始的上下文改变为由 thisObj 指定的新对象。
+
+如果没有提供 thisObj 参数，那么 Global 对象被用作 thisObj。
+
+apply方法：
+
+语法：apply([thisObj[,argArray]])
+
+定义：应用某一对象的一个方法，用另一个对象替换当前对象。
+
+说明：
+
+如果 argArray 不是一个有效的数组或者不是 arguments 对象，那么将导致一个 TypeError。
+
+如果没有提供 argArray 和 thisObj 任何一个参数，那么 Global 对象将被用作 thisObj， 并且无法被传递任何参数。
+
+2、常用实例
+
+a、
+
+function add(a,b)  
+{  
+  alert(a+b);  
+}  
+function sub(a,b)  
+{  
+  alert(a-b);  
+}  
+add.call(sub,3,1);
+这个例子中的意思就是用 add 来替换 sub，add.call(sub,3,1) == add(3,1) ，所以运行结果为：alert(4); // 注意：js 中的函数其实是对象，函数名是对 Function 对象的引用。
+
+b、
+
+function Animal(){	
+  this.name = "Animal";	
+  this.showName = function(){	
+    alert(this.name);	
+  }	
+}	
+function Cat(){	
+  this.name = "Cat";	
+}	
+var animal = new Animal();	
+var cat = new Cat();
+通过call或apply方法，将原本属于Animal对象的showName()方法交给对象cat来使用了。
+
+//输入结果为"Cat"   
+
+animal.showName.call(cat,",");   
+
+//animal.showName.apply(cat,[]); 
+
+call 的意思是把 animal 的方法放到cat上执行，原来cat是没有showName() 方法，现在是把animal 的showName()方法放到 cat上来执行，所以this.name 应该是 Cat。
+
+c、实现继承
+
+function Animal(name){	  
+  this.name = name;	  
+  this.showName = function(){	  
+    alert(this.name);	  
+  }	  
+}	  
+function Cat(name){	
+  Animal.call(this, name);	
+}	  
+var cat = new Cat("Black Cat");	 
+cat.showName();
+Animal.call(this) 的意思就是使用 Animal对象代替this对象，那么 Cat中不就有Animal的所有属性和方法了吗，Cat对象就能够直接调用Animal的方法以及属性了.
+
+d、多重继承
+
+function Class10()  
+{  
+  this.showSub = function(a,b)  
+  {  
+    alert(a-b);  
+  }  
+}  
+function Class11()  
+{  
+  this.showAdd = function(a,b)  
+  {  
+    alert(a+b);  
+  }  
+}  
+function Class2()  
+{  
+  Class10.call(this);  
+  Class11.call(this);  
+}
+很简单，使用两个 call 就实现多重继承了当然，js的继承还有其他方法，例如使用原型链，这个不属于本文的范畴，只是在此说明call 的用法。说了call ，当然还有 apply，这两个方法基本上是一个意思，区别在于 call 的第二个参数可以是任意类型，而apply的第二个参数必须是数组，也可以是arguments。代码如下：
+
+var func=new function(){this.a="func"} 
+var myfunc=function(x,y){ 
+var a="myfunc"; 
+alert(this.a); 
+alert(x + y); 
+} 
+myfunc.call(func,"var"," fun");// "func" "var fun" 
+myfunc.apply(func,["var"," fun"]);// "func" "var fun"
+二、bind
+
+在EcmaScript5中扩展了叫bind的方法（IE6,7,8不支持），使用方法如下
+
+function T(c) {
+  this.id = "Object";
+  this.dom = document.getElementById("scroll");
+}
+T.prototype = {
+  init: function() {
+     //①
+    this.dom.onmouseover = function() {
+      console.log("Over-->"+this.id);
+    }
+     //②
+    this.dom.onmouseout = function() {
+      console.log("Out -->"+this.id);
+    } .bind(this)
+  }
+};
+(new T()).init();
+结果：
+
+通过①和②的对照加上显示的结果就会看出bind的作用：改变了上下文的this
+
+bind与call很相似,，例如，可接受的参数都分为两部分，且第一个参数都是作为执行时函数上下文中的this的对象。
+
+不同点有两个：
+
+①bind的返回值是函数
+
+//都是将obj作为上下文的this
+
+function func(name,id) {
+    console.log(name,id,this);
+}
+var obj = "Look here";
+//什么也不加func("    ","-->");
+
+//使用bind是 返回改变上下文this后的函数
+
+var a = func.bind(obj, "bind", "-->");
+
+a();
+
+//使用call是 改变上下文this并执行函数
+
+var b = func.call(obj, "call", "-->");
+
+结果：
+
+image
+②后面的参数的使用也有区别
+
+function f(a,b,c){
+    console.log(a,b,c);
+}
+
+var f_Extend = f.bind(null,"extend_A")
+f("A","B","C")  //这里会输出--> A B C
+
+f_Extend("A","B","C")  //这里会输出--> extend_A A B
+
+f_Extend("B","C")  //这里会输出--> extend_A B C
+
+f.call(null,"extend_A") //这里会输出--> extend_A undefined undefined
+
+call 是 把第二个及以后的参数作为f方法的实参传进去
+
+而bind 虽说也是获取第二个及以后的参数用于之后方法的执行，但是f_Extend中传入的实参则是在bind中传入参数的基础上往后排的。
+
+//这句代码相当于以下的操作
+
+var f_Extend = f.bind(null,"extend_A")
+
+//↓↓↓
+
+var f_Extend = function(b,c){
+    return f.call(null,"extend_A",b,c);
+}
+举一个应用场景：例如现在有一个方法 根据不同的文件类型进行相应的处理，通过bind 就可以创建出简化版的处理方法
+
+function FileDealFunc(type,url,callback){
+  if(type=="txt"){...}
+  else if(type=="xml"){...}
+  .....
+}
+var TxtDealFunc = FileDealFunc.bind(this,"txt");
+//这样使用的时候更方便一些
+
+FileDealFunc("txt",XXURL,func);  //原来
+
+TxtDealFunc(XXURL,func); //现在
+
+以下是兼容处理
+
+if (!Function.prototype.bind) {
+    Function.prototype.bind = function(obj) {
+        var _self = this
+            ,args = arguments;
+        return function() {
+            _self.apply(obj, Array.prototype.slice.call(args, 1));
+        }
+    }
+}
+
+针对li元素的克隆：
+<script>
+var htm=$("ul.list2 li").eq(0).clone();
+  $("ul.list2 li").eq(0).after(htm);
+</script>
+
+相对定位与绝对定位要连起来使用，但是要少用，会对后期js的增删添加有所影响
+
+div的多层叠加有助于解决页面中各种效果调试
+
+ul li中尽量只放li
+
+this指的是当前对象，有助于解决增删当前元素的问题
+
+输入字符，如果你返回的是其length，它不会输出px，只会输出字符个数
+
+动态添加元素，最好先写好每种要用到的元素样式，不显示的放在外部样式表中，在增加是在循环添加
+
+change是jQuery中针对textarea/select在元素值发生变化时，运行函数的函数
+
+URL中相对地址和绝对地址的关系，前者依赖后者，以<base>标签来定义绝对地址
+
+jQuery中动态添加元素的方法：
+1.只支持一个元素的：
+ //创建满天随机小星星(大小和位置都随机)，点击一
+  //颗后，它变大变淡，最后从文档中消失
+  for(var i=0; i<15; i++){
+    $('<img src="img/star.png">').css('width',rn	(30,300)+'px').css('left', rn(0, 600)+'px').css('top', 	rn(0, 600)+'px').appendTo(document.body);
+  }
+2.支持多元素，复杂层次关系的：
+var tr1='<tr><td>'+prise+'</td><td><input type="number" value="'+num+'"></td><td>$<b>'+smallTt+'</b></td><td><span>&times;<span></td></tr>';
+
+对CSS中box-sizing的理解：
+该属性有三个值
+content-box(默认):显示出来的有背景色的宽高是border+padding+width/height 例如三者分贝为1px 20px 100px 则显示出来的宽度为142px
+border-box:显示出来的有背景色的宽高是width/height，它也有border和padding，不过两者都包含在width/height中 例如三者分贝为1px 20px 100px 则显示出来的宽度为100px，在网页上看时，100px的原始宽已经变成了58px了
+
+字符串中数字直接遇到/*-，会强制转换
+“1”-1=0
+“55”/5=10
+
+单选题)有 html 代码如下： <body> <p id="p1">回复<a>10</a></p> </body> 还有 JavaScript 代码如下： 
+var p = document.getElementById('p1'); 
+console.log(p.firstChild.innerHTML); 
+console.log(p.firstElementChild.innerHTML); 上述代码的输出结果是（undefined,10）
+p.firstChild =>“回复” p.firstChild.innerHTML =>undefined
+
+arr[4].toString()数组转字符串
