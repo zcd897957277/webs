@@ -1,0 +1,6 @@
+//如果溢出框，则应该提供滚动机制。 上下
+   overflow-y:auto;
+//属性控制元素在移动设备上是否使用滚动回弹效果. 有
+   -webkit-overflow-scrolling:touch;
+//-webkit-scrollbar   定义了滚动条整体的样式；
+    -webkit-scrollbar {display:none}
