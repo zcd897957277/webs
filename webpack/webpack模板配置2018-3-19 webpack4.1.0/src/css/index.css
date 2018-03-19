@@ -1,0 +1,17 @@
+body{
+    background-color: red;
+    color:white;
+}
+
+#tupian {
+    background-image: url(../images/1.jpg);
+    width:466px;
+    height:300px;
+    column-count: 3;
+}
+.add{
+    width: 100%;
+    height:100%;
+    color: green;
+    border: 1px solid #000000;
+}
