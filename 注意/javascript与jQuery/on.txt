@@ -1,5 +1,4 @@
 
-
 $('#check_all').on('click' , function(){
 alert(1);
 });
@@ -19,16 +18,6 @@ count++;
 
 jQuery on()·½·¨ÊÇ¹Ù·½ÍÆ¼öµÄ°ó¶¨ÊÂ¼şµÄÒ»¸ö·½·¨¡£Ê¹ÓÃ on() ·½·¨¿ÉÒÔ¸ø½«À´¶¯Ì¬´´½¨µÄ¶¯Ì¬ÔªËØ°ó¶¨Ö¸¶¨µÄÊÂ¼ş£¬ÀıÈçappendµÈ¡£
 
-
-
-
-
-?
-
-1
-2
-3
- 
 <div id="test">
 <div class="evt">evt1</div>
 </div>
@@ -36,18 +25,6 @@ jQuery on()·½·¨ÊÇ¹Ù·½ÍÆ¼öµÄ°ó¶¨ÊÂ¼şµÄÒ»¸ö·½·¨¡£Ê¹ÓÃ on() ·½·¨¿ÉÒÔ¸ø½«À´¶¯Ì¬´´½¨µ
 
 ´íÎóµÄÓÃ·¨£¬ÏÂÃæ·½·¨Ö»ÎªµÚÒ»¸öclass Îª evt µÄdiv °ó¶¨ÁËclickÊÂ¼ş£¬Ê¹ÓÃappend¶¯Ì¬´´½¨µÄdivÔòÃ»ÓĞ°ó¶¨
 
-
-
-
-
-?
-
-1
-2
-3
-4
-5
- 
 <script>
 // ÏÈ°ó¶¨ÊÂ¼şÔÙÌí¼Ódiv
 $('#test .evt').on('click', function() {alert($(this).text())});
@@ -57,17 +34,6 @@ $('#test').append('<div class="evt">evt2</div>');
 
 ÕıÈ·µÄÓÃ·¨ÈçÏÂ£º
 
-
-
-
-
-?
-
-1
-2
-3
-4
- 
 <script>
 $('body').on('click', '#test .evt', function() {alert($(this).text())});
 $('#test').append('<div class="evt">evt2</div>');
