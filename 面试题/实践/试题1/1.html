@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>proxy</title>
+</head>
+<body>
+<script>
+    let a = new Proxy({
+        a:123,
+        b:234,
+        c:function(){
+            console.log(this.a)
+        }
+    },{
+        get:function(target,key){
+            console.log(`你获得了${key}的值`);
+            return target[key];
+        },
+        set:function(target,key,value){
+            console.log(`你修改了${key}的值`);
+            return target[key] = value;
+        }
+    });
+
+    a.c();
+</script>
+</body>
+</html>
