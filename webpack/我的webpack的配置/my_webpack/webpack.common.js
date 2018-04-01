@@ -16,12 +16,13 @@ let cssDev = [
     {loader:'css-loader?sourceMap',options:{modules: true}},
     {loader: 'postcss-loader'}
 ];
-let cssProd = ExtractTextPlugin.extract({
+let cssProd = extractTextPlugin.extract({
     fallback: 'style-loader',
     use: [
         { loader: 'css-loader', options: { importLoaders: 1 } },
         'postcss-loader'
-    ]
+    ],
+    publicPath:'../'//为了让css中图片地址获取正确的路径
 });
 
 let lessDev = [
@@ -30,13 +31,14 @@ let lessDev = [
     {loader: 'postcss-loader'},
     {loader:'less-loader?sourceMap'}
 ];
-let lessProd = ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    //resolve-url-loader may be chained before sass-loader if necessary
-    use: [
-        { loader: 'css-loader', options: { importLoaders: 1 } },
-        'postcss-loader','less-loader?sourceMap'
-    ]
+let lessProd = extractTextPlugin.extract({
+        fallback: 'style-loader',
+        //resolve-url-loader may be chained before sass-loader if necessary
+        use: [
+            { loader: 'css-loader', options: { importLoaders: 1 } },
+            'postcss-loader','less-loader?sourceMap'
+        ],
+        publicPath:'../'//为了让css中图片地址获取正确的路径
 });
 
 let scssDev = [
@@ -45,13 +47,14 @@ let scssDev = [
     {loader: 'postcss-loader'},
     {loader:'sass-loader?sourceMap'}
 ];
-let scssProd = ExtractTextPlugin.extract({
+let scssProd = extractTextPlugin.extract({
     fallback: 'style-loader',
     //resolve-url-loader may be chained before sass-loader if necessary
     use: [
         { loader: 'css-loader', options: { importLoaders: 1 } },
         'postcss-loader','sass-loader?sourceMap'
-    ]
+    ],
+    publicPath:'../'//为了让css中图片地址获取正确的路径
 });
 
 let cssConfig = process.env.ASSET_PATH === 'production' ? cssProd : cssDev;
@@ -70,6 +73,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
+        path:path.resolve(__dirname + '/dist'),
         publicPath: process.env.ASSET_PATH === 'production'
             ? './'
             : './'
@@ -93,32 +97,17 @@ module.exports = {
             // 解析css文件并同时自动添加css3属性前缀
             {
                 test:/\.css$/,
-                use:extractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use:[
-                        {
-                            loader:'css-loader',options:{importLoaders:1}//importLoaders Number of loaders applied before CSS loader
-                        },'postcss-loader'
-                    ],
-                    publicPath:'../'//为了让css中图片地址获取正确的路径
-                })
+                use:cssConfig
             },
             // 针对less的解析 将less分离至index.css
             {
                 test:/\.less$/,
-                use:extractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use:['css-loader','less-loader']
-                })
+                use:lessConfig
             },
             // 针对less的解析 将less分离至index.css
             {
                 test:/\.(scss|sass)$/,
-                use:extractTextPlugin.extract({
-                    // use style-loader in development
-                    fallback:'style-loader',
-                    use:['css-loader','sass-loader']
-                })
+                use:scssConfig
             },
             // 图片问题打包css中的图片或者在js文件中通过js添加的图片
             {

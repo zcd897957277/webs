@@ -9,4 +9,4 @@
 8. webpack-dev-server 在使用时，output中配置publicPath: "./"，以及插件HtmlWebpakcplugin中配置filename都会对其造成影响
 9. ProvidePlugin 暴露某个模块中单个导出值，只需通过一个“数组路径”进行配置（例如 [module, child, ...children?]）
 10. CommonsChunkPlugin 插件可以将公共的依赖模块提取到已有的入口 chunk 中，或者提取到一个新生成的 chunk。让我们使用这个插件，将之前的示例中重复的 lodash 模块去除
-11.
+11. css中background-image中图片地址如果一开始是这样的格式css/index.css ,images/1.jpg 则css中的图片地址是'../images/1.jpg',这种情况下在不使用postcss下没关系，使用了就必须声明publicPath:'../'使得能够获得正确的地址
