@@ -26,7 +26,7 @@ module.exports = merge(common,{
         // 主机
         host:'localhost',
         open:true,
-        // //服务端压缩是否开启
+        // 服务端压缩是否开启
         compress:true,
         //热更新
         hot: true

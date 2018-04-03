@@ -3,7 +3,7 @@ const path = require('path');
 const glob = require('glob');
 // 用以将common中的通用配置与当前的配置结合在一起
 const merge = require('webpack-merge');
-// 一个能够删除未引用代码(dead code)的压缩工具
+// 一个能够删除未引用js代码(dead code)的压缩工具
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 // 配置html模板 模板中不使用template属性生成的是一个简单html5页面
 const htmlPlugin= require('html-webpack-plugin');
@@ -43,7 +43,8 @@ module.exports = merge(common,{
             'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
         }),
         // html的配置
-        new htmlPlugin({ //生产环境中使用 开发中不使用
+        new htmlPlugin({
+            //生产环境中使用 开发中不使用
             // mininfy 对html文件进行压缩配置
             minify:{
                 // removeAttrubteQuotes 是去掉属性的双引号
@@ -68,7 +69,7 @@ module.exports = merge(common,{
             //包含
             // chunks: ['contact']
         }),
-        // 消除未使用的css
+        // 消除未使用的css 针对源码使用
         new PurifyCSSPlugin({
             // Give paths to parse for rules. These should be absolute!
             paths: glob.sync(path.join(__dirname, 'src/*.html')),
@@ -78,7 +79,7 @@ module.exports = merge(common,{
         // 已存在的入口chunk中，当然也可以命名一个在入口中没有的文件名
         new webpack.optimize.CommonsChunkPlugin({
             //name对应入口文件中的名字，我们起的是jquery
-            name:['jquery','lodash'],
+            names:['jquery','lodash'],
             //把文件打包到哪里，是一个路径
             filename:"assets/js/[name].js",
             //最小打包的文件模块数，这里直接写2就好
