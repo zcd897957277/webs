@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Generator -->
+    <!-- 星号只要在function与函数名之间即可 -->
+    <!-- function* testGenerator(){ 
+        yield 'test';
+        yield 'generator';
+        return '!';
+    } -->
+
+    <!-- function testYield(){ -->
+        <!-- 报错，但在火狐浏览器中不报错，被自动认为是Generator函数 -->
+        <!-- yield 'hello'; 
+    } -->
+
+<script>
+    function* generator(){
+        // yield语句是暂停标志
+        console.log('hehe');
+        yield 'hello';
+        yield 'ecmascript';
+        return 'end';
+    }
+
+    let gen = generator();
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+
+    for(let x of generator()){
+        console.log(x);
+    }
+    // hehe 
+    // hello
+    // ecmascript
+    [...generator()].forEach((val,idx,arr)=>console.log(val));
+    // hehe
+    // hello
+    // ecmascript
+
+    // 不传值的情况
+    function* generator(){
+        console.log('hello generator...');
+        let v = yield 'ni';
+        let u = yield v + 'test';
+        return u + v + '';
+    }
+    
+    let f = generator();
+    f.next();
+    f.next();
+    f.next();
+
+    // 不传值的情况
+    let z = generator();
+    z.next();
+    /* 
+        hello generator...
+        Object { value: "ni", done: false }
+     */
+    z.next('first');
+    // Object { value: "fristtest", done: false }
+    z.next('second');
+    // Object { value: "secondfrist", done: true }
+
+    function* gene(){
+        console.log('start generating...');
+        let ret = yield 'hello';
+        if(ret == 'a'){
+            yield 'a';
+        }else{
+            yield 'b';
+        }
+
+        return 'ending';
+    }
+
+    let g = gene();
+    g.next();
+    /* 
+        start generating...
+        Object { value: "hello", done: false }
+     */
+    g.next('c');
+    // Object { value: "b", done: false }
+    g.next();
+    // Object { value: "ending", done: true }
+
+    function* catchGene(){
+        try{
+            yield 'try';
+        }catch(e){
+            console.log('generator函数内部捕获：' + e);
+        }
+    }
+
+    /* 
+        3.Generator实例方法throw
+        throw方法可以在函数体外抛出错误，然后在generator函数内部捕获错误，
+        但同时只能一条错误异常，如下所示
+     */
+
+    let g = catchGene();
+    try{
+        console.log(g.next());
+        g.throw('a');
+        g.throw('b');
+    }catch(e){
+        console.log('全局捕获：' + e);
+    }
+    /* 
+        Object { value: "try", done: false }
+        generator函数内部捕获：a
+        全局捕获：b
+     */
+
+     function* gen(){
+         yield 'hello';
+         yield 'world';
+     }
+
+     let g = gen();
+     try{
+         g.throw('a');
+     }catch(e){
+         console.log('全局捕获：' + e);
+     }
+     // 全局捕获：a
+
+     /* 
+        不管是generator实例throw方法或者throw命令抛出的错误，
+        只要被捕获了就不会影响generator函数的next方法的执行，
+        否则遍历直接终止，如下所示
+      */
+      function* gen(){
+          yield 'hello';
+          yield 'world';
+        
+      }
+      let g = gen();
+      console.log(g.next());
+      g.throw();
+      console.log(g.next());
+      /* 
+        VM226:7 Object {value: "hello", done: false}
+        VM226:8 Uncaught undefined
+       */
+       console.log('-----------------------使用try...catch捕获-----------------');
+       function* gen(){
+           try{
+               yield 'hello';
+           }catch(e){
+               console.log(e);
+           }
+
+           yield 'world';
+           yield 'ending';
+       }
+
+       let g = gen();
+       console.log(g.next());
+       console.log(g.throw('a'));
+       console.log(g.next());
+
+       /* 
+            4.Generator实例方法return
+
+            该方法会返回给定的值，并终止generator函数的遍历，如下所示
+        */
+        function* gen(){
+            yield 'hello';
+            yield 'world';
+        }
+        var g = gen();
+        g.next()
+        // Object { value: "hello", done: false }
+        g.return("return");
+        // Object { value: "return", done: true }
+        g.next()
+        // Object { value: undefined, done: true }
+        /* 
+            如果return方法没有给出任何值，则返回undefined，
+            如果generator函数体内部部署了try...finally语句，
+            return语句会被推迟到finally执行完后执行，如下所示
+         */
+         function* gen(){
+            try{
+                yield 'hello';
+            }finally{
+                yield 'world';
+            }
+        }
+        var g = gen();
+        g.next()
+        // Object { value: "hello", done: false }
+        g.return("nihao")
+        // Object { value: "world", done: false }
+        g.next()
+        // Object { value: "nihao", done: true }
+        g.next()
+        // Object { value: undefined, done: true }
+        /* 
+            5.yield*语句
+
+            yield*语句用在generator函数内部执行另一个遍历器对象，如下所示
+         */
+        function* letter(){
+            yield 'b';
+            yield 'c';
+            yield 'd';
+        }
+        function* gen(){
+            yield "a";
+            letter(); //直接调用没有效果
+            yield "e";
+        }
+        [...gen()]
+        // Array [ "a", "e" ]
+        console.log('------------------------------------------');
+        function* letter(){
+            yield 'b';
+            yield 'c';
+            yield 'd';
+        }
+        function* gen(){
+            yield "a";
+            yield* letter();//yield* 语句
+            yield "e";
+        }
+        [...gen()]
+        // Array [ "a", "b", "c", "d", "e" ]
+        //只要实现了Iterator接口的对象都可以使用yield*遍历，如下所示
+        function* gen(){
+            yield 1;
+            yield 2;
+            yield* [3,4,5,6,7];
+            yield 10;
+        }
+        console.log([...gen()]);
+        // Array [ 1, 2, 3, 4, 5, 6, 7, 10 ]
+        console.log('----------------------------遍历嵌套函数-----------------------');
+        function* walkArr(arr){
+            if(Array.isArray(arr)){
+                for(let v of arr){
+                    yield* walkArr(v);
+                }
+            }else{
+                yield arr;
+            }
+        }
+        var w = walkArr([1,[2,[3,10,[9]]]]);
+        [...w];
+        // Array [ 1, 2, 3, 10, 9 ]
+</script>
+</body>
+</html>

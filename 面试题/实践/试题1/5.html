@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    function runAsync(){
+        let p = new Promise(function(resolve,reject){
+            //异步操作
+            setTimeout(function(){
+                console.log('执行完成');
+                resolve('随便什么数据');
+            },2000);
+        });
+
+        return p;
+    }
+    // runAsync().then(function(data){
+    //     console.log(data);
+    //     //后面可以用传过来的数据做些其他操作
+    //     //。。。。
+    // });
+
+    // function runAsync(callback){
+    //     setTimeout(function(){
+    //         console.log('执行完成');
+    //         callback('随便什么数据');
+    //     },5000);
+    // }
+
+    // runAsync(function(data){
+    //     console.log(data);
+    // });
+
+    /* 
+    reject的用法
+     */
+
+     function getNumber(){
+         let p = new Promise(function(resolve,reject){
+             //做一些异步操作
+             setTimeout(function(){
+                let num = Math.ceil(Math.random()*10);//生成1-10的随机数
+                if(num <= 5){
+                    resolve(num);
+                }else{
+                    reject('数字太大了。');
+                }
+             },2000);
+         });
+         return p;
+     }
+
+    //  getNumber().then(function(data){
+    //      console.log('resolved');
+    //      console.log(data);
+    //  },function(reason,data){
+    //      console.log('rejected');
+    //      console.log(reason);
+    //      console.log(data)
+    //  });
+
+    // getNumber().then(function(data){
+    //     console.log('resolved');
+    //     console.log(data);
+    // }).catch(function(reason){
+    //     console.log('rejected');
+    //     console.log(reason);
+    // });
+
+    // getNumber().then(function(data){
+    //     console.log('resolved');
+    //     console.log(data);
+    //     console.log(somedata);//此处的somedata未定义
+    // }.catch(function(reason){
+    //     console.log('rejected');
+    //     console.log(reason);
+    // }));
+
+    /* 
+    5.html:79 Uncaught TypeError: (intermediate value).catch is not a function
+    at 5.html:79
+     */
+
+     //用Promise.all来执行，all接收一个数组参数，里面的值最终都算返回Promise对象。
+    //  Promise.all([getNumber(),runAsync()]).then(function(results){
+    //      console.log(results);
+    //  });
+
+     //all方法的效果实际上是「谁跑的慢，以谁为准执行回调」，
+     //那么相对的就有另一个方法「谁跑的快，以谁为准执行回调」，这就是race方法
+    //  Promise.race([getNumber().runAsync()]).then(function(results){
+    //      console.log(results);
+    //  });
+
+    //可以用race给某个异步请求设置超时时间，并且在超时后执行相应的操作
+    // 请求某个图片资源
+    function requestImg(){
+        let p = new Promise(function(resolve,reject){
+            let img = new Image();
+            img.onload = function(){
+                resolve(img);
+            }
+
+            img.src = 'xxxxx';
+        });
+
+        return p;
+    }
+
+    // 延时函数，用于给请求计时
+    function timeout(){
+        let p = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                reject('图片请求超时');
+            },5000);
+        });
+
+        return p;
+    }
+
+    Promise.race([requestImg(),timeout()])
+           .then(function(result){
+               console.log(result);
+           })
+           .catch(function(reason){
+               console.log(reason);
+           });
+
+    /* 
+    requestImg函数会异步请求一张图片，我把地址写为"xxxxxx"，所以肯定是无法成功请求到的。
+    timeout函数是一个延时5秒的异步操作。我们把这两个返回Promise对象的函数放进race，于是他俩就会赛跑，
+    如果5秒之内图片请求成功了，那么遍进入then方法，执行正常的流程。
+    如果5秒钟图片还未成功返回，那么timeout就跑赢了，则进入catch，报出“图片请求超时”的信息。运行结果如下：
+     */
+</script>
+</body>
+</html>

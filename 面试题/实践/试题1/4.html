@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+//试想一下，我们有一个getJSON方法，该方法发送一个异步请求JSON数据，并返回一个promise对象。
+//这个promise对象的resolve方法传递异步获得的JSON数据。
+//具体例子的使用如下:
+// const makeRequest = () => {
+//     getJSON()
+//         .then(data => {
+//             console.log(data);
+//             return 'done';
+//         })
+// }
+// makeRequest();
+
+// const makeRequest = async () => {
+//     console.log(await getJSON());
+//     return 'done';
+// }
+// makeRequest();
+
+// function timeout(ms){
+//     return new Promise((resolve) => {
+//         setTimeout(resolve,ms);
+//     })
+// }
+
+// async function asyncPrint(value,ms){
+//     await timeout(ms);
+//     console.log(value);
+// }
+
+// asyncPrint('hello world',500);
+    
+/*
+错误处理Error handling
+
+Async/await使得处理同步＋异步错误成为了现实。我们同样使用try/catch结构，但是在promises的情况下，
+try/catch难以处理在JSON.parse过程中的问题，原因是这个错误发生在Promise内部。
+想要处理这种情况下的错误，我们只能再嵌套一层try/catch，就像这样：
+*/
+
+// const makeRequest = () => {
+//     try {
+//         getJSON().then(result => {
+//             //this parse may fail
+//             const data = JSON.parse(result);
+//             console.log(data);
+//         }).catch((err) => {// this block to handle asynchronous errors
+//           console.log(err)
+//         });
+        
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+const makeRequest = async () => {
+    try {
+        // this parse may fail
+        const data = JSON.parse(await getJSON())
+        console.log(data)
+    } 
+    catch (err) {
+        console.log(err)
+    }
+}
+makeRequest()
+</script>
+</body>
+</html>
