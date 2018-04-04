@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reflect</title>
+</head>
+<body>
+<script>
+    let obj = new Proxy({},{
+        get:function(target,key,receiver){
+            console.log(`getting ${key}!`);
+            return Reflect.get(target,key,receiver);
+        },
+        set:function(target,key,value,receiver){
+            console.log(`setting ${key}!`);
+            return Reflect.set(target,key,value,receiver);
+        }
+    });
+
+    obj.count = 1;
+    ++obj.count;
+
+    /*
+    let obj = { a: 1 }
+Object.defineProperty(obj, "b", { value: 2 })
+obj[Symbol("c")] = 3
+Reflect.ownKeys(obj) // [ "a", "b", Symbol(c) ]
+
+var obj = { a: 1 };
+Object.defineProperty(obj, "b", { value: 2 });
+// no equivalent in ES5
+Object.getOwnPropertyNames(obj); // [ "a", "b" ]
+     */
+</script>
+</body>
+</html>
