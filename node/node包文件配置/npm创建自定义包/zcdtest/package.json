@@ -1,0 +1,15 @@
+{
+  "name": "zcdtest",
+  "version": "1.0.0",
+  "description": "A hello world package",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Hello",
+    "World"
+  ],
+  "author": "zhouchdi",
+  "license": "MIT"
+}
