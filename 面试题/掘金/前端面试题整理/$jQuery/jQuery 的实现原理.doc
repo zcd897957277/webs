@@ -1,0 +1,12 @@
+(function(window, undefined) {})(window);
+
+jQuery 利用 JS 函数作用域的特性，采用立即调用表达式包裹了自身，解决命名空间和变量污染问题
+
+window.jQuery = window.$ = jQuery;
+
+在闭包当中将 jQuery 和 $ 绑定到 window 上，从而将 jQuery 和 $ 暴露为全局变量
+
+作者：poetries
+链接：https://www.jianshu.com/p/feab89b88d6b
+來源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。

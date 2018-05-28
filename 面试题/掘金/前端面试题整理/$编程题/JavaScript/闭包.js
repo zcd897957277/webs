@@ -23,13 +23,13 @@ a
   .fun(8);
 
 // 方法二
-var a = 0,
-  b = 0;
-function A(a) {
-  A = function(b) {
-    alert(a + b++);
-  };
-  alert(a);
-}
-A(1); //1
-A(12); //13
+// var a = 0,
+//   b = 0;
+// function A(a) {
+//   A = function(b) {
+//     alert(a + b++);
+//   };
+//   alert(a);
+// }
+// A(1); //1
+// A(12); //13

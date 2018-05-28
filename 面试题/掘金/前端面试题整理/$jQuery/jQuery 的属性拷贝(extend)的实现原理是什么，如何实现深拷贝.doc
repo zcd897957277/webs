@@ -1,0 +1,5 @@
+浅拷贝（只复制一份原始对象的引用）
+var newObject = $.extend({}, oldObject);
+
+深拷贝（对原始对象属性所引用的对象进行进行递归拷贝）
+var newObject = $.extend(true, {}, oldObject);

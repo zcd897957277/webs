@@ -1,0 +1,24 @@
+jQuery 核心中有一组队列控制方法，由 queue()/dequeue()/clearQueue() 三个方法组成。
+主要应用于 animate()，ajax，其他要按时间顺序执行的事件中
+var func1 = function(){alert('事件1');}
+var func2 = function(){alert('事件2');}
+var func3 = function(){alert('事件3');}
+var func4 = function(){alert('事件4');}
+
+// 入栈队列事件
+$('#box').queue("queue1", func1);  // push func1 to queue1
+$('#box').queue("queue1", func2);  // push func2 to queue1
+
+// 替换队列事件
+$('#box').queue("queue1", []);  // delete queue1 with empty array
+$('#box').queue("queue1", [func3, func4]);  // replace queue1
+
+// 获取队列事件（返回一个函数数组）
+$('#box').queue("queue1");  // [func3(), func4()]
+
+// 出栈队列事件并执行
+$('#box').dequeue("queue1"); // return func3 and do func3
+$('#box').dequeue("queue1"); // return func4 and do func4
+
+// 清空整个队列
+$('#box').clearQueue("queue1"); // delete queue1 with clearQueue

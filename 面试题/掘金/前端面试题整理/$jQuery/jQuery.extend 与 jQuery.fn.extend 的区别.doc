@@ -1,0 +1,24 @@
+$.fn.extend() 和 $.extend() 是 jQuery 为扩展插件提拱了两个方法
+$.extend(object); // 为jQuery添加“静态方法”（工具方法）
+$.extend({
+　　min: function(a, b) { return a < b ? a : b; },
+　　max: function(a, b) { return a > b ? a : b; }
+});
+$.min(2,3); //  2
+$.max(4,5); //  5
+$.extend([true,] targetObject, object1[, object2]); // 对targt对象进行扩展
+var settings = {validate:false, limit:5};
+var options = {validate:true, name:"bar"};
+$.extend(settings, options);  // 注意：不支持第一个参数传 false
+// settings == {validate:true, limit:5, name:"bar"}
+$.fn.extend(json); // 为jQuery添加“成员函数”（实例方法）
+
+$.fn.extend({
+   alertValue: function() {
+      $(this).click(function(){
+        alert($(this).val());
+      });
+   }
+});
+
+$("#email").alertValue();

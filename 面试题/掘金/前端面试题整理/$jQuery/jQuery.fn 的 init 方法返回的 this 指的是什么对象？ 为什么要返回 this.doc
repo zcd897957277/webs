@@ -1,0 +1,2 @@
+jQuery.fn 的 init 方法 返回的 this 就是 jQuery 对象
+用户使用 jQuery() 或 $() 即可初始化 jQuery 对象，不需要动态的去调用 init 方法

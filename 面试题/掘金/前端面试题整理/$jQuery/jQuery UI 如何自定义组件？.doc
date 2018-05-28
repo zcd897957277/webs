@@ -1,0 +1,2 @@
+通过向 $.widget() 传递组件名称和一个原型对象来完成
+$.widget("ns.widgetName", [baseWidget], widgetPrototype);

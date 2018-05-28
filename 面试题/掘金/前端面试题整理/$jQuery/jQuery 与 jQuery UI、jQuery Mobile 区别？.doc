@@ -1,0 +1,5 @@
+jQuery 是 JS 库，兼容各种PC浏览器，主要用作更方便地处理 DOM、事件、动画、AJAX
+
+jQuery UI 是建立在 jQuery 库上的一组用户界面交互、特效、小部件及主题
+
+jQuery Mobile 以 jQuery 为基础，用于创建“移动Web应用”的框架

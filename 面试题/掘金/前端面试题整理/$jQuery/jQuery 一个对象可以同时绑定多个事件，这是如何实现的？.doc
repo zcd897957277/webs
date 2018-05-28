@@ -1,0 +1,7 @@
+("#btn").on("mouseover mouseout", func);
+
+  $("#btn").on({
+      mouseover: func1,
+      mouseout: func2,
+      click: func3
+  });

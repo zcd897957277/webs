@@ -1,0 +1,2 @@
+Sizzle 选择器采取 Right To Left 的匹配模式，先搜寻所有匹配标签，再判断它的父节点
+jQuery 通过 $(selecter).find(selecter); 和 Sizzle 选择器结合

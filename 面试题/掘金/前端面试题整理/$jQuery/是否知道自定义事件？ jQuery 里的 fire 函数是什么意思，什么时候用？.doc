@@ -1,0 +1,7 @@
+事件即“发布/订阅”模式，自定义事件即“消息发布”，事件的监听即“订阅订阅”
+JS 原生支持自定义事件，示例：
+  document.createEvent(type); // 创建事件
+  event.initEvent(eventType, canBubble, prevent); // 初始化事件
+  target.addEventListener('dataavailable', handler, false); // 监听事件
+  target.dispatchEvent(e);  // 触发事件
+jQuery 里的 fire 函数用于调用 jQuery 自定义事件列表中的事件

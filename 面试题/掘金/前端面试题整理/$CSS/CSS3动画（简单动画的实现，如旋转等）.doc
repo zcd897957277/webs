@@ -1,0 +1,4 @@
+依靠CSS3中提出的三个属性：transition、transform、animation
+transition：定义了元素在变化过程中是怎么样的，包含transition-property、transition-duration、transition-timing-function、transition-delay。
+transform：定义元素的变化结果，包含rotate、scale、skew、translate。
+animation：动画定义了动作的每一帧（@keyframes）有什么效果，包括animation-name，animation-duration、animation-timing-function、animation-delay、animation-iteration-count、animation-direction
