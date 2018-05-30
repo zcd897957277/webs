@@ -3,7 +3,7 @@
  */
 /*h5端自适应*/
 (function(doc, win){
-    var docE1 = doc.documentElement,
+    var docE1 = doc.documentElement || doc.body,
         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
         recalc = function(){
             var clientWidth = docE1.clientWidth;
