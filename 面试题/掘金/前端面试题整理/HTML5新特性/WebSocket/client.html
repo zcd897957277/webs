@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>websocket client</title>
+</head>
+
+<body>
+    <script>
+        var ws = new WebSocket("wss://echo.websocket.org");
+
+        ws.onopen = function (evt) {
+            console.log("Connection open...");
+            ws.send("Hello WebSocket!");
+        }
+
+        ws.onmessage = function (evt) {
+            if(typeof evt.data === "string"){
+                console.log("Received date string");
+            }
+            if(evt.data instanceof ArrayBuffer){
+                var buffer = evt.data;
+                console.log("Received arraybuffer.");
+            }
+            console.log("Received Message:" + evt.data);
+            ws.close();
+        }
+
+        ws.onclose = function (evt) {
+            console.log("Connection closed.");
+        }
+
+        switch (ws.readyState){
+            case WebSocket.CONNECTING:
+                console.log("正在连接！");
+                break;
+            case WebSocket.OPEN:
+                console.log("连接成功！");
+                break;
+            case WebSocket.CLOSING:
+                console.log("正在关闭！");
+                break;
+            case WebSocket.CLOSED:
+                console.log("已经关闭！");
+            default:
+                break;
+        }
+    </script>
+</body>
+
+</html>
