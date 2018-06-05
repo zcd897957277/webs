@@ -1,0 +1,90 @@
+题目点评
+题目涉及到范围非常的大，如果要面面俱到显然半天都答不完，可以先罗列出H5的一些新特性，不要回答那么具体，等面试官提具体的问题，所以在面试之前也要把这里的技术过一遍，至少每个技术也要做个小程序出来体验一下。
+
+（一）.H5新特性
+增强了图形渲染、影音、数据存储、多任务处理等处理能力主要表现在
+
+1)  绘画 canvas;
+
+类似windows自带的画图板，可绘制线、框、路径、图……，InternetExplorer 9、Firefox、Opera、Chrome 以及 Safari 支持 <canvas> 及其属性和方法。
+
+画图需要的要素
+
+a)   笔，用笔可以画线、圆、矩形、文本等
+
+b)   颜色
+
+c)   画板
+
+由于画布案例比较多，代码比较复杂，请看视频学习http://www.chuanke.com/3885380-190205.html 
+
+2)  本地离线存储 localStorage
+
+长期存储数据，浏览器关闭后数据不丢失;
+
+1.特点
+
+数据永久存储，没有时间限制；大小限制5M(够用了)；只存储字符串。
+
+2.数据存取方式
+
+[javascript] view plain copy
+localStorage.a = 3;//设置a为"3"  
+localStorage["a"] = "sfsf";//设置a为"sfsf"，覆盖上面的值  
+localStorage.setItem("b","isaac");//设置b为"isaac"  
+var a1 = localStorage["a"];//获取a的值  
+var a2 = localStorage.a;//获取a的值  
+var b = localStorage.getItem("b");//获取b的值  
+var b2= localStorage.key(0);//获取第一个key的内容  
+localStorage.removeItem("c");//清除c的值  
+localStorage.clear();//清除所有的数据  
+推荐使用：
+
+getItem()
+
+setItem()
+
+removeItem()
+
+3.事件监听
+
+[javascript] view plain copy
+if(window.addEventListener){  
+ window.addEventListener("storage",handle_storage,false);//  
+}else if(window.attachEvent){ //兼容IE  
+ window.attachEvent("onstorage",handle_storage);  
+}  
+function handle_storage(e){  
+ }  
+对象e为localStorage对象，Chrome、Firefox支持差，IE支持较好。
+
+3)  sessionStorage的数据在浏览器关闭后自动删除;操作参考localStorage
+
+4)  用于媒介回放的 video和 audio 元素;
+
+5)  语意化更好的内容元素，比如article、footer、header、nav、section;
+
+6)  表单控件，calendar、date、time、email、url、search;
+
+7)  新的技术webworker(专用线程)
+
+8)  websocketsocket通信
+
+9)  Geolocation 地理定位
+
+（二）移除的元素
+
+纯表现的元素
+
+  <basefont> 默认字体，不设置字体，以此渲染
+  <font> 字体标签
+  <center> 水平居中
+  <u> 下划线
+  <big> 大字体
+  <strike> 中横线
+  <tt> 文本等宽
+框架集
+
+  <frameset>
+  <noframes>
+  <frame>

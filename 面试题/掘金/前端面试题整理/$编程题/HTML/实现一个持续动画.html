@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现一个持续动画</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        #div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            background: green;
+            box-sizing: border-box;
+            position: relative;
+            top: 0;
+            animation: move 5s infinite alternate;
+        }
+
+        @keyframes move {
+            0% {
+                top: 0px;
+            }
+            100% {
+                top: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div">div</div>
+    <script>
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setInterval(callback, 5000)
+                }
+
+        })();
+
+        var div = document.getElementById('div');
+        var flag = true;
+        var left = 0;
+        function render() {
+            left == 0 ? flag = true : left == 200 ? flag = false : "";
+            flag ? div.style.left = `${++left}px` : div.style.left = `${--left}px`;
+        }
+
+        (function animloop() {
+            render();
+            console.log(div.style.left)
+            requestAnimationFrame(animloop);
+        })();
+    </script>
+</body>
+
+</html>

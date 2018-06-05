@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>宽度高度自适应</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 方式1 */
+
+        .container {
+            display: flex;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .left {
+            background-color: rebeccapurple;
+            height: 400px;
+            flex: 1;
+        }
+
+        .right {
+            background-color: red;
+            margin-bottom: -999999px;
+            padding-bottom: 999999px;
+            width: 100px;
+        }
+
+        /* 方式2 */
+
+        /* div:not(.container){
+            height: 200px;
+        }
+        .left {
+            float:right;
+            width: 200px;
+            background-color: rebeccapurple;
+        }
+        .right{
+            margin-right: 200px;
+            background-color: red;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>
