@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>进度条</title>
+</head>
+<style>
+    body,html{
+        margin: 0;
+        padding: 0;
+    }
+    .progressbar{
+        width: 200px;
+        height: 50px;
+        margin: 0 auto;
+        margin-top: 200px;
+        box-sizing: border-box;
+        border: 1px solid #000000;
+        line-height: 50px;
+        font-size: 15px;
+        position: relative;
+    }
+    span{
+        width: 100%;
+        height: 50px;
+        background: green;
+        display: inline-block;
+        position: absolute;
+        animation: progress 100s linear;
+    }
+
+    b{
+        position: absolute;
+        left: 50%;
+    }
+
+    @keyframes progress{
+        0%{
+            width: 0%;
+        }
+        100%{
+            width: 100%;
+        }
+    }
+</style>
+<body>
+    <div class="progressbar">
+        <span></span>
+        <b id="b">0</b>
+    </div>
+
+    <progress max="100" value="10"></progress>
+    <script>
+        var b = document.getElementById('b');
+        var time = 0;
+        var timer = setInterval(function(){
+            time += 1000;
+            if(time > 100000){
+                clearInterval(timer);
+            }else{
+                b.innerText = parseInt(b.innerText) + 1;
+            }
+        },1000);
+    </script>
+</body>
+</html>
