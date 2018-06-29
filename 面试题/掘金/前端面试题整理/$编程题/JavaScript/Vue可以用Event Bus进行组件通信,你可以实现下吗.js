@@ -1,3 +1,44 @@
+// 观察者: 就是事件模式，比如按钮的onclick这样的应用.
+// 简易版本 帮助理解下面的复杂版本
+function Publisher() {
+  this.listeners = [];
+}
+Publisher.prototype = {
+  'addListener': function(listener) {
+      this.listeners.push(listener);
+  },
+
+  'removeListener': function(listener) {
+      delete this.listeners[listener];
+  },
+
+  'notify': function(obj) {
+      for(var i = 0; i < this.listeners.length; i++) {
+          var listener = this.listeners[i];
+          if (typeof listener !== 'undefined') {
+              listener.process(obj);
+          }
+      }
+  }
+}; // 发布者
+
+function Subscriber() {
+
+}
+Subscriber.prototype = {
+  'process': function(obj) {
+      console.log(obj);
+  }
+};　// 订阅者
+
+var publisher = new Publisher();
+publisher.addListener(new Subscriber());
+publisher.addListener(new Subscriber());
+publisher.notify({name: 'michaelqin', ageo: 30}); // 发布一个对象到所有订阅者
+publisher.notify('2 subscribers will both perform process'); // 发布一个字符串到所有订阅者
+
+
+// vue event bus
 class EventEmeitter {
   constructor() {
     this._events = this._events || new Map(); //存储事件/回调键值对
@@ -90,5 +131,5 @@ emitter.addListener("arson", man => {
   console.log(`kill ${man}`);
 });
 
-// 我们触发arson事件,发现回调成功执行
+// 我们触发arson事件,发现回调成功执行 
 emitter.emit("arson", "low-end");
