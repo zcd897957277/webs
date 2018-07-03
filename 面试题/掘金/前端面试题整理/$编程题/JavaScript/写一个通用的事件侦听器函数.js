@@ -26,7 +26,7 @@ let EventUtil = {
   },
   //根据情况分别使用dom2 || IE || dom0方式 来删除事件
   removeHandler: function(element, type, handler) {
-    if (element.removeHandler) {
+    if (element.removeEventListener) {
       element.removeEventListener(type, handler, false);
     } else if (element.detachEvent) {
       element.detachEvent("on" + type, handler);

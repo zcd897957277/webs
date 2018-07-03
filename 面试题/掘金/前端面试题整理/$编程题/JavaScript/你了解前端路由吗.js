@@ -12,11 +12,11 @@ class Routers {
     // 刷新
     this.refresh = this.refresh.bind(this);
     // 回退
-    this.backOff == this.backOff.bind(this);
+    this.backOff = this.backOff.bind(this);
     // 默认不是后退操作
     this.isBack = false;
     window.addEventListener("load", this.refresh, false);
-    windwo.addEventListener("hashchange", this.refresh, false);
+    window.addEventListener("hashchange", this.refresh, false);
   }
   // 将path路径与对应的callback函数储存
   route(path, callback) {
