@@ -5,10 +5,16 @@ function isPrime1(n) {
   } else if (n > 1 && n <= 3) {
     return true;
   } else {
-    for (var i = 2; i < Math.sqrt(n); i++) {
+    var num = 0;
+    for (var i = 2; i < Math.ceil(Math.sqrt(n)); i++) {
       if (n % i == 0) {
-        return false;
+        num++;
       }
+    }
+
+    if(num > 0){
+      return false;
+    }else{
       return true;
     }
   }
@@ -25,11 +31,16 @@ var isPrime2 = (function() {
     } else if (hash[n] !== undefined) {
       return hash[n];
     } else {
-      for (var i = 2; i < Math.sqrt(n); i++) {
+      var num = 0;
+      for (var i = 2; i < Math.ceil(Math.sqrt(n)); i++) {
         if (n % i == 0) {
-          return (hash[n] = false);
+          num++;
         }
+      }
 
+      if(num > 0){
+        return (hash[n] = false);
+      }else{
         return (hash[n] = true);
       }
     }
