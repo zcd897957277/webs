@@ -37,7 +37,7 @@
             this.$data = options.data;
             // this.$methods = {increment:function(){}}
             this.$methods = options.methods;
-            // _binding保存着model与view的映射关系，也就是我们面前定义的Watcher的实例。
+            // _binding保存着model与view的映射关系，也就是我们前面定义的Watcher的实例。
             // 当model改变时，我们会触发其中的指令类更新，保证view也能实时更新
             this._binding = {};
 
@@ -103,7 +103,7 @@
                 if (node.hasAttribute('v-click')) {
                     node.onclick = (function () {
                         var attrVal = nodes[i].getAttribute('v-click');
-                        // bind是使data的作用域域method函数的作用域保持一致
+                        // bind是使data的作用域method函数的作用域保持一致
                         return _this.$methods[attrVal].bind(_this.$data);
                     })();
                 }

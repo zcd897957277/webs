@@ -26,7 +26,7 @@ class Routers {
   refresh() {
     // 获取当前URL中的hash路径
     this.currentUrl = location.hash.slice(1) || "/";
-    if (!this.back) {
+    if (!this.isBack) {
       // 如果不是后退操作,且当前指针小于数组总长度,直接截取指针之前的部分储存下来
       // 此操作来避免当点击后退按钮之后,再进行正常跳转,指针会停留在原地,而数组添加新hash路由
       // 避免再次造成指针的不匹配,我们直接截取指针之前的数组

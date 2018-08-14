@@ -5,7 +5,7 @@ function insertSort(arr) {
     // 将当前元素临时保存在变量t中
     var t = arr[i];  
     var p = i - 1; //声明变量p = i -1;
-    // 循环：（arr[p]>t && p >=0）
+    // 循环：（arr[p]>t && p >=0）  大值往上走（p+1），小值不变(p --),中间的值变成t
     while (arr[p] > t && p >= 0) {
       // 将p位置的值，赋值给p+1位置
       arr[p + 1] = arr[p];
