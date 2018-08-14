@@ -1,0 +1,164 @@
+app.title = 'Ç¶Ì×»·ÐÎÍ¼';
+
+option = {
+     backgroundColor: '#2c343c',
+    tooltip:{show:false},
+    series: [
+        {
+            zlevel:1,
+            type:'pie',
+            radius: '30%',
+            itemStyle:{
+                normal:{
+                    color:'rgb(101,84,90)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'SAMPLE'}
+            ],
+            
+        },{
+            zlevel:1,
+            type:'pie',
+            radius: ['20%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(101,84,90)',
+                    borderColor:'rgb(132,138,134)',
+                }
+            },
+            data:[
+                {value:0,}    
+            ]
+        },{
+            zlevel:0,
+            type:'pie',
+            radius: ['5%'],
+            center:['50%','34%'],
+            itemStyle:{
+                normal:{
+                    color:'red',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'5%'}    
+            ]
+        
+        },{
+            zlevel:0,
+            type:'pie',
+            radius: ['5%'],
+            center:['50%','66%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(94,99,163)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'5%'}
+            ]
+        },{
+            
+            zlevel:0,
+            type:'pie',
+            radius: ['10%'],
+            center:['35%','40%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(137,170,173)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'25%'}    
+            ]
+        
+        },{
+            
+            zlevel:0,
+            type:'pie',
+            radius: ['8%'],
+            center:['64%','60%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(224, 139, 113)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'15%'}
+            ]
+        
+        },{
+            
+            zlevel:0,
+            type:'pie',
+            radius: ['15%'],
+            center:['63%','38%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(50, 137, 124)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'35%'}
+            ]
+        
+        },{
+            
+            zlevel:0,
+            type:'pie',
+            radius: ['8%'],
+            center:['36%','60%'],
+            itemStyle:{
+                normal:{
+                    color:'rgb(124, 94, 113)',
+                }
+            },
+            label:{
+                normal:{
+                    position:'center',
+                    color:'white',
+                },
+            },
+            data:[
+                {value:0,name:'15%'}
+            ]
+        
+        }
+    ]
+};
