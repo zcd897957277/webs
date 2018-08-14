@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PNG格式小图标的CSS任意颜色赋色技术</title>
+    <style>
+        .icon-color {
+            display: inline-block;
+            width: 144px;
+            height: 144px;
+            background: url('https://user-gold-cdn.xitu.io/2018/7/31/164f0e6745afe2ba?w=144&h=144&f=png&s=2780') no-repeat center / cover;
+            overflow: hidden;
+        }
+        .icon-color:after {
+            content: '';
+            display: block;
+            height: 100%;
+            transform: translate(-100%);
+            background: inherit;
+            filter: drop-shadow(144px 0 0 #42b983);//需要修改的颜色值
+        }
+    </style>
+</head>
+<body>
+    <i class="icon-color"></i>
+</body>
+</html>
+<!-- 
+    使用 CSS3 滤镜 filter 中的 drop-shadow。
+
+    drop-shadow 滤镜可以给元素或图片非透明区域添加投影
+    将背景透明的 PNG 图标施加一个不带模糊的投影，就等同于生成了另外一个颜色的图标
+    再通过 overflow:hidden 和位移处理将原图标隐藏
+
+ -->
