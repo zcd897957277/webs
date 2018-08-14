@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="keywords" content="新昌智慧城市" />
+    <title>新昌智慧城市</title>
+    <link href="css/map.css" rel="stylesheet" type="text/css" />
+    <link href="css/trans.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/jspanel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.10.0/jquery.jspanel.min.css" />
+    <link type="text/css" rel="stylesheet" rev="stylesheet" media="screen" href="http://api.tianditu.com/v4.0/css/tianditu4.0.css">
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css">
+    <script type="text/javascript" src=" http://api.tianditu.com/api?v=4.0"></script>
+    <script type="text/javascript" src="js/heatmapData.js"></script>
+
+</head>
+
+<body onload="loadmap();">
+    <div class="allleft" id="search">
+        <!-- 搜索框 -->
+        <div class="searchbox">
+            <!-- 房屋、人口、土地、案例库切换栏 -->
+            <div class="switchBar" id="switchBar">
+                <!-- logo -->
+                <div class="logo">
+                    <span>智慧新昌</span>
+                </div>
+            </div>
+            <!-- 搜索区域 -->
+            <div class="searchbox_area">
+                <div class="search_left">
+                    <!-- 切换 -->
+                    <select class="switchs">
+                        <option value="请选择场景">
+                            <a href="javascript:void(0)">请选择场景</a>
+                        </option>
+                        <option value="./land.html">
+                            <a href="javascript:void(0)">土地</a>
+                        </option>
+                        <option value="./buildings.html">
+                            <a href="javascript:void(0)">房屋</a>
+                        </option>
+                        <option value="./population.html">
+                            <a href="javascript:void(0)">人口</a>
+                        </option>
+                        <option value="./cases.html">
+                            <a href="javascript:void(0)">案例库</a>
+                        </option>
+                    </select>
+                    <!-- 搜索框 -->
+                    <input type="text" class="search_txtleft" placeholder="请输入地块名称" id="keyword" value="" autofocus="autofocus" />
+                </div>
+                <div class="search_rt" id="partQuery">
+                    <input type="button" class="search_input" />
+                </div>
+            </div>
+        </div>
+        <!-- 展开项 -->
+        <div class="searchbox_nav">
+            <span>筛选</span>
+        </div>
+        <!-- 条件项 -->
+        <div class="condition_item" style="display: none">
+            <!-- 搜索条件 -->
+            <div class="searchbox_condition">
+                <ul>
+                    <!-- 土地性质 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>土地性质</div>
+                        <ul class="alllines">
+                            <li data="工业" class="small_line line_selected">工业</li>
+                            <li data="集体" class="small_line">集体</li>
+                            <li data="景区" class="small_line">景区</li>
+                            <li data="居住" class="small_line">居住</li>
+                            <li data="商业" class="small_line">商业</li>
+                            <li data="商办" class="small_line">商办</li>
+                            <li data="商住" class="small_line">商住</li>
+                            <li data="其他" class="small_line">其他</li>
+                            <li class="clear"></li>
+                        </ul>
+                    </li>
+                    <!-- 土地状态 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>土地状态</div>
+                        <ul class="alllines">
+                            <li data="规划" class="small_line line_selected">规划</li>
+                            <li data="征拆" class="small_line">征拆</li>
+                            <li data="挂牌" class="small_line">挂牌</li>
+                            <li data="成交" class="small_line">成交</li>
+                            <li class="clear"></li>
+                        </ul>
+                    </li>
+                    <!-- 容积率 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>容积率</div>
+                        <ul class="alllines">
+                            <li data="0.5以下" class="small_line line_selected">0.5以下</li>
+                            <li data="0.5-1.0" class="small_line">0.5-1.0</li>
+                            <li data="1.0-2.0" class="small_line">1.0-2.0</li>
+                            <li data="2.0以上" class="small_line">2.0以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义容积率</span>
+                            <input class="set_input" data="自定义容积率1" type="text" maxlength="20"> -
+                            <input class="set_input" data="自定义容积率2" type="text" maxlength="20">
+                        </div>
+                    </li>
+                    <!-- 总建筑面积 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>总建筑面积</div>
+                        <ul class="alllines">
+                            <li data="10万平米以下" class="normal_line line_selected">10万平米以下</li>
+                            <li data="10-20万平米" class="normal_line">10-20万平米</li>
+                            <li data="20万平米以上" class="normal_line">20万平米以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义总建筑面积：</span>
+                            <input class="set_input" data="自定义总建筑面积1" type="text" maxlength="20">-
+                            <input class="set_input" data="自定义总建筑面积2" type="text" maxlength="20">万平米
+                        </div>
+                    </li>
+                    <!-- 成交总价 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>成交总价</div>
+                        <ul class="alllines">
+                            <li data="10亿以下" class="small_line line_selected">10亿以下</li>
+                            <li data="10-20亿" class="small_line">10-20亿</li>
+                            <li data="20亿以上" class="small_line">20亿以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义成交总价：</span>
+                            <input class="set_input" data="自定义成交总价1" type="text" maxlength="20">-
+                            <input class="set_input" data="自定义成交总价2" type="text" maxlength="20">亿元
+                        </div>
+                    </li>
+                    <!-- 成交楼面价 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>成交楼面价</div>
+                        <ul class="alllines">
+                            <li data="1万元/平米以下" class="sbig_line line_selected">1万元/平米以下</li>
+                            <li data="1万-3万元/平米" class="sbig_line">1-3万元/平米</li>
+                            <li data="3万元/平米以上" class="sbig_line">3万元/平米以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义成交楼面价：</span>
+                            <input class="set_input" data="自定义成交楼面价1" type="text" maxlength="20">-
+                            <input class="set_input" data="自定义成交楼面价2" type="text" maxlength="20">元/平米
+                        </div>
+                    </li>
+                    <!-- 溢价率 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>溢价率</div>
+                        <ul class="alllines">
+                            <li data="100%以下" class="normal_line line_selected">100%以下</li>
+                            <li data="100%-200%" class="normal_line">100%-200%</li>
+                            <li data="200%以上" class="normal_line">200%以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义溢价率：</span>
+                            <input class="set_input" data="自定义溢价率1" type="text" maxlength="20"> % -
+                            <input class="set_input" data="自定义溢价率2" type="text" maxlength="20"> %
+                        </div>
+                    </li>
+                    <!-- 起始价 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>起始价</div>
+                        <ul class="alllines">
+                            <li data="10亿以下" class="small_line line_selected">10亿以下</li>
+                            <li data="10-20亿" class="small_line">10-20亿</li>
+                            <li data="20亿以上" class="small_line">20亿以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义起始价：</span>
+                            <input class="set_input" data="自定义起始价1" type="text" maxlength="20"> -
+                            <input class="set_input" data="自定义起始价2" type="text" maxlength="20"> 亿元
+                        </div>
+                    </li>
+                    <!-- 起始楼面价 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>起始楼面价</div>
+                        <ul class="alllines">
+                            <li data="1万元/平米以下" class="sbig_line line_selected">1万元/平米以下</li>
+                            <li data="1-2万元/平米" class="sbig_line">1-2万元/平米</li>
+                            <li data="2-4万元/平米" class="sbig_line">2-4万元/平米</li>
+                            <li data="4万元/平米以上" class="sbig_line">4万元/平米以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义起始楼面价：</span>
+                            <input class="set_input" data="自定义起始楼面价1" type="text" maxlength="20">-
+                            <input class="set_input" data="自定义起始楼面价2" type="text" maxlength="20"> 元/平米
+                        </div>
+                    </li>
+                    <!-- 剩余年限 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>剩余年限</div>
+                        <ul class="alllines">
+                            <li data="40年以下" class="small_line line_selected">40年以下</li>
+                            <li data="40-50年" class="small_line">40-50年</li>
+                            <li data="50-60年" class="small_line">50-60年</li>
+                            <li data="60年以上" class="small_line">60年以上</li>
+                            <li class="clear"></li>
+                        </ul>
+                        <div class="input_user_defined">
+                            <span>自定义剩余年限：</span>
+                            <input class="set_input" data="自定义剩余年限1" type="text" maxlength="20">-
+                            <input class="set_input" data="自定义剩余年限2" type="text" maxlength="20"> 年
+                        </div>
+                    </li>
+                    <!-- 竞得人 -->
+                    <li class="condition">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>竞得人</div>
+                        <div class="input_user_defined">
+                            <input class="set_input set_input_long" data="竞得人" type="text" maxlength="20">
+                        </div>
+                    </li>
+                    <!-- 单元/街道 -->
+                    <li class="condition condition_last_padding">
+                        <div class="condition_title">
+                            <span class="land_condition_icon"></span>单元/街道</div>
+                        <div class="input_user_defined">
+                            <input class="set_input set_input_long" data="单元/街道" type="text" maxlength="20">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- 按钮组 -->
+            <div class="btns">
+                <div class="clear_btn">清空</div>
+                <div class="sure_btn">确定</div>
+                <div class="statistical_btn">统计分析</div>
+            </div>
+        </div>
+        <!-- 导航条 -->
+        <div class="result_nav" style="display:none">
+            <span>为您查到<span>x</span>条结果</span>
+        </div>
+        <!-- 查询结果 -->
+        <div class="result" data-type="off" style="display:none" id="result_land">
+            <!-- 结果显示 -->
+            <ul class="result_show">
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                <li class="result_item">
+                    <!-- 左 -->
+                    <div class="result_img">
+                        <img class="resultImg" src="images/房屋.jpg" alt="">
+                    </div>
+                    <!-- 右 -->
+                    <div class="result_content">
+                        <!-- 列1 -->
+                        <div class="result_content_col1">
+                            <span class="result_content_col_icon col_icon1"></span>
+                            <a target="_blank" href="./landdetails.html">绿城玉兰花园</a>
+                        </div>
+                        <!-- 列2 -->
+                        <div class="result_content_col2">
+                            [
+                            <span class="col2_span">城区</span>] 地址：
+                            <p class="col2_p">新昌区.......</p>
+                        </div>
+                        <!-- 列3 -->
+                        <div class="result_content_col3">
+                            <span class="col3_span">16000</span>元/m²</div>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+            </ul>
+            <!-- 页码栏 -->
+            <div class="pages">
+                <ul>
+                    <li class="page_item_big">上一页</li>
+                    <li class="page_item_small">1</li>
+                    <li class="page_item_small">2</li>
+                    <li class="page_item_small">3</li>
+                    <li class="page_item_small">...</li>
+                    <li class="page_item_small">10</li>
+                    <li class="page_item_big">下一页</li>
+                    <li class="clear"></li>
+                </ul>
+            </div>
+        </div>
+        <!-- 统计 -->
+        <div class="statistics" style="display: none" id="statistics">
+            <!-- 删除 -->
+            <i class="delete_icon"></i>
+            <!-- 统计项 -->
+            <ul class="statistics_items">
+                <!-- 统计方式 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>统计方式</div>
+                    <div class="statistics_method">
+                        <input type="text" class="method" value="交易统计" readonly>
+                        <input type="text" class="method" value="分类统计" readonly>
+                    </div>
+                </li>
+                <!-- 时间周期 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>时间周期</div>
+                    <div class="time_plug">
+                        <input type="text" class="ldate" data="日期1" id="landData1"> -
+                        <input type="text" class="ldate" data="日期2" id="landData2">
+                    </div>
+                </li>
+                <!-- 土地性质 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>土地性质</div>
+                    <ul class="alllines">
+                        <li data="工业" class="small_line land_li line_selected_red">工业</li>
+                        <li data="集体" class="small_line land_li">集体</li>
+                        <li data="景区" class="small_line land_li">景区</li>
+                        <li data="居住" class="small_line land_li">居住</li>
+                        <li data="商业" class="small_line land_li">商业</li>
+                        <li data="商办" class="small_line land_li">商办</li>
+                        <li data="商住" class="small_line land_li">商住</li>
+                        <li data="其他" class="small_line land_li">其他</li>
+                        <li class="clear"></li>
+                    </ul>
+                </li>
+                <!-- 土地状态 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>土地状态</div>
+                    <ul class="alllines">
+                        <li data="规划" class="small_line land_li line_selected_red">规划</li>
+                        <li data="征拆" class="small_line land_li">征拆</li>
+                        <li data="挂牌" class="small_line land_li">挂牌</li>
+                        <li data="成交" class="small_line land_li">成交</li>
+                        <li class="clear"></li>
+                    </ul>
+                </li>
+                <!-- 容积率 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>容积率</div>
+                    <ul class="alllines">
+                        <li data="0.5以下" class="small_line land_li line_selected_red">0.5以下</li>
+                        <li data="0.5-1.0" class="small_line land_li">0.5-1.0</li>
+                        <li data="1.0-2.0" class="small_line land_li">1.0-2.0</li>
+                        <li data="2.0以上" class="small_line land_li">2.0以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义容积率：</span>
+                        <input class="set_input" data="自定义容积率1" type="text" maxlength="20"> -
+                        <input class="set_input" data="自定义容积率2" type="text" maxlength="20">
+                    </div>
+                </li>
+                <!-- 总建筑面积 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>总建筑面积</div>
+                    <ul class="alllines">
+                        <li data="10万平米以下" class="normal_line land_li line_selected_red">10万平米以下</li>
+                        <li data="10-20万平米" class="normal_line land_li">10-20万平米</li>
+                        <li data="20万平米以上" class="normal_line land_li">20万平米以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义总建筑面积：</span>
+                        <input class="set_input" data="自定义总建筑面积1" type="text" maxlength="20"> -
+                        <input class="set_input" data="自定义总建筑面积2" type="text" maxlength="20"> 万平米
+                    </div>
+                </li>
+                <!-- 成交总价 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>成交总价</div>
+                    <ul class="alllines">
+                        <li data="10亿以下" class="small_line land_li line_selected_red">10亿以下</li>
+                        <li data="10-20亿" class="small_line land_li">10-20亿</li>
+                        <li data="20亿以上" class="small_line land_li">20亿以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义成交总价：</span>
+                        <input class="set_input" data="自定义成交总价1" type="text" maxlength="20"> -
+                        <input class="set_input" data="自定义成交总价2" type="text" maxlength="20"> 亿元
+                    </div>
+                </li>
+                <!-- 成交楼面价 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>成交楼面价</div>
+                    <ul class="alllines">
+                        <li data="1万元/平米以下" class="sbig_line land_li line_selected_red">1万元/平米以下</li>
+                        <li data="1万-3万元/平米" class="sbig_line land_li">1万-3万元/平米</li>
+                        <li data="3万元/平米以上" class="sbig_line land_li">3万元/平米以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义成交楼面价：</span>
+                        <input class="set_input" data="自定义成交楼面价1" type="text" maxlength="20"> -
+                        <input class="set_input" data="自定义成交楼面价2" type="text" maxlength="20"> 元/平米
+                    </div>
+                </li>
+                <!-- 溢价率 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>溢价率</div>
+                    <ul class="alllines">
+                        <li data="100%以下" class="small_line land_li line_selected_red">100%以下</li>
+                        <li data="100%-200%" class="small_line land_li">100%-200%</li>
+                        <li data="200%以上" class="small_line land_li">200%以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义溢价率：</span>
+                        <input class="set_input" data="自定义溢价率1" type="text" maxlength="20"> % -
+                        <input class="set_input" data="自定义溢价率2" type="text" maxlength="20"> %
+                    </div>
+                </li>
+                <!-- 规划建面 -->
+                <li class="stat_item">
+                    <div class="stat_title">
+                        <span class="stat_icon"></span>规划建面</div>
+                    <ul class="alllines">
+                        <li data="10万平米以下" class="normal_line land_li line_selected_red">10万平米以下</li>
+                        <li data="10-20万平米" class="normal_line land_li">10-20万平米</li>
+                        <li data="20-40万平米" class="normal_line land_li">20-40万平米</li>
+                        <li data="40万平米以上" class="normal_line land_li">40万平米以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                    <div class="input_user_defined">
+                        <span>自定义规划建面：</span>
+                        <input class="set_input" data="自定义规划建面1" type="text" maxlength="20"> -
+                        <input class="set_input" data="自定义规划建面2" type="text" maxlength="20"> 万平米
+                    </div>
+                </li>
+                <!-- 单价段-模式1 -->
+                <li class="stat_item">
+                    <div>
+                        <div class="stat_title">
+                            <span class="stat_icon"></span>单价段-模式1</div>
+                        <div class="custom unitPrice_part">自定义单价段管理</div>
+                    </div>
+                    <ul class="alllines">
+                        <li data="1万元/平米以下" class="sbig_line land_li line_selected_red">1万元/平米以下</li>
+                        <li data="1-2万元/平米" class="sbig_line land_li">1万-3万元/平米</li>
+                        <li data="3万元/平米以上" class="sbig_line land_li">3万元/平米以上</li>
+                        <li class="clear"></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- 提交按钮 -->
+            <div class="submit_btn land_submit_btn">提交</div>
+        </div>
+        <!-- 自定义管理 -->
+        <div class="allCustomManagement" id="allCustomManagement">
+            <!-- 自定义面积段管理 -->
+            <div class="customAreaManagement">
+                <!-- 主 -->
+                <div class="user_manage_area" style="display: none">
+                    <!-- 头部 -->
+                    <div>
+                        <div class="set_manage_title">
+                            <span class="set_manage_icon"></span>自定义面积段管理</div>
+                        <div class="set_manage">添加面积段</div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- table -->
+                    <table class="table_show" border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <th class="bianhao_item">编号</th>
+                            <th class="mingchen_item">名称</th>
+                            <th class="neirong_item">内容</th>
+                            <th class="shezhi_item">设置</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bianhao_item blue_bg">01</td>
+                                <td class="mingchen_item blue_bg">模式1</td>
+                                <td class="neirong_item blue_bg">50-70平米,70-90平米,90-140平米,140平米以上</td>
+                                <td class="shezhi_item blue_bg">
+                                    <span class="default_mode tbody_td_span_selected">默认模式</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bianhao_item">02</td>
+                                <td class="mingchen_item">模式2</td>
+                                <td class="neirong_item">90平米以下,90-140平米,140平米以上</td>
+                                <td class="shezhi_item">
+                                    <span class="hidden_mode tbody_td_span_not_selected"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 按钮 -->
+                    <div class="btn_part">
+                        <div class="sure_table_btn">确定</div>
+                    </div>
+                </div>
+                <!-- 模式设置 -->
+                <div class="set_mode" style="display: none">
+                    <!-- 头 -->
+                    <div class="mode_title">
+                        <span class="mode_icon"></span>添加自定义面积段</div>
+                    <!-- 设置 -->
+                    <div class="setting">
+                        <div class="mode_cont">
+                            模式名称
+                            <input data="面积模式名" class="mode_input" type="text">
+                        </div>
+                        <div class="mode_cont">
+                            面积区间
+                            <input data="面积区间" class="mode_input" type="text">
+                        </div>
+                        <p class="attention_item">面积区间请用逗号分隔</p>
+                    </div>
+                    <!-- 按钮 -->
+                    <div class="mode_btn">保存</div>
+                </div>
+            </div>
+            <!-- 自定义单价段管理 -->
+            <div class="customUnitpriceManagement">
+                <!-- 主 -->
+                <div class="user_manage_unitPrice" style="display: none">
+                    <!-- 头部 -->
+                    <div>
+                        <div class="set_manage_title">
+                            <span class="set_manage_icon"></span>自定义单价段管理</div>
+                        <div class="set_manage">添加单价段</div>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- table -->
+                    <table class="table_show" border="0" cellspacing="0" cellpadding="0">
+                        <thead>
+                            <th class="bianhao_item">编号</th>
+                            <th class="mingchen_item">名称</th>
+                            <th class="neirong_item">内容</th>
+                            <th class="shezhi_item">设置</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="bianhao_item blue_bg">01</td>
+                                <td class="mingchen_item blue_bg">模式1</td>
+                                <td class="neirong_item blue_bg">1万元/平米以下,1-2万元/平米,2万元/平米以上</td>
+                                <td class="shezhi_item blue_bg">
+                                    <span class="default_mode tbody_td_span_selected">默认模式</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="bianhao_item">02</td>
+                                <td class="mingchen_item">模式2</td>
+                                <td class="neirong_item">1万元/平米以下,1-2万元/平米,2-4万元/平米</td>
+                                <td class="shezhi_item">
+                                    <span class="hidden_mode tbody_td_span_not_selected"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- 按钮 -->
+                    <div class="btn_part">
+                        <div class="sure_table_btn">确定</div>
+                    </div>
+                </div>
+                <!-- 模式设置 -->
+                <div class="set_mode" style="display: none">
+                    <!-- 头 -->
+                    <div class="mode_title">
+                        <span class="mode_icon"></span>添加自定义单价段</div>
+                    <!-- 设置 -->
+                    <div class="setting">
+                        <div class="mode_cont">
+                            模式名称
+                            <input data="单价模式名" class="mode_input" type="text">
+                        </div>
+                        <div class="mode_cont">
+                            单价区间
+                            <input data="单价区间" class="mode_input" type="text">
+                        </div>
+                        <p class="attention_item">单价区间请用逗号分隔</p>
+                    </div>
+                    <!-- 按钮 -->
+                    <div class="mode_btn">保存</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="allright" id="content">
+        <!-- 土地管理 -->
+        <div class="allright_land_manage">
+            <a target="_blank" href="../BackstageManage/index.html">后台首页</a>
+        </div>
+        <!-- 右边工具栏 -->
+        <div class="allrttop" id="tool_container">
+            <!--右面工具栏-->
+            <div class="alright_top_rt">
+                <ul>
+                    <li class="tool" id="tLi">
+                        <a href="javascript:void(0)" class="toolbg" id="toolType">
+                            <span class="toollabel"></span>工具</a>
+                        <span class="rang_more" id="toolCur"></span>
+                        <ul style="display: none;" id="toolDiv">
+                            <li id="bMeasure" onclick="toolbarmeasure()">
+                                <a href="javascript:void(0)">
+                                    <span class="toolcllabel"></span>测量</a>
+                            </li>
+                            <li id="bMeasureMask" onclick="toolbarmeasuremask()">
+                                <a href="javascript:void(0)">
+                                    <span class="toolcmlabel"></span>测面</a>
+                            </li>
+                            <li id="bMarkSpot" onclick="toolbarmarkspot()">
+                                <a href="javascript:void(0)">
+                                    <span class="toolbdlabel"></span>标点</a>
+                            </li>
+                            <li id="bMarkLine" onclick="toolbarmarkline()">
+                                <a href="javascript:void(0)">
+                                    <span class="toolbxlabel"></span>标线</a>
+                            </li>
+                            <li id="bMarkMask" onclick="toolbarmarkmask()">
+                                <a href="javascript:void(0)">
+                                    <span class="toolbmlabel"></span>标面</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="publine"></li>
+                    <li class="delete" id="bClear">
+                        <a href="javascript:void(0);" class="deletebg">
+                            <span class='dellabel'></span>清空</a>
+                    </li>
+                    <li class="publine"></li>
+                    <li class="screen" id="fullScreen">
+                        <a href="javascript:void(0);" class="screenbg">
+                            <span class='scrlabel'></span>全屏</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 地图图层切换 -->
+        <div class="layer_nav">
+            <div class="switch_btn">
+                <i></i>
+            </div>
+            <div class="layer-pop" style="display: none">
+                <div class="layer_container">
+                    <div class="layer-items clearfix">
+                        <a href="javascript:void(0);" id="vec_type" class="vec_type layer-item">
+                            <div class="layer_bg"></div>
+                            <span class="layer-tip">地图</span>
+                        </a>
+                        <a href="javascript:void(0);" id="gui_type" class="gui_type layer-item">
+                            <div class="layer_bg"></div>
+                            <span class="layer-tip">规划</span>
+                        </a>
+                        <a href="javascript:void(0);" id="img_type" class="img_type layer-item">
+                            <div class="layer_bg"></div>
+                            <span class="layer-tip">影像</span>
+                        </a>
+                        <a href="javascript:void(0);" id="ter_type" class="ter_type layer-item">
+                            <div class="layer_bg"></div>
+                            <span class="layer-tip">地形</span>
+                        </a>
+                        <!-- <a href="javascript:void(0);" id="sw_type" class="sw_type layer-item">
+                            <div class="layer_bg"></div> <span class="layer-tip">三维</span></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--地图-->
+        <div class="map" id="map"></div>
+    </div>
+    <!-- 必须 -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.jspanel.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jspanel-compiled.js"></script>
+    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <!-- 格式化时间 -->
+    <script type="text/javascript" src="js/dataformat.js"></script>
+    <!-- 时间插件 -->
+    <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
+    <!-- 3D图插件 -->
+    <script type="text/javascript" src="js/echarts-gl.min.js"></script>
+    <!-- 专属 -->
+    <script type="text/javascript" src="http://lbs.tianditu.com/api/js4.0/opensource/openlibrary/HeatmapOverlay.js"></script>
+    <!-- 3d饼图 -->
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts-3d.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <!-- 中国地图插件 -->
+    <script type="text/javascript" src="js/china.js"></script>
+    <!-- common js -->
+    <script type="text/javascript" src="js/common.js"></script>
+    <!-- 搜索框的js -->
+    <script type="text/javascript" src="js/search.js"></script>
+    <!-- 自定义管理 -->
+    <script type="text/javascript" src="js/userDefined.js"></script>
+    <!-- 地图圈定图标 -->
+    <!-- 土地的 -->
+    <script type="text/javascript" src="js/landMapInfo.js"></script>
+    <!-- 图表 -->
+    <script type="text/javascript" src="js/floatpanel.js"></script>
+    <!-- 地图工具项 -->
+    <script type="text/javascript" src="js/clipboard.min.js"></script>
+    <script type="text/javascript" src="js/maptoolbar.js"></script>
+    <!-- mainjs -->
+    <script type="text/javascript" src="js/xinchangmap.js"></script>
+    <!-- own setting -->
+    <script type="text/javascript" src="js/land.js"></script>
+</body>
+
+</html>
